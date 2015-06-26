@@ -1,0 +1,112 @@
+.paper-slider {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    padding: 0 $vertical-sizing;
+    height: $increment-keyline;
+    line-height: $increment-keyline;
+    background-color: transparent;
+    .left-icon, .right-icon, .slider-bar, .numeric-input {
+        max-width: $increment-keyline;
+        height: inherit;
+        line-height: inherit;
+    }
+    .left-icon,
+    .right-icon {
+        width: $increment-keyline;
+        text-align: center;
+        user-select: none;
+        cursor: pointer;
+        i {
+            height: inherit;
+            line-height: inherit;
+        }
+    }
+    .left-icon {
+        float: left;
+    }
+    .right-icon {
+        float: right;
+    }
+    .slider-bar {
+        position: absolute;
+        margin: auto;
+        max-width: none;
+        width: auto;
+        left: 1.5 * $increment-keyline;
+        right: 1.5 * $increment-keyline;
+        user-select: none;
+        cursor: pointer;
+        .knob-track {
+            position: absolute;
+            margin: auto;
+            width: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: rgba(0, 0, 0, 0.26);
+            user-select: none;
+            cursor: pointer;
+            .track-progress {
+                user-select: none;
+                background-color: $brand-primary-accent;
+                float: left;
+                width: 0;
+                height: 100%;
+                will-change: width;
+                transition: width 0.14s cubic-bezier(0.4, 0, 0.2, 1);
+                &.is-dragging {
+                    transition: none;
+                }
+            }
+        }
+        .track-progress {
+            user-select: none;
+        }
+        .knob {
+            position: absolute;
+            //display: none;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            transform: translate3d(-12px, 0, 0);
+            width: 24px;
+            height: 24px;
+            user-select: none;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0);
+            background-color: inherit;
+            border-radius: 50%;
+            transition: left .14s cubic-bezier(0.4, 0, 0.2, 1);
+            &.is-dragging {
+                transition: none;
+            }
+            .inner-knob {
+                transform: scale3d(0, 0, 0);
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background-color: $brand-primary-accent;
+                will-change: transform, left, width, height;
+                transition: transform 0.14s cubic-bezier(0.4, 0, 0.2, 1), left 0.14s cubic-bezier(0.4, 0, 0.2, 1);
+                &.expanded, &:active {
+                    transform: scale3d(1, 1, 1);
+                }
+            }
+        }
+        &:hover {
+            .knob {
+                .inner-knob {
+                    transform: scale3d(.5, .5, .5);
+                    &.expanded, &:active {
+                        transform: scale3d(1, 1, 1);
+                    }
+                }
+            }
+        }
+    }
+    // slider-bar
+    .numeric-input {}
+}

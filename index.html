@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css styles/main.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+
+<body ng-app="daksportsApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+
+    <header role="banner" class="site-header">
+        <div id="app-bar-wrapper" class="paper resting">
+            <div id="app-bar-extension">
+                <h1 class="app-view-title">Google Design</h1>
+            </div>
+            <div id="app-bar-main" class="paper">
+                <div class="app-navigation">
+                    <div class="nav-toggle">
+                        <i class="material-icons">menu</i>
+                    </div>
+                    <nav role="navigation">
+                        <ul class="nav-list">
+                            <li class="tab active" data-title="Home" data-rel="views/home.html"><a href="#/">Home</a></li>
+                            <li class="tab" data-title="About" data-rel="views/about.html"><a ng-href="#/about">About</a></li>
+                            <li class="tab" data-title="Contact" data-rel="views/contact.html"><a ng-href="#/">Contact</a></li>
+                            <div class="indicator"></div>
+                        </ul>
+                    </nav>
+                </div>
+                <span class="app-title">Google Design</span>
+                <div class="app-actions">
+                    <div class="app-supplemental-actions">
+                        <i class="material-icons">search</i>
+                        <i class="material-icons">favorite</i>
+                    </div>
+                    <div class="app-menu">
+                        <i class="material-icons">more_vert</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="vcenter-test"></div>-->
+    </header>
+
+
+    <!--
+       <div class="fab colored theme-switch">
+           <i class="material-icons">view_carousel</i>
+       </div>
+       <div class="fab colored extend-appbar">
+           <i class="material-icons">aspect_ratio</i>
+       </div>
+       <div class="fab colored extend-special">
+           <i class="material-icons">stars</i>
+       </div>
+       <div class="fab colored color-appbar">
+           <i class="material-icons">format_paint</i>
+       </div>
+   -->
+
+
+    <main id="content-area">
+        <section ng-view="" class="bottom-sheet" id="view"></section>
+    </main>
+
+    <footer role="footer" id="bottom-bar" class="paper resting"></footer>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <!-- inject:js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/controllers/about.controller.js"></script>
+    <script src="scripts/controllers/main.controller.js"></script>
+    <script src="scripts/controllers/test.controller.js"></script>
+    <script src="scripts/plugins/appbar.js"></script>
+    <script src="scripts/plugins/tabs-list.js"></script>
+    <!-- endinject -->
+</body>
+
+</html>

@@ -1,0 +1,281 @@
+/*-- Cards --*/
+
+/*.scrim {
+    &.light {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.52) 20%, transparent 60%, transparent 70%, rgba(0, 0, 0, 0.52) 92%, rgba(0, 0, 0, 0.6) 99%);
+    }
+    &.dark {
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.52) 20%, transparent 60%, transparent 70%, rgba(255, 255, 255, 0.52) 92%, rgba(255, 255, 255, 0.6) 99%);
+    }
+}*/
+
+.title-on-top {
+    top: 0;
+    bottom: auto;
+    padding: $vertical-sizing $content-padding;
+    width: calc(100% - 80px);
+    .card-title {
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: $medium;
+    }
+}
+
+.card {
+    @extend .paper;
+    @extend .resting;
+    will-change: box-shadow;
+    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 2px;
+    max-width: 10 * $increment-keyline;
+    width: 100%;
+    overflow: hidden;
+    img {
+        display: block;
+    }
+    button {
+        padding-left: $vertical-sizing;
+        padding-right: $vertical-sizing;
+        margin: 0;
+        min-width: $increment-keyline;
+        min-height: $increment-keyline;
+        &:not(:first-child) {
+            margin-left: $vertical-sizing;
+        }
+        i {
+            height: $increment-keyline;
+            line-height: $increment-keyline;
+        }
+    }
+    .card-header {
+        padding: $content-padding;
+        padding-right: $vertical-sizing;
+        height: 2.25 * $increment-keyline;
+        line-height: 1.25 * $increment-keyline;
+        font-size: 0;
+        .avatar, .text {
+            display: inline-block;
+            float: left;
+            height: 1.25 * $increment-keyline;
+        }
+        .avatar {
+            position: relative;
+            background-color: #999999;
+            width: 5 * $vertical-sizing;
+            height: 5 * $vertical-sizing;
+            overflow: hidden;
+            border-radius: 50%;
+            margin-right: $content-padding;
+        }
+        .text {
+            width: calc(100% - 104px);
+            //should change if changing variables
+            height: 100%;
+            overflow: hidden;
+            .header-title, .header-subtitle {
+                width: 100%;
+                @extend body1;
+                line-height: 20px;
+                @extend .single-line;
+            }
+            .header-subtitle {
+                @extend .secondary-text-color;
+            }
+        }
+        .overflow-menu {
+            text-align: center;
+            overflow: hidden;
+            float: right;
+            padding: 4px 8px;
+            opacity: .56;
+        }
+        &.no-subtitle {
+            .text {
+                .header-title {
+                    @extend .title;
+                    height: 100%;
+                    line-height: 1.25 * $increment-keyline;
+                }
+            }
+        }
+    }
+    .card-media {
+        position: relative;
+        .card-primary-text {
+            color: #fff;
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        img {
+            width: 100%;
+        }
+        .audio-player {
+            position: absolute;
+            bottom: 0;
+            transform: translateY(100%);
+            transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
+        .scrim {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 1.75 * $increment-keyline;
+            &.top {
+                top: 0;
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 100%);
+            }
+            &.bottom {
+                bottom: 0;
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.12) 100%);
+            }
+        }
+        .actions {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: $vertical-sizing;
+            max-width: 3 * $increment-keyline;
+            button, i {
+                color: #fff;
+            }
+            .action-area {
+                button {
+                    margin: 0;
+                }
+                display: inline-block;
+                &:first-child {
+                    float: left;
+                }
+                &:last-child {
+                    float: right;
+                }
+                &.right {
+                    float: right;
+                }
+            }
+        }
+        &.audio-type {
+            .actions {
+                .open-mini-player {
+                    transform: rotate(180deg);
+                }
+            }
+            &:hover {
+                .card-primary-text {
+                    @extend .title-on-top;
+                }
+                .audio-player {
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+    .card-primary-text {
+        padding: (3 * $vertical-sizing) $content-padding $vertical-sizing;
+        width: 100%;
+        bottom: auto;
+        top: auto;
+        .card-title {
+            @extend .headline;
+        }
+        .card-title, .card-subtitle {
+            @extend .single-line;
+        }
+        .card-subtitle {
+            @extend .body1;
+            @extend .secondary-text-color;
+        }
+    }
+    .card-supporting-text {
+        position: relative;
+        padding: 0 $content-padding $content-padding;
+        height: 1.5 * $increment-keyline;
+        overflow: hidden;
+        will-change: height;
+        transition: height 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-supplemental-actions {
+        opacity: .87;
+        //border-top: 1px solid rgba(0, 0, 0, 0.12);
+        .action-area {
+            padding: $vertical-sizing;
+            float: left;
+            &.right {
+                float: right;
+                button {
+                    &:not(:last-child) {
+                        margin-right: $vertical-sizing;
+                    }
+                }
+            }
+        }
+        .expander {
+            will-change: transform;
+            transform-origin: center;
+            transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            &.pressed {
+                transform: rotate(180deg);
+            }
+        }
+    }
+    &.no-primary-title, &.no-supporting-text {
+        .card-supporting-text {
+            padding: (3 * $vertical-sizing) $content-padding $content-padding;
+            height: 2.25 * $increment-keyline;
+        }
+        .card-primary-text {
+            position: absolute;
+            bottom: 0;
+            .card-title, .card-subtitle, button, i {
+                color: #fff;
+            }
+        }
+    }
+    &.no-supporting-text {
+        .card-primary-text {
+            background-color: rgba(0, 0, 0, 0.12);
+            bottom: 1.5 * $increment-keyline;
+        }
+        .card-supplemental-actions {
+            opacity: 1;
+            position: absolute;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.12);
+            height: 1.5 * $increment-keyline;
+            transform: translateY(-100%);
+            * {
+                color: #fff;
+            }
+        }
+    }
+    &.with-header {
+        .card-media {
+            .actions {
+                display: none;
+            }
+        }
+    }
+    &.no-media {
+        .card-supporting-text {
+            padding: 0 $content-padding $content-padding;
+            height: 2.25 * $increment-keyline;
+        }
+    }
+    &.no-supplemental-actions {
+        .card-primary-text {
+            background-color: rgba(0, 0, 0, 0);
+            bottom: 0;
+        }
+    }
+    &:hover {
+        @extend .raised;
+        z-index: 5;
+    }
+    &:active {
+        @extend .floating;
+        z-index: 5;
+    }
+}

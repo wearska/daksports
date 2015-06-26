@@ -1,0 +1,38 @@
+{
+  "name": "daksports",
+  "version": "0.0.0",
+  "authors": [
+    "wearska <wearska@gmail.com>"
+  ],
+  "description": "online sports shop",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "online",
+    "sports",
+    "shop"
+  ],
+  "license": "MIT",
+  "homepage": "http://wearska.com",
+  "ignore": [
+    "**/.*",
+    "node_partials",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.1",
+    "angular-animate": "^1.3.0",
+    "angular-aria": "^1.3.0",
+    "angular-cookies": "^1.3.0",
+    "angular-messages": "^1.3.0",
+    "angular-resource": "^1.3.0",
+    "angular-route": "^1.3.0",
+    "angular-sanitize": "^1.3.0",
+    "angular-touch": "^1.3.0"
+  }
+}
