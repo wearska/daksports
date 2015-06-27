@@ -1,0 +1,20 @@
+<h1>This is the contacts view.</h1>
+<div layout layout-align="center center">
+    <div id="login" ng-controller='SaveCtrl' flex="">
+        <form class="" method="post" ng-submit="check_credentials()" layout="column" layout-align="center center">
+            <md-input-container flex="66">
+                <label>Company Name</label>
+                <input ng-model="companyname" type="text">
+            </md-input-container>
+            <md-input-container flex="66">
+                <label>City</label>
+                <input ng-model="city" type="text">
+            </md-input-container>
+            <md-input-container flex="66">
+                <label>Country</label>
+                <input ng-model="country" type="text">
+            </md-input-container>
+            <button class="colored raised md-primary" type="submit" flex="33">Click me</button>
+        </form>
+    </div>
+</div>

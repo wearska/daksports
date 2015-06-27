@@ -13,13 +13,14 @@ angular
         'ngAnimate',
         'ngAria',
         'ngCookies',
+        'ngMaterial',
         'ngMessages',
         'ngResource',
         'ngRoute',
         'ngSanitize',
         'ngTouch'
     ])
-    .config(function($routeProvider, $locationProvider) {
+    .config(function($routeProvider, $locationProvider, $mdThemingProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
@@ -29,8 +30,21 @@ angular
                 templateUrl: 'views/about.html',
                 controller: 'AboutCtrl'
             })
+            .when('/contacts', {
+                templateUrl: 'views/contacts.html',
+            })
             .otherwise({
                 redirectTo: '/'
             });
-        //$locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
+        $mdThemingProvider.theme('default')
+            .primaryPalette('red', {
+                'default': '900',
+                'hue-1': '700',
+                'hue-2': '500',
+                'hue-3': '50'
+            })
+            .accentPalette('red', {
+                'default': 'A700'
+            });
     });
