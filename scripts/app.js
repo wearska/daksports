@@ -44,7 +44,10 @@ angular
                 'hue-2': '500',
                 'hue-3': '50'
             })
-            .accentPalette('red', {
+            .accentPalette('orange', {
                 'default': 'A700'
+            })
+            .backgroundPalette('grey',{
+                'default': '50'
             });
     });

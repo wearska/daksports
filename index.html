@@ -8,27 +8,43 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- Material icon font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/google-design/google-design.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:css styles/main.css -->
     <!-- inject:css -->
+    <link rel="stylesheet" href="styles/main.css">
     <!-- endinject -->
     <!-- endbuild -->
-
 </head>
 
-<body ng-app="daksportsApp" class="light-theme">
+<body ng-app="daksportsApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
 
-    <header role="banner" class="site-header"></header>
-
+    <header role="banner" class="site-header" ng-controller="AppBarCtrl">
+        <gd-appbar class="gd-theme-light">
+            <app-title>
+                Google
+                <span>·</span>
+                Design
+                <span>¬</span>
+            </app-title>
+            <app-nav></app-nav>
+            <app-logo href="/" src="https://docs.angularjs.org/img/angularjs-for-header-only.svg"></app-logo>
+            <app-link href="/about" class="first">About</app-link>
+            <app-link href="/contact" label="second">Contact</app-link>
+        </gd-appbar>
+    </header>
     <main id="content-area">
         <section ng-view=""></section>
     </main>
@@ -40,11 +56,33 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/webcomponents.js/webcomponents.js"></script>
+    <script src="bower_components/google-design/google-design.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js scripts/main.js -->
     <!-- inject:js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/controllers/about.controller.js"></script>
+    <script src="scripts/controllers/app.controller.js"></script>
+    <script src="scripts/controllers/appbar.controller.js"></script>
+    <script src="scripts/controllers/main.controller.js"></script>
+    <script src="scripts/controllers/query.controller.js"></script>
+    <script src="scripts/controllers/save.controller.js"></script>
+    <script src="scripts/controllers/test.controller.js"></script>
     <!-- endinject -->
 </body>
 
