@@ -13,22 +13,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
-.is-hidden {
-        display: none!important;
-}
-.is-visible {
-        display: block!important;
-}
-.is-visually-hidden {
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-        opacity: 0.01;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        z-index: 1;
-}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
 .grid-fluid,
 .grid-fixed {
         margin: 0 auto;
@@ -1694,8 +1684,10 @@ screen and (max-width: 800px) {
 .main-nav h1 {
         margin: 0 80px 0 0;
         padding: 0;
+        display: flex;
+        align-items: center;
         height: 36px;
-        width: 136px;
+        width: 200px;
         float: left;
 }
 @media handheld and (max-width: 480px),
@@ -1777,6 +1769,7 @@ screen and (max-width: 800px) {
         font-weight: 400;
         font-size: 16px;
         border: none;
+        margin: 0;
         background: none;
         border-radius: 0;
         position: relative;

@@ -18,24 +18,49 @@ angular
         'ngResource',
         'ngRoute',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
+        'ui.router'
     ])
-    .config(function($routeProvider, $locationProvider, $mdThemingProvider) {
-        $routeProvider
-            .when('/', {
+    .config(function($routeProvider, $urlRouterProvider, $stateProvider, $locationProvider, $mdThemingProvider) {
+        // For any unmatched url, redirect to /
+        $urlRouterProvider.otherwise('/');
+
+        $stateProvider
+            .state('main', {
+                url: '/',
                 templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
+                controller: 'mainCtrl'
             })
-            .when('/about', {
+            .state('about', {
+                url: '/about',
                 templateUrl: 'views/about.html',
-                controller: 'AboutCtrl'
+                controller: 'aboutCtrl'
             })
-            .when('/contact', {
+            .state('contact', {
+                url: '/contact',
                 templateUrl: 'views/contact.html',
+                controller: 'contactCtrl'
             })
-            .otherwise({
-                redirectTo: '/'
+            .state('admin', {
+                url: '/admin',
+                templateUrl: 'views/admin.html',
+                controller: 'adminCtrl'
             });
+        // $routeProvider
+        //     .when('/', {
+        //         templateUrl: 'views/main.html',
+        //         controller: 'mainCtrl'
+        //     })
+        //     .when('/about', {
+        //         templateUrl: 'views/about.html',
+        //         controller: 'aboutCtrl'
+        //     })
+        //     .when('/contact', {
+        //         templateUrl: 'views/contact.html',
+        //     })
+        //     .otherwise({
+        //         redirectTo: '/'
+        //     });
         $locationProvider.html5Mode(true);
         $mdThemingProvider.theme('default')
             .primaryPalette('red', {
@@ -47,7 +72,7 @@ angular
             .accentPalette('orange', {
                 'default': 'A700'
             })
-            .backgroundPalette('grey',{
+            .backgroundPalette('grey', {
                 'default': '50'
             });
     });

@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name daksportsApp.controller:QueryCtrl
+ * @name daksportsApp.controller:queryCtrl
  * @description
- * # QueryCtrl
+ * # queryCtrl
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-  .controller('QueryCtrl', function ($scope, $http) {
+  .controller('queryCtrl', function ($scope, $http) {
       $http.get("api/query.php")
     .success(function (response) {$scope.names = response.records;});
   });

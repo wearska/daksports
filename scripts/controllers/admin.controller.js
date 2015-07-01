@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name daksportsApp.controller:testCtrl
+ * @name daksportsApp.controller:adminCtrl
  * @description
- * # testCtrl
+ * # adminCtrl
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-  .controller('testCtrl', function ($scope) {
+  .controller('adminCtrl', function ($scope) {
       console.log("using test controller");
   });

@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name daksportsApp.controller:AppBarCtrl
+ * @name daksportsApp.controller:appBarCtrl
  * @description
- * # AppBarCtrl
+ * # appBarCtrl
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AppBarCtrl', function($scope, $location) {
+    .controller('appBarCtrl', function($scope, $location) {
         var tabIndex = $location.path();
         $scope.selectedIndex = (tabIndex === "/contacts") ? 2 : (tabIndex === "/about") ? 1 : 0;
         

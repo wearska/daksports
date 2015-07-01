@@ -13,7 +13,6 @@
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-    <link rel="stylesheet" href="bower_components/google-design/google-design.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -24,29 +23,57 @@
     <!-- endbuild -->
 </head>
 
-<body ng-app="daksportsApp">
+<body ng-app="daksportsApp" style="height: 2500px;">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
 
-    <header role="banner" class="site-header" ng-controller="AppBarCtrl">
-        <gd-appbar class="gd-theme-light">
-            <app-title>
-                Google
-                <span>·</span>
-                Design
-                <span>¬</span>
-            </app-title>
-            <app-nav></app-nav>
-            <app-logo href="/" src="https://docs.angularjs.org/img/angularjs-for-header-only.svg"></app-logo>
-            <app-link href="/about" class="first">About</app-link>
-            <app-link href="/contact" label="second">Contact</app-link>
-        </gd-appbar>
+    <header role="banner" class="site-header" ng-controller="appBarCtrl">
+        <md-toolbar class="main-nav">
+            <nav>
+                <h1>
+                    <a class="md-button md-default-theme" ng-transclude="" href="/" md-button="">
+                        <span class="ng-scope">Daksports</span>
+                    </a>
+                </h1>
+                <button type="button" name="button" class="main-nav-button main-nav-mobile-trigger">
+                    <span class="ng-scope">Site Menu </span>
+                    <span class="icon icon-arrow-drop-down ng-scope"></span>
+                </button>
+                <ul>
+                    <li class="l-left">
+                        <a href="/services" class="main-nav-button" md-button>
+                            <span>Servicii</span>
+                        </a>
+                    </li>
+                    <li class="l-left">
+                        <a href="/support" class="main-nav-button" md-button>
+                            <span>Suport</span>
+                        </a>
+                    </li>
+                    <li class="l-left">
+                        <a href="/blog" class="main-nav-button" md-button>
+                            <span>Blog</span>
+                        </a>
+                    </li>
+                    <li class="l-left">
+                        <a href="/about" class="main-nav-button" md-button>
+                            <span>Despre noi</span>
+                        </a>
+                    </li>
+                    <li class="l-right">
+                        <a href="/admin" class="main-nav-button" md-button>
+                            <span>Admin</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </md-toolbar>
     </header>
     <main id="content-area">
-        <section ng-view=""></section>
+        <section ui-view=""></section>
     </main>
 
     <footer role="footer" id="bottom-bar" class="paper resting"></footer>
@@ -67,8 +94,7 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
-    <script src="bower_components/webcomponents.js/webcomponents.js"></script>
-    <script src="bower_components/google-design/google-design.js"></script>
+    <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -77,11 +103,13 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/controllers/about.controller.js"></script>
+    <script src="scripts/controllers/admin.controller.js"></script>
     <script src="scripts/controllers/app.controller.js"></script>
     <script src="scripts/controllers/appbar.controller.js"></script>
     <script src="scripts/controllers/main.controller.js"></script>
     <script src="scripts/controllers/query.controller.js"></script>
     <script src="scripts/controllers/save.controller.js"></script>
+    <script src="scripts/controllers/sidenav.controller.js"></script>
     <script src="scripts/controllers/test.controller.js"></script>
     <script src="scripts/plugins/appbar.js"></script>
     <!-- endinject -->

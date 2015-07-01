@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name daksportsApp.controller:MainCtrl
+ * @name daksportsApp.controller:mainCtrl
  * @description
- * # MainCtrl
+ * # mainCtrl
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('mainCtrl', function ($scope) {
       console.log("using main controller");
   });

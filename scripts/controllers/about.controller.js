@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc function
- * @name daksportsApp.controller:AboutCtrl
+ * @name daksportsApp.controller:aboutCtrl
  * @description
- * # AboutCtrl
+ * # aboutCtrl
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-  .controller('AboutCtrl', function ($scope) {
+  .controller('aboutCtrl', function ($scope) {
   });

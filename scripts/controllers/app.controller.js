@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name daksportsApp.controller:AppCtrl
+ * @name daksportsApp.controller:appCtrl
  * @description
- * # AppCtrl
+ * # appCtrl
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AppCtrl', ['$scope', '$mdDialog', '$timeout', function($scope, $mdDialog, $timeout) {
+    .controller('appCtrl', ['$scope', '$mdDialog', '$timeout', function($scope, $mdDialog, $timeout) {
         $scope.showDocsNav = false;
         $scope.showMainNav = false;
         $scope.showMenu = false;
