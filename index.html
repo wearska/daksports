@@ -16,9 +16,9 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css styles/main.css -->
+    <!-- build:css styles/main.min.css -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.min.css">
     <!-- endinject -->
     <!-- endbuild -->
 </head>
@@ -30,8 +30,9 @@
 
     <!-- Add your site or application content here -->
 
-    <header role="banner" class="site-header" ng-controller="appBarCtrl">
-        <md-toolbar class="main-nav">
+    <header role="banner" class="site-header" ng-controller="appBarCtrl" ng-include="'views/appbar.html'">    
+
+        <!-- <md-toolbar id="appbar">
             <nav>
                 <h1>
                     <a class="md-button md-default-theme" ng-transclude="" href="/" md-button="">
@@ -70,7 +71,7 @@
                     </li>
                 </ul>
             </nav>
-        </md-toolbar>
+        </md-toolbar> -->
     </header>
     <main id="content-area">
         <section ui-view=""></section>

@@ -1,0 +1,40 @@
+// Content
+.c-max {
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    display: block;
+}
+@media only screen and (min-width: 1601px) and (max-width: 1900px) {
+    .c-max {
+        max-width: 1440px;
+    }
+}
+@media only screen and (min-width: 1900px) {
+    .c-max {
+        max-width: 1680px;
+    }
+}
+
+// Header
+header {
+    &.site-header {
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+    }
+}
+
+// Footer
+footer {
+
+}
+
+// Main View
+main#view {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 $content-padding;
+}

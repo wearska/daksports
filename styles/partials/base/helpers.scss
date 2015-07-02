@@ -1,0 +1,83 @@
+/* Text meant only for screen readers. */
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+    /* Above WP toolbar. */
+}
+
+/* Visibility. */
+.is-hidden {
+    display: none!important;
+}
+.is-visible {
+    display: block!important;
+}
+.is-visually-hidden {
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    opacity: 0.01;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+.off-screen {
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    user-select: none;
+    position: absolute !important;
+    width: 1px;
+}
+.invisible {
+    visibility: hidden;
+}
+.overkill {
+    @extend .hidden;
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+}
+.revive {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    user-select: init;
+    pointer-events: auto;
+}
+.lazy {
+    filter:saturate(0);
+    opacity: 0;
+}
+.lazy-loaded {
+    filter:saturate(1);
+    opacity: 1;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+}
