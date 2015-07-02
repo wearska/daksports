@@ -31,7 +31,7 @@ module.exports = function(options) {
                options.app + 'styles/main.scss'
            ])
            .pipe($.inject(series(variables, base, layout, animations, components), injectOptions))
-           .pipe(gulp.dest(options.app + 'styles'))
+           //.pipe(gulp.dest(options.app + 'styles'))
            .pipe($.sass(sassOptions)).on('error', options.errorHandler('Sass'))
            .pipe($.autoprefixer({
                browsers: ['last 2 versions'],

@@ -29,38 +29,23 @@ angular
             .state('main', {
                 url: '/',
                 templateUrl: 'views/main.html',
-                controller: 'mainCtrl'
+                //controller: 'mainCtrl'
             })
             .state('about', {
                 url: '/about',
                 templateUrl: 'views/about.html',
-                controller: 'aboutCtrl'
+                //controller: 'aboutCtrl'
             })
             .state('contact', {
                 url: '/contact',
                 templateUrl: 'views/contact.html',
-                controller: 'contactCtrl'
+                //controller: 'contactCtrl'
             })
             .state('admin', {
                 url: '/admin',
                 templateUrl: 'views/admin.html',
-                controller: 'adminCtrl'
+                //controller: 'adminCtrl'
             });
-        // $routeProvider
-        //     .when('/', {
-        //         templateUrl: 'views/main.html',
-        //         controller: 'mainCtrl'
-        //     })
-        //     .when('/about', {
-        //         templateUrl: 'views/about.html',
-        //         controller: 'aboutCtrl'
-        //     })
-        //     .when('/contact', {
-        //         templateUrl: 'views/contact.html',
-        //     })
-        //     .otherwise({
-        //         redirectTo: '/'
-        //     });
         $locationProvider.html5Mode(true);
         $mdThemingProvider.theme('default')
             .primaryPalette('red', {
@@ -75,4 +60,9 @@ angular
             .backgroundPalette('grey', {
                 'default': '50'
             });
+        $mdThemingProvider.theme('docs-dark', 'default')
+            .primaryPalette('grey', {
+                'default': '50'
+            })
+            .dark();
     });

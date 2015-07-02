@@ -1,54 +1,122 @@
-// Appbar
-#appbar {
+.md-button {
+    margin: 0;
+}
+.main-nav {
     height: 56px;
     min-height: 56px;
     padding: 0 16px;
-}
-
-// App title
-#appbar h1 {
-    margin: 0 80px 0 0;
-    padding: 0;
-    height: 100%;
-    width: auto;
-    float: left;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+    background-color: #201f1f;
 }
 @media handheld and (max-width:480px),
 screen and (max-device-width:480px),
 screen and (max-width:800px) {
-    #appbar h1 {
+    .main-nav {
+        padding: 0;
+    }
+    .main-nav {
+        .md-button {
+            margin: 0;
+        }
+    }
+}
+.main-nav h1 {
+    margin: 0 80px 0 0;
+    padding: 0;
+    height: 36px;
+    width: 136px;
+    float: left;
+    background-color: inherit;
+}
+@media handheld and (max-width:480px),
+screen and (max-device-width:480px),
+screen and (max-width:800px) {
+    .main-nav h1 {
         margin: 0;
     }
 }
-#appbar h1 a {
-    background: url("/assets/img/daksports_logo_white.svg") center no-repeat;
+.main-nav h1 a {
+    background: url("/assets/img/daksports_logo_red_white_noborder.svg")center no-repeat;
     display: block;
-    height: 100%;
-    width: 200zpx;
+    height: 56px;
+    width: 135px;
     overflow: hidden;
     text-indent: -3000px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio:2),
 only screen and (min-device-pixel-ratio:2) {
-    #appbar h1 a {
-        background: url("/assets/img/daksports_logo_white.svg") 0 8px no-repeat;
+    .main-nav h1 a {
+        background: url("/assets/img/daksports_logo_red_white_noborder.svg") center no-repeat;
         background-size: 135px 36px;
     }
 }
-
-// Appbar buttons
-.md-button {
-    margin: 0;
-    padding: 6px;
+@media handheld and (max-width:480px),
+screen and (max-device-width:480px),
+screen and (max-width:800px) {
+    
+    // .main-nav h1 a {
+    //     width: 200px;
+    //     left: 0;
+    //     right: 0;
+    //     position: absolute;
+    //     margin: auto;
+    // }
 }
-#appbar.appbar-button {
+.main-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #201f1f;
+}
+.main-nav ul li {
+    margin: 0;
+}
+@media handheld and (max-width:480px),
+screen and (max-device-width:480px),
+screen and (max-width:800px) {
+    .main-nav ul .main-nav-button {
+        display: block;
+        float: none;
+        line-height: 48px;
+        text-align: left;
+        font-size: 14px;
+        padding: 0 40px;
+    }
+    .main-nav ul .main-nav-button.has-icon {
+        padding: 0 40px;
+        position: static;
+    }
+    .main-nav ul .main-nav-button .icon {
+        display: none;
+    }
+}
+@media handheld and (max-width:480px),
+screen and (max-device-width:480px),
+screen and (max-width:800px) {
+    .main-nav ul {
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        float: none;
+        position: absolute;
+        top: 56px;
+        right: 0;
+        left: 0;
+        z-index: 6;
+        display: none;
+    }
+    .main-nav ul li {
+        display: block;
+        float: none;
+    }
+}
+.main-nav .main-nav-button {
     line-height: 56px;
     display: inline-block;
+    background-color: inherit;
     color: #fff;
     text-decoration: none;
     padding: 0 16px;
     text-transform: uppercase;
-    font-family: 'Roboto',"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-family: 'Roboto Mono','Roboto',"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
     font-weight: 400;
     font-size: 16px;
     border: none;
@@ -56,34 +124,48 @@ only screen and (min-device-pixel-ratio:2) {
     border-radius: 0;
     position: relative;
 }
-#appbar.appbar-button:hover {
-    background: #0143a3;
-}
-#appbar.appbar-button.has-icon {
+.main-nav .main-nav-button.has-icon {
     position: relative;
     padding-left: 46px;
 }
-#appbar.appbar-button .icon {
-    font-size: 22px;
+.main-nav .main-nav-button .icon {
+    line-height: 56px;
     position: absolute;
-    top: 15px;
     left: 16px;
     z-index: 1;
 }
-#appbar.appbar-mobile-trigger {
+.main-nav .main-nav-mobile-trigger {
     display: none;
-    padding: 0 32px 0 8px;
-    font-size: 14px;
 }
-#appbar.appbar-mobile-trigger .icon {
-    left: auto;
-    right: 8px;
-    opacity: 0.56;
+.main-nav .main-nav-icon {
+    display: inline-block;
+}
+.main-nav .main-nav-icon {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    background: none;
+    border-radius: 0;
+    position: relative;
+}
+.main-nav .main-nav-mobile-trigger .icon,
+.main-nav .main-nav-icon .icon {
+    line-height: 56px;
+    z-index: 1;
 }
 @media handheld and (max-width:480px),
 screen and (max-device-width:480px),
 screen and (max-width:800px) {
-    #appbar.appbar-mobile-trigger {
+    .main-nav .main-nav-mobile-trigger {
         display: inline-block;
+    }
+}
+.main-nav .md-icon-button {
+    color: #fff;
+    height: 56px;
+    line-height: 56px;
+    md-icon {
+        color: #fff;
     }
 }

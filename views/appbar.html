@@ -1,10 +1,34 @@
-<div class="c-max appbar-light" id="appbar">
-    <div class="appbar-main">
+<md-toolbar class="main-nav l-pinned-top l-layer-5 md-whiteframe-z3">
+    <nav>
+        <md-button aria-label="View Menu" class="md-icon-button main-nav-mobile-trigger l-left" ng-class="showMainNav ? 'is-visible' : ''" ng-click="toggleMainMenu($event)">
+            <md-icon><i class="material-icons">&#xE5D2;</i></md-icon>
+        </md-button>
         <h1>
-            <a class="appbar-button" href="/" md-button="" ng-transclude="">
-                <span>Daksports</span>
-            </a>
+            <a href="/" md-button>Daksports</a>
         </h1>
-    </div>
-    <div class="appbar-extension"></div>
-</div>
+        <ul ng-class="showMainNav ? 'is-visible' : ''">
+            <li class="l-left">
+                <a class="main-nav-button" href="/promos.html" md-button>Promotii</a>
+            </li>
+            <li class="l-left">
+                <a class="main-nav-button" href="/new" md-button>Produse noi</a>
+            </li>
+            <li class="l-left">
+                <a class="main-nav-button" href="/service" md-button>Asistenta</a>
+            </li>
+            <li class="l-left">
+                <a class="main-nav-button" href="/contact" md-button>Contact</a>
+            </li>
+        </ul>
+        <md-button aria-label="View Account" class="md-icon-button l-right" ng-click="">
+            <md-icon><i class="material-icons icon">&#xE853;</i></md-icon>
+        </md-button>
+        <md-button aria-label="View Cart" class="md-icon-button l-right" ng-click="">
+            <md-icon><i class="material-icons">&#xE8CC;</i></md-icon>
+        </md-button>
+        <md-button aria-label="Search" class="md-icon-button l-right" ng-click="">
+            <md-icon><i class="material-icons">&#xE8B6;</i></md-icon>
+        </md-button>
+        
+    </nav>
+</md-toolbar>

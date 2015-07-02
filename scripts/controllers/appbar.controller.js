@@ -8,8 +8,27 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('appBarCtrl', function($scope, $location) {
-        var tabIndex = $location.path();
-        $scope.selectedIndex = (tabIndex === "/contacts") ? 2 : (tabIndex === "/about") ? 1 : 0;
+    .controller('appBarCtrl', ['$scope', '$mdDialog', '$timeout', function($scope, $mdDialog, $timeout) {
+        $scope.showDocsNav = false;
+        $scope.showMainNav = false;
+        $scope.showMenu = false;
         
-    });
+        $scope.test = function(){
+            console.log("test");
+        }
+
+        // TOGGLE MAIN NAV (TOP) ON MOBILE
+        $scope.toggleDocsMenu = function() {
+            $scope.showDocsNav = !$scope.showDocsNav;
+        };
+        
+        // TOGGLE DOCS NAV
+        $scope.toggleMainMenu = function() {
+            $scope.showMainNav = !$scope.showMainNav;
+        };
+        
+        // TOGGLE DOCS VERSION & LANGUAGE
+        $scope.toggleVersionMenu = function() {
+            $scope.showMenu = !$scope.showMenu;
+        };
+    }]);
