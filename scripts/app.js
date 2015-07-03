@@ -29,22 +29,27 @@ angular
             .state('main', {
                 url: '/',
                 templateUrl: 'views/main.html',
-                //controller: 'mainCtrl'
+                //controller: 'MainCtrl'
             })
             .state('about', {
                 url: '/about',
                 templateUrl: 'views/about.html',
-                //controller: 'aboutCtrl'
+                //controller: 'AboutCtrl'
             })
             .state('contact', {
                 url: '/contact',
                 templateUrl: 'views/contact.html',
-                //controller: 'contactCtrl'
+                //controller: 'ContactCtrl'
             })
             .state('admin', {
                 url: '/admin',
                 templateUrl: 'views/admin.html',
-                //controller: 'adminCtrl'
+                //controller: 'AdminCtrl'
+            })
+            .state('promos', {
+                url: '/promos',
+                templateUrl: 'views/promos.html',
+                //controller: 'AdminCtrl'
             });
         $locationProvider.html5Mode(true);
         $mdThemingProvider.theme('default')

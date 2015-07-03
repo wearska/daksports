@@ -30,7 +30,7 @@
 
     <!-- Add your site or application content here -->
 
-    <header role="banner" class="site-header" ng-controller="appBarCtrl" ng-include="'views/appbar.html'"></header>
+    <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'views/appbar.html'"></header>
     <main id="content-area">
         <section ui-view=""></section>
     </main>
@@ -61,15 +61,11 @@
     <!-- inject:js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/main.js"></script>
-    <script src="scripts/controllers/about.controller.js"></script>
-    <script src="scripts/controllers/admin.controller.js"></script>
-    <script src="scripts/controllers/app.controller.js"></script>
     <script src="scripts/controllers/appbar.controller.js"></script>
+    <script src="scripts/controllers/dropdown.controller.js"></script>
     <script src="scripts/controllers/main.controller.js"></script>
     <script src="scripts/controllers/query.controller.js"></script>
     <script src="scripts/controllers/save.controller.js"></script>
-    <script src="scripts/controllers/sidenav.controller.js"></script>
-    <script src="scripts/controllers/test.controller.js"></script>
     <script src="scripts/plugins/appbar.js"></script>
     <!-- endinject -->
 </body>

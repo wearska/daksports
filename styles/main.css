@@ -369,6 +369,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+.menudemoMenuPositionModes .md-menu-demo {
+  padding: 24px; }
+
+.menudemoMenuPositionModes .menu-demo-container {
+  min-height: 200px; }
+
 .is-hidden {
   display: none !important; }
 
@@ -4669,11 +4675,12 @@ code {
   .c-max {
     max-width: 1680px; } }
 
-header.site-header {
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 10000; }
+header {
+  height: 100%; }
+  header.site-header {
+    position: relative;
+    top: 0;
+    left: 0; }
 
 main#view {
   max-width: 1280px;
@@ -4686,35 +4693,42 @@ main#view {
 .main-nav {
   height: 56px;
   min-height: 56px;
-  padding: 0 16px;
+  padding: 0;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   background-color: #201f1f; }
 
-@media handheld and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 800px) {
+@media screen and (min-width: 961px) {
   .main-nav {
-    padding: 0; }
-  .main-nav .md-button {
-    margin: 0; } }
+    height: 64px;
+    min-height: 64px;
+    padding: 0 24px; } }
 
 .main-nav h1 {
-  margin: 0 80px 0 0;
+  margin: 0;
   padding: 0;
-  height: 36px;
+  height: 56px;
+  line-height: 56px;
   width: 136px;
   float: left;
   background-color: inherit; }
+  .main-nav h1 a {
+    background: url("/assets/img/daksports_logo_red_white_noborder.svg") center no-repeat;
+    background-size: 95%;
+    display: block;
+    height: 56px;
+    line-height: 56px;
+    width: 135px;
+    overflow: hidden;
+    text-indent: -3000px; }
 
-@media handheld and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 800px) {
+@media screen and (min-width: 961px) {
   .main-nav h1 {
-    margin: 0; } }
-
-.main-nav h1 a {
-  background: url("/assets/img/daksports_logo_red_white_noborder.svg") center no-repeat;
-  display: block;
-  height: 56px;
-  width: 135px;
-  overflow: hidden;
-  text-indent: -3000px; }
+    margin: 0 80px 0 0;
+    height: 64px;
+    line-height: 64px; }
+    .main-nav h1 a {
+      height: 64px;
+      line-height: 64px; } }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
   .main-nav h1 a {
@@ -4726,23 +4740,49 @@ main#view {
   margin: 0;
   padding: 0;
   background-color: #201f1f; }
+  .main-nav ul li {
+    margin: 0; }
 
-.main-nav ul li {
-  margin: 0; }
-
-@media handheld and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 800px) {
-  .main-nav ul .main-nav-button {
-    display: block;
-    float: none;
-    line-height: 48px;
-    text-align: left;
-    font-size: 14px;
-    padding: 0 40px; }
-  .main-nav ul .main-nav-button.has-icon {
-    padding: 0 40px;
+.main-nav .main-nav-button {
+  height: 56px;
+  line-height: 56px;
+  display: inline-block;
+  display: block;
+  float: none;
+  background-color: inherit;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 40px;
+  text-transform: uppercase;
+  font-family: 'Roboto Mono','Roboto',"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  border: none;
+  background: none;
+  border-radius: 0;
+  position: relative;
+  text-align: left; }
+  .main-nav .main-nav-button.has-icon {
     position: static; }
-  .main-nav ul .main-nav-button .icon {
-    display: none; } }
+    .main-nav .main-nav-button.has-icon .icon {
+      display: none; }
+
+@media screen and (min-width: 961px) {
+  .main-nav .main-nav-button {
+    height: 64px;
+    line-height: 64px;
+    display: inline-block;
+    float: left;
+    font-size: 16px;
+    padding: 0 16px; }
+    .main-nav .main-nav-button.has-icon {
+      position: relative;
+      padding-left: 46px; }
+      .main-nav .main-nav-button.has-icon .icon {
+        line-height: 56px;
+        position: absolute;
+        left: 16px;
+        z-index: 1; } }
 
 @media handheld and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 800px) {
   .main-nav ul {
@@ -4758,39 +4798,19 @@ main#view {
     display: block;
     float: none; } }
 
-.main-nav .main-nav-button {
-  line-height: 56px;
-  display: inline-block;
-  background-color: inherit;
-  color: #fff;
-  text-decoration: none;
-  padding: 0 16px;
-  text-transform: uppercase;
-  font-family: 'Roboto Mono','Roboto',"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  border: none;
-  background: none;
-  border-radius: 0;
-  position: relative; }
-
-.main-nav .main-nav-button.has-icon {
-  position: relative;
-  padding-left: 46px; }
-
-.main-nav .main-nav-button .icon {
-  line-height: 56px;
-  position: absolute;
-  left: 16px;
-  z-index: 1; }
-
 .main-nav .main-nav-mobile-trigger {
-  display: none; }
-
-.main-nav .main-nav-icon {
   display: inline-block; }
+  .main-nav .main-nav-mobile-trigger .icon {
+    height: 56px;
+    line-height: 56px;
+    z-index: 1; }
+
+@media screen and (min-width: 961px) {
+  .main-nav .main-nav-mobile-trigger {
+    display: none; } }
 
 .main-nav .main-nav-icon {
+  display: inline-block;
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
@@ -4798,19 +4818,31 @@ main#view {
   background: none;
   border-radius: 0;
   position: relative; }
+  .main-nav .main-nav-icon .icon {
+    height: 56px;
+    line-height: 56px;
+    z-index: 1; }
 
-.main-nav .main-nav-mobile-trigger .icon,
-.main-nav .main-nav-icon .icon {
-  line-height: 56px;
-  z-index: 1; }
-
-@media handheld and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 800px) {
-  .main-nav .main-nav-mobile-trigger {
-    display: inline-block; } }
+@media screen and (min-width: 961px) {
+  .main-nav .main-nav-icon .icon {
+    height: 64px;
+    line-height: 64px; } }
 
 .main-nav .md-icon-button {
   color: #fff;
+  width: 32px;
   height: 56px;
   line-height: 56px; }
   .main-nav .md-icon-button md-icon {
     color: #fff; }
+
+@media screen and (min-width: 961px) {
+  .main-nav .md-icon-button {
+    width: 48px;
+    height: 64px;
+    line-height: 64px; } }
+
+md-menu-content {
+  position: absolute;
+  top: 0;
+  z-index: 1000; }

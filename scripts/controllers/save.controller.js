@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name daksportsApp.controller:saveCtrl
+ * @name daksportsApp.controller:SaveCtrl
  * @description
- * # saveCtrl
+ * # SaveCtrl
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('saveCtrl', function($scope, $http) {
+    .controller('SaveCtrl', function($scope, $http) {
         /*
          * This method will be called on click event of button.
          * Here we will read the email and password value and call our PHP file.

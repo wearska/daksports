@@ -19,11 +19,12 @@
 
 // Header
 header {
+    height: 100%;
     &.site-header {
         position: relative;
         top: 0;
         left: 0;
-        z-index: 10000;
+        //z-index: 10000;
     }
 }
 

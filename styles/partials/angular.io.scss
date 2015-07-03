@@ -13,6 +13,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+.menudemoMenuPositionModes .md-menu-demo {
+  padding: 24px; }
+.menudemoMenuPositionModes .menu-demo-container {
+  min-height: 200px; }
+
 .is-hidden {
     display: none!important;
 }
