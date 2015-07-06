@@ -1,0 +1,89 @@
+#admin-menu {
+    height: 100%;
+    width: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+.admin-menu {
+    background-color: #201f1f;
+    height: 100%;
+    ul {
+        margin: 0;
+        padding: 0;
+        padding-top: 48px;
+        background-color: #201f1f;
+        li {
+            height: 56px;
+            line-height: 56px;
+        }
+    }
+}
+.admin-menu header {
+    position: relative;
+    height: 200px;
+        background-color: #201f1f;
+    a {
+        background: url("/assets/img/daksports_logo_red_icon.svg") center no-repeat;
+        background-size: 40%;
+        height: 100%;
+        h1 {
+            color: #fff;
+            text-align: center;
+            font-weight: 400;
+            font-size: 26px;
+            font-style: normal;
+            text-transform: capitalize;
+            bottom: 0;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+        }
+    }
+    .md-button {
+        margin: 0;
+        padding: 0 $content-padding;
+        margin-top: 56px;
+        max-height: none;
+        height: 200px;
+        border-radius: 0;
+        color: white;
+        cursor: pointer;
+        display: block;
+        overflow: hidden;
+        text-decoration: none;
+        white-space: normal;
+        width: 100%;
+    }
+}
+.admin-menu .am-menu-button {
+    height: 56px;
+    line-height: 56px;
+    display: inline-block;
+    display: block;
+    float: none;
+    background-color: inherit;
+    color: #fff;
+    text-decoration: none;
+    padding: 0 $content-padding;
+    text-transform: uppercase;
+    font-family: 'Roboto Mono','Roboto',"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    border: none;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    text-align: left;
+    &.has-icon {
+        position: relative;
+        padding-left: 46px;
+        .icon {
+            line-height: 56px;
+            position: absolute;
+            left: 16px;
+            z-index: 1;
+        }
+    }
+}

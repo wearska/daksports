@@ -10,7 +10,7 @@
 }
 @media #{$medium-and-up} {
     .main-nav {
-
+        
     }
 }
 @media #{$medium-and-up} {
@@ -81,7 +81,7 @@ only screen and (min-device-pixel-ratio:2) {
     background-color: inherit;
     color: #fff;
     text-decoration: none;
-    padding: 0 40px;
+    padding: 0 $content-padding;
     text-transform: uppercase;
     font-family: 'Roboto Mono','Roboto',"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
     font-weight: 400;
@@ -105,7 +105,6 @@ only screen and (min-device-pixel-ratio:2) {
         display: inline-block;
         float: left;
         font-size: 16px;
-        padding: 0 $content-padding;
         &.has-icon {
             position: relative;
             padding-left: 46px;
@@ -118,22 +117,24 @@ only screen and (min-device-pixel-ratio:2) {
         }
     }
 }
-@media handheld and (max-width:480px),
-screen and (max-device-width:480px),
-screen and (max-width:800px) {
-    .main-nav ul {
-        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        float: none;
-        position: absolute;
-        top: 56px;
-        right: 0;
-        left: 0;
-        z-index: 6;
-        display: none;
-    }
-    .main-nav ul li {
+.main-nav ul {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    float: none;
+    position: absolute;
+    top: 56px;
+    right: 0;
+    left: 0;
+    z-index: 6;
+    display: none;
+    li {
         display: block;
         float: none;
+    }
+}
+@media #{$medium-and-up} {
+    .main-nav ul{
+        display: block;
+        position: static;
     }
 }
 .main-nav .main-nav-mobile-trigger {
@@ -174,7 +175,7 @@ screen and (max-width:800px) {
 }
 .main-nav .md-icon-button {
     color: #fff;
-    width:32px;
+    width: 32px;
     height: 56px;
     line-height: 56px;
     md-icon {
@@ -183,14 +184,8 @@ screen and (max-width:800px) {
 }
 @media #{$medium-and-up} {
     .main-nav .md-icon-button {
-        width:48px;
+        width: 48px;
         height: 64px;
         line-height: 64px;
     }
-}
-
-md-menu-content{
-    position: absolute;
-    top: 0;
-    z-index: 1000;
 }

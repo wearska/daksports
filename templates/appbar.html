@@ -17,15 +17,15 @@
                     <a class="main-nav-button" href="/new" md-button ng-click="toggleMainNav($event)">Produse noi</a>
                 </li>
                 <li class="l-left">
-                    <a class="main-nav-button" href="/service" md-button ng-click="toggleMainNav($event)">Asistenta</a>
+                    <a class="main-nav-button" href="/support" md-button ng-click="toggleMainNav($event)">Asistenta</a>
                 </li>
                 <li class="l-left">
                     <a class="main-nav-button" href="/contact" md-button ng-click="toggleMainNav($event)">Contact</a>
                 </li>
             </ul>
-            <md-button aria-label="View Account" class="md-icon-button l-right l-layer-10" ng-controller="PositionDemoCtrl as ctrl">
+            <md-button class="md-icon-button l-right" aria-label="View Account">
                 <md-menu md-position-mode="target-right target">
-                    <md-icon md-menu-origin ng-click="$mdOpenMenu()">
+                    <md-icon class="md-icon-button" md-menu-origin ng-click="$mdOpenMenu()">
                         <i class="material-icons icon">&#xE853;</i>
                     </md-icon>
                     <md-menu-content width="4">
@@ -50,7 +50,6 @@
                     <i class="material-icons">&#xE8B6;</i>
                 </md-icon>
             </md-button>
-
         </nav>
     </div>
 </md-toolbar>

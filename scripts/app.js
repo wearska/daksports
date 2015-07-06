@@ -31,9 +31,19 @@ angular
                 templateUrl: 'views/main.html',
                 //controller: 'MainCtrl'
             })
-            .state('about', {
-                url: '/about',
-                templateUrl: 'views/about.html',
+            .state('test', {
+                url: '/test',
+                templateUrl: 'templates/test.html',
+                controller: 'TestCtrl'
+            })
+            .state('login', {
+                url: '/login',
+                templateUrl: 'views/login.html',
+                controller: 'MainCtrl as main'
+            })
+            .state('new', {
+                url: '/new',
+                templateUrl: 'views/new.html',
                 //controller: 'AboutCtrl'
             })
             .state('contact', {
@@ -41,14 +51,39 @@ angular
                 templateUrl: 'views/contact.html',
                 //controller: 'ContactCtrl'
             })
-            .state('admin', {
-                url: '/admin',
-                templateUrl: 'views/admin.html',
+            .state('support', {
+                url: '/support',
+                templateUrl: 'views/support.html',
                 //controller: 'AdminCtrl'
             })
             .state('promos', {
                 url: '/promos',
                 templateUrl: 'views/promos.html',
+                //controller: 'AdminCtrl'
+            })
+            .state('admin', {
+                url: '/admin',
+                templateUrl: 'views/admin/list.html',
+                //controller: 'AdminCtrl'
+            })
+            .state('list', {
+                url: '/admin/list',
+                templateUrl: 'views/admin/list.html',
+                //controller: 'AdminCtrl'
+            })
+            .state('add', {
+                url: '/admin/add',
+                templateUrl: 'views/admin/add.html',
+                controller: 'AddProductCtrl'
+            })
+            .state('edit', {
+                url: '/admin/edit',
+                templateUrl: 'views/admin/edit.html',
+                //controller: 'AdminCtrl'
+            })
+            .state('search', {
+                url: '/admin/search',
+                templateUrl: 'views/admin/search.html',
                 //controller: 'AdminCtrl'
             });
         $locationProvider.html5Mode(true);
@@ -59,15 +94,7 @@ angular
                 'hue-2': '500',
                 'hue-3': '50'
             })
-            .accentPalette('orange', {
+            .accentPalette('red', {
                 'default': 'A700'
-            })
-            .backgroundPalette('grey', {
-                'default': '50'
             });
-        $mdThemingProvider.theme('docs-dark', 'default')
-            .primaryPalette('grey', {
-                'default': '50'
-            })
-            .dark();
     });

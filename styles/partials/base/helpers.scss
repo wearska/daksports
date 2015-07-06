@@ -56,6 +56,10 @@
     position: absolute !important;
     width: 1px;
 }
+.no-select{
+    user-select: none;
+    pointer-events: none;
+}
 .invisible {
     visibility: hidden;
 }
