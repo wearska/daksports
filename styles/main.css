@@ -4635,6 +4635,14 @@ main#view {
     line-height: 34px;
     text-align: center; }
 
+.ind-upload-list-item {
+  position: relative; }
+
+.ind-upload-progress {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
 .paper {
   background-color: #fff; }
   .paper.flat {

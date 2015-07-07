@@ -8,15 +8,76 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AddProductCtrl', ['$scope', '$http', '$timeout', '$upload', function($scope, $http, $timeout, $upload) {
+    .controller('AddProductCtrl', ['$scope', '$http', 'FileUploader', function($scope, $http, FileUploader) {
+
 
         $scope.product = {
             submissionDate: new Date(),
             files: null
         }
+
+        var uploader = $scope.uploader = new FileUploader({
+            url: 'api/upload.php'
+        });
+
+        // FILTERS
+
+        uploader.filters.push({
+            name: 'imageFilter',
+            fn: function(item /*{File|FileLikeObject}*/ , options) {
+                var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+            }
+        });
+
+        // CALLBACKS
+
+        // uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+        //     console.info('onWhenAddingFileFailed', item, filter, options);
+        // };
+        // uploader.onAfterAddingFile = function(fileItem) {
+        //     console.info('onAfterAddingFile', fileItem);
+        // };
+        uploader.onAfterAddingAll = function(addedFileItems) {
+            // console.info(addedFileItems[0]);
+            var a=-1;
+            var files = []
+            angular.forEach(addedFileItems, function() {
+                a++;
+                // console.info(addedFileItems[a].file.name);
+                files.push('file'+ a + ' : ' + addedFileItems[a].file.name);
+                // console.log(files);
+            });
+            $scope.product.files = files;
+        };
+        // uploader.onBeforeUploadItem = function(item) {
+        //     console.info('onBeforeUploadItem', item);
+        // };
+        // uploader.onProgressItem = function(fileItem, progress) {
+        //     console.info('onProgressItem', fileItem, progress);
+        // };
+        // uploader.onProgressAll = function(progress) {
+        //     console.info('onProgressAll', progress);
+        // };
+        // uploader.onSuccessItem = function(fileItem, response, status, headers) {
+        //     console.info('onSuccessItem', fileItem, response, status, headers);
+        // };
+        // uploader.onErrorItem = function(fileItem, response, status, headers) {
+        //     console.info('onErrorItem', fileItem, response, status, headers);
+        // };
+        // uploader.onCancelItem = function(fileItem, response, status, headers) {
+        //     console.info('onCancelItem', fileItem, response, status, headers);
+        // };
+        // uploader.onCompleteItem = function(fileItem, response, status, headers) {
+        //     console.info('onCompleteItem', fileItem, response, status, headers);
+        // };
+        // uploader.onCompleteAll = function() {
+        //     console.info('onCompleteAll');
+        // };
+
         $scope.insertProduct = function(product) {
             if ($scope.productForm.$valid) {
-                //console.log(product);
+                console.log(product);
                 //make the call
                 var product = $scope.product;
                 var data = {
@@ -25,20 +86,16 @@ angular.module('daksportsApp')
                         'price': product.price,
                         'excerpt': product.excerpt,
                         'desc': product.description,
-                        'img1': product.files.file1,
-                        'img2': product.files.file2,
-                        'img3': product.files.file3,
-                        'img4': product.files.file4,
-                        'img5': product.files.file5
+                        'files': product.files
                     }
                     // $http.post("api/save.php", data)
                     //     .success(function(data) {
                     //         console.log("new product added");
                     // });
-                // $http.post("api/upload.php", data)
-                //     .success(function(data) {
-                //         console.log("file uploading");
-                //     });
+                    // $http.post("api/upload.php", data)
+                    //     .success(function(data) {
+                    //         console.log("file uploading");
+                    //     });
 
                 // proper reset form
                 $scope.product = {
@@ -48,21 +105,6 @@ angular.module('daksportsApp')
                 $scope.productForm.$setUntouched();
             } else {
                 $scope.productForm.submitted = true;
-            }
-        }
-        $scope.uploadResult = [];
-        $scope.onFileSelect = function($files) {
-            for (var i = 0; i < $files.length; i++) {
-                var $file = $files[i];
-                $upload.upload({
-                    url: 'upload.php',
-                    file: $file,
-                    progress: function(e) {}
-                }).then(function(response) {
-                    $timeout(function() {
-                        $scope.uploadResult.push(response.data);
-                    });
-                });
             }
         }
     }]);
