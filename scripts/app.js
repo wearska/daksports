@@ -19,7 +19,8 @@ angular
         'ngRoute',
         'ngSanitize',
         'ngTouch',
-        'ui.router'
+        'ui.router',
+        'angularFileUpload'
     ])
     .config(function($routeProvider, $urlRouterProvider, $stateProvider, $locationProvider, $mdThemingProvider) {
         // For any unmatched url, redirect to /

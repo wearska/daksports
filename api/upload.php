@@ -1,12 +1,8 @@
 <? php
-if (isset($_FILES['upload_file'])) {
-    if(move_uploaded_file($_FILES['upload_file']['tmp_name'], "datas/" . $_FILES['upload_file']['name'])){
-        echo $_FILES['upload_file']['name']. " OK";
-    } else {
-        echo $_FILES['upload_file']['name']. " KO";
-    }
-    exit;
-} else {
-    echo "No files uploaded ...";
-}
+//echo nl2br(print_r($_FILES,1));
+    echo "shite";
+    // $target_dir = "upload/";
+    // $target_file = $target_dir . basename($_FILES["file"]["name"]);
+    // move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+    // echo json_encode($_FILES["file"]);
 ?>

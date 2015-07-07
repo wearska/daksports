@@ -1,6 +1,7 @@
 <div id="admin-menu" ng-include="'templates/sidenav.html'"></div>
 <div class="wrapper l-offset-side-nav" layout-padding>
-    <md-content layout-padding>
+    <h1 class="display2 text-center">Adauga un produs nou</h1>
+    <md-content layout-padding style="width: 90%; margin: auto">
         <form name="productForm" ng-submit="insertProduct(product)" novalidate>
             <div layout layout-sm="column">
                 <md-input-container flex>
@@ -11,6 +12,49 @@
                     <label>Sub-nume</label>
                     <input ng-model="product.subName">
                 </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+
+                <div class="gd-file-input paper resting" ng-controller="UploadController" flex="">
+                    <input name="file1" aria-label="Select product image 1" gd-files="product.files.file1" gd-thumb="onFileSelect($files)" ng-file-select="onFileSelect($files)" type="file"/>
+                    <div class="ar_1-1 no-select">
+                        <span class="display1">Poza 1</span>
+                        <img ng-src="{{imageSrc}}"/>
+                    </div>
+                </div>
+
+                <div class="gd-file-input paper resting" ng-controller="UploadController" flex="">
+                    <input name="file2" aria-label="Select product image 2" gd-files="product.files.file2" gd-thumb="onFileSelect($files)" type="file"/>
+                    <div class="ar_1-1 no-select">
+                        <span class="display1">Poza 2</span>
+                        <img ng-src="{{imageSrc}}"/>
+                    </div>
+                </div>
+
+                <div class="gd-file-input paper resting" ng-controller="UploadController" flex="">
+                    <input name="file3" aria-label="Select product image 3" gd-files="product.files.file3" gd-thumb="onFileSelect($files)" type="file"/>
+                    <div class="ar_1-1 no-select">
+                        <span class="display1">Poza 3</span>
+                        <img ng-src="{{imageSrc}}"/>
+                    </div>
+                </div>
+
+                <div class="gd-file-input paper resting" ng-controller="UploadController" flex="">
+                    <input name="file4" aria-label="Select product image 4" gd-files="product.files.file4" gd-thumb="onFileSelect($files)" type="file"/>
+                    <div class="ar_1-1 no-select">
+                        <span class="display1">Poza 4</span>
+                        <img ng-src="{{imageSrc}}"/>
+                    </div>
+                </div>
+
+                <div class="gd-file-input paper resting" ng-controller="UploadController" flex="">
+                    <input name="file5" aria-label="Select product image 5" gd-files="product.files.file5" gd-thumb="onFileSelect($files)" type="file"/>
+                    <div class="ar_1-1 no-select">
+                        <span class="display1">Poza 5</span>
+                        <img ng-src="{{imageSrc}}"/>
+                    </div>
+                </div>
+
             </div>
             <md-input-container flex>
                 <label>Descriere scurta</label>
@@ -67,20 +111,12 @@
                 </md-input-container>
             </div>
             <div layout layout-sm="column">
-                <div class="gd-file-input" ng-controller="UploadController" flex="20">
-                    <input aria-label="Select product images" gd-files="product.files" gd-thumb="onFileSelect($files)" id="fileinput" multiple type="file"/>
-                    <div class="ar_1-1 no-select">
-                        <img ng-src="{{imageSrc}}"/>
-                    </div>
-                </div>
-            </div>
-            <div layout layout-sm="column">
                 <md-input-container flex="75">
                     <label>Data</label>
                     <input ng-model="product.submissionDate" type="date">
                 </md-input-container>
-                <md-input-container flex="25" layout-align="end">
-                    <md-button class="md-raised md-primary" type="submit">Submit</md-button>
+                <md-input-container flex="25" layout-align="end end">
+                    <md-button class="md-raised md-primary" type="submit" >Submit</md-button>
                 </md-input-container>
             </div>
         </form>

@@ -11,6 +11,13 @@
         position: absolute;
         margin: auto;
     }
+    img{
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        right: 0;
+        transform: translateX(-50%);
+    }
     video {
         transform: translateX(-50%);
         left: 50%;

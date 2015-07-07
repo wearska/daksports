@@ -2,24 +2,33 @@
 $servername = "localhost";
 $username = "root";
 $password = "password";
-$dbname = "testdb";
+$dbname = "daksports";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-} 
+}
 
 $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
-    @$company_name = $request->name;
-    @$city = $request->city;
-    @$country = $request->country;
-    echo $company_name;
+    @$name = $request->name;
+    @$subname = $request->subname;
+    @$slug = "slug";
+    @$price = $request->price;
+    @$excerpt = $request->excerpt;
+    @$desc = $request->desc;
+    @$inv = $request->inv;
+    @$added = $request->added;
+    @$img1 = $request->img1;
+    @$img2 = $request->img2;
+    @$img3 = $request->img3;
+    @$img4 = $request->img4;
+    @$img5 = $request->img5;
 
-$sql = "INSERT INTO Customers (CompanyName, City, Country)
-VALUES ('$company_name', '$city', '$country')";
+$sql = "INSERT INTO products (name, subname, slug, price, excerpt, description, inv, added, img1, img2, img3, img4, img5)
+VALUES ('$name', '$subname', '$slug', '$price', '$excerpt', '$desc', '$inv', '$added', '$img1', '$img2', '$img3', '$img4', '$img5')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
