@@ -23,19 +23,44 @@
     <!-- endbuild -->
 </head>
 
-<body>
+<body layout="row" ng-cloak>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
 
-    <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'templates/appbar.html'"></header>
-    <main id="content-area">
-        <section ui-view=""></section>
+    <md-sidenav class="md-primary site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+        <header class="nav-header">
+            <a ng-href="/" class="sidenav-logo">
+                <img src="assets/img/daksports_logo_red_icon.svg" alt="" />
+                <!-- <h1 class="sidenav-logotype md-heading display1">Daksports Menu</h1> -->
+            </a>
+            <md-list>
+                <md-list-item role="list-item" md-clickable>
+                    <img alt="Ionut Achim" class="md-avatar" ng-src="https://lh3.googleusercontent.com/-J4-lFIpZWcA/AAAAAAAAAAI/AAAAAAAABo4/o2B_lk7gXWE/s46-c-k-no/photo.jpg" />
+                    <p class="single-line body1" style="color: rgba(255,255,255,.7)">monodnb@gmail.com</p>
+                    <md-button aria-label="Open account menu" class="md-icon-button l-right" ng-click="">
+                        <md-icon>
+                            <i class="material-icons" style="color: rgba(255,255,255,.7)">&#xE5C5;</i>
+                        </md-icon>
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </header>
+        <md-divider></md-divider>
+    </md-sidenav>
+
+
+    <main layout="column" tabIndex="-1" role="main" flex>
+        <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'templates/appbar.html'"></header>
+        <md-content ui-view md-scroll-y flex layout-padding></md-content>
+        <footer role="footer" id="bottom-bar" class="paper resting"></footer>
     </main>
 
-    <footer role="footer" id="bottom-bar" class="paper resting"></footer>
+
+
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 

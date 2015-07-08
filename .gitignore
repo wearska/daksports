@@ -6,3 +6,5 @@ build/
 dist/
 angular.io/
 resources/
+test/
+dak/

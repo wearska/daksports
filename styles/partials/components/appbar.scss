@@ -38,18 +38,22 @@
             width: 135px;
             overflow: hidden;
             text-indent: -3000px;
+            margin-left: 16px;
         }
     }
 }
 @media #{$medium-and-up} {
     .main-nav {
         h1 {
-            margin: 0 80px 0 0;
+            margin: 0;
+            width: 232px;
             height: 64px;
             line-height: 64px;
             a {
+                width: 208px;
                 height: 64px;
                 line-height: 64px;
+                margin: 0;
             }
         }
     }
@@ -132,7 +136,7 @@ only screen and (min-device-pixel-ratio:2) {
     }
 }
 @media #{$medium-and-up} {
-    .main-nav ul{
+    .main-nav ul {
         display: block;
         position: static;
     }

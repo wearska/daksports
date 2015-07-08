@@ -8,7 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AddProductCtrl', ['$scope', '$http', 'FileUploader', function($scope, $http, FileUploader) {
+    .controller('AddProductCtrl', ['$scope', '$http', 'FileUploader', '$interval', function($scope, $http, FileUploader, $interval) {
 
 
         $scope.product = {
@@ -17,7 +17,9 @@ angular.module('daksportsApp')
         }
 
         var uploader = $scope.uploader = new FileUploader({
-            url: 'api/upload.php'
+            url: 'api/upload.php',
+            queueLimit: 50,
+            removeAfterUpload: true
         });
 
         // FILTERS
@@ -40,12 +42,12 @@ angular.module('daksportsApp')
         // };
         uploader.onAfterAddingAll = function(addedFileItems) {
             // console.info(addedFileItems[0]);
-            var a=-1;
+            var a = -1;
             var files = []
             angular.forEach(addedFileItems, function() {
                 a++;
                 // console.info(addedFileItems[a].file.name);
-                files.push('file'+ a + ' : ' + addedFileItems[a].file.name);
+                files.push('file' + a + ' : ' + addedFileItems[a].file.name);
                 // console.log(files);
             });
             $scope.product.files = files;
@@ -71,10 +73,9 @@ angular.module('daksportsApp')
         // uploader.onCompleteItem = function(fileItem, response, status, headers) {
         //     console.info('onCompleteItem', fileItem, response, status, headers);
         // };
-        // uploader.onCompleteAll = function() {
-        //     console.info('onCompleteAll');
-        // };
-
+        uploader.onCompleteAll = function() {
+            console.info('onCompleteAll');
+        };
         $scope.insertProduct = function(product) {
             if ($scope.productForm.$valid) {
                 console.log(product);
@@ -92,10 +93,6 @@ angular.module('daksportsApp')
                     //     .success(function(data) {
                     //         console.log("new product added");
                     // });
-                    // $http.post("api/upload.php", data)
-                    //     .success(function(data) {
-                    //         console.log("file uploading");
-                    //     });
 
                 // proper reset form
                 $scope.product = {

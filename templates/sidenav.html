@@ -1,52 +1,35 @@
-<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2 admin-menu" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-    <md-content>
-        <header class="nav-header">
-            <a class="sidenav-logo" href="/admin" md-button>
-                <h1 class="md-heading">Admin area</h1>
-            </a>
-        </header>
+<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
 
-<!-- <ul class="screen-reader-text">
+    <header class="nav-header">
+        <a class="sidenav-logo" ng-href="#/">
+            <img alt="" src="img/icons/angular-logo.svg"/>
+            <h1 class="sidenav-logotype md-heading">Angular Material</h1>
+        </a>
+    </header>
+
+    <ul class="skip-links">
         <li class="md-whiteframe-z2">
             <md-button href="#" ng-click="focusMainContent($event)">Skip to content</md-button>
         </li>
     </ul>
 
     <md-content flex role="navigation">
-        <ul class="docs-menu">
-            <li class="parent-list-item" ng-class="">
-                <a href="/" md-button="">
-                    <h2 class="menu-heading md-subhead" id="">
-                        Vezi toate produsele
-                    </h2>
-                </a>
-            </li>
-        </ul>
-    </md-content> -->
-        <ul>
-            <li>
-                <a class="am-menu-button has-icon" href="/admin/list" md-button="" ng-transclude="">
-                    <i class="material-icons icon">&#xE8EF;</i>
-                    <span>Vezi toate produsele</span>
-                </a>
-            </li>
-            <li>
-                <a class="am-menu-button has-icon" href="/admin/search" md-button="" ng-transclude="">
-                    <i class="material-icons icon">&#xE8B6;</i>
-                    <span>Cauta produs</span>
-                </a>
-            </li>
-            <li>
-                <a class="am-menu-button has-icon" href="/admin/add" md-button="" ng-transclude="">
-                    <i class="material-icons icon">&#xE150;</i>
-                    <span>Adauga produs</span>
-                </a>
-            </li>
-            <li>
-                <a class="am-menu-button has-icon" href="/admin/settings" md-button="" ng-transclude="">
-                    <i class="material-icons icon">&#xE8B8;</i>
-                    <span>Setari</span>
-                </a>
+        <ul class="sidenav-menu">
+            <li class="parent-list-item {{section.className || ''}}" ng-class="{'parentActive' : isSectionSelected(section)}" ng-repeat="section in menu.sections">
+                <h2 class="menu-heading md-subhead" id="heading_{{ section.name | nospace }}" ng-if="section.type === 'heading'">
+                    {{section.name}}
+                </h2>
+                <menu-link ng-if="section.type === 'link'" section="section"></menu-link>
+
+                <menu-toggle ng-if="section.type === 'toggle'" section="section"></menu-toggle>
+
+                <ul class="menu-nested-list" ng-if="section.children">
+                    <li ng-class="{'childActive' : isSectionSelected(child)}" ng-repeat="child in section.children">
+                        <menu-link ng-if="child.type === 'link'" section="child"></menu-link>
+
+                        <menu-toggle ng-if="child.type === 'toggle'" section="child"></menu-toggle>
+                    </li>
+                </ul>
             </li>
         </ul>
     </md-content>

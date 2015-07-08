@@ -1,0 +1,171 @@
+.site-sidenav {
+    background: #201f1f;
+}
+.site-sidenav md-content {
+    background: transparent;
+}
+.site-sidenav,
+.site-sidenav.md-locked-open-add-active,
+.site-sidenav.md-locked-open {
+    width: 256px;
+    min-width: 256px;
+    max-width: 256px;
+}
+.site-sidenav > * {
+    min-width: 218px;
+}
+.sidenav-menu,
+.sidenav-menu ul {
+    list-style: none;
+    padding: 0;
+}
+.sidenav-menu li {
+    margin: 0;
+}
+.sidenav-menu > li:nth-child(1) {
+    border-top: none;
+}
+.md-whiteframe-glow-z1 {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.14), 0 0 2px 2px rgba(0, 0, 0, 0.098), 0 0 5px 1px rgba(0, 0, 0, 0.084);
+}
+.sidenav-menu > li {
+    border-bottom: 1px solid #267ed5;
+}
+.sidenav-menu .md-button {
+    border-radius: 0;
+    color: white;
+    cursor: pointer;
+    display: block;
+    line-height: 40px;
+    margin: 0;
+    max-height: 40px;
+    overflow: hidden;
+    padding: 0 16px;
+    text-align: left;
+    text-decoration: none;
+    white-space: normal;
+    width: 100%;
+}
+.sidenav-menu .md-button:hover,
+.sidenav-menu .md-button:focus {
+    background: #267ed5 !important;
+}
+.sidenav-menu .md-button md-icon {
+    color: white;
+}
+.sidenav-menu md-select {
+    
+    /* Override md-select margins.  With margins the menu will look incorrect and causes mobile list
+    to not be scrollable.
+  */
+    margin: 0;
+    width: 100%;
+}
+.sidenav-menu md-select md-select-label {
+    justify-content: flex-end;
+    padding-top: 10px;
+}
+.sidenav-menu md-select md-select-label span {
+    margin-right: auto;
+    padding-left: 13px;
+}
+.sidenav-menu md-select .md-select-icon {
+    margin-right: 28px;
+}
+.sidenav-menu button.md-button::-moz-focus-inner {
+    padding: 0;
+}
+.sidenav-menu .md-button.active {
+    background: #267ed5;
+}
+.menu-heading {
+    display: block;
+    line-height: 32px;
+    margin: 0;
+    padding: 8px 16px 0;
+    text-align: left;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.54);
+}
+.sidenav-menu li.parentActive,
+.sidenav-menu li.parentActive .menu-toggle-list {
+    /*background-color: #2C80D2 !important;*/
+}
+.menu-toggle-list {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+    -webkit-transition-property: height;
+    -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+    -moz-transition-property: height;
+    transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+    transition-property: height;
+}
+.sidenav-menu .menu-toggle-list a.md-button {
+    display: block;
+    padding: 0 16px 0 32px;
+    text-transform: none;
+    text-rendering: optimizeLegibility;
+    font-weight: 500;
+}
+ul#sidenav-menu-Directives {
+    margin-bottom: 20px;
+}
+.md-button-toggle .md-toggle-icon {
+    display: block;
+    margin-left: auto;
+    speak: none;
+    vertical-align: middle;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transition: transform 0.3s ease-in-out;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out;
+}
+.md-button-toggle .md-toggle-icon.toggled {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+}
+
+/* End Docs Menu */
+.sidenav-logo {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 16px;
+    margin: 0 auto;
+}
+.sidenav-logo:focus {
+    outline: none;
+}
+.sidenav-logo > img {
+    min-width: 0;
+    min-height:0;
+    height: 100px;
+    width: auto;
+    display: block;
+    transform-origin: 50% 0;
+    transform: scale(1.2);
+}
+.nav-header {
+    padding-top: 64px;
+    background-color: #201f1f;
+    flex-shrink: 0;
+    z-index: 2;
+    md-list-item > .md-avatar:first-child{
+        width: 32px;
+        height: 32px;
+        margin: 8px;
+        margin-left: 16px;
+    }
+}
+a.sidenav-logo {
+    border-bottom: none;
+}
+.sidenav-logotype {
+    color: white;
+    text-align: center;
+    font-weight: 400;
+    font-size: 26px;
+}

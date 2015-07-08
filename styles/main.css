@@ -2835,7 +2835,6 @@ img,
 video {
   display: block;
   width: 100%;
-  min-width: 100%;
   height: auto; }
 
 /* Text meant only for screen readers. */
@@ -4367,88 +4366,6 @@ main#view {
   margin: 0 auto;
   padding: 0 16px; }
 
-#admin-menu {
-  height: 100%;
-  width: auto;
-  position: fixed;
-  left: 0;
-  top: 0; }
-
-.admin-menu {
-  background-color: #201f1f;
-  height: 100%; }
-  .admin-menu ul {
-    margin: 0;
-    padding: 0;
-    padding-top: 48px;
-    background-color: #201f1f; }
-    .admin-menu ul li {
-      height: 56px;
-      line-height: 56px; }
-
-.admin-menu header {
-  position: relative;
-  height: 200px;
-  background-color: #201f1f; }
-  .admin-menu header a {
-    background: url("/assets/img/daksports_logo_red_icon.svg") center no-repeat;
-    background-size: 40%;
-    height: 100%; }
-    .admin-menu header a h1 {
-      color: #fff;
-      text-align: center;
-      font-weight: 400;
-      font-size: 26px;
-      font-style: normal;
-      text-transform: capitalize;
-      bottom: 0;
-      position: absolute;
-      margin: auto;
-      left: 0;
-      right: 0; }
-  .admin-menu header .md-button {
-    margin: 0;
-    padding: 0 16px;
-    margin-top: 56px;
-    max-height: none;
-    height: 200px;
-    border-radius: 0;
-    color: white;
-    cursor: pointer;
-    display: block;
-    overflow: hidden;
-    text-decoration: none;
-    white-space: normal;
-    width: 100%; }
-
-.admin-menu .am-menu-button {
-  height: 56px;
-  line-height: 56px;
-  display: inline-block;
-  display: block;
-  float: none;
-  background-color: inherit;
-  color: #fff;
-  text-decoration: none;
-  padding: 0 16px;
-  text-transform: uppercase;
-  font-family: 'Roboto Mono','Roboto',"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  border: none;
-  background: none;
-  border-radius: 0;
-  position: relative;
-  text-align: left; }
-  .admin-menu .am-menu-button.has-icon {
-    position: relative;
-    padding-left: 46px; }
-    .admin-menu .am-menu-button.has-icon .icon {
-      line-height: 56px;
-      position: absolute;
-      left: 16px;
-      z-index: 1; }
-
 .md-button {
   margin: 0; }
 
@@ -4481,16 +4398,20 @@ main#view {
     line-height: 56px;
     width: 135px;
     overflow: hidden;
-    text-indent: -3000px; }
+    text-indent: -3000px;
+    margin-left: 16px; }
 
 @media screen and (min-width: 961px) {
   .main-nav h1 {
-    margin: 0 80px 0 0;
+    margin: 0;
+    width: 232px;
     height: 64px;
     line-height: 64px; }
     .main-nav h1 a {
+      width: 208px;
       height: 64px;
-      line-height: 64px; } }
+      line-height: 64px;
+      margin: 0; } }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
   .main-nav h1 a {
@@ -4607,41 +4528,18 @@ main#view {
     height: 64px;
     line-height: 64px; } }
 
-.gd-file-input {
-  position: relative;
-  margin: 8px; }
-  .gd-file-input input[type="file"] {
-    border: 0;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 0;
-    cursor: pointer;
-    opacity: 0;
-    width: 100%;
-    height: 100%; }
-  .gd-file-input span {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    height: 34px;
-    line-height: 34px;
-    text-align: center; }
+.gd-file-input input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  outline: none;
+  opacity: 0; }
 
 .ind-upload-list-item {
   position: relative; }
-
-.ind-upload-progress {
-  position: absolute;
-  top: 0;
-  left: 0; }
 
 .paper {
   background-color: #fff; }
@@ -4655,3 +4553,183 @@ main#view {
     box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.12), 0 20px 25px 0 rgba(0, 0, 0, 0.12); }
   .paper.elevated {
     box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.12), 0 25px 80px 0 rgba(0, 0, 0, 0.12); }
+
+.site-sidenav {
+  background: #201f1f; }
+
+.site-sidenav md-content {
+  background: transparent; }
+
+.site-sidenav,
+.site-sidenav.md-locked-open-add-active,
+.site-sidenav.md-locked-open {
+  width: 256px;
+  min-width: 256px;
+  max-width: 256px; }
+
+.site-sidenav > * {
+  min-width: 218px; }
+
+.sidenav-menu,
+.sidenav-menu ul {
+  list-style: none;
+  padding: 0; }
+
+.sidenav-menu li {
+  margin: 0; }
+
+.sidenav-menu > li:nth-child(1) {
+  border-top: none; }
+
+.md-whiteframe-glow-z1 {
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.14), 0 0 2px 2px rgba(0, 0, 0, 0.098), 0 0 5px 1px rgba(0, 0, 0, 0.084); }
+
+.sidenav-menu > li {
+  border-bottom: 1px solid #267ed5; }
+
+.sidenav-menu .md-button {
+  border-radius: 0;
+  color: white;
+  cursor: pointer;
+  display: block;
+  line-height: 40px;
+  margin: 0;
+  max-height: 40px;
+  overflow: hidden;
+  padding: 0 16px;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+  width: 100%; }
+
+.sidenav-menu .md-button:hover,
+.sidenav-menu .md-button:focus {
+  background: #267ed5 !important; }
+
+.sidenav-menu .md-button md-icon {
+  color: white; }
+
+.sidenav-menu md-select {
+  /* Override md-select margins.  With margins the menu will look incorrect and causes mobile list
+    to not be scrollable.
+  */
+  margin: 0;
+  width: 100%; }
+
+.sidenav-menu md-select md-select-label {
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  padding-top: 10px; }
+
+.sidenav-menu md-select md-select-label span {
+  margin-right: auto;
+  padding-left: 13px; }
+
+.sidenav-menu md-select .md-select-icon {
+  margin-right: 28px; }
+
+.sidenav-menu button.md-button::-moz-focus-inner {
+  padding: 0; }
+
+.sidenav-menu .md-button.active {
+  background: #267ed5; }
+
+.menu-heading {
+  display: block;
+  line-height: 32px;
+  margin: 0;
+  padding: 8px 16px 0;
+  text-align: left;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.54); }
+
+.sidenav-menu li.parentActive,
+.sidenav-menu li.parentActive .menu-toggle-list {
+  /*background-color: #2C80D2 !important;*/ }
+
+.menu-toggle-list {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  -webkit-transition-property: height;
+  -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  -moz-transition-property: height;
+  transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  transition-property: height; }
+
+.sidenav-menu .menu-toggle-list a.md-button {
+  display: block;
+  padding: 0 16px 0 32px;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  font-weight: 500; }
+
+ul#sidenav-menu-Directives {
+  margin-bottom: 20px; }
+
+.md-button-toggle .md-toggle-icon {
+  display: block;
+  margin-left: auto;
+  speak: none;
+  vertical-align: middle;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transition: transform 0.3s ease-in-out;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out; }
+
+.md-button-toggle .md-toggle-icon.toggled {
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg); }
+
+/* End Docs Menu */
+.sidenav-logo {
+  text-align: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 0 16px;
+  margin: 0 auto; }
+
+.sidenav-logo:focus {
+  outline: none; }
+
+.sidenav-logo > img {
+  min-width: 0;
+  min-height: 0;
+  height: 100px;
+  width: auto;
+  display: block;
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2); }
+
+.nav-header {
+  padding-top: 64px;
+  background-color: #201f1f;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  z-index: 2; }
+  .nav-header md-list-item > .md-avatar:first-child {
+    width: 32px;
+    height: 32px;
+    margin: 8px;
+    margin-left: 16px; }
+
+a.sidenav-logo {
+  border-bottom: none; }
+
+.sidenav-logotype {
+  color: white;
+  text-align: center;
+  font-weight: 400;
+  font-size: 26px; }
