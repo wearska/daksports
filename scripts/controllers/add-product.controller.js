@@ -8,17 +8,18 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AddProductCtrl', ['$scope', '$http', 'FileUploader', '$interval', function($scope, $http, FileUploader, $interval) {
+    .controller('AddProductCtrl', ['$scope', '$http', '$filter', 'FileUploader', '$interval', function($scope, $http, $filter, FileUploader, $interval) {
 
 
         $scope.product = {
             submissionDate: new Date(),
-            files: null
+            files: {}
         }
+        console.log($scope.product);
 
         var uploader = $scope.uploader = new FileUploader({
             url: 'api/upload.php',
-            queueLimit: 50,
+            queueLimit: 5,
             removeAfterUpload: true
         });
 
@@ -32,6 +33,10 @@ angular.module('daksportsApp')
             }
         });
 
+        uploader.onBeforeUploadItem = function(item) {
+            Array.prototype.push.apply(item.formData, uploader.formData);
+        };
+
         // CALLBACKS
 
         // uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
@@ -40,39 +45,25 @@ angular.module('daksportsApp')
         // uploader.onAfterAddingFile = function(fileItem) {
         //     console.info('onAfterAddingFile', fileItem);
         // };
+        uploader.onSuccessItem = function(fileItem, response, status, headers) {
+            console.info('onSuccessItem', fileItem, response, status, headers);
+        };
         uploader.onAfterAddingAll = function(addedFileItems) {
             // console.info(addedFileItems[0]);
-            var a = -1;
-            var files = []
+            var a = -1,
+                file = [],
+                year = $filter('date')($scope.product.submissionDate, 'yy'),
+                month = $filter('date')($scope.product.submissionDate, 'MM');
             angular.forEach(addedFileItems, function() {
                 a++;
-                // console.info(addedFileItems[a].file.name);
-                files.push('file' + a + ' : ' + addedFileItems[a].file.name);
-                // console.log(files);
+                var key = 'file' + (a + 1),
+                    value = year + '/' + month + '/' + addedFileItems[a].file.name;
+                value = value.replace(/\s+/g, '_');
+                $scope.product.files[key] = value;
             });
-            $scope.product.files = files;
+            //console.log($scope.product);
         };
-        // uploader.onBeforeUploadItem = function(item) {
-        //     console.info('onBeforeUploadItem', item);
-        // };
-        // uploader.onProgressItem = function(fileItem, progress) {
-        //     console.info('onProgressItem', fileItem, progress);
-        // };
-        // uploader.onProgressAll = function(progress) {
-        //     console.info('onProgressAll', progress);
-        // };
-        // uploader.onSuccessItem = function(fileItem, response, status, headers) {
-        //     console.info('onSuccessItem', fileItem, response, status, headers);
-        // };
-        // uploader.onErrorItem = function(fileItem, response, status, headers) {
-        //     console.info('onErrorItem', fileItem, response, status, headers);
-        // };
-        // uploader.onCancelItem = function(fileItem, response, status, headers) {
-        //     console.info('onCancelItem', fileItem, response, status, headers);
-        // };
-        // uploader.onCompleteItem = function(fileItem, response, status, headers) {
-        //     console.info('onCompleteItem', fileItem, response, status, headers);
-        // };
+
         uploader.onCompleteAll = function() {
             console.info('onCompleteAll');
         };

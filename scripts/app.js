@@ -34,7 +34,7 @@ angular
             })
             .state('test', {
                 url: '/test',
-                templateUrl: 'templates/test.html',
+                templateUrl: 'views/test.html',
                 controller: 'TestCtrl'
             })
             .state('login', {
