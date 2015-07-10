@@ -10,7 +10,7 @@
                 </md-input-container>
                 <md-input-container flex>
                     <label>Sub-nume</label>
-                    <input ng-model="product.subName">
+                    <input ng-model="product.subname">
                 </md-input-container>
                 <md-input-container flex="">
                     <label>Data</label>
@@ -23,7 +23,7 @@
             </md-input-container>
             <md-input-container flex>
                 <label>Descriere</label>
-                <textarea columns="1" ng-model="product.description"></textarea>
+                <textarea columns="1" ng-model="product.desc"></textarea>
             </md-input-container>
             <div layout layout-sm="column">
                 <md-input-container flex>
@@ -31,6 +31,13 @@
                     <input name="price" ng-model="product.price" required step="any" type="number">
                     <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
                         <div ng-message="required">Introduceti un pret</div>
+                        <div ng-message="number">Doar cifrele sunt permise</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Inventar</label>
+                    <input name="inv" ng-model="product.inv" required step="any" type="number">
+                    <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
                         <div ng-message="number">Doar cifrele sunt permise</div>
                     </div>
                 </md-input-container>
@@ -75,7 +82,7 @@
 
             <div layout layout-sm="column">
                 <md-input-container flex="" layout-align="">
-                    <md-button class="md-raised md-primary" ng-cloak ng-click="uploader.uploadAll()" ng-disabled="!productForm.$valid" type="submit">Adauga Produs</md-button>
+                    <md-button class="md-raised md-primary" ng-cloak ng-disabled="!productForm.$valid" type="submit">Adauga Produs</md-button>
                 </md-input-container>
             </div>
         </form>

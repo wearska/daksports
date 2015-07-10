@@ -2,19 +2,16 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("localhost", "root", "password", "testdb");
+$conn = new mysqli("localhost", "root", "password", "daksports");
 
-$result = $conn->query("SELECT CompanyName, City, Country FROM Customers");
+$result = $conn->query("SELECT * FROM products");
 
 $outp = "";
 while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "") {$outp .= ",";}
-    $outp .= '{"Name":"'  . $rs["CompanyName"] . '",';
-    $outp .= '"City":"'   . $rs["City"]        . '",';
-    $outp .= '"Country":"'. $rs["Country"]     . '"}'; 
 }
 $outp ='{"records":['.$outp.']}';
 $conn->close();
 
-echo($outp);
+echo($result);
 ?>

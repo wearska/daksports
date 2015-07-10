@@ -21,14 +21,14 @@ $postdata = file_get_contents("php://input");
     @$desc = $request->desc;
     @$inv = $request->inv;
     @$added = $request->added;
-    @$img1 = $request->img1;
-    @$img2 = $request->img2;
-    @$img3 = $request->img3;
-    @$img4 = $request->img4;
-    @$img5 = $request->img5;
+    @$file1 = $request->file1;
+    @$file2 = $request->file2;
+    @$file3 = $request->file3;
+    @$file4 = $request->file4;
+    @$file5 = $request->file5;
 
-$sql = "INSERT INTO products (name, subname, slug, price, excerpt, description, inv, added, img1, img2, img3, img4, img5)
-VALUES ('$name', '$subname', '$slug', '$price', '$excerpt', '$desc', '$inv', '$added', '$img1', '$img2', '$img3', '$img4', '$img5')";
+$sql = "INSERT INTO products (name, subname, price, excerpt, description, inv, added, file1, file2, file3, file4, file5)
+VALUES ('$name', '$subname', '$price', '$excerpt', '$desc', '$inv', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

@@ -10,20 +10,63 @@
 angular.module('daksportsApp')
     .controller('AddProductCtrl', ['$scope', '$http', '$filter', 'FileUploader', '$interval', function($scope, $http, $filter, FileUploader, $interval) {
 
-
-        $scope.product = {
+        // Test object
+        var test = {
             submissionDate: new Date(),
-            files: {}
-        }
-        console.log($scope.product);
+            name: "Pantofi sport",
+            subname: "Adidas ZX-75",
+            price: 368.99,
+            inv: 23,
+            excerpt: "Lorem ipsum",
+            desc: "Lorem ipsum dolor sit amet",
+            files: {
+                file1 : "",
+                file2 : "",
+                file3 : "",
+                file4 : "",
+                file5 : ""
+            }
+        };
 
+        // Reset object
+        var reset = {
+            submissionDate: new Date(),
+            name: "",
+            subname: "",
+            price: null,
+            inv: null,
+            excerpt: "",
+            desc: "",
+            files: {
+                file1 : "",
+                file2 : "",
+                file3 : "",
+                file4 : "",
+                file5 : ""
+            }
+        };
+
+        // Initial state
+        $scope.product = angular.copy(test);
+
+        //Reset form
+        $scope.resetForm = function() {
+            // proper reset form
+            $scope.product = angular.copy(reset);
+            $scope.productForm.$setPristine();
+            $scope.productForm.$setUntouched();
+            console.log("form reset");
+        }
+
+        // Uploader options
         var uploader = $scope.uploader = new FileUploader({
             url: 'api/upload.php',
             queueLimit: 5,
+            formData: [],
             removeAfterUpload: true
         });
 
-        // FILTERS
+        // Uploader filters
 
         uploader.filters.push({
             name: 'imageFilter',
@@ -33,23 +76,12 @@ angular.module('daksportsApp')
             }
         });
 
-        uploader.onBeforeUploadItem = function(item) {
-            Array.prototype.push.apply(item.formData, uploader.formData);
-        };
 
-        // CALLBACKS
+        // Uploader methods
 
-        // uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-        //     console.info('onWhenAddingFileFailed', item, filter, options);
-        // };
-        // uploader.onAfterAddingFile = function(fileItem) {
-        //     console.info('onAfterAddingFile', fileItem);
-        // };
-        uploader.onSuccessItem = function(fileItem, response, status, headers) {
-            console.info('onSuccessItem', fileItem, response, status, headers);
-        };
         uploader.onAfterAddingAll = function(addedFileItems) {
-            // console.info(addedFileItems[0]);
+            // define product.files object based on 
+            console.log("added all");
             var a = -1,
                 file = [],
                 year = $filter('date')($scope.product.submissionDate, 'yy'),
@@ -57,40 +89,50 @@ angular.module('daksportsApp')
             angular.forEach(addedFileItems, function() {
                 a++;
                 var key = 'file' + (a + 1),
-                    value = year + '/' + month + '/' + addedFileItems[a].file.name;
+                    value = 'uploads/' + year + '/' + month + '/' + addedFileItems[a].file.name;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.files[key] = value;
             });
-            //console.log($scope.product);
+        };
+        uploader.onCompleteAll = function() {
+            $scope.resetForm();
+        };
+        uploader.onBeforeUploadItem = function(item) {
+            item.formData = [];
+            uploader.formData = [{
+                year: $filter('date')($scope.product.submissionDate, 'yy'),
+                month: $filter('date')($scope.product.submissionDate, 'MM')
+            }];
+            Array.prototype.push.apply(item.formData, uploader.formData);
         };
 
-        uploader.onCompleteAll = function() {
-            console.info('onCompleteAll');
-        };
         $scope.insertProduct = function(product) {
             if ($scope.productForm.$valid) {
-                console.log(product);
+                //console.log(product);
                 //make the call
                 var product = $scope.product;
                 var data = {
-                        'name': product.name,
-                        'subname': product.subName,
-                        'price': product.price,
-                        'excerpt': product.excerpt,
-                        'desc': product.description,
-                        'files': product.files
-                    }
-                    // $http.post("api/save.php", data)
-                    //     .success(function(data) {
-                    //         console.log("new product added");
-                    // });
-
-                // proper reset form
-                $scope.product = {
-                    submissionDate: new Date()
+                    'name': product.name,
+                    'subname': product.subname,
+                    'price': product.price,
+                    'inv': product.inv,
+                    'excerpt': product.excerpt,
+                    'desc': product.desc,
+                    'file1': product.files.file1,
+                    'file2': product.files.file2,
+                    'file3': product.files.file3,
+                    'file4': product.files.file4,
+                    'file5': product.files.file5,
+                    'added': product.submissionDate
                 }
-                $scope.productForm.$setPristine();
-                $scope.productForm.$setUntouched();
+                if (!product.files.file1) {
+                    $scope.resetForm();
+                }
+                $http.post("api/save.php", data)
+                    .success(function(data) {
+                        console.log("new product added");
+                });
+                uploader.uploadAll();
             } else {
                 $scope.productForm.submitted = true;
             }

@@ -30,7 +30,7 @@ angular
             .state('main', {
                 url: '/',
                 templateUrl: 'views/main.html',
-                //controller: 'MainCtrl'
+                controller: 'MainCtrl'
             })
             .state('test', {
                 url: '/test',
@@ -70,7 +70,7 @@ angular
             .state('list', {
                 url: '/admin/list',
                 templateUrl: 'views/admin/list.html',
-                //controller: 'AdminCtrl'
+                controller: 'ListCtrl'
             })
             .state('add', {
                 url: '/admin/add',
