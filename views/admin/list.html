@@ -1,3 +1,31 @@
-<div class="">
-    <h1 class="display2">This is the list all products view.</h1>
-</div>
+<h1 class="display2">This is the list all products view.</h1>
+
+<md-content class="md-padding">
+    <md-input-container class="filter-field">
+        <md-icon>
+            <i class="material-icons">&#xE8B6;</i>
+        </md-icon>
+        <input ng-model="search">
+        <md-icon ng-show="search.length" style="left:100%; cursor: pointer;" ng-click="clearSearch()">
+            <i class="material-icons">&#xE14C;</i>
+        </md-icon>
+    </md-input-container>
+    <ul class="list-view" layout-align="center" layout="row">
+        <li class="list-item paper raised" flex="70" ng-repeat="product in products | searchAdminList : search | limitTo : displayLimit : displayPage">
+            <a aria-describedby="description-tool-list-item-material-design-guidelines" aria-labelledby="label-tool-list-item-material-design-guidelines" class="list-wrap -has-border -is-link" href="https://www.google.com/design/spec/" target="_blank">
+                <div class="list-header">
+                    <div class="_bubble" style="background-color: #b1deda;background-image: url({{product.file1}});"></div>
+                </div>
+                <div class="list-detail">
+                    <div class="_title-block">
+                        <h3 class="_title" id="label-tool-list-item-material-design-guidelines">{{product.name}}</h3>
+                        <span class="_arrow">
+                            <i class="material-icons md-24">&#xE254;</i>
+                        </span>
+                    </div>
+                    <p class="_summary" id="description-tool-list-item-material-design-guidelines">{{product.subname}}</p>
+                </div>
+            </a>
+        </li>
+    </ul>
+</md-content>

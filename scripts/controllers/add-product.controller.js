@@ -47,7 +47,7 @@ angular.module('daksportsApp')
         };
 
         // Initial state
-        $scope.product = angular.copy(test);
+        $scope.product = angular.copy(reset);
 
         //Reset form
         $scope.resetForm = function() {

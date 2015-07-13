@@ -1,17 +1,27 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+// header("Access-Control-Allow-Origin: *");
+// header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("localhost", "root", "password", "daksports");
+$servername = "localhost";
+$username = "root";
+$password = "password";
+$dbname = "daksports";
 
-$result = $conn->query("SELECT * FROM products");
-
-$outp = "";
-while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
-    if ($outp != "") {$outp .= ",";}
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-$outp ='{"records":['.$outp.']}';
-$conn->close();
 
-echo($result);
+$res = $conn->query("SELECT * FROM products");
+$conn->close();
+$result = array();
+
+while($row=mysqli_fetch_assoc($res)){
+        $result[] = $row;
+    }  
+$obj = json_encode($result);
+
+echo($obj);
 ?>
