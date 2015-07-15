@@ -80,7 +80,7 @@ angular.module('daksportsApp')
         // Uploader methods
 
         uploader.onAfterAddingAll = function(addedFileItems) {
-            // define product.files object based on 
+            // define product.files object based on
             console.log("added all");
             var a = -1,
                 file = [],
@@ -128,7 +128,7 @@ angular.module('daksportsApp')
                 if (!product.files.file1) {
                     $scope.resetForm();
                 }
-                $http.post("api/save.php", data)
+                $http.post("api/post.php", data)
                     .success(function(data) {
                         console.log("new product added");
                 });

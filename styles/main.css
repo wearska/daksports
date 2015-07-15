@@ -4355,7 +4355,7 @@ button {
     max-width: 1680px; } }
 
 header.site-header {
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   height: 64px;

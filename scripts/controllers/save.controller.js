@@ -20,7 +20,7 @@ angular.module('daksportsApp')
                 'country': $scope.country
             }
             console.log(data);
-            $http.post("api/save.php", data)
+            $http.post("api/post.php", data)
                 .success(function(data) {
                     console.log(data);
                 });

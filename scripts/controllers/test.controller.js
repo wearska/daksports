@@ -8,7 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('TestCtrl', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
+    .controller('TestCtrl', ['$scope', '$http', '$filter', 'productRes', function($scope, $http, $filter, productRes) {
 
         $scope.test = {
             date : new Date()
@@ -24,4 +24,7 @@ angular.module('daksportsApp')
             var month = $filter('date')(newTest.date, 'MM');
             console.log(year + " & " + month);
         }
+
+        var result = productRes.remove(100);
+        console.log(result);
     }]);
