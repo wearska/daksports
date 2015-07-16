@@ -13,6 +13,7 @@ angular.module('daksportsApp')
         $scope.showMainNav = false;
         $scope.showMenu = false;
         $scope.showNavTrigger = false;
+        $scope.showSearchBar = false;
 
         $scope.$watch(function() {
             return $mdMedia('lg');
@@ -27,6 +28,14 @@ angular.module('daksportsApp')
             console.log("test");
         }
 
+        // TOGGLE SEARCH BAR
+        $scope.toggleSearchBar = function() {
+            $scope.showSearchBar = !$scope.showSearchBar;
+        };
+        $scope.hideSearchBar = function() {
+            $scope.showSearchBar = false;
+        };
+        
         // TOGGLE MAIN NAV (TOP) ON MOBILE
         $scope.toggleDocsMenu = function() {
             $scope.showDocsNav = !$scope.showDocsNav;

@@ -4792,8 +4792,9 @@ main#view {
   height: 56px;
   min-height: 56px;
   padding: 0;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  background-color: #201f1f; }
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
+  .app-bar.main-bar, .main-bar.search-bar {
+    background-color: #201f1f; }
 
 @media screen and (min-width: 601px) {
   .app-bar, .search-bar {
@@ -4931,17 +4932,17 @@ main#view {
 
 .app-bar .md-icon-button, .search-bar .md-icon-button {
   color: #fff;
-  width: 32px;
-  height: 56px;
-  line-height: 56px; }
+  margin: 4px 0; }
   .app-bar .md-icon-button md-icon, .search-bar .md-icon-button md-icon {
     color: #fff; }
 
 @media screen and (min-width: 601px) {
   .app-bar .md-icon-button, .search-bar .md-icon-button {
     width: 48px;
-    height: 64px;
-    line-height: 64px; } }
+    margin: 8px 0; } }
+
+.app-bar .material-one-center, .search-bar .material-one-center {
+  position: relative; }
 
 .app-bar input.material-search, .search-bar input.material-search {
   background-color: rgba(255, 255, 255, 0.16);
@@ -4962,6 +4963,7 @@ main#view {
 .app-bar .search-icon, .search-bar .search-icon {
   position: absolute;
   top: 0;
+  left: 0;
   height: 56px;
   width: 64px;
   text-align: center;
@@ -4969,6 +4971,24 @@ main#view {
 
 .app-bar .appbar-search-button, .search-bar .appbar-search-button {
   display: block; }
+
+.app-bar ::-webkit-input-placeholder, .search-bar ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: rgba(255, 255, 255, 0.3); }
+
+.app-bar :-moz-placeholder, .search-bar :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: rgba(255, 255, 255, 0.3);
+  opacity: 1; }
+
+.app-bar ::-moz-placeholder, .search-bar ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: rgba(255, 255, 255, 0.3);
+  opacity: 1; }
+
+.app-bar :-ms-input-placeholder, .search-bar :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: rgba(255, 255, 255, 0.3); }
 
 @media screen and (min-width: 601px) {
   .app-bar input.material-search, .search-bar input.material-search {
@@ -4980,6 +5000,12 @@ main#view {
 @media screen and (min-width: 961px) {
   .app-bar .appbar-search-button, .search-bar .appbar-search-button {
     display: none; } }
+
+.search-bar {
+  margin-top: 0;
+  transition: margin 0.3s ease; }
+  .search-bar.open {
+    margin-top: 56px; }
 
 .gd-file-input input[type="file"] {
   position: absolute;
@@ -5007,21 +5033,22 @@ main#view {
   .paper.elevated {
     box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.12), 0 25px 80px 0 rgba(0, 0, 0, 0.12); }
 
+.card-content {
+  padding: 16px; }
+  .card-content .card-content-subtitle {
+    padding-bottom: 8px; }
+  .card-content .product-card-price {
+    padding-top: 8px; }
+  .card-content .product-card-price {
+    color: #E12A2A; }
+  .card-content .product-card-old-price {
+    text-decoration: line-through; }
+
 .site-sidenav {
   background: #201f1f; }
 
 .site-sidenav md-content {
   background: transparent; }
-
-.site-sidenav,
-.site-sidenav.md-locked-open-add-active,
-.site-sidenav.md-locked-open {
-  width: 256px;
-  min-width: 256px;
-  max-width: 256px; }
-
-.site-sidenav > * {
-  min-width: 218px; }
 
 .sidenav-menu,
 .sidenav-menu ul {

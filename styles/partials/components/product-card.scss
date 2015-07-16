@@ -1,0 +1,21 @@
+.card-content {
+    padding: $content-padding;
+    .card-content-title,
+    .card-content-subtitle,
+    .product-card-price,
+    .product-card-old-price {
+        
+    }
+    .card-content-subtitle{
+        padding-bottom: $content-padding/2;
+    }
+    .product-card-price{
+        padding-top: $content-padding/2;
+    }
+    .product-card-price {
+        color: #E12A2A;
+    }
+    .product-card-old-price {
+        text-decoration: line-through;
+    }
+}
