@@ -8,13 +8,22 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AppBarCtrl', ['$scope', '$mdDialog', '$timeout', function($scope, $mdDialog, $timeout) {
+    .controller('AppBarCtrl', ['$scope', '$mdDialog', '$mdMedia', '$timeout', function($scope, $mdDialog, $mdMedia, $timeout) {
         $scope.showDocsNav = false;
         $scope.showMainNav = false;
         $scope.showMenu = false;
         $scope.showNavTrigger = false;
 
-        $scope.test = function(){
+        $scope.$watch(function() {
+            return $mdMedia('lg');
+        }, function(big) {
+            $scope.bigScreen = big;
+        });
+
+        $scope.screenIsSmall = $mdMedia('max-width: 960px');
+        console.log($scope.screenIsSmall);
+
+        $scope.test = function() {
             console.log("test");
         }
 

@@ -1,26 +1,26 @@
 .md-button {
     margin: 0;
 }
-.main-nav {
+.app-bar {
     height: 56px;
     min-height: 56px;
     padding: 0;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
     background-color: #201f1f;
 }
-@media #{$medium-and-up} {
-    .main-nav {
-        
+@media #{$small-and-up} {
+    .app-bar {
+
     }
 }
-@media #{$medium-and-up} {
-    .main-nav {
+@media #{$small-and-up} {
+    .app-bar {
         height: 64px;
         min-height: 64px;
         padding: 0 1.5*$content-padding;
     }
 }
-.main-nav {
+.app-bar {
     h1 {
         margin: 0;
         padding: 0;
@@ -42,15 +42,15 @@
         }
     }
 }
-@media #{$medium-and-up} {
-    .main-nav {
+@media #{$small-and-up} {
+    .app-bar {
         h1 {
             margin: 0;
-            width: 232px;
+            width: 160px;
             height: 64px;
             line-height: 64px;
             a {
-                width: 208px;
+                width: 100%;
                 height: 64px;
                 line-height: 64px;
                 margin: 0;
@@ -60,12 +60,12 @@
 }
 @media only screen and (-webkit-min-device-pixel-ratio:2),
 only screen and (min-device-pixel-ratio:2) {
-    .main-nav h1 a {
+    .app-bar h1 a {
         background: url("/assets/img/daksports_logo_red_white_noborder.svg") center no-repeat;
         background-size: 135px 36px;
     }
 }
-.main-nav {
+.app-bar {
     ul {
         list-style-type: none;
         margin: 0;
@@ -76,7 +76,7 @@ only screen and (min-device-pixel-ratio:2) {
         }
     }
 }
-.main-nav .main-nav-button {
+.app-bar .app-bar-button {
     height: 56px;
     line-height: 56px;
     display: inline-block;
@@ -102,8 +102,8 @@ only screen and (min-device-pixel-ratio:2) {
         }
     }
 }
-@media #{$medium-and-up} {
-    .main-nav .main-nav-button {
+@media #{$small-and-up} {
+    .app-bar .app-bar-button {
         height: 64px;
         line-height: 64px;
         display: inline-block;
@@ -121,7 +121,7 @@ only screen and (min-device-pixel-ratio:2) {
         }
     }
 }
-.main-nav ul {
+.app-bar ul {
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     float: none;
     position: absolute;
@@ -135,13 +135,13 @@ only screen and (min-device-pixel-ratio:2) {
         float: none;
     }
 }
-@media #{$medium-and-up} {
-    .main-nav ul {
+@media #{$small-and-up} {
+    .app-bar ul {
         display: block;
         position: static;
     }
 }
-.main-nav .main-nav-mobile-trigger {
+.app-bar .app-bar-mobile-trigger {
     display: inline-block;
     .icon {
         height: 56px;
@@ -149,12 +149,13 @@ only screen and (min-device-pixel-ratio:2) {
         z-index: 1;
     }
 }
-@media #{$medium-and-up} {
-    .main-nav .main-nav-mobile-trigger {
-        display: none;
-    }
-}
-.main-nav .main-nav-icon {
+
+// @media #{$small-and-up} {
+//     .app-bar .app-bar-mobile-trigger {
+//         display: none;
+//     }
+// }
+.app-bar .app-bar-icon {
     display: inline-block;
     color: #fff;
     text-decoration: none;
@@ -169,15 +170,15 @@ only screen and (min-device-pixel-ratio:2) {
         z-index: 1;
     }
 }
-@media #{$medium-and-up} {
-    .main-nav .main-nav-icon {
+@media #{$small-and-up} {
+    .app-bar .app-bar-icon {
         .icon {
             height: 64px;
             line-height: 64px;
         }
     }
 }
-.main-nav .md-icon-button {
+.app-bar .md-icon-button {
     color: #fff;
     width: 32px;
     height: 56px;
@@ -186,10 +187,68 @@ only screen and (min-device-pixel-ratio:2) {
         color: #fff;
     }
 }
-@media #{$medium-and-up} {
-    .main-nav .md-icon-button {
+@media #{$small-and-up} {
+    .app-bar .md-icon-button {
         width: 48px;
         height: 64px;
         line-height: 64px;
     }
+}
+
+// Search
+.app-bar {
+    input {
+        &.material-search {
+            background-color: rgba(255,255,255,.16);
+            transition: background-color 0.2s;
+            padding: 0 16px 0 0;
+            box-sizing: border-box;
+            height: 48px;
+            margin: 4px 0;
+            border: none;
+            border-radius: 3px;
+            width: 100%;
+            color: rgba(255,255,255,.7);
+            font-size: 15px;
+            font-weight: 400;
+            text-indent: 68px;
+            outline: 0;
+        }
+    }
+    .search-icon {
+        position: absolute;
+        top: 0;
+        height: 56px;
+        width: 64px;
+        text-align: center;
+        line-height: 56px;
+    }
+    .appbar-search-button{
+        display:block;
+    }
+}
+@media #{$small-and-up} {
+    .app-bar {
+        input {
+            &.material-search {
+                margin: 8px 0;
+            }
+        }
+        .search-icon {
+            height: 64px;
+            line-height: 64px;
+        }
+    }
+}
+
+@media #{$medium-and-up}{
+    .app-bar{
+        .appbar-search-button{
+            display:none;
+        }
+    }
+}
+
+.search-bar{
+    @extend .app-bar;
 }

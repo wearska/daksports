@@ -1,6 +1,14 @@
-<md-toolbar class="main-nav l-pinned-top md-whiteframe-z3">
-    <div class="">
-        <nav>
+<md-toolbar class="search-bar l-pinned-top">
+    <div class="" layout="row">
+        <div class="material-one-center" flex="80" offset="10">
+            <input class="material-search label-input-label" role="search" placeholder="Cauta produs" aria-label="Cauta produs" no-focus="">
+            <i class="material-icons search-icon">&#xE8B6;</i>
+        </div>
+    </div>
+</md-toolbar>
+<md-toolbar class="app-bar l-pinned-top md-whiteframe-z3">
+    <div class="" layout="row">
+        <div class="material-one-left" flex="50" flex-gt-md="25">
             <md-button aria-label="View Menu" class="md-icon-button main-nav-mobile-trigger l-left" ng-click="toggleMainMenu($event)">
                 <md-icon>
                     <i class="material-icons">&#xE5D2;</i>
@@ -9,20 +17,12 @@
             <h1>
                 <a href="/" md-button>Daksports</a>
             </h1>
-            <ul ng-class="showMainNav ? 'is-visible' : ''">
-                <li class="l-left">
-                    <a class="main-nav-button" href="/promos" md-button ng-click="toggleMainNav($event)">Promotii</a>
-                </li>
-                <li class="l-left">
-                    <a class="main-nav-button" href="/new" md-button ng-click="toggleMainNav($event)">Produse noi</a>
-                </li>
-                <li class="l-left">
-                    <a class="main-nav-button" href="/support" md-button ng-click="toggleMainNav($event)">Asistenta</a>
-                </li>
-                <li class="l-left">
-                    <a class="main-nav-button" href="/contact" md-button ng-click="toggleMainNav($event)">Contact</a>
-                </li>
-            </ul>
+        </div>
+        <div class="material-one-center" flex="50" hide show-gt-md>
+            <input class="material-search label-input-label" role="search" placeholder="Cauta produs" aria-label="Cauta produs" no-focus="">
+            <i class="material-icons search-icon">&#xE8B6;</i>
+        </div>
+        <div class="material-one-right" flex="50" flex-gt-md="25">
             <md-button class="md-icon-button l-right" aria-label="View Account">
                 <md-menu md-position-mode="target-right target">
                     <md-icon class="md-icon-button" md-menu-origin ng-click="$mdOpenMenu()">
@@ -45,11 +45,11 @@
                     <i class="material-icons">&#xE8CC;</i>
                 </md-icon>
             </md-button>
-            <md-button aria-label="Search" class="md-icon-button l-right" ng-click="">
+            <md-button aria-label="Search" class="appbar-search-button md-icon-button l-right" ng-click="">
                 <md-icon>
                     <i class="material-icons">&#xE8B6;</i>
                 </md-icon>
             </md-button>
-        </nav>
+        </div>
     </div>
 </md-toolbar>
