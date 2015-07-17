@@ -78,9 +78,9 @@ angular
                 controller: 'AddProductCtrl'
             })
             .state('edit', {
-                url: '/admin/edit',
+                url: '/admin/edit/:productId',
                 templateUrl: 'views/admin/edit.html',
-                //controller: 'AdminCtrl'
+                controller: 'EditProductCtrl'
             })
             .state('search', {
                 url: '/admin/search',

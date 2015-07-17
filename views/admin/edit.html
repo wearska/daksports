@@ -1,4 +1,89 @@
-<div id="admin-menu" ng-include="'templates/sidenav.html'"></div>
-<div class="wrapper l-offset-side-nav">
-    <h1 class="display2">This is the edit product view.</h1>
+<div class="wrapper">
+    <h1 class="display2 text-center">Adauga un produs nou</h1>
+    <md-content layout-padding style="width: 90%; margin: auto">
+        <form name="productForm" ng-submit="updateProduct(product)" novalidate>
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>Nume produs</label>
+                    <input ng-model="product.name">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Sub-nume</label>
+                    <input ng-model="product.subname">
+                </md-input-container>
+                <md-input-container flex="">
+                    <label>Data</label>
+                    <input ng-model="product.submissionDate" type="date">
+                </md-input-container>
+            </div>
+            <md-input-container flex>
+                <label>Descriere scurta</label>
+                <input md-maxlength="60" ng-model="product.excerpt">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Descriere</label>
+                <textarea columns="1" ng-model="product.desc"></textarea>
+            </md-input-container>
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>Pret (RON)</label>
+                    <input name="price" ng-model="product.price" required step="any" type="number">
+                    <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
+                        <div ng-message="required">Introduceti un pret</div>
+                        <div ng-message="number">Doar cifrele sunt permise</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Inventar</label>
+                    <input name="inv" ng-model="product.inv" required step="any" type="number">
+                    <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
+                        <div ng-message="number">Doar cifrele sunt permise</div>
+                    </div>
+                </md-input-container>
+                <div flex layout layout-align="start center">
+                    <md-checkbox aria-label="is promo" name="promo" ng-model="product.promo">
+                        Promo?
+                    </md-checkbox>
+                </div>
+                <md-input-container flex>
+                    <label>Pret vechi</label>
+                    <input name="oldprice" ng-disabled="!product.promo" ng-model="product.oldPrice" step="any" type="number">
+                    <div ng-messages="productForm.oldprice.$error" ng-show="productForm.oldprice.$invalid && productForm.oldprice.$dirty">
+                        <div ng-message="number">Doar cifrele sunt permise</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <div flex layout layout-align="start center">
+                    <md-checkbox aria-label="is promo" name="promostockcheck" ng-disabled="!product.promo" ng-model="product.promoStockCheck">
+                        Cantitate?
+                    </md-checkbox>
+                </div>
+                <md-input-container flex>
+                    <label>Stoc Promo</label>
+                    <input name="promostock" ng-disabled="!product.promoStockCheck" ng-model="product.promoStock" step="any" type="number">
+                    <div ng-messages="productForm.promostock.$error" ng-show="productForm.promostock.$invalid && productForm.promostock.$dirty">
+                        <div ng-message="number">Doar cifrele sunt permise</div>
+                    </div>
+                </md-input-container>
+                <div flex layout layout-align="start center">
+                    <md-checkbox aria-label="is promo" name="promodatecheck" ng-disabled="!product.promo" ng-model="product.promoDateCheck">
+                        Perioada?
+                    </md-checkbox>
+                </div>
+                <md-input-container flex>
+                    <label>Promo Date</label>
+                    <input ng-disabled="!product.promoDateCheck" ng-model="product.promoDate" type="date">
+                </md-input-container>
+            </div>
+
+            <div ng-include="'../../templates/file-uploads.html'"></div>
+
+            <div layout layout-sm="column">
+                <md-input-container flex="" layout-align="">
+                    <md-button class="md-raised md-primary" ng-cloak ng-disabled="!productForm.$valid" type="submit">Salveaza</md-button>
+                </md-input-container>
+            </div>
+        </form>
+    </md-content>
 </div>

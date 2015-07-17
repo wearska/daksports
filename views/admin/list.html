@@ -6,26 +6,31 @@
             <i class="material-icons">&#xE8B6;</i>
         </md-icon>
         <input ng-model="search">
-        <md-icon ng-show="search.length" style="left:100%; cursor: pointer;" ng-click="clearSearch()">
+        <md-icon ng-click="clearSearch()" ng-show="search.length" style="left:100%; cursor: pointer;">
             <i class="material-icons">&#xE14C;</i>
         </md-icon>
     </md-input-container>
-    <ul class="list-view" layout-align="center" layout="row">
-        <li class="list-item paper raised" flex="70" ng-repeat="product in products | searchAdminList : search | limitTo : displayLimit : displayPage">
-            <a aria-describedby="description-tool-list-item-material-design-guidelines" aria-labelledby="label-tool-list-item-material-design-guidelines" class="list-wrap -has-border -is-link" href="https://www.google.com/design/spec/" target="_blank">
-                <div class="list-header">
-                    <div class="_bubble" style="background-color: #b1deda;background-image: url({{product.file1}});"></div>
-                </div>
-                <div class="list-detail">
-                    <div class="_title-block">
-                        <h3 class="_title" id="label-tool-list-item-material-design-guidelines">{{product.name}}</h3>
-                        <span class="_arrow">
-                            <i class="material-icons md-24">&#xE254;</i>
-                        </span>
-                    </div>
-                    <p class="_summary" id="description-tool-list-item-material-design-guidelines">{{product.subname}}</p>
-                </div>
-            </a>
+    <ul class="list-view" layout-align="center" layout="column">
+        <li class="list-item paper raised light-theme" layout="row" ng-repeat="product in products | searchAdminList : search | limitTo : displayLimit : displayPage">
+            <div class="list-header">
+                <div class="bubble" style="background-color: #b1deda;background-image: url({{product.file1}});"></div>
+            </div>
+            <div class="list-detail" flex>
+                <h3 class="title mono single-line" id="label-tool-list-item-material-design-guidelines">{{product.name}}</h3>
+                <p class="subhead mono - single-line secondary-text-color" id="description-tool-list-item-material-design-guidelines">{{product.subname}}</p>
+            </div>
+            <div class="list-actions">
+                <md-button aria-label="Remove" class="md-icon-button l-right" ng-click="">
+                    <md-icon>
+                        <i class="material-icons">&#xE14C;</i>
+                    </md-icon>
+                </md-button>
+                <md-button aria-label="Edit" class="md-icon-button l-right" ng-click="">
+                    <md-icon>
+                        <i class="material-icons">&#xE254;</i>
+                    </md-icon>
+                </md-button>
+            </div>
         </li>
     </ul>
 </md-content>
