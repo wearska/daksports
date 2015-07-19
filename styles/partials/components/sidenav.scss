@@ -4,7 +4,6 @@
 .site-sidenav md-content {
     background: transparent;
 }
-
 .sidenav-menu,
 .sidenav-menu ul {
     list-style: none;
@@ -132,7 +131,7 @@ ul#sidenav-menu-Directives {
 }
 .sidenav-logo > img {
     min-width: 0;
-    min-height:0;
+    min-height: 0;
     height: 100px;
     width: auto;
     display: block;
@@ -140,15 +139,23 @@ ul#sidenav-menu-Directives {
     transform: scale(1.2);
 }
 .nav-header {
-    padding-top: 64px;
+    padding: 64px 16px 0;
+    margin-top: 64px;
     background-color: #201f1f;
     flex-shrink: 0;
     z-index: 2;
-    md-list-item > .md-avatar:first-child{
+    background-image: url('../assets/img/daksports_logo_red_icon.svg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    img.account-avatar {
+        width: 48px;
+        border-radius: 50%;
+    }
+    md-list-item > .md-avatar:first-child {
         width: 32px;
         height: 32px;
-        margin: 8px;
-        margin-left: 16px;
+        margin: 8px 8px 8px 16px;
     }
 }
 a.sidenav-logo {

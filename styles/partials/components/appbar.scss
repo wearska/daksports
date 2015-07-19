@@ -19,7 +19,7 @@
     .app-bar {
         height: 64px;
         min-height: 64px;
-        padding: 0 1.5*$content-padding;
+        //padding: 0 1.5*$content-padding;
     }
 }
 .app-bar {
@@ -87,7 +87,7 @@ only screen and (min-device-pixel-ratio:2) {
     background-color: inherit;
     color: #fff;
     text-decoration: none;
-    padding: 0 $content-padding;
+    //padding: 0 $content-padding;
     text-transform: uppercase;
     font-family: 'Roboto Mono','Roboto',"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
     font-weight: 400;

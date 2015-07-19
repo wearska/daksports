@@ -3,8 +3,9 @@ html {
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
 }
-body {
+body, md-content {
         margin: 0;
+        background-color: #E5E5E5;
 }
 article,
 aside,

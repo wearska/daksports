@@ -15,15 +15,6 @@ angular.module('daksportsApp')
         $scope.showNavTrigger = false;
         $scope.showSearchBar = false;
 
-        $scope.$watch(function() {
-            return $mdMedia('lg');
-        }, function(big) {
-            $scope.bigScreen = big;
-        });
-
-        $scope.screenIsSmall = $mdMedia('max-width: 960px');
-        console.log($scope.screenIsSmall);
-
         $scope.test = function() {
             console.log("test");
         }
