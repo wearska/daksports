@@ -8,27 +8,36 @@
         </div>
         <div class="main-content">
             <div class="paper raised sign-in-card">
-                <div class="circle-mask"></div>
+                <div class="circle-mask" style="background-image: url({{user.photo}})"></div>
                 <form autocomplete="off" name="loginForm" ng-submit="login(user)" novalidate>
-                    <md-input-container flex>
-                        <label>e-mail</label>
-                        <input autocomplete="off" name="email" ng-model="user.email" required type="email">
-                        <div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$invalid && loginForm.email.$dirty || loginForm.submitted">
-                            <div ng-message="required">Introduceti o adresa de email</div>
-                            <div ng-message="email">Doar adresele de email sunt permise</div>
+                    <div class="login-parts-wrapper" ng-class="{'second-step' : firstStep}">
+                        <div class="login-part one">
+                            <md-input-container>
+                                <label>e-mail</label>
+                                <input autocomplete="off" name="email" ng-model="user.email" required type="email">
+                                <div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$invalid && loginForm.email.$dirty || loginForm.submitted">
+                                    <div ng-message="required">Introduceti o adresa de email</div>
+                                    <div ng-message="email">Doar adresele de email sunt permise</div>
+                                </div>
+                            </md-input-container>
+                            <md-button class="md-raised md-primary account-access-button" ng-cloak ng-disabled="loginForm.email.$invalid" type="button" ng-click="loginStep()">
+                                Next
+                            </md-button>
                         </div>
-                    </md-input-container>
-                    <md-input-container flex>
-                        <label>parola</label>
-                        <input autocomplete="off" name="password" ng-model="user.password" required type="password">
-                    </md-input-container>
-                    <md-button class="md-raised md-primary account-access-button" ng-cloak ng-disabled="!loginForm.$valid" type="submit">
-                        Intra
-                    </md-button>
+                        <div class="login-part two">
+                            <md-input-container>
+                                <label>parola</label>
+                                <input autocomplete="off" name="password" ng-model="user.password" required type="password">
+                            </md-input-container>
+                            <md-button class="md-raised md-primary account-access-button" ng-cloak ng-disabled="!loginForm.$valid" type="submit">
+                                Intra
+                            </md-button>
+                        </div>
+                    </div>
                 </form>
             </div>
             <p class="create-account">
-                <a href="/account/create">
+                <a href="/account/signup">
                     Creeaza cont
                 </a>
             </p>

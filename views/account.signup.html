@@ -1,0 +1,52 @@
+<div class="account-wrapper">
+    <div class="daksports-header-bar"></div>
+    <div class="main content clearfix">
+        <div class="banner">
+            <h2>
+                Creeaza un cont nou
+            </h2>
+        </div>
+        <div class="main-content">
+            <div class="paper raised sign-in-card">
+                <div class="circle-mask add-avatar" md-button style="background-image: url({{user.photo}})">
+                    <input multiple nv-file-select="" type="file" uploader="uploader"/><br/>
+                    <div class="user-temp-photo" ng-repeat="item in uploader.queue" ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 96 }"></div>
+                    <div class="hoverlay"></div>
+                    <md-icon>
+                        <i class="material-icons">&#xE8B6;</i>
+                    </md-icon>
+                </div>
+                <form autocomplete="off" name="signupForm" ng-submit="signup(user)" novalidate>
+                    <md-input-container>
+                        <label>nume</label>
+                        <input ng-model="user.firstName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>prenume</label>
+                        <input ng-model="user.lastName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>e-mail</label>
+                        <input autocomplete="off" name="email" ng-model="user.email" required type="email">
+                        <div ng-messages="signupForm.email.$error" ng-show="signupForm.email.$invalid && signupForm.email.$dirty || signupForm.submitted">
+                            <div ng-message="required">Introduceti o adresa de email</div>
+                            <div ng-message="email">Doar adresele de email sunt permise</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>parola</label>
+                        <input autocomplete="off" name="password" ng-model="user.password" required type="password">
+                    </md-input-container>
+                    <md-button class="md-raised md-primary account-access-button" ng-cloak ng-disabled="!signupForm.$valid" type="submit">
+                        Creeaza cont
+                    </md-button>
+                </form>
+            </div>
+            <p class="create-account">
+                <a href="/account/login">
+                    Am deja cont
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

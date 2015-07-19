@@ -14,8 +14,8 @@ angular.module('daksportsApp')
         var isAuthenticated = false;
         
         console.log(isAuthenticated);
-        if(!isAuthenticated){
-            $location.path('/account/login');
-        }
+        // if(!isAuthenticated){
+        //     $location.path('/account/login');
+        // }
 
     }]);

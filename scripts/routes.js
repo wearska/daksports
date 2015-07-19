@@ -33,12 +33,14 @@ angular
             .state('account.login', {
                 url: '/login',
                 templateUrl: 'views/account.login.html',
-                view: 'account'
+                view: 'account',
+                controller: 'LoginCtrl'
             })
-            .state('account.create', {
-                url: '/create',
-                templateUrl: 'views/account.create.html',
-                view: 'account'
+            .state('account.signup', {
+                url: '/signup',
+                templateUrl: 'views/account.signup.html',
+                view: 'account',
+                controller: 'SignupCtrl'
             })
             .state('new', {
                 url: '/new',
