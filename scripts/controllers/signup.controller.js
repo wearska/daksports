@@ -8,7 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('SignupCtrl', ['$scope', '$http', 'FileUploader', function($scope, $http, FileUploader) {
+    .controller('SignupCtrl', ['$scope', '$http', 'FileUploader', '$location', function($scope, $http, FileUploader, $location) {
 
         $scope.user = {
             photo: 'assets/img/avatar_2x.png'
@@ -33,9 +33,7 @@ angular.module('daksportsApp')
 
         // Uploader methods
         uploader.onAfterAddingAll = function(addedFileItems) {
-            // define product.files object based on
-            // console.log("added all");
-            // console.log(uploader.queue);
+            $scope.user.photo = addedFileItems[0].file.name;
         };
         var i = 0;
 
@@ -69,6 +67,7 @@ angular.module('daksportsApp')
                 if (uploader.queue.length) {
                     uploader.uploadItem(uploader.queue.length - 1);
                 }
+                $location.path('account/login');
             } else {
                 $scope.signupForm.submitted = true;
             }

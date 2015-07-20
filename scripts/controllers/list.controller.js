@@ -11,7 +11,7 @@ angular.module('daksportsApp')
     .controller('ListCtrl', function($scope, $http, $resource, $location) {
 
         $scope.products = {};
-        
+
         $scope.clearSearch = function(){
             $scope.search = "";
         }

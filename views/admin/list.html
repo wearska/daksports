@@ -20,16 +20,18 @@
                 <p class="subhead mono - single-line secondary-text-color" id="description-tool-list-item-material-design-guidelines">{{product.subname}}</p>
             </div>
             <div class="list-actions">
-                <md-button aria-label="Remove" class="md-icon-button l-right" ng-click="">
+                <md-button aria-label="Remove" class="md-icon-button l-right" ng-click="removeProduct(product)">
                     <md-icon>
                         <i class="material-icons">&#xE14C;</i>
                     </md-icon>
                 </md-button>
-                <md-button aria-label="Edit" class="md-icon-button l-right" ng-click="">
-                    <md-icon>
-                        <i class="material-icons">&#xE254;</i>
-                    </md-icon>
-                </md-button>
+                <a ng-href="/admin/edit/{{product.id}}">
+                    <md-button aria-label="Edit" class="md-icon-button l-right">
+                        <md-icon>
+                            <i class="material-icons">&#xE254;</i>
+                        </md-icon>
+                    </md-button>
+                </a>
             </div>
         </li>
     </ul>

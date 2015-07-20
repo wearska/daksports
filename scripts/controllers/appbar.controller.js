@@ -8,7 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AppBarCtrl', ['$scope', '$mdDialog', '$mdMedia', '$timeout', function($scope, $mdDialog, $mdMedia, $timeout) {
+    .controller('AppBarCtrl', ['$rootScope', '$scope', '$mdDialog', '$mdMedia', '$timeout', 'auth', function($rootScope, $scope, $mdDialog, $mdMedia, $timeout, auth) {
         $scope.showDocsNav = false;
         $scope.showMainNav = false;
         $scope.showMenu = false;
@@ -16,7 +16,7 @@ angular.module('daksportsApp')
         $scope.showSearchBar = false;
 
         $scope.test = function() {
-            console.log("test");
+            console.log(auth.isAuthenticated);
         }
 
         // TOGGLE SEARCH BAR
@@ -26,7 +26,7 @@ angular.module('daksportsApp')
         $scope.hideSearchBar = function() {
             $scope.showSearchBar = false;
         };
-        
+
         // TOGGLE MAIN NAV (TOP) ON MOBILE
         $scope.toggleDocsMenu = function() {
             $scope.showDocsNav = !$scope.showDocsNav;

@@ -17,20 +17,17 @@ $postdata = file_get_contents("php://input");
     @$lastName = $request->lastName;
     @$email = $request->email;
     @$password = $request->password;
-    @$birthday = $request->birthday;
-    @$gender = $request->gender;
-    @$tel = $request->tel;
-    @$address = $request->address;
+    @$photo = '/uploads/userpics/'. $email . '/' . $request->photo;
 
 echo($postdata);
-// $sql = "INSERT INTO products (name, subname, price, excerpt, description, inv, added, file1, file2, file3, file4, file5)
-// VALUES ('$name', '$subname', '$price', '$excerpt', '$desc', '$inv', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
-// 
-// if ($conn->query($sql) === TRUE) {
-//     echo "New record created successfully";
-// } else {
-//     echo "Error: " . $sql . "<br>" . $conn->error;
-// }
+$sql = "INSERT INTO users (first_name, last_name, email, password, user_photo)
+VALUES ('$firstName', '$lastName', '$email', '$password', '$photo')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
 
 $conn->close();
 ?>
