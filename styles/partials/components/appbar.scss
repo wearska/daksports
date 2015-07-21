@@ -19,6 +19,7 @@
     .app-bar {
         height: 64px;
         min-height: 64px;
+
         //padding: 0 1.5*$content-padding;
     }
 }
@@ -87,6 +88,7 @@ only screen and (min-device-pixel-ratio:2) {
     background-color: inherit;
     color: #fff;
     text-decoration: none;
+
     //padding: 0 $content-padding;
     text-transform: uppercase;
     font-family: 'Roboto Mono','Roboto',"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
@@ -196,7 +198,7 @@ only screen and (min-device-pixel-ratio:2) {
 
 // Search
 .app-bar {
-    .material-one-center{
+    .material-one-center {
         position: relative;
     }
     input {
@@ -225,6 +227,17 @@ only screen and (min-device-pixel-ratio:2) {
         width: 64px;
         text-align: center;
         line-height: 56px;
+    }
+    .account-photo {
+        width: 32px;
+        min-width: 0;
+        min-height: 0;
+        height: 32px;
+        border-radius: 50%;
+        float: right;
+        margin: 12px;
+        background-position: center;
+        background-size: contain;
     }
     .appbar-search-button {
         display: block;
@@ -266,6 +279,9 @@ only screen and (min-device-pixel-ratio:2) {
         .appbar-search-button {
             display: none;
         }
+        .account-photo {
+            margin: 12px;
+        }
     }
 }
 .search-bar {
@@ -276,17 +292,15 @@ only screen and (min-device-pixel-ratio:2) {
         margin-top: 56px;
     }
 }
-
-@media #{$small-and-up}{
-    .search-bar{
+@media #{$small-and-up} {
+    .search-bar {
         &.open {
             margin-top: 64px;
         }
     }
 }
-
-@media #{$medium-and-up}{
-    .search-bar{
+@media #{$medium-and-up} {
+    .search-bar {
         &.open {
             margin-top: 0;
         }

@@ -10,10 +10,10 @@
 angular.module('daksportsApp')
     .controller('AccountCtrl', ['$scope', '$location', function($scope, $location) {
         $scope.user = {};
-        
+
         var isAuthenticated = false;
-        
-        console.log(isAuthenticated);
+
+        // console.log(isAuthenticated);
         // if(!isAuthenticated){
         //     $location.path('/account/login');
         // }

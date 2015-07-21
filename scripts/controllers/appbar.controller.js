@@ -14,11 +14,23 @@ angular.module('daksportsApp')
         $scope.showMenu = false;
         $scope.showNavTrigger = false;
         $scope.showSearchBar = false;
+        $scope.logged = false;
+        $scope.accountLink = '/account/login'
+        $scope.account = {};
 
         $scope.test = function() {
-            console.log(auth.isAuthenticated);
+            // console.log(auth.isAuthenticated);
         }
 
+        $scope.$watch(function() {
+                return auth.isAuthenticated;
+            },
+            function(newVal, oldVal) {
+                $scope.logged = auth.isAuthenticated;
+                $scope.account = auth.isUser;
+                // $scope.accountLink = '/account/dashboard';
+                console.log(auth.isUser);
+            }, true);
         // TOGGLE SEARCH BAR
         $scope.toggleSearchBar = function() {
             $scope.showSearchBar = !$scope.showSearchBar;

@@ -1777,8 +1777,18 @@ main#view {
   margin: 0 auto;
   padding: 0 16px; }
 
+#account-wrapper {
+  background-color: #fff;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999; }
+
 .account-wrapper {
   position: absolute;
+  padding-top: 56px;
   width: 100%;
   height: 100%;
   z-index: 9999999;
@@ -1816,10 +1826,12 @@ main#view {
       position: relative;
       overflow: hidden;
       width: 100%;
+      max-width: 320px;
       padding: 24px;
       background-color: #f7f7f7;
       border-radius: 2px; }
-      .account-wrapper .main.content .sign-in-card .circle-mask {
+      .account-wrapper .main.content .sign-in-card .circle-mask,
+      .account-wrapper .main.content .sign-in-card .circle-photo {
         display: block;
         height: 96px;
         width: 96px;
@@ -1832,11 +1844,12 @@ main#view {
         background-size: 96px;
         background-repeat: no-repeat;
         background-image: url("../assets/img/avatar_2x.png");
-        position: relative;
-        transition: background 0.2s ease; }
-        .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar {
+        position: relative; }
+        .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar,
+        .account-wrapper .main.content .sign-in-card .circle-photo.add-avatar {
           cursor: pointer; }
-          .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar input[type="file"] {
+          .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar input[type="file"],
+          .account-wrapper .main.content .sign-in-card .circle-photo.add-avatar input[type="file"] {
             position: absolute;
             top: 0;
             left: 0;
@@ -1846,7 +1859,8 @@ main#view {
             outline: none;
             opacity: 0;
             cursor: pointer; }
-          .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar md-icon {
+          .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar md-icon,
+          .account-wrapper .main.content .sign-in-card .circle-photo.add-avatar md-icon {
             position: absolute;
             margin: auto;
             top: 0;
@@ -1855,10 +1869,13 @@ main#view {
             bottom: 0;
             top: 0;
             opacity: 0;
+            will-change: opacity;
             transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none; }
           .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar .user-photo,
-          .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar .user-temp-photo {
+          .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar .user-temp-photo,
+          .account-wrapper .main.content .sign-in-card .circle-photo.add-avatar .user-photo,
+          .account-wrapper .main.content .sign-in-card .circle-photo.add-avatar .user-temp-photo {
             position: absolute;
             top: 0;
             left: 0;
@@ -1866,45 +1883,91 @@ main#view {
             height: 100%;
             z-index: -1;
             pointer-events: none; }
-          .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar:hover .hoverlay {
+          .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar:hover .hoverlay,
+          .account-wrapper .main.content .sign-in-card .circle-photo.add-avatar:hover .hoverlay {
             opacity: 1; }
-          .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar:hover md-icon {
+          .account-wrapper .main.content .sign-in-card .circle-mask.add-avatar:hover md-icon,
+          .account-wrapper .main.content .sign-in-card .circle-photo.add-avatar:hover md-icon {
             opacity: 1; }
+      .account-wrapper .main.content .sign-in-card .circle-photo {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        transition: -webkit-transform 0.15s 0.1s ease;
+        transition: transform 0.15s 0.1s ease; }
+        .account-wrapper .main.content .sign-in-card .circle-photo.scaled {
+          -webkit-transform: scale(1);
+          transform: scale(1); }
       .account-wrapper .main.content .sign-in-card .account-access-button {
         width: 100%; }
+      .account-wrapper .main.content .sign-in-card .profile-name {
+        color: #000;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin: 0;
+        min-height: 1em; }
+      .account-wrapper .main.content .sign-in-card .email-display {
+        display: block;
+        padding: 0 8px;
+        color: #404040;
+        line-height: 2;
+        margin-bottom: 10px;
+        font-size: 14px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        box-sizing: border-box; }
     .account-wrapper .main.content form {
       overflow: hidden; }
     .account-wrapper .main.content .login-parts-wrapper {
       position: relative;
-      height: 120px;
+      height: 140px;
       width: 200%;
       overflow: hidden;
-      transition: -webkit-transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-      transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1); }
+      will-change: transform, height;
+      transition: -webkit-transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), height 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), height 0.18s cubic-bezier(0.4, 0, 0.2, 1); }
       .account-wrapper .main.content .login-parts-wrapper.second-step {
         -webkit-transform: translateX(-50%);
-        transform: translateX(-50%); }
+        transform: translateX(-50%);
+        height: 194px; }
       .account-wrapper .main.content .login-parts-wrapper .login-part {
         display: inline-block;
         width: 50%;
         float: left; }
         .account-wrapper .main.content .login-parts-wrapper .login-part.two {
           float: right; }
+        .account-wrapper .main.content .login-parts-wrapper .login-part .account-access-button {
+          box-shadow: 0 0; }
     .account-wrapper .main.content .create-account {
       padding-top: 27px;
       text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 14px; }
+      .account-wrapper .main.content .create-account > a {
+        color: #427fed; }
+      .account-wrapper .main.content .create-account:hover {
+        text-decoration: underline; }
+    .account-wrapper .main.content .need-help {
+      padding-top: 8px;
+      float: right;
+      text-align: end;
       color: #427fed;
       cursor: pointer;
       text-decoration: none;
       font-size: 14px; }
-      .account-wrapper .main.content .create-account:hover {
+      .account-wrapper .main.content .need-help:hover {
         text-decoration: underline; }
+    .account-wrapper .main.content .back-to-first {
+      position: absolute;
+      top: 10px;
+      left: 4px; }
 
 @media screen and (min-width: 601px) {
   .account-wrapper .main.content {
-    padding: 0 24px; }
-    .account-wrapper .main.content .sign-in-card {
-      width: 320px; } }
+    padding: 0 24px; } }
 
 .filter-field {
   width: 70%;
@@ -2140,6 +2203,17 @@ main#view {
   text-align: center;
   line-height: 56px; }
 
+.app-bar .account-photo, .search-bar .account-photo {
+  width: 32px;
+  min-width: 0;
+  min-height: 0;
+  height: 32px;
+  border-radius: 50%;
+  float: right;
+  margin: 12px;
+  background-position: center;
+  background-size: contain; }
+
 .app-bar .appbar-search-button, .search-bar .appbar-search-button {
   display: block; }
 
@@ -2170,7 +2244,9 @@ main#view {
 
 @media screen and (min-width: 961px) {
   .app-bar .appbar-search-button, .search-bar .appbar-search-button {
-    display: none; } }
+    display: none; }
+  .app-bar .account-photo, .search-bar .account-photo {
+    margin: 12px; } }
 
 .search-bar {
   margin-top: 0;

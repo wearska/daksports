@@ -12,7 +12,8 @@ angular.module('daksportsApp')
 
         var obj = {
             isAuthenticated : false,
-            isAdmin : false
+            isAdmin : false,
+            isUser : {}
         };
 
         return obj;

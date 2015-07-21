@@ -8,9 +8,11 @@
         </div>
         <div class="main-content">
             <div class="paper raised sign-in-card">
-                <div class="circle-mask" style="background-image: url({{user.photo}})"></div>
+                <div class="circle-mask" style="background-image: url(/assets/img/avatar_2x.png)">
+                    <div class="circle-photo" style="background-image: url({{user.photo}})" ng-class="{'scaled' : secondStep}"></div>
+                </div>
                 <form autocomplete="off" name="loginForm" ng-submit="login(user)" novalidate>
-                    <div class="login-parts-wrapper" ng-class="{'second-step' : firstStep}">
+                    <div class="login-parts-wrapper" ng-class="{'second-step' : secondStep}">
                         <div class="login-part one">
                             <md-input-container>
                                 <label>e-mail</label>
@@ -20,11 +22,17 @@
                                     <div ng-message="email">Doar adresele de email sunt permise</div>
                                 </div>
                             </md-input-container>
-                            <md-button class="md-raised md-primary account-access-button" ng-cloak ng-disabled="loginForm.email.$invalid" type="button" ng-click="loginStep()">
+                            <md-button class="md-raised md-primary account-access-button" ng-click="loginStep()" ng-cloak ng-disabled="loginForm.email.$invalid" type="button">
                                 Next
                             </md-button>
+                            <a class="need-help" href="/contact">
+                                Ai nevoie de ajutor?
+                            </a>
                         </div>
                         <div class="login-part two">
+                            <p class="profile-name single-line">{{user.firstName}}
+                                {{user.lastName}}</p>
+                            <span class="email-display">{{user.email}}</span>
                             <md-input-container>
                                 <label>parola</label>
                                 <input autocomplete="off" name="password" ng-model="user.password" required type="password">
@@ -32,9 +40,17 @@
                             <md-button class="md-raised md-primary account-access-button" ng-cloak ng-disabled="!loginForm.$valid" type="submit">
                                 Intra
                             </md-button>
+                            <a class="need-help" href="/recover">
+                                Ai uitat parola?
+                            </a>
                         </div>
                     </div>
                 </form>
+                <md-button class="md-icon-button back-to-first" ng-show="secondStep" ng-click="stepBack()">
+                    <md-icon>
+                        <i class="material-icons">&#xE5C4;</i>
+                    </md-icon>
+                </md-button>
             </div>
             <p class="create-account">
                 <a href="/account/signup">
