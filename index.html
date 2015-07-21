@@ -29,21 +29,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <md-sidenav class="md-primary site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" ng-cloak>
-        <header class="nav-header">
-            <img alt="Ionut Achim" class="account-avatar overkill" ng-src="https://lh3.googleusercontent.com/-J4-lFIpZWcA/AAAAAAAAAAI/AAAAAAAABo4/o2B_lk7gXWE/s46-c-k-no/photo.jpg" />
-            <md-list class="overkill">
-                <md-list-item role="list-item" md-clickable>
-                    <p class="single-line body1" style="color: rgba(255,255,255,.7)">monodnb@gmail.com</p>
-                    <md-button aria-label="Open account menu" class="md-icon-button l-right" ng-click="">
-                        <md-icon>
-                            <i class="material-icons" style="color: rgba(255,255,255,.7)">&#xE5C5;</i>
-                        </md-icon>
-                    </md-button>
-                </md-list-item>
-            </md-list>
-        </header>
-        <md-divider></md-divider>
+    <md-sidenav class="md-primary site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" ng-include="'templates/sidenav.html'">
     </md-sidenav>
     <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'templates/appbar.html'"></header>
     <main layout="column" tabIndex="-1" role="main" flex>
@@ -71,6 +57,8 @@
     <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -90,10 +78,13 @@
     <script src="scripts/controllers/list.controller.js"></script>
     <script src="scripts/controllers/login.controller.js"></script>
     <script src="scripts/controllers/main.controller.js"></script>
+    <script src="scripts/controllers/product.controller.js"></script>
     <script src="scripts/controllers/query.controller.js"></script>
     <script src="scripts/controllers/save.controller.js"></script>
+    <script src="scripts/controllers/sidenav.controller.js"></script>
     <script src="scripts/controllers/signup.controller.js"></script>
     <script src="scripts/controllers/test.controller.js"></script>
+    <script src="scripts/directives/test.directive.js"></script>
     <script src="scripts/directives/upload.directive.js"></script>
     <script src="scripts/plugins/appbar.js"></script>
     <script src="scripts/services/auth.factory.js"></script>

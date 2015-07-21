@@ -2240,13 +2240,13 @@ main#view {
     margin: 8px 0; }
   .app-bar .search-icon, .search-bar .search-icon {
     height: 64px;
-    line-height: 64px; } }
+    line-height: 64px; }
+  .app-bar .account-photo, .search-bar .account-photo {
+    margin: 16px; } }
 
 @media screen and (min-width: 961px) {
   .app-bar .appbar-search-button, .search-bar .appbar-search-button {
-    display: none; }
-  .app-bar .account-photo, .search-bar .account-photo {
-    margin: 12px; } }
+    display: none; } }
 
 .search-bar {
   margin-top: 0;
@@ -2435,120 +2435,6 @@ main#view {
 .site-sidenav md-content {
   background: transparent; }
 
-.sidenav-menu,
-.sidenav-menu ul {
-  list-style: none;
-  padding: 0; }
-
-.sidenav-menu li {
-  margin: 0; }
-
-.sidenav-menu > li:nth-child(1) {
-  border-top: none; }
-
-.md-whiteframe-glow-z1 {
-  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.14), 0 0 2px 2px rgba(0, 0, 0, 0.098), 0 0 5px 1px rgba(0, 0, 0, 0.084); }
-
-.sidenav-menu > li {
-  border-bottom: 1px solid #267ed5; }
-
-.sidenav-menu .md-button {
-  border-radius: 0;
-  color: white;
-  cursor: pointer;
-  display: block;
-  line-height: 40px;
-  margin: 0;
-  max-height: 40px;
-  overflow: hidden;
-  padding: 0 16px;
-  text-align: left;
-  text-decoration: none;
-  white-space: normal;
-  width: 100%; }
-
-.sidenav-menu .md-button:hover,
-.sidenav-menu .md-button:focus {
-  background: #267ed5 !important; }
-
-.sidenav-menu .md-button md-icon {
-  color: white; }
-
-.sidenav-menu md-select {
-  /* Override md-select margins.  With margins the menu will look incorrect and causes mobile list
-    to not be scrollable.
-  */
-  margin: 0;
-  width: 100%; }
-
-.sidenav-menu md-select md-select-label {
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-  padding-top: 10px; }
-
-.sidenav-menu md-select md-select-label span {
-  margin-right: auto;
-  padding-left: 13px; }
-
-.sidenav-menu md-select .md-select-icon {
-  margin-right: 28px; }
-
-.sidenav-menu button.md-button::-moz-focus-inner {
-  padding: 0; }
-
-.sidenav-menu .md-button.active {
-  background: #267ed5; }
-
-.menu-heading {
-  display: block;
-  line-height: 32px;
-  margin: 0;
-  padding: 8px 16px 0;
-  text-align: left;
-  width: 100%;
-  color: rgba(255, 255, 255, 0.54); }
-
-.sidenav-menu li.parentActive,
-.sidenav-menu li.parentActive .menu-toggle-list {
-  /*background-color: #2C80D2 !important;*/ }
-
-.menu-toggle-list {
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-  -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
-  -webkit-transition-property: height;
-  -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
-  -moz-transition-property: height;
-  transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
-  transition-property: height; }
-
-.sidenav-menu .menu-toggle-list a.md-button {
-  display: block;
-  padding: 0 16px 0 32px;
-  text-transform: none;
-  text-rendering: optimizeLegibility;
-  font-weight: 500; }
-
-ul#sidenav-menu-Directives {
-  margin-bottom: 20px; }
-
-.md-button-toggle .md-toggle-icon {
-  display: block;
-  margin-left: auto;
-  speak: none;
-  vertical-align: middle;
-  transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  transition: transform 0.3s ease-in-out;
-  -webkit-transition: -webkit-transform 0.3s ease-in-out; }
-
-.md-button-toggle .md-toggle-icon.toggled {
-  transform: rotate(0deg);
-  -webkit-transform: rotate(0deg); }
-
-/* End Docs Menu */
 .sidenav-logo {
   text-align: center;
   display: -webkit-flex;
@@ -2605,3 +2491,67 @@ a.sidenav-logo {
   text-align: center;
   font-weight: 400;
   font-size: 26px; }
+
+.main-menu {
+  list-style: none;
+  padding: 0; }
+  .main-menu li {
+    margin: 0;
+    list-style-position: inside; }
+  .main-menu > li:nth-child(1) {
+    border-top: none; }
+  .main-menu > li {
+    border-bottom: 1px solid #595959; }
+  .main-menu .menu-heading {
+    display: block;
+    line-height: 32px;
+    margin: 0;
+    padding: 8px 16px 0;
+    text-align: left;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.54); }
+  .main-menu .md-button {
+    border-radius: 0;
+    color: white;
+    cursor: pointer;
+    display: block;
+    line-height: 40px;
+    margin: 0;
+    max-height: 40px;
+    overflow: hidden;
+    padding: 0 16px;
+    text-align: left;
+    text-decoration: none;
+    white-space: normal;
+    width: 100%; }
+    .main-menu .md-button md-icon {
+      color: white; }
+
+.md-button-toggle .md-toggle-icon {
+  display: block;
+  margin-left: auto;
+  speak: none;
+  vertical-align: middle;
+  -webkit-transform: rotate(0);
+  transform: rotate(0);
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out; }
+  .md-button-toggle .md-toggle-icon.closed {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+
+.menu-toggle-list {
+  overflow: hidden;
+  position: relative;
+  height: 360px;
+  z-index: 1;
+  transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  transition-property: height; }
+  .menu-toggle-list.closed {
+    height: 0; }
+  .menu-toggle-list a.md-button {
+    display: block;
+    padding: 0 16px 0 32px;
+    text-transform: none;
+    text-rendering: optimizeLegibility;
+    font-weight: 500; }

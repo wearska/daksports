@@ -1,36 +1,94 @@
-<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-
-    <header class="nav-header">
-        <a class="sidenav-logo" ng-href="#/">
-            <img alt="" src="img/icons/angular-logo.svg"/>
-            <h1 class="sidenav-logotype md-heading">Angular Material</h1>
-        </a>
-    </header>
-
-    <ul class="skip-links">
-        <li class="md-whiteframe-z2">
-            <md-button href="#" ng-click="focusMainContent($event)">Skip to content</md-button>
-        </li>
-    </ul>
-
-    <md-content flex role="navigation">
-        <ul class="sidenav-menu">
-            <li class="parent-list-item {{section.className || ''}}" ng-class="{'parentActive' : isSectionSelected(section)}" ng-repeat="section in menu.sections">
-                <h2 class="menu-heading md-subhead" id="heading_{{ section.name | nospace }}" ng-if="section.type === 'heading'">
-                    {{section.name}}
-                </h2>
-                <menu-link ng-if="section.type === 'link'" section="section"></menu-link>
-
-                <menu-toggle ng-if="section.type === 'toggle'" section="section"></menu-toggle>
-
-                <ul class="menu-nested-list" ng-if="section.children">
-                    <li ng-class="{'childActive' : isSectionSelected(child)}" ng-repeat="child in section.children">
-                        <menu-link ng-if="child.type === 'link'" section="child"></menu-link>
-
-                        <menu-toggle ng-if="child.type === 'toggle'" section="child"></menu-toggle>
+<header class="nav-header">
+    <img alt="Ionut Achim" class="account-avatar overkill" ng-src="https://lh3.googleusercontent.com/-J4-lFIpZWcA/AAAAAAAAAAI/AAAAAAAABo4/o2B_lk7gXWE/s46-c-k-no/photo.jpg"/>
+    <md-list class="overkill">
+        <md-list-item md-clickable role="list-item">
+            <p class="single-line body1" style="color: rgba(255,255,255,.7)">monodnb@gmail.com</p>
+            <md-button aria-label="Open account menu" class="md-icon-button l-right" ng-click="">
+                <md-icon>
+                    <i class="material-icons" style="color: rgba(255,255,255,.7)">&#xE5C5;</i>
+                </md-icon>
+            </md-button>
+        </md-list-item>
+    </md-list>
+</header>
+<md-content md-scroll-y flex role="navigation">
+    <nav class="main-nav">
+        <ul class="main-menu">
+            <li class="parent-list-item">
+                <h2 class="menu-heading md-subhead overkill">Getting started</h2>
+                <ul class="menu-nested-list" ng-controller="NestedListCtrl">
+                    <li>
+                        <md-button aria-controls="docs-menu-LatestRelease(0.10.0)" aria-describedby="heading_DocumentationVersion" aria-expanded="false" class="md-button-toggle" ng-click="toggle()" ng-transclude="" tabindex="0">
+                            <div flex layout="row">
+                                Contul meu
+                                <span flex=></span>
+                                <span aria-hidden="true" class="md-toggle-icon" ng-class="{closed : !isToggled}">
+                                    <md-icon aria-hidden="true" md-svg-src="md-toggle-arrow">
+                                        <svg fit="" height="100%" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;" version="1.1" viewBox="0 0 48 48" width="100%" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px">
+                                            <path d="M24 16l-12 12 2.83 2.83 9.17-9.17 9.17 9.17 2.83-2.83z"></path>
+                                            <path d="M0 0h48v48h-48z" fill="none"></path>
+                                        </svg>
+                                    </md-icon>
+                                </span>
+                            </div>
+                            <span class="md-visually-hidden ng-binding ng-scope">
+                                Toggle collapsed
+                            </span>
+                        </md-button>
+                        <ul class="menu-toggle-list" ng-class="{closed : !isToggled}">
+                            <li>
+                                <a class="e active" href="/HEAD" md-button ng-click="focusSection()">
+                                    <span>Favorite</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="e active" href="/HEAD" md-button ng-click="focusSection()">
+                                    <span>Lista de cumparaturi</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="e active" href="/HEAD" md-button ng-click="focusSection()">
+                                    <span>Date personale</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="e active" href="/HEAD" md-button ng-click="focusSection()">
+                                    <span>Setari siguranta</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="e active" href="/HEAD" md-button ng-click="focusSection()">
+                                    <span>Abonarile mele</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="e active" href="/HEAD" md-button ng-click="focusSection()">
+                                    <span>Istoric comenzi & facturi</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="e active" href="/HEAD" md-button ng-click="focusSection()">
+                                    <span>Garantiile mele</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="e active" href="/HEAD" md-button ng-click="focusSection()">
+                                    <span>Review-urile mele</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="e active" href="/HEAD" md-button ng-click="focusSection()">
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
+<!-- menu-nested-list -->
             </li>
+<!-- parent-list-item -->
         </ul>
-    </md-content>
-</md-sidenav>
+<!-- main-menu -->
+    </nav>
+</md-content>
+<md-divider></md-divider>

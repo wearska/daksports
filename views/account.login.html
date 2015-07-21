@@ -9,7 +9,7 @@
         <div class="main-content">
             <div class="paper raised sign-in-card">
                 <div class="circle-mask" style="background-image: url(/assets/img/avatar_2x.png)">
-                    <div class="circle-photo" style="background-image: url({{user.photo}})" ng-class="{'scaled' : secondStep}"></div>
+                    <div class="circle-photo" ng-class="{'scaled' : secondStep}" style="background-image: url({{user.photo}})"></div>
                 </div>
                 <form autocomplete="off" name="loginForm" ng-submit="login(user)" novalidate>
                     <div class="login-parts-wrapper" ng-class="{'second-step' : secondStep}">
@@ -17,7 +17,7 @@
                             <md-input-container>
                                 <label>e-mail</label>
                                 <input autocomplete="off" name="email" ng-model="user.email" required type="email">
-                                <div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$invalid && loginForm.email.$dirty || loginForm.submitted">
+                                <div ng-messages="loginForm.email.$valid" ng-show="loginForm.email.$invalid && loginForm.email.$dirty || loginForm.submitted">
                                     <div ng-message="required">Introduceti o adresa de email</div>
                                     <div ng-message="email">Doar adresele de email sunt permise</div>
                                 </div>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                 </form>
-                <md-button class="md-icon-button back-to-first" ng-show="secondStep" ng-click="stepBack()">
+                <md-button class="md-icon-button back-to-first" ng-click="stepBack()" ng-show="secondStep">
                     <md-icon>
                         <i class="material-icons">&#xE5C4;</i>
                     </md-icon>

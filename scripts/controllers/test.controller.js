@@ -8,12 +8,12 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('TestCtrl', ['$scope', '$http', '$filter', 'productRes', 'auth', function($scope, $http, $filter, productRes, auth) {
+    .controller('TestCtrl', function($scope, $http, $filter, productRes, auth, $timeout, $mdSidenav, $mdUtil, $log) {
         $scope.products = {};
 
         productRes.query().success(function(response) {
             $scope.products = response;
         });
 
-        console.log(auth);
-    }]);
+        // console.log(auth);
+    });

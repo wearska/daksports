@@ -272,15 +272,15 @@ only screen and (min-device-pixel-ratio:2) {
             height: 64px;
             line-height: 64px;
         }
+        .account-photo {
+            margin: 16px;
+        }
     }
 }
 @media #{$medium-and-up} {
     .app-bar {
         .appbar-search-button {
             display: none;
-        }
-        .account-photo {
-            margin: 12px;
         }
     }
 }

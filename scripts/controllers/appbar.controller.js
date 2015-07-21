@@ -8,11 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AppBarCtrl', ['$rootScope', '$scope', '$mdDialog', '$mdMedia', '$timeout', 'auth', function($rootScope, $scope, $mdDialog, $mdMedia, $timeout, auth) {
-        $scope.showDocsNav = false;
-        $scope.showMainNav = false;
-        $scope.showMenu = false;
-        $scope.showNavTrigger = false;
+    .controller('AppBarCtrl', function($rootScope, $scope, $timeout, auth, $mdSidenav, $mdUtil, $log) {
         $scope.showSearchBar = false;
         $scope.logged = false;
         $scope.accountLink = '/account/login'
@@ -23,13 +19,12 @@ angular.module('daksportsApp')
         }
 
         $scope.$watch(function() {
-                return auth.isAuthenticated;
+                return auth;
             },
             function(newVal, oldVal) {
                 $scope.logged = auth.isAuthenticated;
                 $scope.account = auth.isUser;
-                // $scope.accountLink = '/account/dashboard';
-                console.log(auth.isUser);
+                console.log($scope.account);
             }, true);
         // TOGGLE SEARCH BAR
         $scope.toggleSearchBar = function() {
@@ -39,23 +34,16 @@ angular.module('daksportsApp')
             $scope.showSearchBar = false;
         };
 
-        // TOGGLE MAIN NAV (TOP) ON MOBILE
-        $scope.toggleDocsMenu = function() {
-            $scope.showDocsNav = !$scope.showDocsNav;
-        };
+        $scope.toggleLeft = buildToggler('left');
 
-        // TOGGLE DOCS NAV
-        $scope.toggleMainMenu = function() {
-            $scope.showMainNav = !$scope.showMainNav;
-        };
-
-        // SHOW MAIN NAV
-        $scope.toggleMainNav = function() {
-            $scope.showMainNav = !$scope.showMainNav;
-        };
-
-        // TOGGLE DOCS VERSION & LANGUAGE
-        $scope.toggleVersionMenu = function() {
-            $scope.showMenu = !$scope.showMenu;
-        };
-    }]);
+        function buildToggler(navID) {
+            var debounceFn = $mdUtil.debounce(function() {
+                $mdSidenav(navID)
+                    .toggle()
+                    .then(function() {
+                        $log.debug("toggle " + navID + " is done");
+                    });
+            }, 300);
+            return debounceFn;
+        }
+});

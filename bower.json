@@ -36,7 +36,9 @@
     "angular-material": "~0.10.0",
     "jquery": "~2.1.4",
     "ui-router": "~0.2.15",
-    "angular-file-upload": "~1.1.5"
+    "angular-file-upload": "~1.1.5",
+    "firebase": "~2.2.7",
+    "angularfire": "~1.1.2"
   },
   "resolutions": {
     "angular": "~1.4.1"

@@ -20,7 +20,8 @@ angular
         'ngSanitize',
         'ngTouch',
         'ui.router',
-        'angularFileUpload'
+        'angularFileUpload',
+        'firebase'
     ])
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')

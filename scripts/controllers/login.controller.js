@@ -8,7 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('LoginCtrl', ['$rootScope', '$scope', '$http', '$location', 'auth', function($rootScope, $scope, $http, $location, auth) {
+    .controller('LoginCtrl', ['$rootScope', '$scope', '$http', '$location', 'auth', '$cookies', function($rootScope, $scope, $http, $location, auth, $cookies) {
 
         // console.log("Login Ctrl");
         // console.log(auth.isAuthenticated);
@@ -30,7 +30,7 @@ angular.module('daksportsApp')
                     $scope.user.lastName = response[0].last_name;
                 });
         }
-        $scope.stepBack = function(){
+        $scope.stepBack = function() {
             $scope.secondStep = false;
             $scope.firstStep = true;
         }
@@ -40,12 +40,20 @@ angular.module('daksportsApp')
                 var data = user;
                 $http.post("api/getuserlogin.php", data)
                     .success(function(response) {
-                        // console.log(response);
-                        if(response == 'true'){
+                        var expireDate = new Date();
+                        expireDate.setDate(expireDate.getDate() + 1);
+                        console.log(expireDate);
+                        if (response == 'true') {
+                            $cookies.put('loggedin', true, {
+                                'expires': expireDate
+                            });
+                            $cookies.put('user', $scope.user.email, {
+                                'expires': expireDate
+                            });
                             $location.path('/test');
                             auth.isAuthenticated = true;
                             auth.isUser = $scope.user;
-                        }else{
+                        } else {
                             alert('Incorrect email or password');
                         }
                     });
