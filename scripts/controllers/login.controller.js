@@ -37,26 +37,7 @@ angular.module('daksportsApp')
 
         $scope.login = function(user) {
             if ($scope.loginForm.$valid) {
-                var data = user;
-                $http.post("api/getuserlogin.php", data)
-                    .success(function(response) {
-                        var expireDate = new Date();
-                        expireDate.setDate(expireDate.getDate() + 1);
-                        console.log(expireDate);
-                        if (response == 'true') {
-                            $cookies.put('loggedin', true, {
-                                'expires': expireDate
-                            });
-                            $cookies.put('user', $scope.user.email, {
-                                'expires': expireDate
-                            });
-                            $location.path('/test');
-                            auth.isAuthenticated = true;
-                            auth.isUser = $scope.user;
-                        } else {
-                            alert('Incorrect email or password');
-                        }
-                    });
+                auth.login(user);
             } else {
                 $scope.loginForm.submitted = true;
             }

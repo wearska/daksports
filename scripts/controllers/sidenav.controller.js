@@ -12,10 +12,12 @@ angular.module('daksportsApp')
         $scope.isToggled = false;
         $scope.toggle = function() {
             $scope.isToggled = !$scope.isToggled;
-            console.log($scope.isToggled);
         }
     })
     .controller('SideNavCtrl', function($rootScope, $scope, $timeout, auth, $mdSidenav, $mdUtil, $log) {
+
+        $scope.logged = false;
+        $scope.account = {};
 
         $scope.$watch(function() {
                 return auth;
@@ -23,8 +25,11 @@ angular.module('daksportsApp')
             function(newVal, oldVal) {
                 $scope.logged = auth.isAuthenticated;
                 $scope.account = auth.isUser;
-                console.log($scope.account);
             }, true);
 
-        
+        $scope.logout = function(){
+            auth.logout();
+        }
+
+
     });

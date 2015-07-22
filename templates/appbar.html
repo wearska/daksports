@@ -29,11 +29,8 @@
         </div>
         <div class="material-one-right" flex-gt-md="25">
             <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" md-button ng-href="/account/dashboard" ng-show="logged" style="background-image: url({{account.photo}})">
-                <md-tooltip>
-                    Cont
-                </md-tooltip>
             </div>
-            <a aria-label="Login or Sign up" class="md-icon-button l-right" md-button ng-hide="logged" ng-href="/account/login">
+            <a aria-label="Login or Sign up" class="md-icon-button l-right" md-button ng-show="!logged" ng-href="/account/login">
                 <md-tooltip>
                     Cont
                 </md-tooltip>

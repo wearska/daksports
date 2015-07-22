@@ -15,5 +15,5 @@ angular.module('daksportsApp')
             $scope.products = response;
         });
 
-        // console.log(auth);
+        console.log(auth);
     });

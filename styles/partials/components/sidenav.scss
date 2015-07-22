@@ -67,7 +67,7 @@ a.sidenav-logo {
         border-top: none;
     }
     > li {
-        border-bottom: 1px solid rgba(89, 89, 89, 1);
+        border-bottom: 1px solid rgba(255,255,255,.12);
     }
     .menu-heading {
         display: block;
@@ -104,18 +104,30 @@ a.sidenav-logo {
     vertical-align: middle;
     transform: rotate(0);
     transition: transform 0.3s ease-in-out;
-    &.closed{
+    &.closed {
         transform: rotate(180deg);
+    }
+}
+.parent-list-item {
+    >a {
+        >span {
+            font-weight: 500;
+        }
     }
 }
 .menu-toggle-list {
     overflow: hidden;
     position: relative;
-    height: 360px;
     z-index: 1;
     transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
     transition-property: height;
-    &.closed{
+    &.account {
+        height: 360px;
+    }
+    &.sports {
+        height: 240px;
+    }
+    &.closed {
         height: 0;
     }
     a.md-button {

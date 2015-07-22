@@ -1752,7 +1752,7 @@ button {
   z-index: 10; }
 
 .c-max {
-  max-width: 1240px;
+  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
   position: relative; }
@@ -2501,7 +2501,7 @@ a.sidenav-logo {
   .main-menu > li:nth-child(1) {
     border-top: none; }
   .main-menu > li {
-    border-bottom: 1px solid #595959; }
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
   .main-menu .menu-heading {
     display: block;
     line-height: 32px;
@@ -2540,13 +2540,19 @@ a.sidenav-logo {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg); }
 
+.parent-list-item > a > span {
+  font-weight: 500; }
+
 .menu-toggle-list {
   overflow: hidden;
   position: relative;
-  height: 360px;
   z-index: 1;
   transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
   transition-property: height; }
+  .menu-toggle-list.account {
+    height: 360px; }
+  .menu-toggle-list.sports {
+    height: 240px; }
   .menu-toggle-list.closed {
     height: 0; }
   .menu-toggle-list a.md-button {
