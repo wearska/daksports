@@ -1765,17 +1765,15 @@ button {
   .c-max {
     max-width: 1680px; } }
 
-header.site-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 64px;
+.site-header {
   z-index: 60; }
 
-main#view {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 16px; }
+.site-sidenav,
+.site-sidenav.md-locked-open-add-active,
+.site-sidenav.md-locked-open {
+  width: 256px;
+  min-width: 256px;
+  max-width: 256px; }
 
 #account-wrapper {
   background-color: #fff;
@@ -2342,9 +2340,11 @@ main#view {
       top: 0;
       width: 110%;
       height: 110%;
-      transition: all 0.55s cubic-bezier(0.25, 0.8, 0.25, 1); }
-    .product-card .product-media:hover .hoverlay {
-      background-color: rgba(0, 0, 0, 0.1); }
+      transition: all 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
+      opacity: 0; }
+  .product-card:hover .hoverlay {
+    background-color: rgba(0, 0, 0, 0.06);
+    opacity: 1; }
   .product-card .product-info {
     box-sizing: border-box;
     display: block;

@@ -4,6 +4,7 @@
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    
     // display: block;
 }
 @media only screen and (min-width: 1601px) and (max-width: 1900px) {
@@ -18,24 +19,22 @@
 }
 
 // Header
-header {
-    &.site-header {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 64px;
-        z-index: 60;
-    }
+.site-header {
+    z-index: 60;
+}
+
+//Sidenav
+.site-sidenav,
+.site-sidenav.md-locked-open-add-active,
+.site-sidenav.md-locked-open {
+    width: 256px;
+    min-width: 256px;
+    max-width: 256px;
 }
 
 // Footer
 footer {
-
+    
 }
 
 // Main View
-main#view {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 $content-padding;
-}

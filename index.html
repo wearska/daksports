@@ -29,12 +29,21 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <md-sidenav ng-controller="SideNavCtrl" class="md-primary site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" ng-include="'templates/sidenav.html'">
+    <md-sidenav ng-controller="SideNavCtrl"
+                class="md-primary site-sidenav md-sidenav-left md-whiteframe-z2"
+                md-component-id="left"
+                ng-include="'templates/sidenav.html'"
+                ng-cloak
+                tab-index="-2">
     </md-sidenav>
-    <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'templates/appbar.html'"></header>
-    <main role="main">
+    <div layout="column" tabIndex="-1" role="main" flex>
+        <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'templates/appbar.html'"></header>
+        <md-content flex layout-padding md-scroll-y ui-view></md-content>
+    </div>
+    
+    <!-- <main role="main">
         <md-content ui-view md-scroll-y flex layout-padding class="l-offset-nav"></md-content>
-    </main>
+    </main> -->
     <footer role="footer" id="bottom-bar" class="paper resting"></footer>
 
 
@@ -86,10 +95,10 @@
     <script src="scripts/controllers/test.controller.js"></script>
     <script src="scripts/directives/test.directive.js"></script>
     <script src="scripts/directives/upload.directive.js"></script>
+    <script src="scripts/plugins/appbar.js"></script>
     <script src="scripts/services/auth.factory.js"></script>
     <script src="scripts/services/product.factory.js"></script>
     <script src="scripts/services/upload.factory.js"></script>
-    <script src="scripts/plugins/appbar.js"></script>
     <!-- endinject -->
 </body>
 
