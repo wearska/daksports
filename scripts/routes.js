@@ -86,6 +86,11 @@ angular
                 url: '/admin/search',
                 templateUrl: 'views/admin/search.html',
                 //controller: 'AdminCtrl'
+            })
+            .state('product', {
+                url: '/product',
+                templateUrl: 'templates/product.single.html',
+                // controller: 'ProductCtrl'
             });
         $locationProvider.html5Mode(true);
     });
