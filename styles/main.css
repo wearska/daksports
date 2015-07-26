@@ -2030,7 +2030,7 @@ button {
         margin-right: auto;
         z-index: 100;
         margin-bottom: 10px;
-        background-size: 96px;
+        background-size: cover;
         background-repeat: no-repeat;
         background-image: url("../assets/img/avatar_2x.png");
         position: relative; }
@@ -2748,6 +2748,8 @@ a.sidenav-logo {
   transition-property: height; }
   .menu-toggle-list.account {
     height: 360px; }
+  .menu-toggle-list.admin {
+    height: 200px; }
   .menu-toggle-list.sports {
     height: 240px; }
   .menu-toggle-list.closed {
@@ -2758,3 +2760,41 @@ a.sidenav-logo {
     text-transform: none;
     text-rendering: optimizeLegibility;
     font-weight: 500; }
+
+.file-upload {
+  position: relative;
+  background-color: aliceblue;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer; }
+  .file-upload md-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity 0.2s ease; }
+  .file-upload input[type="file"] {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    outline: none;
+    opacity: 0;
+    cursor: pointer; }
+  .file-upload:hover md-icon {
+    opacity: 1; }
+  .file-upload:hover .hoverlay {
+    opacity: 1; }

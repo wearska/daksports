@@ -10,37 +10,33 @@
 angular.module('daksportsApp')
     .factory('auth', function authFactory($http, $cookies, $location) {
 
-        var data = $cookies.get('user');
-        var user = {};
-        $http.get("api/getuserphoto.php?email=" + data)
-            .success(function(response) {
-                if (response != '') {
-                    obj.isUser.photo = response[0].user_photo;
-                    obj.isUser.firstName = response[0].first_name;
-                    obj.isUser.lastName = response[0].last_name;
-                }
-            });
-
         var obj = {
             isAuthenticated: $cookies.get('loggedin'),
-            isAdmin: false,
-            isUser: {},
+            account: {
+                email : $cookies.get('email'),
+                admin : $cookies.get('admin'),
+                photo : $cookies.get('user_photo'),
+                firstName : $cookies.get('first_name'),
+                lastName : $cookies.get('last_name')
+            },
 
             login: function(user) {
                 $http.post("api/getuserlogin.php", user)
                     .success(function(response) {
                         var expireDate = new Date();
                         expireDate.setDate(expireDate.getDate() + 1);
-                        if (response == 'true') {
-                            $cookies.put('loggedin', true, {
-                                'expires': expireDate
-                            });
-                            $cookies.put('user', user.email, {
-                                'expires': expireDate
+                        if (response) {
+                            $cookies.put('loggedin', true);
+                            angular.forEach(response, function(value, key) {
+                                $cookies.put(key, value);
                             });
                             $location.path('/test');
                             obj.isAuthenticated = true;
-                            obj.isUser = user;
+                            obj.account.email = response.email;
+                            obj.account.admin = response.admin;
+                            obj.account.photo = response.user_photo;
+                            obj.account.firstName = response.first_name;
+                            obj.account.lastName = response.last_name;
                         } else {
                             alert('Incorrect email or password');
                         }
@@ -48,9 +44,10 @@ angular.module('daksportsApp')
             },
             logout: function() {
                 obj.isAuthenticated = false;
-                obj.isUser = {};
+                obj.account = {};
                 $cookies.remove('loggedin');
-                $cookies.remove('user');
+                $cookies.remove('address');
+                $cookies.remove('admin');
             }
         };
 

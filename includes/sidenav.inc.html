@@ -17,7 +17,6 @@
             <li class="parent-list-item" ng-show="logged && !account.admin" ng-include="'/includes/sidenav.account.inc.html'"></li>
             <li class="parent-list-item" ng-show="logged && account.admin" ng-include="'/includes/sidenav.admin.inc.html'"></li>
 
-
             <li class="parent-list-item">
                 <a md-button href="/recommended" ng-click="focusSection()">
                     <span>
@@ -37,7 +36,7 @@
             </li>
 
 
-            <li class="parent-list-item" ng-include="'/templates/sidenav.sports.html'"></li>
+            <li class="parent-list-item" ng-include="'/includes/sidenav.sports.inc.html'"></li>
         </ul>
 <!-- main-menu -->
     </nav>

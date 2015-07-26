@@ -1,0 +1,45 @@
+<ul class="menu-nested-list" ng-controller="NestedListCtrl">
+    <li>
+        <md-button aria-controls="account controls" aria-describedby="account menu" aria-expanded="false" class="md-button-toggle" ng-click="toggle()">
+            <div flex layout="row">
+                Admin area
+                <span flex></span>
+                <span aria-hidden="true" class="md-toggle-icon" ng-class="{closed : !isToggled}">
+                    <md-icon aria-hidden="true" md-svg-src="md-toggle-arrow">
+                        <svg fit="" height="100%" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;" version="1.1" viewBox="0 0 48 48" width="100%" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px">
+                            <path d="M24 16l-12 12 2.83 2.83 9.17-9.17 9.17 9.17 2.83-2.83z"></path>
+                            <path d="M0 0h48v48h-48z" fill="none"></path>
+                        </svg>
+                    </md-icon>
+                </span>
+            </div>
+        </md-button>
+        <ul class="menu-toggle-list admin" ng-class="{closed : !isToggled}">
+            <li>
+                <a class="" href="admin/list" md-button ng-click="focusSection()">
+                    <span>Vezi toate produsele</span>
+                </a>
+            </li>
+            <li>
+                <a class="" href="/admin/search" md-button ng-click="focusSection()">
+                    <span>Filtreaza produse</span>
+                </a>
+            </li>
+            <li>
+                <a class="" href="/admin/add" md-button ng-click="focusSection()">
+                    <span>Adauga un produs nou</span>
+                </a>
+            </li>
+            <li>
+                <a class="" href="/admin/settings" md-button ng-click="focusSection()">
+                    <span>Setari</span>
+                </a>
+            </li>
+            <li>
+                <md-button class="" ng-click="logout()">
+                    <span>Logout</span>
+                </md-button>
+            </li>
+        </ul>
+    </li>
+</ul>

@@ -23,9 +23,10 @@ angular.module('daksportsApp')
             },
             function(newVal, oldVal) {
                 $scope.logged = auth.isAuthenticated;
-                $scope.account = auth.isUser;
-                console.log($scope.account);
+                $scope.account = auth.account;
+                $scope.account.admin = auth.account.admin;
             }, true);
+
         // TOGGLE SEARCH BAR
         $scope.toggleSearchBar = function() {
             $scope.showSearchBar = !$scope.showSearchBar;
@@ -46,4 +47,4 @@ angular.module('daksportsApp')
             }, 300);
             return debounceFn;
         }
-});
+    });

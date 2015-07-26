@@ -1,0 +1,41 @@
+.file-upload{
+    position: relative;
+    background-color: aliceblue;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    md-icon{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        pointer-events: none;
+        user-select: none;
+        opacity: 0;
+        will-change: opacity;
+        transition: opacity .2s ease;
+    }
+    input[type="file"] {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+    }
+    &:hover{
+        md-icon{
+            opacity: 1;
+        }
+        .hoverlay{
+            opacity: 1;
+        }
+    }
+}

@@ -8,10 +8,16 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('NestedListCtrl', function($scope) {
+    .controller('NestedListCtrl', function($scope, $mdSidenav, $mdUtil, $log) {
         $scope.isToggled = false;
         $scope.toggle = function() {
             $scope.isToggled = !$scope.isToggled;
+        }
+        $scope.focusSection = function() {
+            $mdSidenav('left').close()
+                .then(function() {
+                    $log.debug("close RIGHT is done");
+                });
         }
     })
     .controller('SideNavCtrl', function($rootScope, $scope, $timeout, auth, $mdSidenav, $mdUtil, $log) {
@@ -24,12 +30,12 @@ angular.module('daksportsApp')
             },
             function(newVal, oldVal) {
                 $scope.logged = auth.isAuthenticated;
-                $scope.account = auth.isUser;
+                $scope.account = auth.account;
+                $scope.account.admin = auth.account.admin;
             }, true);
 
-        $scope.logout = function(){
+        $scope.logout = function() {
             auth.logout();
         }
-
 
     });

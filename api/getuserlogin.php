@@ -19,28 +19,22 @@ $request = json_decode($postdata);
 @$email = $request->email;
 @$password = $request->password;
 
-$res = $conn->query("SELECT password FROM users WHERE email='$email';");
+$res = $conn->query("SELECT * FROM users WHERE email='$email' AND password = '$password';");
 
-$pwd = '';
-$result = 'false';
+$result = array();
 
 if ($res->num_rows > 0) {
     // output data of each row
-    while($row = $res->fetch_assoc()) {
-        $pwd = $row["password"];
-    }
+    while($row=mysqli_fetch_assoc($res)){
+            $result[] = $row;
+        }
+    unset($result[0]['password']);
+    $obj = json_encode($result[0]);
 } else {
-    echo "0 results";
+    $result[] = null;
+    $obj = null;
 }
-
-if ($pwd == $password){
-    $result = 'true';
-} else{
-    $result = 'false';
-}
-
-echo $result;
-// echo ($pwd . ' / ' . $password);
+echo($obj);
 
 $conn->close();
 ?>

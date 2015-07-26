@@ -1,6 +1,7 @@
-<div class="wrapper">
-    <h1 class="display2 text-center">Adauga un produs nou</h1>
-    <md-content layout-padding style="width: 90%; margin: auto">
+<!-- <div id="admin-menu" ng-include="'templates/sidenav.html'"></div> -->
+<div class="wrapper l-offset-nav">
+    <md-content class="paper resting" layout-padding>
+        <h2 class="md-headline" style="margin-top: 32px;">Detalii produs</h2>
         <form name="productForm" ng-submit="updateProduct(product)" novalidate>
             <div layout layout-sm="column">
                 <md-input-container flex>
@@ -10,10 +11,6 @@
                 <md-input-container flex>
                     <label>Sub-nume</label>
                     <input ng-model="product.subname">
-                </md-input-container>
-                <md-input-container flex="">
-                    <label>Data</label>
-                    <input ng-model="product.submissionDate" type="date">
                 </md-input-container>
             </div>
             <md-input-container flex>
@@ -34,54 +31,66 @@
                     </div>
                 </md-input-container>
                 <md-input-container flex>
-                    <label>Inventar</label>
+                    <label>Inventar pornire</label>
                     <input name="inv" ng-model="product.inv" required step="any" type="number">
                     <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
                         <div ng-message="number">Doar cifrele sunt permise</div>
                     </div>
                 </md-input-container>
-                <div flex layout layout-align="start center">
-                    <md-checkbox aria-label="is promo" name="promo" ng-model="product.promo">
-                        Promo?
-                    </md-checkbox>
-                </div>
+                <md-input-container flex="">
+                    <label>Data publicarii</label>
+                    <input ng-model="product.submissionDate" type="date">
+                </md-input-container>
+            </div>
+<!-- <md-divider></md-divider> -->
+            <h2 class="md-headline" style="margin-top: 32px;">Setari promo</h2>
+            <md-switch aria-label="is promo" name="promo" ng-model="product.promo"></md-switch>
+            <div layout="column">
+
                 <md-input-container flex>
-                    <label>Pret vechi</label>
-                    <input name="oldprice" ng-disabled="!product.promo" ng-model="product.oldPrice" step="any" type="number">
-                    <div ng-messages="productForm.oldprice.$error" ng-show="productForm.oldprice.$invalid && productForm.oldprice.$dirty">
+                    <label>Pret promo</label>
+                    <input name="promoprice" ng-disabled="!product.promo" ng-model="product.promoPrice" step="any" type="number">
+                    <div ng-messages="productForm.promoprice.$error" ng-show="productForm.promoprice.$invalid && productForm.promoprice.$dirty">
                         <div ng-message="number">Doar cifrele sunt permise</div>
                     </div>
                 </md-input-container>
-            </div>
-            <div layout layout-sm="column">
-                <div flex layout layout-align="start center">
-                    <md-checkbox aria-label="is promo" name="promostockcheck" ng-disabled="!product.promo" ng-model="product.promoStockCheck">
-                        Cantitate?
-                    </md-checkbox>
-                </div>
-                <md-input-container flex>
-                    <label>Stoc Promo</label>
-                    <input name="promostock" ng-disabled="!product.promoStockCheck" ng-model="product.promoStock" step="any" type="number">
-                    <div ng-messages="productForm.promostock.$error" ng-show="productForm.promostock.$invalid && productForm.promostock.$dirty">
-                        <div ng-message="number">Doar cifrele sunt permise</div>
+
+                <div layout-gt-sm="row" layout="column">
+
+                    <div flex="40" layout="column">
+                        <div flex layout layout-align="start center">
+                            <md-checkbox aria-label="is promo" name="promostockcheck" ng-disabled="!product.promo" ng-model="product.promoStockCheck">
+                                Promo pe stoc definit
+                            </md-checkbox>
+                        </div>
+                        <md-input-container flex>
+                            <label>Stoc disponibil promo</label>
+                            <input name="promostock" ng-disabled="!product.promoStockCheck" ng-model="product.promoStock" step="any" type="number">
+                            <div ng-messages="productForm.promostock.$error" ng-show="productForm.promostock.$invalid && productForm.promostock.$dirty">
+                                <div ng-message="number">Doar cifrele sunt permise</div>
+                            </div>
+                        </md-input-container>
                     </div>
-                </md-input-container>
-                <div flex layout layout-align="start center">
-                    <md-checkbox aria-label="is promo" name="promodatecheck" ng-disabled="!product.promo" ng-model="product.promoDateCheck">
-                        Perioada?
-                    </md-checkbox>
+                    <div flex="40" offset-gt-sm="20" layout="column">
+                        <div flex layout layout-align="start center">
+                            <md-checkbox aria-label="is promo" name="promodatecheck" ng-disabled="!product.promo" ng-model="product.promoDateCheck">
+                                Promo pe perioada definita
+                            </md-checkbox>
+                        </div>
+                        <md-input-container flex>
+                            <label>Data limita a promotiei</label>
+                            <input ng-disabled="!product.promoDateCheck" ng-model="product.promoDate" type="date">
+                        </md-input-container>
+                    </div>
                 </div>
-                <md-input-container flex>
-                    <label>Promo Date</label>
-                    <input ng-disabled="!product.promoDateCheck" ng-model="product.promoDate" type="date">
-                </md-input-container>
             </div>
+<!-- <md-divider></md-divider> -->
+            <h2 class="md-headline" style="margin-top: 32px;">Adauga poze</h2>
+            <div ng-include="'../../includes/files-upload.inc.html'"></div>
 
-            <div ng-include="'../../templates/file-uploads.html'"></div>
-
-            <div layout layout-sm="column">
-                <md-input-container flex="" layout-align="">
-                    <md-button class="md-raised md-primary" ng-cloak ng-disabled="!productForm.$valid" type="submit">Salveaza</md-button>
+            <div layout layout-sm="column" style="margin-top: 32px;">
+                <md-input-container flex="">
+                    <md-button class="md-raised md-primary" ng-cloak ng-disabled="!productForm.$valid" type="submit">Adauga Produs</md-button>
                 </md-input-container>
             </div>
         </form>

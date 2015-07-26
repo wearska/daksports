@@ -19,8 +19,5 @@ angular.module('daksportsApp')
         $http.get("api/query.php")
             .success(function(response) {
                 $scope.products = response;
-                console.log($scope.products);
             });
-
-        console.log($location);
     });

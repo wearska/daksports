@@ -1,6 +1,6 @@
 <div class="cluster products-cluster" ng-controller="ProductsClusterCtrl">
     <div class="cluster-heading">
-        <h2 class="cluster-heading-title single-line">Cele mai bine vandute</h2>
+        <h2 class="cluster-heading-title single-line">{{title}}</h2>
         <a href="">
             <md-button class="md-primary md-icon-button cluster-heading-button">
                 <md-icon>
@@ -9,8 +9,8 @@
             </md-button>
         </a>
     </div>
-    <div class="grid-full-width gxs2 gs3 gm4 gl5 light-theme">
-        <div class="cell" ng-repeat="product in products">
+    <div class="grid-full-width gxs{{xsitems}} gs{{sitems}} gm{{mitems}} gl{{litems}} light-theme">
+        <div class="cell" ng-repeat="product in products | limitTo:limit:start">
             <div class="product-card paper resting">
                 <div class="product-media">
                     <a href="#" md-ink-ripple>
