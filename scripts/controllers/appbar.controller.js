@@ -13,7 +13,7 @@ angular.module('daksportsApp')
         $scope.logged = false;
         $scope.accountLink = '/account/login'
         $scope.account = {};
-
+        console.log($scope.account);
         $scope.test = function() {
             // console.log(auth.isAuthenticated);
         }
@@ -25,6 +25,7 @@ angular.module('daksportsApp')
                 $scope.logged = auth.isAuthenticated;
                 $scope.account = auth.account;
                 $scope.account.admin = auth.account.admin;
+                console.log($scope.account);
             }, true);
 
         // TOGGLE SEARCH BAR
@@ -42,9 +43,10 @@ angular.module('daksportsApp')
                 $mdSidenav(navID)
                     .toggle()
                     .then(function() {
-                        $log.debug("toggle " + navID + " is done");
+                        // execute after sidenav opens
                     });
             }, 300);
             return debounceFn;
         }
+
     });

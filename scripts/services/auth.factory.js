@@ -30,7 +30,7 @@ angular.module('daksportsApp')
                             angular.forEach(response, function(value, key) {
                                 $cookies.put(key, value);
                             });
-                            $location.path('/test');
+                            $location.path('/');
                             obj.isAuthenticated = true;
                             obj.account.email = response.email;
                             obj.account.admin = response.admin;
@@ -48,6 +48,7 @@ angular.module('daksportsApp')
                 $cookies.remove('loggedin');
                 $cookies.remove('address');
                 $cookies.remove('admin');
+                $location.path('/');
             }
         };
 

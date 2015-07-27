@@ -16,7 +16,7 @@ angular.module('daksportsApp')
         $scope.focusSection = function() {
             $mdSidenav('left').close()
                 .then(function() {
-                    $log.debug("close RIGHT is done");
+                    //execute after sidenav closes
                 });
         }
     })
@@ -24,7 +24,7 @@ angular.module('daksportsApp')
 
         $scope.logged = false;
         $scope.account = {};
-
+        console.log($scope.account);
         $scope.$watch(function() {
                 return auth;
             },

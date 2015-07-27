@@ -1776,7 +1776,7 @@ button {
       float: left;
       width: 100px;
       height: 100px;
-      margin: 15px 10px 0 15px;
+      margin: 15px 10px 0 0;
       background-color: #b1deda;
       background-size: cover;
       background-position: center;

@@ -29,6 +29,11 @@ if ($res->num_rows > 0) {
             $result[] = $row;
         }
     unset($result[0]['password']);
+    if($result[0]['admin'] == '1'){
+        $result[0]['admin'] = true;
+    }else{
+        unset($result[0]['admin']);
+    }
     $obj = json_encode($result[0]);
 } else {
     $result[] = null;
