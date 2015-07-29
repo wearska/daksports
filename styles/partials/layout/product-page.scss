@@ -75,7 +75,7 @@
                     box-shadow: 0 0;
                 }
                 .buy-button {
-
+                    
                 }
                 .wishlist-button {
                     background-color: #fff;
@@ -191,6 +191,69 @@
             text-align: left;
             white-space: pre-wrap;
         }
+        .carousel {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            cursor: move;
+            .carousel-list {
+                .carousel-item {
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    &:hover{
+                        .hoverlay{
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            .carousel-controls{
+                position: absolute;
+                margin: auto;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                .carousel-control{
+                    cursor: pointer;
+                    user-select: none;
+                    position: absolute;
+                    height:100%;
+                    width:48px;
+                    background-color: transparent;
+                    will-change:background, opacity;
+                    transition: background-color .3s ease, opacity .3s ease;
+                    opacity: 0;
+                    outline: none;
+                    i{
+                        width:48px;
+                        height: 48px;
+                        position: absolute;
+                        margin: auto;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                    }
+                    &.next{
+                        right: 0;
+                    }
+                    &.prev{
+                        left: 0;
+                    }
+                    &:hover{
+                        opacity: 1;
+                        background-color: rgba(255,255,255,.8);
+                    }
+                }
+            }
+            &:hover .carousel-control{
+                opacity: .2;
+                background-color: rgba(255,255,255,.7);
+            }
+        }
     }
 }
 @media #{$small-and-up} {
@@ -222,7 +285,7 @@
                 font-size: 28px;
             }
             .text-body {
-
+                
             }
         }
     }

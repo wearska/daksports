@@ -24,7 +24,6 @@ angular.module('daksportsApp')
 
         $scope.logged = false;
         $scope.account = {};
-        console.log($scope.account);
         $scope.$watch(function() {
                 return auth;
             },

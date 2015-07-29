@@ -88,9 +88,9 @@ angular
                 //controller: 'AdminCtrl'
             })
             .state('product', {
-                url: '/product',
+                url: '/product/:productId',
                 templateUrl: 'templates/product.single.html',
-                // controller: 'ProductCtrl'
+                controller: 'ProductCtrl'
             });
         $locationProvider.html5Mode(true);
     });

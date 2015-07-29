@@ -8,14 +8,14 @@
     </div> -->
     <div class="details-wrapper light-theme">
         <div class="details-info">
-            <div class="cover-container" style="background-image: url(uploads/15/07/adidasi-barbati-adidas-originals-zx-750.jpg);"></div>
+            <div class="cover-container" style="background-image: url({{files.file1}});"></div>
             <div class="info-container">
-                <h1 class="product-title">Pantofi sport</h1>
-                <p class="product-subtitle">Adidas ZX-75</p>
-                <a class="product-brand" href="">Adidas</a>
-                <a class="product-category" href="/store/apps/category/GAME_ADVENTURE">Incaltaminte</a>
+                <h1 class="product-title">{{product.name}}</h1>
+                <p class="product-subtitle">{{product.subname}}</p>
+                <a class="product-brand" href="">Nike</a>
+                <a class="product-category" href="/store/apps/category/GAME_ADVENTURE">Fotbal/Tricouri</a>
                 <div class="details-actions">
-                    <md-button class="md-primary md-raised flat dark-theme buy-button">RON368.99</md-button>
+                    <md-button class="md-primary md-raised flat dark-theme buy-button">RON{{product.price}}</md-button>
                     <md-button class="md-primary md-raised flat light-theme wishlist-button">
                         <md-icon>
                             <i class="material-icons md-14">&#xE854;</i>
@@ -40,15 +40,31 @@
                 </div>
             </div>
         </div>
-        <div class="details-section screenshots"></div>
+        <md-content md-scroll-x class="details-section screenshots">
+
+            <div class="carousel" ng-controller="CarouselCtrl as carousel">
+                <div class="carousel-list" layout>
+                    <div class="carousel-item ar_1-1" ng-repeat="file in files" style="background-image: url({{file}})" flex="33">
+                        <div class="hoverlay"></div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <div class="carousel-control prev l-left" md-ink-ripple>
+                        <i class="material-icons md-48">&#xE5CB;</i>
+                    </div>
+                    <div class="carousel-control next l-right" md-ink-ripple ng-click="carousel.next(files)">
+                        <i class="material-icons md-48">&#xE5CC;</i>
+                    </div>
+                </div>
+            </div>
+
+        </md-content>
         <div class="details-section description">
             <div class="details-section-container">
                 <h1 class="heading">
                     Descriere produs
                 </h1>
-                <md-content md-scroll-y class="text-body">
-                    O pereche de pantofi sport prezentata sub egida unuia dintre cele mai renumite branduri, adidas Originals, ce iti va revolutiona ideea despre incaltaminte confortabila si design unic. Pantofii sport adidas Originals ZX 750 vor face minuni pe pista de alergare. Material: exterior - piele naturala cu insertii de material textil; interior - material textil; talpa - cauciuc. Culoare: gri cu elemente de design albe si verzi. EVA - binecunoscuta tehnologie adidas, ce presupune o insertie de material special EVA in interiorul talpii, pentru amortizarea socurilor in timpul purtarii, pastrand o greutate optima a pantofului. Gulerul si limba pantofilor sunt captusite cu material textil, pentru o sustinere cat mai buna, lasand in acelasi timp pielea sa respire in timpul activitatilor sportive intense. Insertiile de material textil de la exteriorul pantofilor sunt menite sa ofere control termic si sa faciliteze circulatia aerului la interior. Talpa este prevazuta cu caneluri strategic dispuse pentru o aderenta optima pe sol. Designul indraznet, culorile inedite si accentele stilistice date de brand, transforma pantofii adidas Originals ZX 750 intr-o piesa de colectie, indispensabila in echipamentul unui sportiv performant.
-                </md-content>
+                <md-content class="text-body" md-scroll-y>{{product.desc}}</md-content>
             </div>
             <div class="details-section-divider"></div>
         </div>
