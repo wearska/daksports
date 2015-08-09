@@ -8,17 +8,23 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('IndexCtrl', ['$scope', '$timeout', '$mdSidenav', '$mdUtil', '$log', function($scope, $timeout, $mdSidenav, $mdUtil, $log) {
-        $scope.toggleSideNav = buildToggler();
+    .controller('IndexCtrl', function($scope, auth, productRes) {
+        $scope.logged = false;
+        $scope.account = {};
+        $scope.products = {};
+        productRes.query().success(function(response) {
+            $scope.products = response;
+        });
+        $scope.$watch(function() {
+                return auth;
+            },
+            function(newVal, oldVal) {
+                $scope.logged = auth.isAuthenticated;
+                $scope.account = auth.account;
+                $scope.account.admin = auth.account.admin;
+            }, true);
 
-        function buildToggler() {
-            var debounceFn = $mdUtil.debounce(function() {
-                $mdSidenav('left')
-                    .toggle()
-                    .then(function() {
-                        $log.debug("toggle sidenav is done");
-                    });
-            }, 300);
-            return debounceFn;
+        $scope.logout = function() {
+            auth.logout();
         }
-    }]);
+    });

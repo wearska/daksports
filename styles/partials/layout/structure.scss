@@ -1,9 +1,16 @@
+// Frontpage
+#frontpage {
+    height: 100%;
+}
+
 // Content
 .c-max {
     max-width: 1024px;
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    box-sizing: border-box;
     
     // display: block;
 }
@@ -30,6 +37,24 @@
     width: 256px;
     min-width: 256px;
     max-width: 256px;
+}
+
+// Hero
+.page-hero{
+    position: relative;
+    min-height: 420px;
+    nav, .hero-slider{
+        position: absolute;
+    }
+    nav{
+        min-width: 256px;
+        height: 100%;
+        z-index: 1;
+    }
+    .hero-slider{
+        position: relative;
+        padding-left: 272px;
+    }
 }
 
 // Footer

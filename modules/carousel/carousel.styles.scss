@@ -1,0 +1,137 @@
+.gd-carousel {
+    position: relative;
+    display: block;
+    
+    // margin-left: -4px;
+    // margin-right: -4px;
+    overflow: hidden;
+    .gd-carousel-item {
+        display: inline-block;
+        padding: 4px;
+        margin: 0;
+    }
+    &.collapsed {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+        .gd-carousel-item {
+            padding: 0;
+            margin: 0;
+        }
+    }
+    @media #{$xsmall-only} {
+        $i: 1;
+        @while $i <= 12 {
+            $perc: unquote(100 / $i + "%");
+            &.gdc-xs-size-#{$i} .gd-carousel-item {
+                width: $perc;
+            }
+            $i: $i + 1;
+        }
+    }
+    @media #{$small-and-up} {
+        $i: 1;
+        @while $i <= 12 {
+            $perc: unquote(100 / $i + "%");
+            &.gdc-sm-size-#{$i} .gd-carousel-item {
+                width: $perc;
+            }
+            $i: $i + 1;
+        }
+    }
+    @media #{$medium-and-up} {
+        $i: 1;
+        @while $i <= 12 {
+            $perc: unquote(100 / $i + "%");
+            &.gdc-md-size-#{$i} .gd-carousel-item {
+                width: $perc;
+            }
+            $i: $i + 1;
+        }
+    }
+    @media #{$large-and-up} {
+        $i: 1;
+        @while $i <= 12 {
+            $perc: unquote(100 / $i + "%");
+            &.gdc-lg-size-#{$i} .gd-carousel-item {
+                width: $perc;
+            }
+            $i: $i + 1;
+        }
+    }
+    .gd-carousel-wrapper {
+        margin: 0 52px;
+    }
+    .gd-carousel-controls {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 68px;
+        bottom: 12px;
+        width: auto;
+        height: auto;
+        pointer-events: none;
+        .gd-carousel-control {
+            background-color: #fff;
+            cursor: pointer;
+            user-select: none;
+            position: absolute;
+            height: 100%;
+            width: 48px;
+            will-change: background, opacity;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            outline: none;
+            pointer-events: all;
+            i {
+                width: 48px;
+                height: 48px;
+                position: absolute;
+                margin: auto;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                opacity: .3;
+            }
+            &.next {
+                right: 0;
+            }
+            &.prev {
+                left: 0;
+            }
+            &:hover {
+                i {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .gd-carousel-heading {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        min-height: 48px;
+        line-height: 48px;
+        padding: 0 16px;
+        margin-top: 16px;
+        position: relative;
+        text-align: left;
+        cursor: default;
+        .carousel-heading-title {
+            position: absolute;
+            max-width: 80%;
+            clear: both;
+            font-size: 24px;
+            font-weight: 100;
+            float: left;
+        }
+        .carousel-heading-button {
+            float: right;
+            line-height: 32px;
+        }
+    }
+}

@@ -23,31 +23,34 @@
     <!-- endbuild -->
 </head>
 
-<body layout="row" ng-cloak ng-controller="IndexCtrl">
+<body ng-controller="IndexCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <!-- Add your site or application content here -->
-    <md-sidenav ng-controller="SideNavCtrl"
-                class="md-primary site-sidenav md-sidenav-left md-whiteframe-z2"
-                md-component-id="left"
-                ng-include="'includes/sidenav.inc.html'"
-                ng-cloak
-                tab-index="-2">
-    </md-sidenav>
-    <div layout="column" tabIndex="-1" role="main" flex>
-        <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'templates/appbar.html'"></header>
-        <md-content flex layout-padding md-scroll-y class="l-offset-nav">
-            <main class="content c-max" role="main" ui-view>
-                
-            </main>
-        </md-content>
-    </div>
-
-    <!-- <main role="main">
-        <md-content ui-view md-scroll-y flex layout-padding class="l-offset-nav"></md-content>
-    </main> -->
+    <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'templates/appbar.html'"></header>
+    <md-content layout-padding md-scroll-y id="frontpage">
+        <div class="page c-max l-offset-nav">
+            <header class="page-hero">
+                <nav class="main-nav paper resting" ng-include="'/modules/navigation/nav.tpl.html'"></nav>
+                <div class="hero-slider">
+                    <gd-slider class="gd-slider ar_16-9">
+                        <div class="gd-slides"  ng-controller="GdSlider" ng-mouseover="pauseSlider()" ng-mouseleave = "playSlider()">
+                            <gd-slide class="gd-slide ar_16-9" ng-repeat="slide in slides" gd-slide-src="{{slide}}" style="transform:translateX({{$index * 100}}%);"></gd-slide>
+                        </div>
+                        <div class="gd-slider-controls" ng-mouseover="pauseSlider()" ng-mouseleave = "playSlider()">
+                            <div class="gd-slider-control prev l-left" md-ink-ripple ng-click="prevSlide()">
+                                <i class="material-icons md-48">&#xE5CB;</i>
+                            </div>
+                            <div class="gd-slider-control next l-right" md-ink-ripple ng-click="nextSlide()">
+                                <i class="material-icons md-48">&#xE5CC;</i>
+                            </div>
+                        </div>
+                    </gd-slider>
+                </div>
+            </header>
+            <main id="main-content" role="main" ui-view></main>
+        </div>
+    </md-content>
     <footer role="footer" id="bottom-bar" class="paper resting"></footer>
 
 
@@ -81,11 +84,14 @@
     <script src="scripts/filters.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/routes.js"></script>
+    <script src="scripts/directives/gd-list.directive.js"></script>
+    <script src="scripts/directives/products-cluster.directive.js"></script>
+    <script src="scripts/directives/test.directive.js"></script>
+    <script src="scripts/directives/upload.directive.js"></script>
     <script src="scripts/controllers/account.controller.js"></script>
     <script src="scripts/controllers/add-product.controller.js"></script>
     <script src="scripts/controllers/admin.controller.js"></script>
     <script src="scripts/controllers/appbar.controller.js"></script>
-    <script src="scripts/controllers/carousel.controller.js"></script>
     <script src="scripts/controllers/dropdown.controller.js"></script>
     <script src="scripts/controllers/edit-product.controller.js"></script>
     <script src="scripts/controllers/index.controller.js"></script>
@@ -99,14 +105,15 @@
     <script src="scripts/controllers/sidenav.controller.js"></script>
     <script src="scripts/controllers/signup.controller.js"></script>
     <script src="scripts/controllers/test.controller.js"></script>
-    <script src="scripts/directives/gd-list.directive.js"></script>
-    <script src="scripts/directives/products-cluster.directive.js"></script>
-    <script src="scripts/directives/test.directive.js"></script>
-    <script src="scripts/directives/upload.directive.js"></script>
     <script src="scripts/plugins/appbar.js"></script>
     <script src="scripts/services/auth.factory.js"></script>
     <script src="scripts/services/product.factory.js"></script>
     <script src="scripts/services/upload.factory.js"></script>
+    <script src="modules/carousel/carousel.controller.js"></script>
+    <script src="modules/carousel/carousel.directive.js"></script>
+    <script src="modules/navigation/nav.controller.js"></script>
+    <script src="modules/slider/slider.controller.js"></script>
+    <script src="modules/slider/slider.directive.js"></script>
     <!-- endinject -->
 </body>
 

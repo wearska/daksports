@@ -1,32 +1,37 @@
-<div class="cluster products-cluster" ng-controller="ProductsClusterCtrl">
-    <div class="cluster-heading">
-        <h2 class="cluster-heading-title single-line">{{title}}</h2>
+<div class="gd-carousel">
+    
+    <div class="gd-carousel-heading">
+        <h2 class="carousel-heading-title single-line">Produse recomandate</h2>
         <a href="">
-            <md-button class="md-primary md-icon-button cluster-heading-button">
+            <md-button class="md-primary md-icon-button carousel-heading-button">
+                <md-tooltip>
+                    Vezi toate
+                </md-tooltip>
                 <md-icon>
                     <i class="material-icons">&#xE5C3;</i>
                 </md-icon>
             </md-button>
         </a>
     </div>
-    <div class="grid-full-width gxs{{xsitems}} gs{{sitems}} gm{{mitems}} gl{{litems}} light-theme">
-        <div class="cell" ng-repeat="product in products | limitTo:limit:start">
+    
+    <div class="gd-carousel-wrapper" layout="row">
+        <gd-carousel-item flex-gt-lg="{{100/lgSize | number:0}}" flex-gt-md="{{100/mdSize | number:0}}" flex-gt-sm="{{100/smSize | number:0}}" flex-sm="{{100/xsSize | number:0}}" ng-repeat="item in items | limitTo:limit:start">
             <div class="product-card paper resting">
                 <div class="product-media">
-                    <a href="/product/{{product.id}}" md-ink-ripple>
-                        <div class="product-img ar_1-1" style="background-image: url({{product.file1}});"></div>
+                    <a href="/product/{{item.id}}" md-ink-ripple>
+                        <div class="product-img ar_1-1" style="background-image: url({{item.file1}});"></div>
                         <div class="hoverlay"></div>
                     </a>
                     <div class="product-media-actions"></div>
                 </div>
                 <div class="product-info">
-                    <h2 class="product-title single-line">{{product.name}}</h2>
+                    <h2 class="product-title single-line">{{item.name}}</h2>
                     <div class="subtitle-container">
-                        <p class="product-subtitle single-line secondary-text-color">{{product.subname}}</p>
+                        <p class="product-subtitle single-line secondary-text-color">{{item.subname}}</p>
                     </div>
                     <div aria-hidden="true" class="description-container is-hidden">
-                        <p>{{product.excerpt}}</p>
-                        <p>{{product.description}}</p>
+                        <p>{{item.excerpt}}</p>
+                        <p>{{item.description}}</p>
                     </div>
                 </div>
                 <div class="product-actions">
@@ -39,10 +44,20 @@
                         <div class="current-rating"></div>
                     </div>
                     <div class="price-container">
-                        <a href="#">RON{{product.price}}</a>
+                        <a href="#">RON{{item.price}}</a>
                     </div>
                 </div>
             </div>
+        </gd-carousel-item>
+    </div>
+    
+    <div class="gd-carousel-controls">
+        <div class="gd-carousel-control prev l-left" md-ink-ripple ng-click="bck()">
+            <i class="material-icons md-48">&#xE5CB;</i>
+        </div>
+        <div class="gd-carousel-control next l-right" md-ink-ripple ng-click="fwd()">
+            <i class="material-icons md-48">&#xE5CC;</i>
         </div>
     </div>
+    
 </div>
