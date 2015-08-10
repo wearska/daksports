@@ -11,7 +11,7 @@
     margin-right: auto;
     position: relative;
     box-sizing: border-box;
-    
+
     // display: block;
 }
 @media only screen and (min-width: 1601px) and (max-width: 1900px) {
@@ -39,27 +39,23 @@
     max-width: 256px;
 }
 
-// Hero
-.page-hero{
-    position: relative;
-    min-height: 420px;
-    nav, .hero-slider{
-        position: absolute;
-    }
-    nav{
-        min-width: 256px;
-        height: 100%;
-        z-index: 1;
-    }
-    .hero-slider{
-        position: relative;
-        padding-left: 272px;
-    }
+// Aside
+aside{
+    position: absolute;
+    width: 256px;
+    max-width: 256px;
+    z-index: 1;
 }
 
+// Main
+main{
+    position: absolute;
+    padding-left: 272px;
+    width: 100%;
+}
 // Footer
 footer {
-    
+
 }
 
 // Main View

@@ -9,7 +9,7 @@ angular.module('daksportsApp')
                 scope.slides = [
                     "/uploads/slider/slide_adidas.jpg",
                     "/uploads/slider/slide_nike.jpg",
-                    "/uploads/slider/slide_skysports.jpg"
+                    "/uploads/slider/slide_puma.jpg"
                 ];
                 scope.isPaused = false;
                 var i = 0,
@@ -47,7 +47,7 @@ angular.module('daksportsApp')
                         i++;
                         updateSlide();
                     }
-                }, 3000);
+                }, 6000);
             }
         }
     })

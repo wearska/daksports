@@ -1,0 +1,11 @@
+.gd-divider{
+    width: auto;
+    height: 1px;
+    background-color: rgba(0,0,0,.12);
+    &.right-inset{
+        margin-left: 32px;
+    }
+    &.left-inset{
+        margin-right: 32px;
+    }
+}
