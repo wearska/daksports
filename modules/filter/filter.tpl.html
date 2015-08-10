@@ -1,0 +1,134 @@
+<div id="filter-block" class="paper resting" ng-controller="FilterBlockCtrl">
+    <ul class="filter-wrapper">
+        <!-- brand filter -->
+        <li class="filter-parent" ng-class="{open : expanded}" ng-controller="FilterParentCtrl">
+            <div class="filter-parent-heading" ng-click="expand()">
+                <span class="icon-container">
+                    <i class="material-icons">&#xE8D0;</i>
+                </span>
+                <span class="list-item-title">
+                    Brand
+                </span>
+                <span class="drop-icon" ng-class="{flipped : expanded}">
+                    <div ng-if="!active">
+                        <md-tooltip>Filtreaza dupa brand</md-tooltip>
+                        <i class="material-icons">&#xE313;</i>
+                    </div>
+                    <div ng-if="active">
+                        <md-tooltip>Anuleaza filtru</md-tooltip>
+                        <i class="material-icons">&#xE5CD;</i>
+                    </div>
+                </span>
+            </div>
+            <ul class="filter-parent-list fade-in-if" ng-show="expanded">
+                <div class="gd-divider"></div>
+                <li>
+                    <span class="action-container">
+                        <md-checkbox aria-label="Adidas filter">
+                            <span class="filter-brand-name single-line">Adidas</span>
+                            <span class="filter-brand-name-count">(3)</span>
+                        </md-checkbox>
+                    </span>
+                    <div class="gd-divider right-inset"></div>
+                </li>
+                <li>
+                    <span class="action-container">
+                        <md-checkbox aria-label="Puma filter">
+                            <span class="filter-brand-name single-line">Puma</span>
+                            <span class="filter-brand-name-count">(7)</span>
+                        </md-checkbox>
+                    </span>
+                    <div class="gd-divider right-inset"></div>
+                </li>
+                <li>
+                    <span class="action-container">
+                        <md-checkbox aria-label="Nike filter">
+                            <span class="filter-brand-name single-line">Nike</span>
+                            <span class="filter-brand-name-count">(5)</span>
+                        </md-checkbox>
+                    </span>
+                    <div class="gd-divider right-inset"></div>
+                </li>
+                <li>
+                    <span class="action-container">
+                        <md-checkbox aria-label="Le Coq Sportif filter">
+                            <span class="filter-brand-name single-line">Le Coq Sportif</span>
+                            <span class="filter-brand-name-count">(1)</span>
+                        </md-checkbox>
+                    </span>
+                    <!-- <div class="gd-divider right-inset"></div> -->
+                </li>
+
+            </ul>
+        </li>
+        <!-- price filter -->
+        <li class="filter-parent" ng-class="{open : expanded}" ng-controller="FilterParentCtrl">
+            <div class="filter-parent-heading" ng-click="expand()">
+                <span class="icon-container">
+                    <i class="material-icons">&#xE227;</i>
+                </span>
+                <span class="list-item-title">
+                    Pret
+                </span>
+                <span class="drop-icon" ng-class="{flipped : expanded}">
+                    <div ng-if="!active">
+                        <md-tooltip>Filtreaza dupa pret</md-tooltip>
+                        <i class="material-icons">&#xE313;</i>
+                    </div>
+                    <div ng-if="active">
+                        <md-tooltip>Anuleaza filtru</md-tooltip>
+                        <i class="material-icons">&#xE5CD;</i>
+                    </div>
+                </span>
+            </div>
+            <ul class="filter-parent-list fade-in-if" ng-if="expanded" ng-show="expanded">
+                <div class="gd-divider"></div>
+                <li>
+                    <span class="action-container">
+                        <md-checkbox aria-label="Under 50 lei">
+                            <span class="filter-brand-name single-line">Pana la 50 lei</span>
+                            <span class="filter-brand-name-count">(3)</span>
+                        </md-checkbox>
+                    </span>
+                    <div class="gd-divider right-inset"></div>
+                </li>
+                <li>
+                    <span class="action-container">
+                        <md-checkbox aria-label="Under 100 lei">
+                            <span class="filter-brand-name single-line">Pana la 100 lei</span>
+                            <span class="filter-brand-name-count">(3)</span>
+                        </md-checkbox>
+                    </span>
+                    <div class="gd-divider right-inset"></div>
+                </li>
+                <li>
+                    <span class="action-container">
+                        <md-checkbox aria-label="Under 200 lei">
+                            <span class="filter-brand-name single-line">Pana la 200 lei</span>
+                            <span class="filter-brand-name-count">(3)</span>
+                        </md-checkbox>
+                    </span>
+                    <div class="gd-divider right-inset"></div>
+                </li>
+                <li>
+                    <span class="action-container">
+                        <md-checkbox aria-label="Under 300 lei">
+                            <span class="filter-brand-name single-line">Pana la 300 lei</span>
+                            <span class="filter-brand-name-count">(3)</span>
+                        </md-checkbox>
+                    </span>
+                    <div class="gd-divider right-inset"></div>
+                </li>
+                <li>
+                    <span class="action-container">
+                        <md-checkbox aria-label="Over 300 lei">
+                            <span class="filter-brand-name single-line">Mai scump de 300 lei</span>
+                            <span class="filter-brand-name-count">(3)</span>
+                        </md-checkbox>
+                    </span>
+                    <!-- <div class="gd-divider right-inset"></div> -->
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

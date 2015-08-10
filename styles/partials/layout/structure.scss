@@ -39,19 +39,26 @@
     max-width: 256px;
 }
 
+.page-hero{
+    position: relative;
+    display: block;
+}
 // Aside
 aside{
-    position: absolute;
+    // position: absolute;
     width: 256px;
     max-width: 256px;
     z-index: 1;
 }
 
 // Main
-main{
+.hero-slider{
     position: absolute;
+    top: 0;
     padding-left: 272px;
     width: 100%;
+    max-height: 420px;
+    overflow: hidden;
 }
 // Footer
 footer {

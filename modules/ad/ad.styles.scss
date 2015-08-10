@@ -1,0 +1,39 @@
+.gd-ad-container{
+    margin-left: -8px;
+}
+@media #{$small-and-up} {
+    .gd-ad-container{
+        margin-right: -8px;
+    }
+}
+.gd-ad {
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .gd-ad-details {
+        position: absolute;
+        width: auto;
+        height: 100%;
+        top: 0;
+        right: 4px;
+        left: 4px;
+        .gd-ad-title, .gd-ad-subtitle {
+            float: right;
+            // background-color: #fff;
+            right: 0;
+            bottom: 0;
+            clear: both;
+            margin-top: 8px;
+            padding: 0 16px;
+            height: 24px;
+            line-height: 24px;
+            font-size: 18px;
+            font-weight: 300;
+        }
+        .gd-ad-subtitle{
+            font-size: 16px;
+            margin-top: 4px;
+        }
+    }
+}

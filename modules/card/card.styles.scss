@@ -1,0 +1,168 @@
+.gd-card {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    vertical-align: top;
+    white-space: normal;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+    .product-media {
+        padding: 16px;
+        position: relative;
+        overflow: hidden;
+        .product-img {
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .hoverlay {
+            pointer-events: none;
+            position: absolute;
+            overflow: hidden;
+            left: 0;
+            top: 0;
+            width: 110%;
+            height: 110%;
+            transition: all 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 0;
+        }
+    }
+    &:hover {
+        .hoverlay {
+            background-color: rgba(0,0,0,.06);
+            opacity: 1;
+        }
+    }
+    .product-info {
+        box-sizing: border-box;
+        display: block;
+        overflow: hidden;
+        padding: 8px 16px 0;
+        position: relative;
+        .product-title {
+            display: block;
+            font-size: 16px;
+            line-height: 18px;
+            max-height: 36px;
+            min-height: 18px;
+            overflow: hidden;
+            text-decoration: none;
+            position: relative;
+            white-space: nowrap;
+            font-weight: 300;
+        }
+        .product-subtitle {
+            color: #aaa;
+            display: block;
+            font-size: 13px;
+            line-height: 16px;
+            margin: 1px 0;
+            max-width: 132px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .excerpt-container {
+            display: none;
+            color: #aaa;
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 16px;
+            margin: 5px 0;
+        }
+    }
+    .product-actions {
+        box-sizing: border-box;
+        background: #fff;
+        bottom: 0;
+        display: block;
+        padding: 0 16px;
+        width: 100%;
+        overflow: hidden;
+        .stars-container,
+        .price-container {
+            height: 24px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        .stars-container {
+            position: relative;
+            height: 14px;
+            margin-top: 5px;
+            width: 70px;
+            float: left;
+            font-size: 0;
+            overflow: hidden;
+            .tiny-star {
+                width: 14px;
+                height: 14px;
+                float: left;
+                background-size: cover;
+                background-position: center;
+            }
+            .current-rating {
+                left: 50%;
+                right: 0;
+                width: auto;
+                height: 100%;
+                background-color: rgba(255,255,255,.7);
+                position: absolute;
+                display: block;
+            }
+        }
+        .price-container {
+            color: #e12a2a;
+            float: right;
+            a {
+                color: inherit;
+                background: #fff;
+                cursor: pointer;
+                display: inline-block;
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 17px;
+                position: relative;
+                text-align: right;
+                text-transform: uppercase;
+                font-weight: normal;
+            }
+        }
+    }
+}
+@media #{$small-and-up} {
+    .product-card {
+        .product-actions {
+            
+        }
+    }
+    .cluster-heading {
+        padding: 0 24px;
+        .cluster-heading-title {
+            font-size: 28px;
+        }
+    }
+}
+
+// Card tiles
+.gd-card {
+    &.gd-tile {
+        .product-media {
+            padding: 0 65% 0 0;
+            z-index: 1;
+        }
+        .product-info {
+            position: absolute;
+            top: 0;
+            left: 35%;
+            .excerpt-container {
+                // display: block;
+            }
+        }
+        .product-actions {
+            position: absolute;
+            right: 0;
+            left: 35%;
+            width: auto;
+        }
+    }
+}

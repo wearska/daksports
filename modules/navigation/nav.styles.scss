@@ -13,7 +13,7 @@ nav {
     margin: 0;
     padding: 0;
     will-change: left, opacity;
-    transition: left 0.28s ease-in-out, opacity 0.18s ease;
+    transition: left 0.28s ease, opacity 0.28s ease;
     &.left {
         left: -100%;
         opacity: 0;

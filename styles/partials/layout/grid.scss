@@ -1,5 +1,9 @@
 .grid-full-width {
+	margin-left: -4px;
+	margin-right: -4px;
 	&.collapsed {
+		padding: 0;
+		margin: 0;
 		& > .cell {
 			padding: 0;
 			margin: 0;
@@ -9,10 +13,10 @@
 		float: left;
 		position: relative;
 		box-sizing: border-box;
-        padding: 4px
+        padding: 4px;
 	}
 	
-	@media #{$xsmall-only} {
+	@media #{$xsmall-and-up} {
         $i: 1;
     	@while $i <= 12 {
     		$perc: unquote(100 / $i + "%");

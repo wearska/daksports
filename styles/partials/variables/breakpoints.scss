@@ -9,6 +9,7 @@ $large-display-min: 1281px !default;
 $large-display-max: 1920px !default;
 $xlarge-display-min: 1921px !default;
 
+$xsmall-and-up: "screen and (min-width : #{$xsmall-display-min})" !default;
 $xsmall-only: "handheld and (max-width : #{$xsmall-display-max}), screen and (max-width : #{$xsmall-display-max})" !default;
 $small-and-up: "screen and (min-width : #{$small-display-min})" !default;
 $small-only: "handheld and (min-width : #{$small-display-min}) and (max-width : #{$small-display-max}), screen and (min-width : #{$small-display-min}) and (max-width : #{$small-display-max})" !default;

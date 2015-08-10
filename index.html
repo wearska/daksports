@@ -30,143 +30,6 @@
     <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'templates/appbar.html'"></header>
     <md-content layout-padding md-scroll-y id="frontpage">
         <div class="page c-max l-offset-nav">
-            <aside>
-                <nav class="main-nav paper resting" ng-include="'/modules/navigation/nav.tpl.html'" ng-controller="NavCtrl"></nav>
-                <div id="filter-block" class="paper resting" ng-controller="FilterBlockCtrl">
-                    <ul class="filter-wrapper">
-                        <!-- brand filter -->
-                        <li class="filter-parent" ng-class="{open : expanded}" ng-controller="FilterParentCtrl">
-                            <div class="filter-parent-heading" ng-click="expand()">
-                                <span class="icon-container">
-                                    <i class="material-icons">&#xE8D0;</i>
-                                </span>
-                                <span class="list-item-title">
-                                    Brand
-                                </span>
-                                <span class="drop-icon" ng-class="{flipped : expanded}">
-                                    <div ng-if="!active">
-                                        <md-tooltip>Filtreaza dupa brand</md-tooltip>
-                                        <i class="material-icons">&#xE313;</i>
-                                    </div>
-                                    <div ng-if="active">
-                                        <md-tooltip>Anuleaza filtru</md-tooltip>
-                                        <i class="material-icons">&#xE5CD;</i>
-                                    </div>
-                                </span>
-                            </div>
-                            <ul class="filter-parent-list fade-in-if" ng-if="expanded" ng-show="expanded">
-                                <div class="gd-divider"></div>
-                                <li>
-                                    <span class="action-container">
-                                        <md-checkbox aria-label="Adidas filter">
-                                            <span class="filter-brand-name single-line">Adidas</span>
-                                            <span class="filter-brand-name-count">(3)</span>
-                                        </md-checkbox>
-                                    </span>
-                                    <div class="gd-divider right-inset"></div>
-                                </li>
-                                <li>
-                                    <span class="action-container">
-                                        <md-checkbox aria-label="Puma filter">
-                                            <span class="filter-brand-name single-line">Puma</span>
-                                            <span class="filter-brand-name-count">(7)</span>
-                                        </md-checkbox>
-                                    </span>
-                                    <div class="gd-divider right-inset"></div>
-                                </li>
-                                <li>
-                                    <span class="action-container">
-                                        <md-checkbox aria-label="Nike filter">
-                                            <span class="filter-brand-name single-line">Nike</span>
-                                            <span class="filter-brand-name-count">(5)</span>
-                                        </md-checkbox>
-                                    </span>
-                                    <div class="gd-divider right-inset"></div>
-                                </li>
-                                <li>
-                                    <span class="action-container">
-                                        <md-checkbox aria-label="Le Coq Sportif filter">
-                                            <span class="filter-brand-name single-line">Le Coq Sportif</span>
-                                            <span class="filter-brand-name-count">(1)</span>
-                                        </md-checkbox>
-                                    </span>
-                                    <!-- <div class="gd-divider right-inset"></div> -->
-                                </li>
-
-                            </ul>
-                        </li>
-                        <!-- price filter -->
-                        <li class="filter-parent" ng-class="{open : expanded}" ng-controller="FilterParentCtrl">
-                            <div class="filter-parent-heading" ng-click="expand()">
-                                <span class="icon-container">
-                                    <i class="material-icons">&#xE227;</i>
-                                </span>
-                                <span class="list-item-title">
-                                    Pret
-                                </span>
-                                <span class="drop-icon" ng-class="{flipped : expanded}">
-                                    <div ng-if="!active">
-                                        <md-tooltip>Filtreaza dupa pret</md-tooltip>
-                                        <i class="material-icons">&#xE313;</i>
-                                    </div>
-                                    <div ng-if="active">
-                                        <md-tooltip>Anuleaza filtru</md-tooltip>
-                                        <i class="material-icons">&#xE5CD;</i>
-                                    </div>
-                                </span>
-                            </div>
-                            <ul class="filter-parent-list fade-in-if" ng-if="expanded" ng-show="expanded">
-                                <div class="gd-divider"></div>
-                                <li>
-                                    <span class="action-container">
-                                        <md-checkbox aria-label="Under 50 lei">
-                                            <span class="filter-brand-name single-line">Pana la 50 lei</span>
-                                            <span class="filter-brand-name-count">(3)</span>
-                                        </md-checkbox>
-                                    </span>
-                                    <div class="gd-divider right-inset"></div>
-                                </li>
-                                <li>
-                                    <span class="action-container">
-                                        <md-checkbox aria-label="Under 100 lei">
-                                            <span class="filter-brand-name single-line">Pana la 100 lei</span>
-                                            <span class="filter-brand-name-count">(3)</span>
-                                        </md-checkbox>
-                                    </span>
-                                    <div class="gd-divider right-inset"></div>
-                                </li>
-                                <li>
-                                    <span class="action-container">
-                                        <md-checkbox aria-label="Under 200 lei">
-                                            <span class="filter-brand-name single-line">Pana la 200 lei</span>
-                                            <span class="filter-brand-name-count">(3)</span>
-                                        </md-checkbox>
-                                    </span>
-                                    <div class="gd-divider right-inset"></div>
-                                </li>
-                                <li>
-                                    <span class="action-container">
-                                        <md-checkbox aria-label="Under 300 lei">
-                                            <span class="filter-brand-name single-line">Pana la 300 lei</span>
-                                            <span class="filter-brand-name-count">(3)</span>
-                                        </md-checkbox>
-                                    </span>
-                                    <div class="gd-divider right-inset"></div>
-                                </li>
-                                <li>
-                                    <span class="action-container">
-                                        <md-checkbox aria-label="Over 300 lei">
-                                            <span class="filter-brand-name single-line">Mai scump de 300 lei</span>
-                                            <span class="filter-brand-name-count">(3)</span>
-                                        </md-checkbox>
-                                    </span>
-                                    <!-- <div class="gd-divider right-inset"></div> -->
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
             <main id="main-content" role="main" ui-view></main>
         </div>
     </md-content>
@@ -178,6 +41,7 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -190,7 +54,7 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <!-- endbower -->
@@ -227,6 +91,10 @@
     <script src="scripts/services/auth.factory.js"></script>
     <script src="scripts/services/product.factory.js"></script>
     <script src="scripts/services/upload.factory.js"></script>
+    <script src="modules/ad/ad.controller.js"></script>
+    <script src="modules/ad/ad.directive.js"></script>
+    <script src="modules/card/card.controller.js"></script>
+    <script src="modules/card/card.directive.js"></script>
     <script src="modules/carousel/carousel.controller.js"></script>
     <script src="modules/carousel/carousel.directive.js"></script>
     <script src="modules/filter/filters.controller.js"></script>

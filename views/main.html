@@ -1,20 +1,38 @@
+<div class="page-hero">
 <!-- Slider -->
-<div class="hero-slider">
-    <gd-slider class="gd-slider ar_16-9">
-        <div class="gd-slides"  ng-controller="GdSlider" ng-mouseover="pauseSlider()" ng-mouseleave = "playSlider()">
-            <gd-slide class="gd-slide ar_16-9" ng-repeat="slide in slides" gd-slide-src="{{slide}}" style="transform:translateX({{$index * 100}}%);"></gd-slide>
-        </div>
-        <div class="gd-slider-controls" ng-mouseover="pauseSlider()" ng-mouseleave = "playSlider()">
-            <div class="gd-slider-control prev l-left" md-ink-ripple ng-click="prevSlide()">
-                <i class="material-icons md-48">&#xE5CB;</i>
+    <div class="hero-slider">
+        <gd-slider class="gd-slider ar_16-9">
+            <div ="playSlider()" class="gd-slides" ng-controller="GdSlider" ng-mouseleave ng-mouseover="pauseSlider()">
+                <gd-slide class="gd-slide ar_16-9" gd-slide-src="{{slide}}" ng-repeat="slide in slides" style="transform:translateX({{$index * 100}}%);"></gd-slide>
             </div>
-            <div class="gd-slider-control next l-right" md-ink-ripple ng-click="nextSlide()">
-                <i class="material-icons md-48">&#xE5CC;</i>
+            <div ="playSlider()" class="gd-slider-controls" ng-mouseleave ng-mouseover="pauseSlider()">
+                <div class="gd-slider-control prev l-left" md-ink-ripple ng-click="prevSlide()">
+                    <i class="material-icons md-48">&#xE5CB;</i>
+                </div>
+                <div class="gd-slider-control next l-right" md-ink-ripple ng-click="nextSlide()">
+                    <i class="material-icons md-48">&#xE5CC;</i>
+                </div>
             </div>
-        </div>
-    </gd-slider>
+        </gd-slider>
+    </div>
+<!-- Nav -->
+    <aside>
+        <nav class="main-nav paper resting" ng-controller="NavCtrl" ng-include="'/modules/navigation/nav.tpl.html'"></nav>
+    </aside>
+</div>
+
+<!-- Ads -->
+<div class="gd-ad-container" layout="column" layout-gt-sm="row" layout-margin>
+    <gd-ad flex ad-src="'/uploads/ads/adidas_ad.jpg'" class="cell"></gd-ad>
+    <gd-ad flex ad-src="'/uploads/ads/nike_ad.jpg'" class="cell"></gd-ad>
+    <gd-ad flex ad-src="'/uploads/ads/teho_ad.jpg'" class="cell"></gd-ad>
 </div>
 
 <!-- Recommended -->
-<gd-carousel gdc-items="10" gdc-lg-size="5" gdc-md-size="4" gdc-sm-size="3" gdc-start="1" gdc-xs-size="2" items="products">
-</gd-carousel>
+<gd-carousel gdc-items="10" gdc-lg-size="5" gdc-md-size="4" gdc-sm-size="3" gdc-start="0" gdc-xs-size="2" items="products"></gd-carousel>
+
+<div class="gd-ad-container" layout="column" layout-gt-sm="row" layout-margin>
+    <gd-card flex card-resource="products[13]" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
+    <gd-card flex card-resource="products[22]" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
+    <gd-card flex card-resource="products[25]" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
+</div>
