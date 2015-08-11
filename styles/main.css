@@ -409,12 +409,6 @@ md-content {
   background-color: #e5e5e5;
   outline: none; }
 
-body {
-  background-image: url("/uploads/bg/lebron-james.jpg");
-  background-size: cover;
-  background-position: center;
-  background-color: transparent; }
-
 article,
 aside,
 details,
@@ -1007,7 +1001,7 @@ button {
       clear: none; }
     .grid-full-width.gxs12 > .cell:nth-of-type(12n+1) {
       clear: both; } }
-  @media screen and (min-width: 601px) {
+  @media screen and (min-width: 600px) {
     .grid-full-width.gs1 > .cell {
       width: 100%; }
     .grid-full-width.gs1 > .cell:nth-of-type(1n) {
@@ -1080,7 +1074,7 @@ button {
       clear: none; }
     .grid-full-width.gs12 > .cell:nth-of-type(12n+1) {
       clear: both; } }
-  @media screen and (min-width: 961px) {
+  @media screen and (min-width: 960px) {
     .grid-full-width.gm1 > .cell {
       width: 100%; }
     .grid-full-width.gm1 > .cell:nth-of-type(1n) {
@@ -1153,7 +1147,7 @@ button {
       clear: none; }
     .grid-full-width.gm12 > .cell:nth-of-type(12n+1) {
       clear: both; } }
-  @media screen and (min-width: 1281px) {
+  @media screen and (min-width: 1280px) {
     .grid-full-width.gl1 > .cell {
       width: 100%; }
     .grid-full-width.gl1 > .cell:nth-of-type(1n) {
@@ -1898,7 +1892,7 @@ button {
         opacity: .2;
         background-color: rgba(255, 255, 255, 0.7); }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .details-wrapper .details-info .cover-container {
     width: 200px;
     height: 200px; }
@@ -1928,13 +1922,13 @@ button {
   position: relative;
   box-sizing: border-box; }
 
-@media only screen and (min-width: 1601px) and (max-width: 1900px) {
+@media only screen and (min-width: 1600px) and (max-width: 1919px) {
   .c-max {
-    max-width: 1440px; } }
+    max-width: 1280px; } }
 
-@media only screen and (min-width: 1900px) {
+@media only screen and (min-width: 1920px) {
   .c-max {
-    max-width: 1680px; } }
+    max-width: 1366px; } }
 
 .site-header {
   z-index: 60; }
@@ -1951,17 +1945,44 @@ button {
   display: block; }
 
 aside {
+  position: absolute;
   width: 256px;
   max-width: 256px;
-  z-index: 1; }
+  z-index: 1;
+  padding-top: 8px; }
+
+@media only screen and (min-width: 1600px) and (max-width: 1919px) {
+  aside {
+    width: 320px;
+    max-width: 320px; } }
+
+@media screen and (min-width: 1920px) {
+  aside {
+    width: 384px;
+    max-width: 384px; } }
 
 .hero-slider {
-  position: absolute;
   top: 0;
-  padding-left: 272px;
   width: 100%;
-  max-height: 420px;
   overflow: hidden; }
+
+@media screen and (min-width: 600px) {
+  .hero-slider {
+    height: 420px; } }
+
+@media screen and (min-width: 960px) {
+  .hero-slider {
+    padding-left: 272px; } }
+
+@media only screen and (min-width: 1600px) and (max-width: 1919px) {
+  .hero-slider {
+    padding-left: 336px;
+    height: 480px; } }
+
+@media screen and (min-width: 1920px) {
+  .hero-slider {
+    padding-left: 390px;
+    height: 540px; } }
 
 #account-wrapper {
   background-color: #fff;
@@ -2151,7 +2172,7 @@ aside {
       top: 10px;
       left: 4px; }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .account-wrapper .main.content {
     padding: 0 24px; } }
 
@@ -2195,7 +2216,7 @@ aside {
 .list-actions {
   border-bottom: 1px solid #e9e9e9; }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .list-view {
     width: 85%; }
   .list-header {
@@ -2203,7 +2224,7 @@ aside {
   .list-detail {
     padding: 24px; } }
 
-@media screen and (min-width: 961px) {
+@media screen and (min-width: 960px) {
   .list-view {
     width: 70%; } }
 
@@ -2216,7 +2237,7 @@ aside {
   padding: 0;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .app-bar, .search-bar {
     height: 64px;
     min-height: 64px; } }
@@ -2240,7 +2261,7 @@ aside {
     text-indent: -3000px;
     margin-left: 16px; }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .app-bar h1, .search-bar h1 {
     margin: 0;
     width: 160px;
@@ -2286,7 +2307,7 @@ aside {
     .app-bar .app-bar-button.has-icon .icon, .search-bar .app-bar-button.has-icon .icon {
       display: none; }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .app-bar .app-bar-button, .search-bar .app-bar-button {
     height: 64px;
     line-height: 64px;
@@ -2315,7 +2336,7 @@ aside {
     display: block;
     float: none; }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .app-bar ul, .search-bar ul {
     display: block;
     position: static; } }
@@ -2340,7 +2361,7 @@ aside {
     line-height: 56px;
     z-index: 1; }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .app-bar .app-bar-icon .icon, .search-bar .app-bar-icon .icon {
     height: 64px;
     line-height: 64px; } }
@@ -2348,7 +2369,7 @@ aside {
 .app-bar .md-icon-button, .search-bar .md-icon-button {
   margin: 4px 0; }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .app-bar .md-icon-button, .search-bar .md-icon-button {
     width: 48px;
     margin: 8px 0; } }
@@ -2412,7 +2433,7 @@ aside {
   /* Internet Explorer 10+ */
   color: rgba(255, 255, 255, 0.3); }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .app-bar input.material-search, .search-bar input.material-search {
     margin: 8px 0; }
   .app-bar .search-icon, .search-bar .search-icon {
@@ -2421,7 +2442,7 @@ aside {
   .app-bar .account-photo, .search-bar .account-photo {
     margin: 16px; } }
 
-@media screen and (min-width: 961px) {
+@media screen and (min-width: 960px) {
   .app-bar .appbar-search-button, .search-bar .appbar-search-button {
     display: none; } }
 
@@ -2431,11 +2452,11 @@ aside {
   .search-bar.open {
     margin-top: 56px; }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .search-bar.open {
     margin-top: 64px; } }
 
-@media screen and (min-width: 961px) {
+@media screen and (min-width: 960px) {
   .search-bar.open {
     margin-top: 0; } }
 
@@ -2623,7 +2644,7 @@ aside {
         text-transform: uppercase;
         font-weight: normal; }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .product-card .product-actions .stars-container {
     float: left; }
   .product-card .product-actions .price-container {
@@ -2671,26 +2692,26 @@ aside {
   .file-upload:hover .hoverlay {
     opacity: 1; }
 
-.gd-ad-container {
+.gd-banner-container {
   margin-left: -8px; }
 
-@media screen and (min-width: 601px) {
-  .gd-ad-container {
+@media screen and (min-width: 600px) {
+  .gd-banner-container {
     margin-right: -8px; } }
 
-.gd-ad {
+.gd-banner {
   position: relative;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover; }
-  .gd-ad .gd-ad-details {
+  .gd-banner .gd-banner-details {
     position: absolute;
     width: auto;
     height: 100%;
     top: 0;
     right: 4px;
     left: 4px; }
-    .gd-ad .gd-ad-details .gd-ad-title, .gd-ad .gd-ad-details .gd-ad-subtitle {
+    .gd-banner .gd-banner-details .gd-banner-title, .gd-banner .gd-banner-details .gd-banner-subtitle {
       float: right;
       right: 0;
       bottom: 0;
@@ -2701,7 +2722,7 @@ aside {
       line-height: 24px;
       font-size: 18px;
       font-weight: 300; }
-    .gd-ad .gd-ad-details .gd-ad-subtitle {
+    .gd-banner .gd-banner-details .gd-banner-subtitle {
       font-size: 16px;
       margin-top: 4px; }
 
@@ -2778,15 +2799,16 @@ aside {
     overflow: hidden; }
     .gd-card .product-actions .stars-container,
     .gd-card .product-actions .price-container {
-      height: 24px;
-      margin-top: 5px;
-      overflow: hidden; }
+      height: 14px;
+      margin-bottom: 8px;
+      overflow: hidden;
+      width: 100%; }
     .gd-card .product-actions .stars-container {
       position: relative;
       height: 14px;
       margin-top: 5px;
-      width: 70px;
       float: left;
+      clear: both;
       font-size: 0;
       overflow: hidden; }
       .gd-card .product-actions .stars-container .tiny-star {
@@ -2805,25 +2827,50 @@ aside {
         display: block; }
     .gd-card .product-actions .price-container {
       color: #e12a2a;
-      float: right; }
-      .gd-card .product-actions .price-container a {
+      float: left;
+      position: relative; }
+      .gd-card .product-actions .price-container .price,
+      .gd-card .product-actions .price-container .add-to-cart {
+        width: 100%;
+        bottom: 0;
         color: inherit;
         background: #fff;
         cursor: pointer;
         display: inline-block;
         font-size: 13px;
         font-weight: 400;
-        line-height: 17px;
-        position: relative;
-        text-align: right;
+        line-height: 14px;
+        position: absolute;
+        text-align: left;
         text-transform: uppercase;
-        font-weight: normal; }
+        font-weight: normal;
+        text-decoration: underline; }
+      .gd-card .product-actions .price-container .price {
+        transition: bottom 0.28s ease; }
+      .gd-card .product-actions .price-container .add-to-cart {
+        bottom: -100%; }
+      .gd-card .product-actions .price-container:hover .price {
+        bottom: -100%; }
+      .gd-card .product-actions .price-container:hover .add-to-cart {
+        bottom: 0;
+        transition: bottom 0.18s 0.18s ease; }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .cluster-heading {
     padding: 0 24px; }
     .cluster-heading .cluster-heading-title {
       font-size: 28px; } }
+
+@media screen and (min-width: 960px) {
+  .gd-card .product-actions .stars-container {
+    clear: none;
+    width: 70px; }
+  .gd-card .product-actions .price-container {
+    float: right;
+    margin-top: 5px;
+    width: 70px; }
+    .gd-card .product-actions .price-container .price, .gd-card .product-actions .price-container .add-to-cart {
+      text-align: right; } }
 
 .gd-card.gd-tile .product-media {
   padding: 0 65% 0 0;
@@ -2857,7 +2904,7 @@ aside {
     .gd-carousel.collapsed .gd-carousel-item {
       padding: 0;
       margin: 0; }
-  @media handheld and (max-width: 600px), screen and (max-width: 600px) {
+  @media handheld and (max-width: 599px), screen and (max-width: 599px) {
     .gd-carousel.gdc-xs-size-1 .gd-carousel-item {
       width: 100%; }
     .gd-carousel.gdc-xs-size-2 .gd-carousel-item {
@@ -2882,7 +2929,7 @@ aside {
       width: 9.09091%; }
     .gd-carousel.gdc-xs-size-12 .gd-carousel-item {
       width: 8.33333%; } }
-  @media screen and (min-width: 601px) {
+  @media screen and (min-width: 600px) {
     .gd-carousel.gdc-sm-size-1 .gd-carousel-item {
       width: 100%; }
     .gd-carousel.gdc-sm-size-2 .gd-carousel-item {
@@ -2907,7 +2954,7 @@ aside {
       width: 9.09091%; }
     .gd-carousel.gdc-sm-size-12 .gd-carousel-item {
       width: 8.33333%; } }
-  @media screen and (min-width: 961px) {
+  @media screen and (min-width: 960px) {
     .gd-carousel.gdc-md-size-1 .gd-carousel-item {
       width: 100%; }
     .gd-carousel.gdc-md-size-2 .gd-carousel-item {
@@ -2932,7 +2979,7 @@ aside {
       width: 9.09091%; }
     .gd-carousel.gdc-md-size-12 .gd-carousel-item {
       width: 8.33333%; } }
-  @media screen and (min-width: 1281px) {
+  @media screen and (min-width: 1280px) {
     .gd-carousel.gdc-lg-size-1 .gd-carousel-item {
       width: 100%; }
     .gd-carousel.gdc-lg-size-2 .gd-carousel-item {
@@ -3023,81 +3070,16 @@ aside {
       float: right;
       line-height: 32px; }
 
-#filter-block {
-  overflow: hidden;
-  position: relative; }
-  #filter-block .filter-wrapper {
-    padding: 0;
-    margin: 0; }
-  #filter-block .filter-parent {
-    width: 100%;
-    height: 48px;
-    line-height: 48px;
-    will-change: background, color;
-    transition: background 0.28s ease, color 0.18s ease; }
-    #filter-block .filter-parent.open {
-      height: auto; }
-  #filter-block .filter-parent-heading {
-    cursor: pointer; }
-    #filter-block .filter-parent-heading .icon-container,
-    #filter-block .filter-parent-heading .list-item-title,
-    #filter-block .filter-parent-heading .drop-icon {
-      display: inline-block;
-      vertical-align: middle;
-      height: 48px;
-      line-height: 48px;
-      padding: 0 8px; }
-    #filter-block .filter-parent-heading .icon-container {
-      background-color: #e12a2a;
-      color: #fff;
-      width: 65px;
-      height: 48px;
-      line-height: initial;
-      text-align: right; }
-      #filter-block .filter-parent-heading .icon-container i {
-        height: 48px;
-        line-height: 48px; }
-    #filter-block .filter-parent-heading .list-item-title {
-      color: #555;
-      font-size: 18px;
-      font-weight: 300;
-      left: 56px;
-      width: 127px; }
-    #filter-block .filter-parent-heading .drop-icon {
-      padding: 0;
-      float: right;
-      width: 32px; }
-      #filter-block .filter-parent-heading .drop-icon i {
-        height: 48px;
-        line-height: 48px;
-        will-change: transform;
-        transition: -webkit-transform 0.28s ease;
-        transition: transform 0.28s ease; }
-      #filter-block .filter-parent-heading .drop-icon.flipped i {
-        -webkit-transform: rotate(180deg);
-        transform: rotate(180deg); }
-    #filter-block .filter-parent-heading:hover {
-      background-color: rgba(0, 0, 0, 0.06); }
-  #filter-block .filter-parent-list {
-    margin-bottom: 16px; }
-    #filter-block .filter-parent-list li {
-      width: 100%;
-      height: 32px;
-      line-height: 32px; }
-    #filter-block .filter-parent-list .filter-brand-name, #filter-block .filter-parent-list .filter-brand-name-count {
-      max-width: 192px;
-      font-size: 16px;
-      font-weight: 300;
-      color: #555;
-      vertical-align: middle; }
-    #filter-block .filter-parent-list .filter-brand-name-count {
-      max-width: 32px; }
-
 nav {
   display: block;
   height: 420px;
   overflow: hidden;
-  position: relative; }
+  position: relative;
+  margin-top: 56px; }
+
+@media screen and (min-width: 600px) {
+  nav {
+    margin-top: 64px; } }
 
 .main-menu {
   position: absolute;
@@ -3112,37 +3094,20 @@ nav {
   .main-menu.left {
     left: -100%;
     opacity: 0; }
-  .main-menu a {
-    outline: none; }
 
 .parent-list-item {
   width: 100%;
   height: 48px;
   line-height: 48px;
-  display: table;
+  display: block;
+  position: relative;
   will-change: background, color;
   transition: background 0.28s ease, color 0.18s ease; }
-  .parent-list-item .icon-container,
-  .parent-list-item .list-item-title {
-    display: table-cell;
-    padding: 0 8px; }
-  .parent-list-item .icon-container {
-    background-color: #e12a2a;
-    color: #fff;
-    width: 65px;
-    height: 48px;
-    line-height: initial;
-    text-align: right;
-    vertical-align: middle; }
-  .parent-list-item .list-item-title {
-    color: #555;
-    display: table-cell;
-    font-size: 18px;
-    font-weight: 300;
-    left: 56px;
-    line-height: 20px;
-    vertical-align: middle;
-    width: 127px; }
+  .parent-list-item a {
+    outline: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute; }
   .parent-list-item:hover {
     background-color: #e12a2a;
     color: #fff; }
@@ -3156,38 +3121,51 @@ nav {
       background-color: inherit;
       color: #fff; }
 
+.icon-container,
+.list-item-title {
+  padding: 0 8px;
+  display: inline-block;
+  vertical-align: middle;
+  height: inherit;
+  line-height: inherit; }
+
+.icon-container {
+  background-color: #e12a2a;
+  color: #fff;
+  width: 65px;
+  text-align: right; }
+  .icon-container i {
+    margin: 12px 0; }
+
+.list-item-title {
+  color: #555;
+  font-size: 18px;
+  font-weight: 300;
+  left: 56px;
+  width: 127px; }
+
 .account-list-item {
   width: 100%;
   height: 48px;
   line-height: 48px;
-  display: table;
+  display: block;
+  position: relative;
   background-color: rgba(0, 0, 0, 0.06); }
-  .account-list-item .icon-container,
-  .account-list-item .list-item-title {
-    display: table-cell;
-    padding: 0 8px; }
+  .account-list-item a {
+    outline: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute; }
   .account-list-item .icon-container {
-    background-color: inherit;
-    color: rgba(0, 0, 0, 0.87);
-    width: 65px;
-    height: 48px;
-    line-height: initial;
-    text-align: right;
-    vertical-align: middle; }
-  .account-list-item .list-item-title {
-    color: #555;
-    display: table-cell;
-    font-size: 18px;
-    font-weight: 300;
-    left: 56px;
-    line-height: 20px;
-    vertical-align: middle;
-    width: 127px; }
+    background-color: transparent; }
+    .account-list-item .icon-container i {
+      color: #555; }
   .account-list-item .account-photo {
     width: 32px;
     min-width: 0;
     min-height: 0;
     height: 32px;
+    margin: 8px 0;
     border-radius: 50%;
     float: right;
     background-position: center;
@@ -3267,12 +3245,105 @@ nav {
     .sub-menu li:hover {
       background-color: rgba(0, 0, 0, 0.06); }
 
+@media only screen and (min-width: 1600px) and (max-width: 1919px) {
+  nav {
+    height: 480px; }
+  .parent-list-item {
+    height: 56px;
+    line-height: 56px; } }
+
+@media screen and (min-width: 1920px) {
+  nav {
+    height: 540px; }
+  .parent-list-item {
+    height: 64px;
+    line-height: 64px; } }
+
+@media only screen and (max-width: 959px) {
+  nav {
+    position: fixed;
+    width: 256px;
+    height: 100%;
+    z-index: 999;
+    left: -260px; }
+    nav.open {
+      left: 0; } }
+
+#filter-block {
+  overflow: hidden;
+  position: relative; }
+  #filter-block .filter-wrapper {
+    padding: 0;
+    margin: 0; }
+  #filter-block .filter-parent {
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    will-change: background, color;
+    transition: background 0.28s ease, color 0.18s ease; }
+    #filter-block .filter-parent.open {
+      height: auto; }
+  #filter-block .filter-parent-heading {
+    cursor: pointer; }
+    #filter-block .filter-parent-heading .icon-container,
+    #filter-block .filter-parent-heading .list-item-title,
+    #filter-block .filter-parent-heading .drop-icon {
+      display: inline-block;
+      vertical-align: middle;
+      height: 48px;
+      line-height: 48px;
+      padding: 0 8px; }
+    #filter-block .filter-parent-heading .icon-container {
+      background-color: #e12a2a;
+      color: #fff;
+      width: 65px;
+      height: 48px;
+      line-height: initial;
+      text-align: right; }
+      #filter-block .filter-parent-heading .icon-container i {
+        height: 48px;
+        line-height: 48px; }
+    #filter-block .filter-parent-heading .list-item-title {
+      color: #555;
+      font-size: 18px;
+      font-weight: 300;
+      left: 56px;
+      width: 127px; }
+    #filter-block .filter-parent-heading .drop-icon {
+      padding: 0;
+      float: right;
+      width: 32px; }
+      #filter-block .filter-parent-heading .drop-icon i {
+        height: 48px;
+        line-height: 48px;
+        will-change: transform;
+        transition: -webkit-transform 0.28s ease;
+        transition: transform 0.28s ease; }
+      #filter-block .filter-parent-heading .drop-icon.flipped i {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg); }
+    #filter-block .filter-parent-heading:hover {
+      background-color: rgba(0, 0, 0, 0.06); }
+  #filter-block .filter-parent-list {
+    margin-bottom: 16px; }
+    #filter-block .filter-parent-list li {
+      width: 100%;
+      height: 32px;
+      line-height: 32px; }
+    #filter-block .filter-parent-list .filter-brand-name, #filter-block .filter-parent-list .filter-brand-name-count {
+      max-width: 192px;
+      font-size: 16px;
+      font-weight: 300;
+      color: #555;
+      vertical-align: middle; }
+    #filter-block .filter-parent-list .filter-brand-name-count {
+      max-width: 32px; }
+
 .gd-slider {
   display: block;
   position: relative;
   overflow: hidden;
-  box-sizing: border-box;
-  min-height: 420px; }
+  box-sizing: border-box; }
   .gd-slider .gd-slides {
     position: absolute;
     width: 100%;
@@ -3334,3 +3405,7 @@ nav {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; }
+
+@media screen and (min-width: 960px) {
+  .gd-slider {
+    min-height: 420px; } }

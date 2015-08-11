@@ -9,5 +9,5 @@
  */
 angular.module('daksportsApp')
     .controller('CarouselCtrl', function($scope, $interval) {
-        console.log($scope);
+
     });

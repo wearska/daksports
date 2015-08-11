@@ -3,7 +3,7 @@
     <li class="parent-list-item active">
         <a href="/recomandari" ng-click="focusSection()">
             <span class="icon-container">
-                <i class="material-icons">&#xE80E;</i>
+                <md-icon md-svg-src="/assets/icons/nav_whatshot_white_24px.svg"></md-icon>
             </span>
             <span class="list-item-title">
                 Recomandari
@@ -13,7 +13,7 @@
     <li class="parent-list-item">
         <a href="/promotii" ng-click="focusSection()">
             <span class="icon-container">
-                <i class="material-icons">&#xE553;</i>
+                <md-icon md-svg-src="/assets/icons/nav_promo_white_24px.svg"></md-icon>
             </span>
             <span class="list-item-title">
                 Promotii
@@ -70,11 +70,11 @@
             </span>
         </a>
     </li>
-    <md-divider></md-divider>
+    <!-- <md-divider></md-divider> -->
     <li class="account-list-item">
         <a href="/promotii" ng-click="toggleAccount()">
             <span class="icon-container">
-                <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" md-button ng-href="/account/dashboard" ng-show="logged" style="background-image: url({{account.photo}})"></div>
+                <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" ng-href="/account/dashboard" ng-show="logged" style="background-image: url({{account.photo}})"></div>
                 <i class="material-icons" ng-hide="logged">&#xE853;</i>
             </span>
             <span class="list-item-title">

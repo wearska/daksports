@@ -15,23 +15,18 @@
             </div>
         </gd-slider>
     </div>
-<!-- Nav -->
-    <aside>
-        <nav class="main-nav paper resting" ng-controller="NavCtrl" ng-include="'/modules/navigation/nav.tpl.html'"></nav>
-    </aside>
+
 </div>
 
 <!-- Ads -->
-<div class="gd-ad-container" layout="column" layout-gt-sm="row" layout-margin>
-    <gd-ad flex ad-src="'/uploads/ads/adidas_ad.jpg'" class="cell"></gd-ad>
-    <gd-ad flex ad-src="'/uploads/ads/nike_ad.jpg'" class="cell"></gd-ad>
-    <gd-ad flex ad-src="'/uploads/ads/teho_ad.jpg'" class="cell"></gd-ad>
+<div class="gd-banner-container" ng-controller="BannersCtrl" layout="column" layout-gt-sm="row" layout-margin>
+    <gd-banner flex banner-src="banner" class="cell" ng-repeat="banner in banners | shuffle | limitTo:3:start"></gd-banner>
 </div>
 
 <!-- Recommended -->
 <gd-carousel gdc-items="10" gdc-lg-size="5" gdc-md-size="4" gdc-sm-size="3" gdc-start="0" gdc-xs-size="2" items="products"></gd-carousel>
 
-<div class="gd-ad-container" layout="column" layout-gt-sm="row" layout-margin>
+<div class="gd-banner-container" layout="column" layout-gt-sm="row" layout-margin>
     <gd-card flex card-resource="products[13]" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
     <gd-card flex card-resource="products[22]" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
     <gd-card flex card-resource="products[25]" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>

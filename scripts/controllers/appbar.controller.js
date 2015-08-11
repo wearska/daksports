@@ -34,17 +34,12 @@ angular.module('daksportsApp')
             $scope.showSearchBar = false;
         };
 
-        $scope.toggleLeft = buildToggler('left');
+        // TOGGLE NAV
+        $scope.navOpen = false;
 
-        function buildToggler(navID) {
-            var debounceFn = $mdUtil.debounce(function() {
-                $mdSidenav(navID)
-                    .toggle()
-                    .then(function() {
-                        // execute after sidenav opens
-                    });
-            }, 300);
-            return debounceFn;
+        $scope.toggleNav = function(){
+            $scope.navOpen = !$scope.navOpen;
+            console.log($scope.navOpen);
         }
 
     });

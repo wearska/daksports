@@ -15,7 +15,7 @@ angular.module('daksportsApp')
             replace: true,
             templateUrl: '/modules/carousel/carousel.tpl.html',
             controller: function($scope){
-                
+
             },
             link: function(scope, el, attr) {
                 var wrapper = el.find(".gd-carousel-wrapper");
@@ -28,7 +28,6 @@ angular.module('daksportsApp')
                     var maxSteps = scope.limit - visible;
                     i++;
                     (i > maxSteps) ? i = maxSteps : i=i;
-                    console.log(maxSteps);
                     wrapper.css({
                         transform : 'translateX(-'+ i*step +'px)'
                     });

@@ -1,19 +1,18 @@
 'use strict';
 angular.module('daksportsApp')
-    .directive('gdAd', function() {
+    .directive('gdBanner', function() {
         return {
             restrict: 'E',
             scope: {
-                adSrc: '=',
-                adTitle: '=',
-                adSubtitle: '='
+                bannerSrc: '=',
+                bannerTitle: '=',
+                bannerSubtitle: '='
             },
             replace: true,
-            templateUrl: '/modules/ad/ad.tpl.html',
+            templateUrl: '/modules/banner/banner.tpl.html',
             controller: function($scope){
             },
             link: function(scope, el, attr) {
-                console.log(scope)
             }
         }
     });

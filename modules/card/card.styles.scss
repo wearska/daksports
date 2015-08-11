@@ -81,16 +81,17 @@
         overflow: hidden;
         .stars-container,
         .price-container {
-            height: 24px;
-            margin-top: 5px;
+            height: 14px;
+            margin-bottom: 8px;
             overflow: hidden;
+            width: 100%;
         }
         .stars-container {
             position: relative;
             height: 14px;
             margin-top: 5px;
-            width: 70px;
             float: left;
+            clear: both;
             font-size: 0;
             overflow: hidden;
             .tiny-star {
@@ -112,33 +113,70 @@
         }
         .price-container {
             color: #e12a2a;
-            float: right;
-            a {
+            float: left;
+            position: relative;
+            .price,
+            .add-to-cart {
+                width: 100%;
+                bottom: 0;
                 color: inherit;
                 background: #fff;
                 cursor: pointer;
                 display: inline-block;
                 font-size: 13px;
                 font-weight: 400;
-                line-height: 17px;
-                position: relative;
-                text-align: right;
+                line-height: 14px;
+                position: absolute;
+                text-align: left;
                 text-transform: uppercase;
                 font-weight: normal;
+                text-decoration: underline;
+            }
+            .price {
+                transition: bottom 0.28s ease;
+            }
+            .add-to-cart {
+                bottom: -100%;
+            }
+            &:hover {
+                .price,
+                .add-to-cart {
+
+                }
+                .price {
+                    bottom: -100%;
+                }
+                .add-to-cart {
+                    bottom: 0;
+                    transition: bottom 0.18s 0.18s ease;
+                }
             }
         }
     }
 }
 @media #{$small-and-up} {
-    .product-card {
-        .product-actions {
-            
-        }
-    }
     .cluster-heading {
         padding: 0 24px;
         .cluster-heading-title {
             font-size: 28px;
+        }
+    }
+}
+@media #{$medium-and-up} {
+    .gd-card {
+        .product-actions {
+            .stars-container{
+                clear: none;
+                width: 70px;
+            }
+            .price-container{
+                float: right;
+                margin-top: 5px;
+                width: 70px;
+                .price, .add-to-cart{
+                    text-align: right;
+                }
+            }
         }
     }
 }
@@ -155,6 +193,7 @@
             top: 0;
             left: 35%;
             .excerpt-container {
+
                 // display: block;
             }
         }

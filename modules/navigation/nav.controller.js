@@ -9,7 +9,6 @@
  */
 angular.module('daksportsApp')
     .controller('NavCtrl', function($rootScope, $scope, $timeout, auth, $mdSidenav, $mdUtil, $log) {
-
         $scope.logged = false;
         $scope.account = {};
         $scope.subToggle = false;
@@ -41,5 +40,6 @@ angular.module('daksportsApp')
         $scope.logout = function() {
             auth.logout();
         }
+        console.log($scope);
 
     });
