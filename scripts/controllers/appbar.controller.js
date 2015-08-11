@@ -8,7 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AppBarCtrl', function($rootScope, $scope, $timeout, auth, $mdSidenav, $mdUtil, $log) {
+    .controller('AppBarCtrl', function($rootScope, $scope, $timeout, auth, nav) {
         $scope.showSearchBar = false;
         $scope.logged = false;
         $scope.accountLink = '/account/login'
@@ -38,8 +38,14 @@ angular.module('daksportsApp')
         $scope.navOpen = false;
 
         $scope.toggleNav = function(){
-            $scope.navOpen = !$scope.navOpen;
-            console.log($scope.navOpen);
+            nav.toggleNav();
         }
+        
+        $scope.$watch(function() {
+                return nav;
+            },
+            function(newVal, oldVal) {
+                $scope.navOpen = nav.navOpen;
+            }, true);
 
     });

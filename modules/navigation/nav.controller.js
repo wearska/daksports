@@ -8,7 +8,20 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('NavCtrl', function($rootScope, $scope, $timeout, auth, $mdSidenav, $mdUtil, $log) {
+    .controller('NavCtrl', function($rootScope, $scope, $timeout, auth, nav) {
+        
+        // nav toggle
+        $scope.navOpen = nav.navOpen;
+        $scope.toggleNav = function(){
+            nav.toggleNav();    
+        };
+        $scope.$watch(function() {
+                return nav;
+            },
+            function(newVal, oldVal) {
+                $scope.navOpen = nav.navOpen;
+            }, true);
+        
         $scope.logged = false;
         $scope.account = {};
         $scope.subToggle = false;

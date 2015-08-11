@@ -125,26 +125,7 @@ only screen and (min-device-pixel-ratio:2) {
         }
     }
 }
-.app-bar ul {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    float: none;
-    position: absolute;
-    top: 56px;
-    right: 0;
-    left: 0;
-    z-index: 6;
-    display: none;
-    li {
-        display: block;
-        float: none;
-    }
-}
-@media #{$small-and-up} {
-    .app-bar ul {
-        display: block;
-        position: static;
-    }
-}
+
 .app-bar .app-bar-mobile-trigger {
     display: inline-block;
     .icon {
@@ -154,11 +135,6 @@ only screen and (min-device-pixel-ratio:2) {
     }
 }
 
-// @media #{$small-and-up} {
-//     .app-bar .app-bar-mobile-trigger {
-//         display: none;
-//     }
-// }
 .app-bar .app-bar-icon {
     display: inline-block;
     // color: #fff;

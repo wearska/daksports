@@ -19,7 +19,7 @@
         max-width: 1280px;
     }
 }
-@media only screen and (min-width: 1920px) {
+@media #{$xlarge-and-up} {
     .c-max {
         max-width: 1366px;
     }
@@ -31,13 +31,9 @@
 }
 
 //Sidenav
-.site-sidenav,
-.site-sidenav.md-locked-open-add-active,
-.site-sidenav.md-locked-open {
-    width: 256px;
-    min-width: 256px;
-    max-width: 256px;
-}
+
+
+// Hero
 .page-hero {
     position: relative;
     display: block;
@@ -47,50 +43,52 @@
 aside {
     position: absolute;
     width: 256px;
-    max-width: 256px;
     z-index: 1;
-    padding-top: 8px;
+    nav{
+        height: 416px;
+    }
 }
 @media only screen and (min-width: 1600px) and (max-width: 1919px) {
     aside {
         width: 320px;
-        max-width: 320px;
+        nav{
+            height: 480px;
+        }
     }
 }
 @media #{$xlarge-and-up} {
     aside {
         width: 384px;
-        max-width: 384px;
+        nav{
+            height: 544px;
+        }
     }
 }
 
 // Main
-.hero-slider {
+.page-hero {
     top: 0;
     width: 100%;
     overflow: hidden;
+    height: 416px;
 }
 
 
-@media #{$small-and-up} {
-    .hero-slider {
-        height: 420px;
-    }
-}
 @media #{$medium-and-up} {
-    .hero-slider {
+    .page-hero {
         padding-left: 272px;
     }
 }
+
 @media only screen and (min-width: 1600px) and (max-width: 1919px) {
-    .hero-slider {
+    .page-hero {
         padding-left: 336px;
         height: 480px;
     }
 }
 @media #{$xlarge-and-up} {
-    .hero-slider {
-        padding-left: 390px;
+    .page-hero {
+        padding-left: 400px;
         height: 540px;
     }
 }

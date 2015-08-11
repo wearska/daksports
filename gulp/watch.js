@@ -15,7 +15,9 @@ module.exports = function(options) {
         gulp.watch([options.app + '/*.html', 'bower.json'], ['inject']);
 
         gulp.watch([
+            options.app + 'styles/**/**/*.scss',
             options.app + 'styles/**/*.scss',
+            options.app + 'modules/**/**/*.scss',
             options.app + 'modules/**/*.scss'
         ], function(event) {
             if (isOnlyChange(event)) {
@@ -27,7 +29,9 @@ module.exports = function(options) {
 
         gulp.watch([
             options.app + 'scripts/**/*.js',
-            options.app + 'modules/**/*.js'
+            options.app + 'scripts/**/**/*.js',
+            options.app + 'modules/**/*.js',
+            options.app + 'modules/**/**/*.js'
         ], function(event) {
             if (!isOnlyChange(event)) {
                 gulp.start('inject');

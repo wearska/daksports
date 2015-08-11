@@ -14,7 +14,8 @@ angular.module('daksportsApp')
             "/uploads/banners/adidas2_banner.jpg",
             "/uploads/banners/puma_banner.jpg",
             "/uploads/banners/puma2_banner.jpg",
-            "/uploads/banners/teho_banner.jpg"
+            "/uploads/banners/teho_banner.jpg",
+            "/uploads/banners/nike_banner.jpg"
         ];
         $scope.start = 0;
 

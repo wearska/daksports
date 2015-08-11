@@ -1,10 +1,3 @@
-<!-- Nav -->
-<div class="c-max">
-    <aside>
-        <nav class="main-nav paper resting" ng-class="{open : navOpen}" ng-controller="NavCtrl" ng-include="'/modules/navigation/nav.tpl.html'"></nav>
-    </aside>
-</div>
-
 <!-- Toolbars -->
 <md-toolbar class="search-bar l-pinned-top" ng-class="{open : showSearchBar}">
     <div class="" layout="row">
@@ -42,6 +35,29 @@
                     <i class="material-icons">&#xE853;</i>
                 </md-icon>
             </a>
+            <div class="view-cart-wrapper">
+                <div class="up-triangle"></div>
+                <ul class="view-cart">
+                    <li class="cart-list-item paper raised light-theme my-animation" layout="row" ng-repeat="product in products | limitTo:4">
+                        <div class="cart-list-header">
+                            <div class="bubble" style="background-color: #b1deda;background-image: url({{product.file1}});"></div>
+                        </div>
+                        <div class="cart-list-detail" flex="">
+                            <h3 class="single-line" ng-bind="product.name"></h3>
+                            <p class="single-line secondary-text-color" ng-bind="product.subname"></p>
+                        </div>
+                        <div class="cart-list-actions">
+                            <div class="qty-input">
+                                <input type="text" value="1">
+                                <!-- <span>buc.</span> -->
+                            </div>
+                            <div class="remove-button">
+                                <i class="material-icons">&#xE5CD;</i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
             <md-button aria-label="View Cart" class="md-icon-button l-right" ng-click="test()">
                 <md-tooltip>
                     Vezi cos

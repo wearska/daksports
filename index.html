@@ -30,6 +30,9 @@
     <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'templates/appbar.html'"></header>
     <md-content layout-padding md-scroll-y id="frontpage">
         <div class="page c-max l-offset-nav">
+            <aside>
+                <nav class="main-nav paper resting" ng-class="{open : $parent.navOpen}" ng-controller="NavCtrl" ng-include="'/modules/navigation/nav.tpl.html'"></nav>
+            </aside>
             <main id="main-content" role="main" ui-view></main>
         </div>
     </md-content>
@@ -41,6 +44,7 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -53,7 +57,7 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+    <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <!-- endbower -->
@@ -86,19 +90,22 @@
     <script src="scripts/directives/products-cluster.directive.js"></script>
     <script src="scripts/directives/test.directive.js"></script>
     <script src="scripts/directives/upload.directive.js"></script>
+    <script src="scripts/plugins/appbar.js"></script>
     <script src="scripts/services/auth.factory.js"></script>
     <script src="scripts/services/product.factory.js"></script>
     <script src="scripts/services/upload.factory.js"></script>
-    <script src="scripts/plugins/appbar.js"></script>
     <script src="modules/banner/banner.controller.js"></script>
     <script src="modules/banner/banner.directive.js"></script>
     <script src="modules/card/card.controller.js"></script>
     <script src="modules/card/card.directive.js"></script>
     <script src="modules/carousel/carousel.controller.js"></script>
     <script src="modules/carousel/carousel.directive.js"></script>
+    <script src="modules/cart/cart.controller.js"></script>
+    <script src="modules/cart/cart.directive.js"></script>
     <script src="modules/filter/filters.controller.js"></script>
     <script src="modules/filter/fitler.directive.js"></script>
     <script src="modules/navigation/nav.controller.js"></script>
+    <script src="modules/navigation/nav.factory.js"></script>
     <script src="modules/slider/slider.controller.js"></script>
     <script src="modules/slider/slider.directive.js"></script>
     <!-- endinject -->
