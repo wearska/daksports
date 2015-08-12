@@ -35,10 +35,10 @@
                     <i class="material-icons">&#xE853;</i>
                 </md-icon>
             </a>
-            <div class="view-cart-wrapper">
+            <div class="view-cart-wrapper" ng-show="cartOpen">
                 <div class="up-triangle"></div>
                 <ul class="view-cart">
-                    <li class="cart-list-item paper raised light-theme my-animation" layout="row" ng-repeat="product in products | limitTo:4">
+                    <li class="cart-list-item paper raised light-theme my-animation" ng-if="cartOpen" layout="row" ng-repeat="product in products | limitTo:4">
                         <div class="cart-list-header">
                             <div class="bubble" style="background-color: #b1deda;background-image: url({{product.file1}});"></div>
                         </div>
@@ -58,7 +58,7 @@
                     </li>
                 </ul>
             </div>
-            <md-button aria-label="View Cart" class="md-icon-button l-right" ng-click="test()">
+            <md-button aria-label="View Cart" class="md-icon-button l-right" ng-click="toggleCart($event)">
                 <md-tooltip>
                     Vezi cos
                 </md-tooltip>

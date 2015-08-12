@@ -1,0 +1,16 @@
+<md-dialog aria-label="Product details">
+  <form name="detailsForm" novalidate>
+      <div layout layout-sm="column">
+          <md-input-container flex>
+            <!-- <label>Marime</label> -->
+            <md-select name="size" ng-model="selectedSize" placeholder="Marime">
+              <md-option ng-repeat="size in availableSizes" value="{{size}}">{{size}}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container flex>
+              <label>Inventar pornire</label>
+              <input name="inv" ng-model="size" required step="any" type="number" value="1">
+          </md-input-container>
+      </div>
+  </form>
+</md-dialog>

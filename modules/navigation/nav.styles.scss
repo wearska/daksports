@@ -16,6 +16,7 @@ nav {
 @media #{$small-and-up} {
     nav {
         margin-top: -8px;
+        width: 100%;
     }
 }
 @media #{$medium-and-up} {
@@ -85,7 +86,7 @@ nav {
 .icon-container,
 .list-item-title {
     padding: 0 8px;
-    
+
     // display: inline-block;
     display: block; //fixes 1px offset in IE
     float: left; //fixes 1px offset in IE
@@ -216,7 +217,7 @@ nav {
             line-height: 48px;
             width: 100%;
             height: 100%;
-            
+
             // text-transform: uppercase;
         }
         &:hover {

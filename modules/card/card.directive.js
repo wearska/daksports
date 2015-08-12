@@ -1,16 +1,18 @@
 'use strict';
 angular.module('daksportsApp')
-    .directive('gdCard', function() {
+    .directive('gdCard', function(cart) {
         return {
             restrict: 'E',
+            controller: 'CardCtrl',
             scope: {
-                item: '=cardResource'
+                item: '=cardResource',
             },
             replace: true,
             templateUrl: '/modules/card/card.tpl.html',
-            controller: function($scope){
-            },
             link: function(scope, el, attr) {
+                // scope.addToCart = function(item) {
+                //     cart.post(item)
+                // };
             }
         }
     })

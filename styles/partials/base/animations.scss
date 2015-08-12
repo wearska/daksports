@@ -18,7 +18,7 @@
 }
 
 .repeat-animation{
-    
+
 }
 
 .repeat-animation.ng-enter,
@@ -56,6 +56,7 @@
   /* standard transition code */
   transition: 1s linear all;
   opacity:0;
+  left:-100%;
 }
 .my-animation.ng-enter-stagger {
   /* this will have a 100ms delay between each successive leave animation */
@@ -68,4 +69,5 @@
 .my-animation.ng-enter.ng-enter-active {
   /* standard transition styles */
   opacity:1;
+  left: 0;
 }

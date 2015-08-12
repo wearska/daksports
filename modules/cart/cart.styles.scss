@@ -24,7 +24,7 @@
     width: 0;
     border-bottom-color: #ededed;
     top: -7px;
-    right: 64px;
+    right: 48px;
 }
 ul.view-cart {
     padding: 16px;
@@ -73,16 +73,17 @@ ul.view-cart {
         position: absolute;
         right: 16px;
         line-height: initial;
-        .qty-input, .remove-button{
+        .qty-input,
+        .remove-button {
             float: left;
         }
-        .qty-input{
+        .qty-input {
             height: 32px;
             margin: 12px 0;
             font-size: 18px;
             line-height: 32px;
-            input{
-                width:32px;
+            input {
+                width: 32px;
                 height: 32px;
                 font-size: 16px;
                 line-height: 32px;
@@ -91,25 +92,25 @@ ul.view-cart {
                 outline: none;
                 border: none;
                 background-color: rgba(0,0,0,.06);
-                color: rgba(0,0,0,.54); 
+                color: rgba(0,0,0,.54);
             }
-            span{
+            span {
                 vertical-align: bottom;
             }
         }
-        .remove-button{
+        .remove-button {
             cursor: pointer;
-            width:32px;
+            width: 32px;
             height: 32px;
             margin: 12px 0;
             text-align: center;
-            i{
+            i {
                 font-size: 18px;
                 line-height: 32px;
                 color: rgba(0,0,0,.54);
             }
-            &:hover{
-                i{
+            &:hover {
+                i {
                     color: rgba(0,0,0,.87);
                 }
             }

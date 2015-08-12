@@ -13,6 +13,7 @@ angular.module('daksportsApp')
         var obj = {
             isAuthenticated: $cookies.get('loggedin'),
             account: {
+                userid : $cookies.get('ID'),
                 email : $cookies.get('email'),
                 admin : $cookies.get('admin'),
                 photo : $cookies.get('user_photo'),
@@ -32,6 +33,7 @@ angular.module('daksportsApp')
                             });
                             $location.path('/');
                             obj.isAuthenticated = true;
+                            obj.account.userid = response.ID;
                             obj.account.email = response.email;
                             obj.account.admin = response.admin;
                             obj.account.photo = response.user_photo;

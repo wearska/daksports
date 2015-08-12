@@ -8,15 +8,12 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AppBarCtrl', function($rootScope, $scope, $timeout, auth, nav) {
-        $scope.showSearchBar = false;
+    .controller('AppBarCtrl', function($rootScope, $scope, $location, $timeout, auth, nav) {
+
+        //AUTHENTICATION
         $scope.logged = false;
         $scope.accountLink = '/account/login'
         $scope.account = {};
-        $scope.test = function() {
-            // console.log(auth.isAuthenticated);
-        }
-
         $scope.$watch(function() {
                 return auth;
             },
@@ -27,6 +24,7 @@ angular.module('daksportsApp')
             }, true);
 
         // TOGGLE SEARCH BAR
+        $scope.showSearchBar = false;
         $scope.toggleSearchBar = function() {
             $scope.showSearchBar = !$scope.showSearchBar;
         };
@@ -36,16 +34,27 @@ angular.module('daksportsApp')
 
         // TOGGLE NAV
         $scope.navOpen = false;
-
-        $scope.toggleNav = function(){
+        $scope.toggleNav = function() {
             nav.toggleNav();
         }
-        
         $scope.$watch(function() {
                 return nav;
             },
             function(newVal, oldVal) {
                 $scope.navOpen = nav.navOpen;
             }, true);
+
+        // TOGGLE VIEW CART
+        $scope.cartOpen = false;
+        $scope.toggleCart = function(event) {
+            $scope.cartOpen = !($scope.cartOpen);
+            event.stopPropagation();
+        };
+        window.onclick = function() {
+            if ($scope.cartOpen) {
+                $scope.cartOpen = false;
+                $scope.$apply();
+            }
+        };
 
     });
