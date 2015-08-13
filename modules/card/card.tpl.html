@@ -1,10 +1,28 @@
-<div class="gd-card paper resting">
+<div class="gd-card paper resting" ng-mouseenter="toggleOrderFab()" ng-mouseleave="toggleOrderFab()">
     <div class="product-media">
         <a href="#" md-ink-ripple>
             <div class="product-img ar_1-1" style="background-image: url({{item.file1}});"></div>
             <div class="hoverlay"></div>
         </a>
         <div class="product-media-actions"></div>
+        <div class="product-order raised" ng-class="{open : orderUp, shown : showOrderFab, inCart : inCart}" ng-show="showOrderFab" ng-click="addToCart(item)">
+            <form name="detailsForm" novalidate ng-show="orderUp">
+                <div layout="column">
+                    <md-input-container flex>
+                      <!-- <label>Marime</label> -->
+                      <md-select ng-model="selectedSize" placeholder="Selecteaza marime">
+                        <md-option ng-repeat="size in availableSizes" value="{{size}}">{{size}}</md-option>
+                      </md-select>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Cantitate</label>
+                        <input name="inv" ng-model="selectedCount" required step="any" type="number">
+                    </md-input-container>
+                </div>
+            </form>
+            <i class="material-icons" ng-show="!inCart">&#xE854;</i>
+            <i class="material-icons" ng-show="inCart">&#xE8CC;</i>
+        </div>
     </div>
     <div class="product-info">
         <h2 class="product-title single-line">{{item.name}}</h2>

@@ -8,17 +8,16 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('CardCtrl', function($scope, $mdDialog, auth, cart) {
+    .controller('CardCtrl', function($scope, $mdDialog, $cookies, auth, cart) {
 
         $scope.cartItem = {
             'userid': "",
-            'id': "",
-            'price': "",
-            'details': ""
+            'item': {}
         }
+        $scope.cartItems = [];
 
         // DUMMY CONTENT
-        $scope.sizes = [
+        $scope.availableSizes = [
             'XS',
             'S',
             'M',
@@ -26,29 +25,33 @@ angular.module('daksportsApp')
             'XL',
             'XXl'
         ];
+        $scope.selectedCount = 1;
 
-        // SHOW DIALOG
-        $scope.status = '  ';
-        $scope.showConfirm = function(ev) {
-            $mdDialog.show({
-                    // controller: "CardCtrl",
-                    templateUrl: '/modules/card/card.dialog.tpl.html',
-                    // parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
+        // SHOW ORDER FAB
+        $scope.showOrderFab = false;
+        $scope.toggleOrderFab = function(){
+            $scope.showOrderFab = !$scope.showOrderFab;
+        }
+        $scope.expandedOrderFab = false;
+        $scope.expandOrderFab = function(){
+            $scope.expandedOrderFab = !$scope.expandedOrderFab;
+        }
+
+        // ORDER
+        $scope.orderUp = false;
+        $scope.toggleOrder = function() {
+            $scope.orderUp = !$scope.orderUp;
         };
 
         // ADD TO CART
+        $scope.inCart = false;
         $scope.addToCart = function(item) {
-
-
             // cart.post(item);
-            console.log($scope.products);
+            $scope.inCart = !$scope.inCart;
+            $scope.cartItem.userid = $cookies.get('ID');
+            $scope.cartItem.item = item;
+            console.log($scope.cartItem);
+            $scope.cartItems.push(item);
+            console.log($scope.cartItems);
         }
     });
