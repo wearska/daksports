@@ -29,7 +29,6 @@ angular.module('daksportsApp')
         $scope.accountMenu = false;
         $scope.mainToggle = function (){
             $scope.subToggle = !$scope.subToggle;
-            console.log($scope.subToggle);
         }
         $scope.toggleSports = function(){
             $scope.subToggle = !$scope.subToggle;
@@ -53,6 +52,4 @@ angular.module('daksportsApp')
         $scope.logout = function() {
             auth.logout();
         }
-        console.log($scope);
-
     });

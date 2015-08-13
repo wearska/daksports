@@ -20,6 +20,9 @@ angular.module('daksportsApp')
                     return response;
                 });
         }
+        
+        // CART ITEMS
+        obj.cartItems =[];
 
         return obj;
     });

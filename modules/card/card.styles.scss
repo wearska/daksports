@@ -156,26 +156,13 @@
     .product-order {
         z-index: 5;
         position: absolute;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
         background-color: rgb(33,33,33);
         // border: 3px solid #e12a2a;
         border-radius: 50%;
-        margin: auto;
-        float: right;
-        top: auto;
         right: -50px;
         opacity: 0;
         transform: translateY(-50%);
         transition: all .38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        >i {
-            color: #fff;
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            line-height: 40px;
-        }
         &.shown{
             right: 16px;
             opacity: 1;

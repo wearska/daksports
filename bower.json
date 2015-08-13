@@ -38,7 +38,9 @@
     "ui-router": "~0.2.15",
     "angular-file-upload": "~1.1.5",
     "firebase": "~2.2.7",
-    "angularfire": "~1.1.2"
+    "angularfire": "~1.1.2",
+    "ngcart": "~0.0.3-rc.2",
+    "material-design-lite": "~1.0.2"
   },
   "resolutions": {
     "angular": "~1.4.1"

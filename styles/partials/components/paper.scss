@@ -17,7 +17,6 @@
         box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.12), 0 25px 80px 0 rgba(0, 0, 0, 0.12);
     }
 }
-
 .flat {
     box-shadow: 0 0;
 }
@@ -32,4 +31,20 @@
 }
 .elevated {
     box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.12), 0 25px 80px 0 rgba(0, 0, 0, 0.12);
+}
+.badge {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    font-weight: 400;
+    font-size: 12px;
+    background-color: red;
+    border-radius: 50%;
+    top: 10px;
+    right: 10px;
+    border-radius: 50%;
+    background: #ff4081;
+    color: #fff;
 }

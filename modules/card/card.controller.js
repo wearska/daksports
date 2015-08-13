@@ -8,7 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('CardCtrl', function($scope, $mdDialog, $cookies, auth, cart) {
+    .controller('CardCtrl', function($scope, $mdDialog, $cookies, auth) {
 
         $scope.cartItem = {
             'userid': "",
@@ -50,8 +50,5 @@ angular.module('daksportsApp')
             $scope.inCart = !$scope.inCart;
             $scope.cartItem.userid = $cookies.get('ID');
             $scope.cartItem.item = item;
-            console.log($scope.cartItem);
-            $scope.cartItems.push(item);
-            console.log($scope.cartItems);
         }
     });

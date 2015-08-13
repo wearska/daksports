@@ -1,6 +1,6 @@
 'use strict';
 angular.module('daksportsApp')
-    .directive('gdCard', function(cart) {
+    .directive('gdCard', function() {
         return {
             restrict: 'E',
             controller: 'CardCtrl',

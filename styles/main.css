@@ -3626,6 +3626,22 @@ aside {
 .elevated {
   box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.12), 0 25px 80px 0 rgba(0, 0, 0, 0.12); }
 
+.badge {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  line-height: 16px;
+  font-weight: 400;
+  font-size: 12px;
+  background-color: red;
+  border-radius: 50%;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  background: #ff4081;
+  color: #fff; }
+
 .products-cluster {
   display: inline-block;
   margin: 5px 0 15px;
@@ -3970,25 +3986,13 @@ aside {
   .gd-card .product-order {
     z-index: 5;
     position: absolute;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
     background-color: #212121;
     border-radius: 50%;
-    margin: auto;
-    float: right;
-    top: auto;
     right: -50px;
     opacity: 0;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
     transition: all 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    .gd-card .product-order > i {
-      color: #fff;
-      width: 40px;
-      height: 40px;
-      text-align: center;
-      line-height: 40px; }
     .gd-card .product-order.shown {
       right: 16px;
       opacity: 1; }
@@ -4219,6 +4223,104 @@ aside {
     .gd-carousel .gd-carousel-heading .carousel-heading-button {
       float: right;
       line-height: 32px; }
+
+.view-cart-wrapper {
+  background-color: #ededed;
+  display: block;
+  position: absolute;
+  width: 320px;
+  height: 480px;
+  top: 56px;
+  right: 16px; }
+
+@media screen and (min-width: 600px) {
+  .view-cart-wrapper {
+    top: 64px; } }
+
+.up-triangle {
+  border-color: transparent transparent #ededed;
+  border-style: dashed dashed solid;
+  border-width: 0 8.5px 8.5px;
+  position: absolute;
+  z-index: 1;
+  height: 0;
+  width: 0;
+  border-bottom-color: #ededed;
+  top: -7px;
+  right: 48px; }
+
+ul.view-cart {
+  padding: 16px; }
+  ul.view-cart li {
+    width: 100%;
+    height: 56px;
+    line-height: 56px; }
+  ul.view-cart .cart-list-item {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 8px; }
+  ul.view-cart .cart-list-header,
+  ul.view-cart .cart-list-detail,
+  ul.view-cart .cart-list-actions {
+    display: block;
+    float: left; }
+  ul.view-cart .cart-list-header {
+    width: 56px;
+    height: 56px; }
+    ul.view-cart .cart-list-header .bubble {
+      margin: 0;
+      width: inherit;
+      height: inherit;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center; }
+  ul.view-cart .cart-list-detail {
+    max-width: 160px;
+    padding: 11px 0 11px 16px; }
+    ul.view-cart .cart-list-detail h3 {
+      font-size: 15px;
+      line-height: 18px; }
+    ul.view-cart .cart-list-detail p {
+      font-size: 13px;
+      line-height: 16px; }
+  ul.view-cart .cart-list-actions {
+    float: right;
+    position: absolute;
+    right: 16px;
+    line-height: initial; }
+    ul.view-cart .cart-list-actions .qty-input,
+    ul.view-cart .cart-list-actions .remove-button {
+      float: left; }
+    ul.view-cart .cart-list-actions .qty-input {
+      height: 32px;
+      margin: 12px 0;
+      font-size: 18px;
+      line-height: 32px; }
+      ul.view-cart .cart-list-actions .qty-input input {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        line-height: 32px;
+        text-align: center;
+        border-radius: 2px;
+        outline: none;
+        border: none;
+        background-color: rgba(0, 0, 0, 0.06);
+        color: rgba(0, 0, 0, 0.54); }
+      ul.view-cart .cart-list-actions .qty-input span {
+        vertical-align: bottom; }
+    ul.view-cart .cart-list-actions .remove-button {
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      margin: 12px 0;
+      text-align: center; }
+      ul.view-cart .cart-list-actions .remove-button i {
+        font-size: 18px;
+        line-height: 32px;
+        color: rgba(0, 0, 0, 0.54); }
+      ul.view-cart .cart-list-actions .remove-button:hover i {
+        color: rgba(0, 0, 0, 0.87); }
 
 #filter-block {
   overflow: hidden;
@@ -4569,101 +4671,3 @@ nav {
 @media screen and (min-width: 960px) {
   .gd-slider {
     min-height: 420px; } }
-
-.view-cart-wrapper {
-  background-color: #ededed;
-  display: block;
-  position: absolute;
-  width: 320px;
-  height: 480px;
-  top: 56px;
-  right: 16px; }
-
-@media screen and (min-width: 600px) {
-  .view-cart-wrapper {
-    top: 64px; } }
-
-.up-triangle {
-  border-color: transparent transparent #ededed;
-  border-style: dashed dashed solid;
-  border-width: 0 8.5px 8.5px;
-  position: absolute;
-  z-index: 1;
-  height: 0;
-  width: 0;
-  border-bottom-color: #ededed;
-  top: -7px;
-  right: 48px; }
-
-ul.view-cart {
-  padding: 16px; }
-  ul.view-cart li {
-    width: 100%;
-    height: 56px;
-    line-height: 56px; }
-  ul.view-cart .cart-list-item {
-    margin: 0;
-    padding: 0;
-    margin-bottom: 8px; }
-  ul.view-cart .cart-list-header,
-  ul.view-cart .cart-list-detail,
-  ul.view-cart .cart-list-actions {
-    display: block;
-    float: left; }
-  ul.view-cart .cart-list-header {
-    width: 56px;
-    height: 56px; }
-    ul.view-cart .cart-list-header .bubble {
-      margin: 0;
-      width: inherit;
-      height: inherit;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center; }
-  ul.view-cart .cart-list-detail {
-    max-width: 160px;
-    padding: 11px 0 11px 16px; }
-    ul.view-cart .cart-list-detail h3 {
-      font-size: 15px;
-      line-height: 18px; }
-    ul.view-cart .cart-list-detail p {
-      font-size: 13px;
-      line-height: 16px; }
-  ul.view-cart .cart-list-actions {
-    float: right;
-    position: absolute;
-    right: 16px;
-    line-height: initial; }
-    ul.view-cart .cart-list-actions .qty-input,
-    ul.view-cart .cart-list-actions .remove-button {
-      float: left; }
-    ul.view-cart .cart-list-actions .qty-input {
-      height: 32px;
-      margin: 12px 0;
-      font-size: 18px;
-      line-height: 32px; }
-      ul.view-cart .cart-list-actions .qty-input input {
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-        line-height: 32px;
-        text-align: center;
-        border-radius: 2px;
-        outline: none;
-        border: none;
-        background-color: rgba(0, 0, 0, 0.06);
-        color: rgba(0, 0, 0, 0.54); }
-      ul.view-cart .cart-list-actions .qty-input span {
-        vertical-align: bottom; }
-    ul.view-cart .cart-list-actions .remove-button {
-      cursor: pointer;
-      width: 32px;
-      height: 32px;
-      margin: 12px 0;
-      text-align: center; }
-      ul.view-cart .cart-list-actions .remove-button i {
-        font-size: 18px;
-        line-height: 32px;
-        color: rgba(0, 0, 0, 0.54); }
-      ul.view-cart .cart-list-actions .remove-button:hover i {
-        color: rgba(0, 0, 0, 0.87); }

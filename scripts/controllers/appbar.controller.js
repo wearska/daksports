@@ -8,7 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AppBarCtrl', function($rootScope, $scope, $location, $timeout, auth, nav) {
+    .controller('AppBarCtrl', function($rootScope, $scope, $location, $timeout, auth, nav, ngCart) {
 
         //AUTHENTICATION
         $scope.logged = false;
@@ -50,11 +50,20 @@ angular.module('daksportsApp')
             $scope.cartOpen = !($scope.cartOpen);
             event.stopPropagation();
         };
-        window.onclick = function() {
+        window.onclick = function(event) {
             if ($scope.cartOpen) {
                 $scope.cartOpen = false;
                 $scope.$apply();
             }
         };
+
+        // CAR ITEMS
+        $scope.cartItems = [];
+        $scope.cartItemsCount = ngCart.getTotalItems() + "";
+
+        angular.forEach(ngCart.getItems(), function(value, key) {
+            $scope.cartItems.push(value._data);
+            console.log($scope.cartItems);
+        });
 
     });

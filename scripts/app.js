@@ -21,7 +21,8 @@ angular
         'ngTouch',
         'ui.router',
         'angularFileUpload',
-        'firebase'
+        'firebase',
+        'ngCart'
     ])
     .config(function($mdThemingProvider) {
         $mdThemingProvider.definePalette('lightTheme', {
