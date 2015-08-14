@@ -8,21 +8,17 @@
  * Factory of the daksportsApp
  */
 angular.module('daksportsApp')
-    .factory('cart', function cartFactory($http) {
+    .factory('cart', function cartFactory($http, ngCart) {
         var api = 'api/orders/';
         var obj = {};
 
-        obj.post = function(item) {
-            $http.post(api + 'post.php', item)
-                .then(function(response) {
-                    return response;
-                }, function(response) {
-                    return response;
-                });
-        }
-        
         // CART ITEMS
-        obj.cartItems =[];
+        obj.cartItems = [];
+        obj.cartItemsCount = ngCart.getTotalItems() + "";
+
+        angular.forEach(ngCart.getItems(), function(value, key) {
+            obj.cartItems.push(value);
+        });
 
         return obj;
     });

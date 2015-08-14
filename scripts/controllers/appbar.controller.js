@@ -63,7 +63,6 @@ angular.module('daksportsApp')
 
         angular.forEach(ngCart.getItems(), function(value, key) {
             $scope.cartItems.push(value._data);
-            console.log($scope.cartItems);
         });
 
     });

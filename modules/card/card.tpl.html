@@ -5,13 +5,15 @@
             <div class="hoverlay"></div>
         </a>
         <div class="product-media-actions"></div>
-        <!-- <div class="product-order raised" ng-class="{open : orderUp, shown : showOrderFab, inCart : inCart}" ng-click="addToCart(item)" ng-show="showOrderFab">
+<!-- <div class="product-order raised" ng-class="{open : orderUp, shown : showOrderFab, inCart : inCart}" ng-click="addToCart(item)" ng-show="showOrderFab">
             <i class="material-icons" ng-show="!inCart">&#xE854;</i>
             <i class="material-icons" ng-show="inCart">&#xE8CC;</i>
         </div> -->
-        <md-button class="product-order md-fab" ng-class="{shown : showOrderFab}" aria-label="Add to cart" ng-show="showOrderFab">
-           <md-icon md-svg-src="assets/icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
-       </md-button>
+        <ngcart-addtocart class="price-container" data="item" id="{{ item.id }}" name="{{ item.name }}" ng-click="showConfirm($event)" price="{{ item.price }}" quantity="1">
+            <md-button aria-label="Add to cart" class="product-order md-fab" ng-class="{shown : showOrderFab}" ng-click="addToCart(item)" ng-show="showOrderFab">
+                <md-icon md-svg-src="assets/icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
+            </md-button>
+        </ngcart-addtocart>
     </div>
     <div class="product-info">
         <h2 class="product-title single-line">{{item.name}}</h2>

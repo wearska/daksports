@@ -1,0 +1,13 @@
+.button-with-icon {
+    height: 64px;
+    .button-icon, .button-title{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .button-icon {
+        height: 36px;
+        line-height: 36px;
+    }
+    .button-title {
+    }
+}

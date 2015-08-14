@@ -1,4 +1,4 @@
-
+<!--
 <div class="alert alert-warning" role="alert" ng-show="ngCart.getTotalItems() === 0">
     Your cart is empty
 </div>
@@ -61,4 +61,37 @@
     .ngCart.cart .glyphicon.disabled {
         color:#aaa;
     }
-</style>
+</style> -->
+
+<div class="alert alert-warning" ng-show="ngCart.getTotalItems() === 0" role="alert">
+    Your cart is empty
+</div>
+<ul class="paper resting cart-list" layout="column" ng-show="ngCart.getTotalItems() > 0">
+    <li class="cart-item" flex layout layout-align="center" ng-class="{grey : $index%2 > 0}" ng-repeat="item in ngCart.getCart().items track by $index">
+        <div class="item-image ar_1-1" style="background-image:url({{item._data.file1}})" ng-click="$parent.sayThis()"></div>
+        <div class="item-info" flex>
+            <h3 class="item-name single-line" ng-bind="item.getName()"></h3>
+            <p class="item-subname single-line" ng-bind="item._data.subname"></p>
+        </div>
+        <div class="order-info" flex>
+            <p class="item-price">{{ item.getPrice() | currency:""}}
+                RON</p>
+                <md-input-container class="item-qty">
+                <md-select aria-label="Quantity" ng-model="item._data.orderQty">
+                    <md-option ng-repeat="qty in item._data.qtySelect" ng-value="qty">{{qty}}</md-option>
+                </md-select>
+            </md-input-container>
+            <!-- <div class="item-qty">
+                <md-button class="md-icon-button qty-adjust" ng-class="{'disabled':item.getQuantity()==1}" ng-click="item.setQuantity(-1, true)"><i class="material-icons">&#xE15D;</i></md-button>
+                <p class="qty-display">{{ item.getQuantity() | number }} buc.</p>
+                <md-button class="md-icon-button qty-adjust" ng-click="item.setQuantity(1, true)"><i class="material-icons">&#xE148;</i></md-button>
+            </div> -->
+            <p class="item-price total" ng-model="orderTotal">{{ item.getTotal() | currency:"" }}
+                RON</p>
+        </div>
+        <div class="gd-divider"></div>
+    </li>
+</ul>
+<span>{{ ngCart.getTaxRate() }}%</span>
+<span>{{ ngCart.getShipping() | currency:"" }}</span>
+<span>{{ ngCart.totalCost() | currency:"" }}</span>

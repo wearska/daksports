@@ -91,6 +91,11 @@ angular
                 url: '/product/:productId',
                 templateUrl: 'templates/product.single.html',
                 controller: 'ProductCtrl'
+            })
+            .state('cart', {
+                url: '/cart',
+                templateUrl: 'views/cart.html',
+                controller: 'CartCtrl as stp'
             });
         $locationProvider.html5Mode(true);
     });

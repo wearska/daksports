@@ -1,0 +1,38 @@
+<div class="page-hero">
+    <md-button ng-click="emptyCart()">Empty cart</md-button>
+</div>
+<ul class="paper resting cart-list" layout="column">
+
+    <div class="cart-list-header" layout>
+        <md-icon class="sort-image" md-svg-icon="assets/icons/ic_photo_white_24px.svg"></md-icon>
+        <div class="title-block" flex>
+            <span class="sort-title">Produs</span>
+        </div>
+    </div>
+
+    <li class="cart-item" flex layout layout-align="center" ng-repeat="item in cartItems track by $index" ng-class="{grey : $index%2 > 0}">
+        <div class="item-image ar_1-1" style="background-image:url({{item._data.file1}})"></div>
+        <div class="item-info" flex>
+            <h3 class="item-name single-line" ng-bind="item._data.name"></h3>
+            <p class="item-subname single-line" ng-bind="item._data.subname"></p>
+        </div>
+        <div class="order-info" flex>
+            <p class="item-price">{{ item.getPrice() | currency:""}}
+                RON</p>
+            <md-input-container class="item-qty">
+<!-- <label>Cantitate</label> -->
+                <md-select aria-label="Quantity" ng-model="item._data.orderQty">
+                    <md-option ng-repeat="qty in item._data.qtySelect" value="{{qty}}">{{qty}}</md-option>
+                </md-select>
+            </md-input-container>
+            <p class="item-price total" ng-model="orderTotal">{{ item.getPrice() *  item._data.orderQty | currency:""}}
+                RON</p>
+        </div>
+        <div class="gd-divider"></div>
+    </li>
+</ul>
+<span>{{orderTotal}}</span>
+
+
+
+<ngcart-cart></ngcart-cart>

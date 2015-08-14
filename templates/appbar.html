@@ -35,15 +35,12 @@
                     <i class="material-icons">&#xE853;</i>
                 </md-icon>
             </a>
-            <md-button aria-label="View Cart" class="md-icon-button l-right" ng-click="toggleCart($event)">
-                <md-tooltip>
-                    Vezi cos
-                </md-tooltip>
+            <a aria-label="View Cart" class="md-icon-button l-right" md-button ng-href="/cart" ng-show="!logged">
                 <md-icon>
                     <i class="material-icons">&#xE8CC;</i>
-                    <span class="badge" ng-show="cartItemsCount">{{cartItemsCount}}</span>
+                    <span class="badge" ng-show="cartItemsCount > 0">{{cartItemsCount}}</span>
                 </md-icon>
-            </md-button>
+            </a>
             <md-button aria-label="Search" class="appbar-search-button md-icon-button l-right" ng-click="toggleSearchBar($event)">
                 <md-icon>
                     <i class="material-icons">&#xE8B6;</i>
