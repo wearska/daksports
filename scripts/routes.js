@@ -95,7 +95,7 @@ angular
             .state('cart', {
                 url: '/cart',
                 templateUrl: 'views/cart.html',
-                controller: 'CartCtrl as stp'
+                controller: 'CartCtrl'
             });
         $locationProvider.html5Mode(true);
     });

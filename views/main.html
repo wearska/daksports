@@ -1,4 +1,6 @@
 <div class="page-hero">
+<!-- Nav -->
+
 <!-- Slider -->
     <div class="hero-slider">
         <gd-slider class="gd-slider ar_16-9">
@@ -19,17 +21,15 @@
 </div>
 
 <!-- Ads -->
-<div class="gd-banner-container" ng-controller="BannersCtrl" layout="column" layout-gt-sm="row" layout-margin>
-    <gd-banner flex banner-src="banner" class="cell" ng-repeat="banner in banners | shuffle | limitTo:3:start"></gd-banner>
+<div class="gd-banner-container" layout-gt-sm="row" layout-margin layout="column" ng-controller="BannersCtrl">
+    <gd-banner banner-src="banner" class="cell" flex ng-repeat="banner in banners | shuffle | limitTo:3:start"></gd-banner>
 </div>
 
 <!-- Recommended -->
 <gd-carousel gdc-items="10" gdc-lg-size="5" gdc-md-size="4" gdc-sm-size="3" gdc-start="0" gdc-xs-size="2" items="products"></gd-carousel>
 
-<div class="gd-banner-container" layout="column" layout-gt-sm="row" layout-margin>
-    <gd-card flex card-resource="products[13]" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
-    <gd-card flex card-resource="products[22]" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
-    <gd-card flex card-resource="products[25]" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
+<div class="gd-banner-container" layout-gt-sm="row" layout-margin layout="column">
+    <gd-card card-resource="products[13]" flex gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
+    <gd-card card-resource="products[22]" flex gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
+    <gd-card card-resource="products[25]" flex gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
 </div>
-
-<ngcart-cart></ngcart-cart>

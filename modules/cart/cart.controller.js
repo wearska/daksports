@@ -8,18 +8,23 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('CartCtrl', function($scope, auth, nav, cart, ngCart) {
+    .controller('CartCtrl', function($rootScope, $scope, auth, nav, cart, ngCart) {
 
-        ngCart.setTaxRate(7.5);
-        ngCart.setShipping(2.99);
-
-        this.sayThis = function(){
+        // ngCart.setTaxRate(7.5);
+        $scope.getShipping = function(){
+            (ngCart.totalCost() > 100) ? ngCart.setShipping(0): ngCart.setShipping(20.00);
+        }
+        $scope.getShipping();
+        $scope.$on('ngCart:change', function(event, data) {
+            $scope.getShipping();
+        });
+        $scope.sayThis = function() {
             console.log("data");
         };
 
         console.log(cart.cartItems);
-        this.cartItems = cart.cartItems;
-        this.emptyCart = function() {
+        $scope.cartItems = cart.cartItems;
+        $scope.emptyCart = function() {
             ngCart.empty();
         }
 
@@ -28,13 +33,16 @@ angular.module('daksportsApp')
                 item.qtySelect.push(i + 1);
             }
         }
-
+        
         angular.forEach(ngCart.getItems(), function(value, key) {
             value._data.qtySelect = [];
             value._data.orderQty = value._quantity;
             setQtySelect(value._data);
         });
 
-        // ORDER TOTAL
-
+        $scope.$on('ngCart:itemAdded', function(event, item) {
+            item._data.qtySelect = [];
+            item._data.orderQty = item._quantity;
+            setQtySelect(item._data);
+        });
     });

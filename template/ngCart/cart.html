@@ -1,74 +1,40 @@
-<!--
-<div class="alert alert-warning" role="alert" ng-show="ngCart.getTotalItems() === 0">
-    Your cart is empty
-</div>
-
-<div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0">
-
-    <table class="table table-striped ngCart cart">
-
-        <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th>Quantity</th>
-            <th>Amount</th>
-            <th>Total</th>
-        </tr>
-        </thead>
-        <tfoot>
-        <tr ng-show="ngCart.getTax()">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Tax ({{ ngCart.getTaxRate() }}%):</td>
-            <td>{{ ngCart.getTax() | currency }}</td>
-        </tr>
-        <tr ng-show="ngCart.getShipping()">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Shipping:</td>
-            <td>{{ ngCart.getShipping() | currency }}</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Total:</td>
-            <td>{{ ngCart.totalCost() | currency }}</td>
-        </tr>
-        </tfoot>
-        <tbody>
-        <tr ng-repeat="item in ngCart.getCart().items track by $index">
-            <td><span ng-click="ngCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span></td>
-
-            <td>{{ item.getName() }}</td>
-            <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
-                      ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
-                {{ item.getQuantity() | number }}&nbsp;&nbsp;
-                <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
-            <td>{{ item.getPrice() | currency}}</td>
-            <td>{{ item.getTotal() | currency }}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<style>
-    .ngCart.cart span[ng-click] {
-        cursor: pointer;
-    }
-    .ngCart.cart .glyphicon.disabled {
-        color:#aaa;
-    }
-</style> -->
-
-<div class="alert alert-warning" ng-show="ngCart.getTotalItems() === 0" role="alert">
-    Your cart is empty
-</div>
-<ul class="paper resting cart-list" layout="column" ng-show="ngCart.getTotalItems() > 0">
-    <li class="cart-item" flex layout layout-align="center" ng-class="{grey : $index%2 > 0}" ng-repeat="item in ngCart.getCart().items track by $index">
-        <div class="item-image ar_1-1" style="background-image:url({{item._data.file1}})" ng-click="$parent.sayThis()"></div>
+<ul class="paper resting cart-list" layout="column">
+    <div class="cart-list-header alert" flex layout ng-show="ngCart.getTotalItems() === 0">
+        <md-icon class="sort-image" md-svg-icon=""></md-icon>
+        <div class="title-block" flex>
+            <span class="sort-title"></span>
+        </div>
+        <div class="info-block" flex>
+            <span class="sort-price"></span>
+            <span class="sort-quantity"></span>
+            <span class="sort-total">Cosul tau este gol</span>
+        </div>
+        <a href="/" aria-label="refresh" class="back-to-shop" md-button>
+            <md-tooltip>
+                Intoarce-te la cumparaturi
+            </md-tooltip>
+            <md-icon md-svg-src="assets/icons/ic_shopping_basket_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+        </a>
+    </div>
+    <div class="cart-list-header" flex layout ng-show="ngCart.getTotalItems() > 0">
+        <md-icon class="sort-image" md-svg-icon="assets/icons/ic_photo_white_24px.svg"></md-icon>
+        <div class="title-block" flex>
+            <span class="sort-title">Produs</span>
+        </div>
+        <div class="info-block" flex>
+            <span class="sort-price">Pret</span>
+            <span class="sort-quantity">Cant.</span>
+            <span class="sort-total">Total</span>
+        </div>
+        <md-button aria-label="refresh" class="cart-clear" ng-click="emptyCart()">
+            <md-tooltip>
+                Elimina tot din cos
+            </md-tooltip>
+            <md-icon md-svg-src="assets/icons/ic_delete_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+        </md-button>
+    </div>
+    <li class="cart-item" flex layout layout-align="center" ng-class="{grey : $odd}" ng-repeat="item in ngCart.getCart().items track by $index">
+        <div class="item-image ar_1-1" ng-click="$parent.sayThis()" style="background-image:url({{item._data.file1}})"></div>
         <div class="item-info" flex>
             <h3 class="item-name single-line" ng-bind="item.getName()"></h3>
             <p class="item-subname single-line" ng-bind="item._data.subname"></p>
@@ -76,12 +42,12 @@
         <div class="order-info" flex>
             <p class="item-price">{{ item.getPrice() | currency:""}}
                 RON</p>
-                <md-input-container class="item-qty">
-                <md-select aria-label="Quantity" ng-model="item._data.orderQty">
+            <md-input-container class="item-qty">
+                <md-select aria-label="Quantity" ng-change="item.setQuantity(item._data.orderQty, false)" ng-model="item._data.orderQty">
                     <md-option ng-repeat="qty in item._data.qtySelect" ng-value="qty">{{qty}}</md-option>
                 </md-select>
             </md-input-container>
-            <!-- <div class="item-qty">
+<!-- <div class="item-qty">
                 <md-button class="md-icon-button qty-adjust" ng-class="{'disabled':item.getQuantity()==1}" ng-click="item.setQuantity(-1, true)"><i class="material-icons">&#xE15D;</i></md-button>
                 <p class="qty-display">{{ item.getQuantity() | number }} buc.</p>
                 <md-button class="md-icon-button qty-adjust" ng-click="item.setQuantity(1, true)"><i class="material-icons">&#xE148;</i></md-button>
@@ -92,6 +58,24 @@
         <div class="gd-divider"></div>
     </li>
 </ul>
-<span>{{ ngCart.getTaxRate() }}%</span>
-<span>{{ ngCart.getShipping() | currency:"" }}</span>
-<span>{{ ngCart.totalCost() | currency:"" }}</span>
+<div class="order-total-block">
+    <div class="order-total-display">
+        <div class="" layout layout-align="center center" style="height: 30px; margin-top: 34px;">
+            <span flex></span>
+            <span flex></span>
+            <md-input-container flex>
+                <label>Aplica un cod de reducere</label>
+                <input ng-model="orderDiscount">
+            </md-input-container>
+            <p class="order-discount single-line" flex>Discount: 0</p>
+        </div>
+        <p class="order-transport single-line">Cost transport:
+            {{ ngCart.getShipping() | currency:"RON " }}</p>
+        <p class="order-total single-line">Total RON:
+            <span class="order-total" style="font-weight:400; color: #e12a2a">
+                {{ ngCart.totalCost() | currency:"" }}</span>
+        </p>
+    </div>
+</div>
+
+<div class="gd-divider"></div>

@@ -10,6 +10,20 @@
 angular.module('daksportsApp')
     .controller('CardCtrl', function($scope, $mdDialog, $cookies, auth, cart, ngCart) {
 
+        //AUTHENTICATION
+        $scope.logged = false;
+        $scope.accountLink = '/account/login'
+        $scope.account = {};
+        $scope.$watch(function() {
+                return auth;
+            },
+            function(newVal, oldVal) {
+                $scope.logged = auth.isAuthenticated;
+                $scope.account = auth.account;
+                $scope.account.admin = auth.account.admin;
+            }, true);
+
+
         $scope.cartItem = {
             'userid': "",
             'item': {}
@@ -29,11 +43,11 @@ angular.module('daksportsApp')
 
         // SHOW ORDER FAB
         $scope.showOrderFab = false;
-        $scope.toggleOrderFab = function(){
+        $scope.toggleOrderFab = function() {
             $scope.showOrderFab = !$scope.showOrderFab;
         }
         $scope.expandedOrderFab = false;
-        $scope.expandOrderFab = function(){
+        $scope.expandOrderFab = function() {
             $scope.expandedOrderFab = !$scope.expandedOrderFab;
         }
 

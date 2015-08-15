@@ -58,11 +58,11 @@ angular.module('daksportsApp')
         };
 
         // CAR ITEMS
-        $scope.cartItems = [];
-        $scope.cartItemsCount = ngCart.getTotalItems() + "";
 
-        angular.forEach(ngCart.getItems(), function(value, key) {
-            $scope.cartItems.push(value._data);
+        $scope.cartItemsCount = ngCart.getTotalItems() + "";
+        $scope.$on('ngCart:change', function(event, data) {
+            $scope.cartItemsCount = ngCart.getTotalItems() + "";
         });
+
 
     });

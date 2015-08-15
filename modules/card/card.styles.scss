@@ -8,8 +8,10 @@
     -webkit-backface-visibility: hidden;
     overflow: hidden;
     .product-media {
+        
         // padding: 16px;
         position: relative;
+        
         // overflow: hidden;
         .product-img {
             background-size: contain;
@@ -27,11 +29,45 @@
             transition: all 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
             opacity: 0;
         }
+        .product-media-actions {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            .scrim {
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                max-height: 36px;
+                transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+                &.top {
+                    top: 0;
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+                }
+                &.bottom {
+                    bottom: 0;
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+                }
+            }
+            .add-to-favourites,
+            .admin-edit,
+             {
+                float: right;
+            }
+        }
     }
     &:hover {
         .hoverlay {
-            background-color: rgba(0,0,0,.06);
+            background-color: rgba(0,0,0,.12);
             opacity: 1;
+        }
+        .product-media-actions {
+            .scrim {
+                opacity: 1;
+            }
         }
     }
     .product-info {
@@ -141,7 +177,7 @@
             &:hover {
                 .price,
                 .add-to-cart {
-
+                    
                 }
                 .price {
                     bottom: -100%;
@@ -157,13 +193,12 @@
         z-index: 5;
         position: absolute;
         background-color: rgb(33,33,33);
-        // border: 3px solid #e12a2a;
         border-radius: 50%;
         right: -50px;
         opacity: 0;
         transform: translateY(-50%);
-        transition: all .38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        &.shown{
+        transition: all 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        &.shown {
             right: 16px;
             opacity: 1;
         }
@@ -212,7 +247,7 @@
             top: 0;
             left: 35%;
             .excerpt-container {
-
+                
                 // display: block;
             }
         }
@@ -222,7 +257,7 @@
             left: 35%;
             width: auto;
         }
-        .product-order{
+        .product-order {
             display: none;
             visibility: hidden;
             user-select: none;

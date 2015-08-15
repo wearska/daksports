@@ -34,20 +34,12 @@
 //Sidenav
 
 
-// Hero
-.page-hero {
-    position: relative;
-    display: block;
-}
 
 // Aside
 aside {
     position: absolute;
     width: 256px;
     z-index: 1;
-    nav{
-        height: 416px;
-    }
 }
 @media only screen and (min-width: 1600px) and (max-width: 1919px) {
     aside {
@@ -67,16 +59,19 @@ aside {
 }
 
 // Main
+// Hero
 .page-hero {
+    position: relative;
+    display: block;
     top: 0;
     width: 100%;
     overflow: hidden;
-    height: 416px;
 }
 
 
 @media #{$medium-and-up} {
     .page-hero {
+        height: 416px;
         padding-left: 272px;
     }
 }

@@ -8,7 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('IndexCtrl', function($scope, auth, productRes) {
+    .controller('IndexCtrl', function($scope, $location, auth, productRes) {
         $scope.logged = false;
         $scope.account = {};
         $scope.products = {};
@@ -27,4 +27,5 @@ angular.module('daksportsApp')
         $scope.logout = function() {
             auth.logout();
         }
+        
     });

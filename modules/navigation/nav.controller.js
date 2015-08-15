@@ -10,6 +10,7 @@
 angular.module('daksportsApp')
     .controller('NavCtrl', function($rootScope, $scope, $timeout, auth, nav) {
         
+        
         // nav toggle
         $scope.navOpen = nav.navOpen;
         $scope.toggleNav = function(){

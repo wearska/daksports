@@ -12,6 +12,11 @@ angular.module('daksportsApp')
         // Initial state
         $scope.product = {};
         $scope.files = {};
+        
+        $scope.isFav = function(){
+            var bool = true;
+            return bool;
+        }
 
         productRes.get($stateParams.productId)
             .success(function(response) {

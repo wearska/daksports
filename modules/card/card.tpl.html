@@ -4,11 +4,27 @@
             <div class="product-img ar_1-1" style="background-image: url({{item.file1}});"></div>
             <div class="hoverlay"></div>
         </a>
-        <div class="product-media-actions"></div>
-<!-- <div class="product-order raised" ng-class="{open : orderUp, shown : showOrderFab, inCart : inCart}" ng-click="addToCart(item)" ng-show="showOrderFab">
-            <i class="material-icons" ng-show="!inCart">&#xE854;</i>
-            <i class="material-icons" ng-show="inCart">&#xE8CC;</i>
-        </div> -->
+        <div class="product-media-actions">
+            <div class="scrim top"></div>
+            <md-button class="md-icon-button add-to-favourites" ng-show="!product.isFav()" ng-hide="account.admin">
+                <md-tooltip>
+                    Adauga la favorite
+                </md-tooltip>
+                <md-icon md-svg-src="assets/icons/ic_favorite_border_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button add-to-favourites" ng-show="isFav()" ng-hide="account.admin">
+                <md-tooltip>
+                    Elimina de la favorite
+                </md-tooltip>
+                <md-icon md-svg-src="assets/icons/ic_favorite_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+            </md-button>
+            <a ng-href="/admin/edit/{{item.id}}" class="md-icon-button add-to-favourites" md-button ng-if="account.admin">
+                <md-tooltip>
+                    Editeaza produs
+                </md-tooltip>
+                <md-icon md-svg-src="assets/icons/ic_create_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+            </a>
+        </div>
         <ngcart-addtocart class="price-container" data="item" id="{{ item.id }}" name="{{ item.name }}" ng-click="showConfirm($event)" price="{{ item.price }}" quantity="1">
             <md-button aria-label="Add to cart" class="product-order md-fab" ng-class="{shown : showOrderFab}" ng-click="addToCart(item)" ng-show="showOrderFab">
                 <md-icon md-svg-src="assets/icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
