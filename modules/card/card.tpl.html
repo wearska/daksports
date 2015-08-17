@@ -5,20 +5,21 @@
             <div class="hoverlay"></div>
         </a>
         <div class="product-media-actions">
+            <p>{{userData.admin}}</p>
             <div class="scrim top"></div>
-            <md-button class="md-icon-button add-to-favourites" ng-show="!product.isFav()" ng-hide="account.admin">
+            <md-button class="md-icon-button add-to-favourites" ng-if="!$root.userData.admin && $root.logged" ng-show="!item.favourite" ng-click="postFav(item.id)">
                 <md-tooltip>
                     Adauga la favorite
                 </md-tooltip>
                 <md-icon md-svg-src="assets/icons/ic_favorite_border_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
             </md-button>
-            <md-button class="md-icon-button add-to-favourites" ng-show="isFav()" ng-hide="account.admin">
+            <md-button class="md-icon-button add-to-favourites" ng-if="!$root.userData.admin && $root.logged" ng-show="item.favourite">
                 <md-tooltip>
                     Elimina de la favorite
                 </md-tooltip>
                 <md-icon md-svg-src="assets/icons/ic_favorite_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
             </md-button>
-            <a ng-href="/admin/edit/{{item.id}}" class="md-icon-button add-to-favourites" md-button ng-if="account.admin">
+            <a ng-href="/admin/edit/{{item.id}}" class="md-icon-button add-to-favourites" md-button ng-if="$root.userData.admin && $root.logged">
                 <md-tooltip>
                     Editeaza produs
                 </md-tooltip>

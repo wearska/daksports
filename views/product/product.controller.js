@@ -23,6 +23,7 @@ angular.module('daksportsApp')
         }
         
         $scope.setMain = function (file){
+            file = file.replace(/(\.[\w\d_-]+)$/i, '_medium$1');
             $scope.mainView = file;
         }
 
@@ -51,6 +52,7 @@ angular.module('daksportsApp')
                     file5: response[0].file5
                 };
                 $scope.mainView = $scope.files.file1;
+                $scope.mainView = $scope.mainView.replace(/(\.[\w\d_-]+)$/i, '_medium$1');
                 $scope.product.sizes = [
                     "XS",
                     "S",

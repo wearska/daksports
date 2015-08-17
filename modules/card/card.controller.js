@@ -8,13 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('CardCtrl', function($scope, $mdDialog, $cookies, cart, ngCart) {
-
-        $scope.cartItem = {
-            'userid': "",
-            'item': {}
-        }
-        $scope.cartItems = [];
+    .controller('CardCtrl', function($http, $rootScope, $scope, $mdDialog, $cookies, cart, ngCart, Auth) {
 
         // DUMMY CONTENT
         $scope.availableSizes = [
@@ -47,5 +41,19 @@ angular.module('daksportsApp')
         $scope.inCart = false;
         $scope.addToCart = function(item) {
             console.log(item);
+        }
+        
+        // ADD TO FAV
+        $scope.postFav = function(productid){
+            var data = {
+                userid : $rootScope.userData.id,
+                productid : productid
+            };
+            $http.post('api/postuserfav.php', data)
+                .then(function(response) {
+                    console.log(response)
+                }).catch(function(error) {
+                    console.log(error);
+                });
         }
     });

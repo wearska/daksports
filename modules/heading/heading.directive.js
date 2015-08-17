@@ -8,7 +8,6 @@ angular.module('daksportsApp')
                 subtitle: '@'
             },
             controller: function($scope) {
-
             },
             replace: true,
             transclude : true,
@@ -18,7 +17,6 @@ angular.module('daksportsApp')
                     scope.noSubtitle = true;
                     el.addClass("no-subtitle");
                 }
-                console.log(scope.subtitle);
             }
         }
     });

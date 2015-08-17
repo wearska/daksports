@@ -16,20 +16,21 @@ if ($conn->connect_error) {
 
 $email= $_GET['email'];
 
-$res = $conn->query("SELECT * FROM users WHERE email='$email';");
+$userdata = $conn->query("SELECT * FROM users WHERE email='$email';");
+// $res = $conn->query("SELECT productid FROM favourites WHERE email='$email';");
 
 $result = array();
 
-if ($res->num_rows > 0) {
+if ($userdata->num_rows > 0) {
     // output data of each row
-    while($row=mysqli_fetch_assoc($res)){
+    while($row=mysqli_fetch_assoc($userdata)){
             $result[] = $row;
         }
     unset($result[0]['password']);
     if($result[0]['admin'] == '1'){
         $result[0]['admin'] = true;
     }else{
-        unset($result[0]['admin']);
+        $result[0]['admin'] = false;
     }
     $obj = json_encode($result[0]);
 } else {

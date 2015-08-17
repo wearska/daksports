@@ -71,9 +71,9 @@
         </div>
         <p class="order-transport single-line">Cost transport:
             {{ ngCart.getShipping() | currency:"RON " }}</p>
-        <p class="order-total single-line">Total RON:
+        <p class="order-total single-line">
             <span class="order-total" style="font-weight:400; color: #e12a2a">
-                {{ ngCart.totalCost() | currency:"" }}</span>
+                {{ ngCart.totalCost() | currency:"" }}</span>Total RON:
         </p>
     </div>
 </div>
