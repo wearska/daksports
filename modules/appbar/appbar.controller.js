@@ -8,23 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AppBarCtrl', function($rootScope, $scope, $location, $timeout, nav, ngCart, UserData, Auth) {
-
-        // ACCOUNT
-        $scope.userData = {};
-        $scope.logged = false;
-        Auth.$onAuth(function(authData) {
-            if (authData) {
-                $scope.userData = UserData.getUserData();
-                $scope.logged = true;
-            } else {
-                $scope.userData = {};
-                $scope.logged = false;
-            }
-        });
-        $scope.logout = function(){
-            Auth.$unauth();    
-        };
+    .controller('AppBarCtrl', function($rootScope, $scope, $location, $timeout, nav, ngCart) {
 
         // TOGGLE SEARCH BAR
         $scope.showSearchBar = false;

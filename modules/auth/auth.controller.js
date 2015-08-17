@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('daksportsApp')
-    .controller('AuthCtrl', ['$scope', '$location', 'Auth', 'Account', 'FileUploader', '$firebaseAuth', '$mdToast',
-        function($scope, $location, Auth, Account, FileUploader, $firebaseAuth, $mdToast) {
+    .controller('AuthCtrl', ['$http', '$scope', '$location', 'Auth', 'FileUploader', '$firebaseAuth', '$mdToast',
+        function($http, $scope, $location, Auth, FileUploader, $firebaseAuth, $mdToast) {
 
             // functions
             $scope.toastPosition = {
@@ -78,15 +78,16 @@ angular.module('daksportsApp')
 
             // login process
             $scope.loginStep = function(credentials) {
-                console.log(credentials);
                 $scope.secondStep = true;
                 $scope.firstStep = false;
                 // get user data
-                Account.getUserData(credentials.email)
-                    .then(function(userData) {
-                        $scope.userData.photo = userData.user_photo;
+                $http.get('api/accounts/getuserdata.php?email=' + credentials.email)
+                    .then(function(response) {
+                        console.log(response.data);
+                        $scope.userData = response.data;
                     }).catch(function(error) {
-                        $scope.error = error;
+                        $scope.userData = {};
+                        return error;
                     });
             };
             $scope.stepBack = function() {
@@ -100,18 +101,18 @@ angular.module('daksportsApp')
                     $scope.loginForm.submitted = true;
                 }
             }
-            
+
             // create process
             $scope.credentials = {
                 photo: 'assets/img/avatar_2x.png'
             };
-            
+
             // uploader options
             var uploader = $scope.uploader = new FileUploader({
                 url: 'api/accounts/uploaduserphoto.php',
                 formData: []
             });
-            
+
             // uploader filters
             uploader.filters.push({
                 name: 'imageFilter',
@@ -120,7 +121,7 @@ angular.module('daksportsApp')
                     return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
                 }
             });
-            
+
             // uploader methods
             uploader.onAfterAddingAll = function(addedFileItems) {
                 $scope.credentials.photo = addedFileItems[0].file.name;
@@ -141,7 +142,7 @@ angular.module('daksportsApp')
                 }];
                 Array.prototype.push.apply(item.formData, uploader.formData);
             };
-            
+
             // register function
             $scope.signup = function(credentials) {
                 if ($scope.signupForm.$valid) {

@@ -8,5 +8,5 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-  .controller('MainCtrl', ['$scope', '$http', '$location', 'UserData', function ($scope, $http, $location, UserData) {
+  .controller('MainCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
   }]);
