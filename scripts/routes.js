@@ -17,84 +17,60 @@ angular
         $stateProvider
             .state('main', {
                 url: '/',
-                templateUrl: 'views/main.html',
+                templateUrl: 'views/main/main.view.html',
                 controller: 'MainCtrl'
             })
             .state('test', {
                 url: '/test',
-                templateUrl: 'views/test.html',
-                controller: 'TestCtrl'
+                templateUrl: 'views/testing/test.view.html'
+                // controller: 'TestCtrl'
             })
             .state('account', {
                 url: '/account',
-                templateUrl: 'views/account.html',
-                controller: 'AccountCtrl as account'
+                templateUrl: 'views/account/account.view.html',
+                controller: 'AuthCtrl'
             })
             .state('account.login', {
                 url: '/login',
-                templateUrl: 'views/account.login.html',
+                templateUrl: 'views/account/account.login.view.html',
                 view: 'account',
-                controller: 'LoginCtrl'
+                controller: 'AuthCtrl'
             })
             .state('account.signup', {
                 url: '/signup',
-                templateUrl: 'views/account.signup.html',
+                templateUrl: 'views/account/account.signup.view.html',
                 view: 'account',
-                controller: 'SignupCtrl'
-            })
-            .state('new', {
-                url: '/new',
-                templateUrl: 'views/new.html',
-                //controller: 'AboutCtrl'
-            })
-            .state('contact', {
-                url: '/contact',
-                templateUrl: 'views/contact.html',
-                //controller: 'ContactCtrl'
-            })
-            .state('support', {
-                url: '/support',
-                templateUrl: 'views/support.html',
-                //controller: 'AdminCtrl'
-            })
-            .state('promos', {
-                url: '/promos',
-                templateUrl: 'views/promos.html',
-                //controller: 'AdminCtrl'
+                controller: 'AuthCtrl'
             })
             .state('admin', {
                 url: '/admin',
-                templateUrl: 'views/admin/list.html',
+                templateUrl: 'views/admin/admin.view.html',
+                controller: 'AdminCtrl'
+            })
+            .state('admin.list', {
+                url: '/list',
+                templateUrl: 'views/admin/admin.list.view.html',
+                view: 'admin',
                 controller: 'ListCtrl'
             })
-            .state('list', {
-                url: '/admin/list',
-                templateUrl: 'views/admin/list.html',
-                controller: 'ListCtrl'
+            .state('admin.add', {
+                url: '/add',
+                templateUrl: 'views/admin/admin.add.view.html',
+                controller: 'AddCtrl'
             })
-            .state('add', {
-                url: '/admin/add',
-                templateUrl: 'views/admin/add.html',
-                controller: 'AddProductCtrl'
-            })
-            .state('edit', {
-                url: '/admin/edit/:productId',
-                templateUrl: 'views/admin/edit.html',
-                controller: 'EditProductCtrl'
-            })
-            .state('search', {
-                url: '/admin/search',
-                templateUrl: 'views/admin/search.html',
-                //controller: 'AdminCtrl'
+            .state('admin.edit', {
+                url: '/edit/:productId',
+                templateUrl: 'views/admin/admin.edit.view.html',
+                controller: 'EditCtrl'
             })
             .state('product', {
                 url: '/product/:productId',
-                templateUrl: 'templates/product.single.html',
+                templateUrl: 'views/product/product.view.html',
                 controller: 'ProductCtrl'
             })
             .state('cart', {
                 url: '/cart',
-                templateUrl: 'views/cart.html',
+                templateUrl: 'views/cart/cart.view.html',
                 controller: 'CartCtrl'
             });
         $locationProvider.html5Mode(true);

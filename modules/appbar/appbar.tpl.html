@@ -1,0 +1,51 @@
+<!-- Toolbars -->
+<md-toolbar class="search-bar l-pinned-top" ng-class="{open : showSearchBar}">
+    <div class="" layout="row">
+        <div class="material-one-center" flex="80" offset="10">
+            <input aria-label="Cauta produs" class="material-search label-input-label" no-focus="" placeholder="Cauta produs" role="search">
+            <i class="material-icons search-icon">&#xE8B6;</i>
+        </div>
+    </div>
+</md-toolbar>
+<md-toolbar class="app-bar main-bar l-pinned-top md-whiteframe-z3">
+    <div class="" layout="row">
+        <div class="material-one-left" flex-gt-md="25" flex="">
+
+            <md-button aria-label="Toggle Menu" class="md-icon-button md-button l-left" ng-click="toggleNav(); hideSearchBar()">
+                <md-icon>
+                    <i class="material-icons">&#xE5D2;</i>
+                </md-icon>
+            </md-button>
+
+            <h1>
+                <a href="/" md-button>Daksports</a>
+            </h1>
+        </div>
+        <div class="material-one-center" flex="50" hide show-gt-md>
+            <input aria-label="Cauta produs" class="material-search label-input-label" no-focus="" placeholder="Cauta produs" role="search">
+            <i class="material-icons search-icon">&#xE8B6;</i>
+        </div>
+        <div class="material-one-right" flex-gt-md="25">
+            <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" md-button ng-href="/account/dashboard" ng-if="logged" style="background-image: url({{userData.user_photo}})" ng-click="logout()"></div>
+            <a aria-label="Login or Sign up" class="md-icon-button l-right" md-button ng-href="/account/login" ng-if="!logged">
+                <md-tooltip>
+                    Cont
+                </md-tooltip>
+                <md-icon class="md-icon-button">
+                    <i class="material-icons">&#xE853;</i>
+                </md-icon>
+            </a>
+            <a aria-label="View Cart" class="md-icon-button l-right" md-button ng-href="/cart">
+                <md-icon>
+                    <i class="material-icons">&#xE8CC;</i>
+                    <span class="badge" ng-show="cartItemsCount > 0">{{cartItemsCount}}</span>
+                </md-icon>
+            </a>
+            <md-button aria-label="Search" class="appbar-search-button md-icon-button l-right" ng-click="toggleSearchBar($event)">
+                <md-icon>
+                    <i class="material-icons">&#xE8B6;</i>
+                </md-icon>
+            </md-button>
+        </div>
+    </div>
+</md-toolbar>

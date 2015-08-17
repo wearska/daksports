@@ -4,13 +4,15 @@ angular.module('daksportsApp')
         return {
             restrict: 'E',
             scope: {
-                items: '=items',
-                limit: '@gdcItems',
-                start: '@gdcStart',
-                xsSize:'=gdcXsSize',
-                smSize:'=gdcSmSize',
-                mdSize:'=gdcMdSize',
-                lgSize:'=gdcLgSize'
+                items: '=data',
+                title: '@',
+                subtitle: '@',
+                limit: '@',
+                start: '@',
+                xs:'=',
+                sm:'=',
+                md:'=',
+                lg:'='
             },
             replace: true,
             templateUrl: '/modules/carousel/carousel.tpl.html',

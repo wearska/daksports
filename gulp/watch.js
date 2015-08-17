@@ -18,7 +18,8 @@ module.exports = function(options) {
             options.app + 'styles/**/**/*.scss',
             options.app + 'styles/**/*.scss',
             options.app + 'modules/**/**/*.scss',
-            options.app + 'modules/**/*.scss'
+            options.app + 'modules/**/*.scss',
+            options.app + 'views/**/*.scss'
         ], function(event) {
             if (isOnlyChange(event)) {
                 gulp.start('styles');
@@ -31,7 +32,8 @@ module.exports = function(options) {
             options.app + 'scripts/**/*.js',
             options.app + 'scripts/**/**/*.js',
             options.app + 'modules/**/*.js',
-            options.app + 'modules/**/**/*.js'
+            options.app + 'modules/**/**/*.js',
+            options.app + 'views/**/*.js'
         ], function(event) {
             if (!isOnlyChange(event)) {
                 gulp.start('inject');

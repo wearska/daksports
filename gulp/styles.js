@@ -18,6 +18,7 @@ module.exports = function(options) {
         var animations = gulp.src([options.app + 'styles/partials/animations/**/*.scss'], {read: false});
         var components = gulp.src([options.app + 'styles/partials/components/**/*.scss'], {read: false});
         var modules = gulp.src([options.app + 'modules/**/*.scss'], {read: false});
+        var views = gulp.src([options.app + 'views/**/*.scss'], {read: false});
 
         var injectOptions = {
             transform: function(filePath) {
@@ -31,7 +32,7 @@ module.exports = function(options) {
         return gulp.src([
                options.app + 'styles/main.scss'
            ])
-           .pipe($.inject(series(variables, base, layout, animations, components, modules), injectOptions))
+           .pipe($.inject(series(variables, base, layout, animations, components, modules, views), injectOptions))
            //.pipe(gulp.dest(options.app + 'styles'))
            .pipe($.sass(sassOptions)).on('error', options.errorHandler('Sass'))
            .pipe($.autoprefixer({

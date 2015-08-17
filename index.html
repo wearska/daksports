@@ -24,15 +24,15 @@
     <!-- endbuild -->
 </head>
 
-<body ng-controller="IndexCtrl">
+<body ng-controller = "IndexCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'templates/appbar.html'"></header>
+    <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'modules/appbar/appbar.tpl.html'"></header>
     <md-content layout-padding md-scroll-y id="frontpage">
         <div class="page c-max l-offset-nav">
             <aside>
-                <nav class="main-nav paper resting" ng-class="{open : $parent.navOpen}" ng-controller="NavCtrl" ng-include="'/modules/navigation/nav.tpl.html'"></nav>
+                <nav class="main-nav paper resting" ng-class="{open : $parent.navOpen}" ng-controller="NavCtrl" ng-include="'/modules/navigation/nav.tpl.html'" ng-cloak></nav>
             </aside>
             <main id="main-content" role="main" ui-view></main>
         </div>
@@ -69,50 +69,41 @@
     <!-- build:js scripts/main.js -->
     <!-- inject:js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/controllers.js"></script>
     <script src="scripts/filters.js"></script>
-    <script src="scripts/main.js"></script>
     <script src="scripts/routes.js"></script>
-    <script src="scripts/controllers/account.controller.js"></script>
-    <script src="scripts/controllers/add-product.controller.js"></script>
-    <script src="scripts/controllers/admin.controller.js"></script>
-    <script src="scripts/controllers/appbar.controller.js"></script>
-    <script src="scripts/controllers/dropdown.controller.js"></script>
-    <script src="scripts/controllers/edit-product.controller.js"></script>
-    <script src="scripts/controllers/index.controller.js"></script>
-    <script src="scripts/controllers/list.controller.js"></script>
-    <script src="scripts/controllers/login.controller.js"></script>
-    <script src="scripts/controllers/main.controller.js"></script>
-    <script src="scripts/controllers/product.controller.js"></script>
-    <script src="scripts/controllers/products-cluster.controller.js"></script>
-    <script src="scripts/controllers/query.controller.js"></script>
-    <script src="scripts/controllers/save.controller.js"></script>
-    <script src="scripts/controllers/sidenav.controller.js"></script>
-    <script src="scripts/controllers/signup.controller.js"></script>
-    <script src="scripts/controllers/test.controller.js"></script>
-    <script src="scripts/directives/gd-list.directive.js"></script>
-    <script src="scripts/directives/products-cluster.directive.js"></script>
-    <script src="scripts/directives/test.directive.js"></script>
-    <script src="scripts/directives/upload.directive.js"></script>
-    <script src="scripts/plugins/appbar.js"></script>
-    <script src="scripts/services/auth.factory.js"></script>
-    <script src="scripts/services/product.factory.js"></script>
-    <script src="scripts/services/upload.factory.js"></script>
+    <script src="scripts/services.js"></script>
+    <script src="views/account/account.controller.js"></script>
+    <script src="views/account/account.factory.js"></script>
+    <script src="views/account/signup.controller.js"></script>
+    <script src="views/admin/add-product.controller.js"></script>
+    <script src="views/admin/admin.controller.js"></script>
+    <script src="views/admin/edit-product.controller.js"></script>
+    <script src="views/cart/cart.controller.js"></script>
+    <script src="views/cart/cart.extension.js"></script>
+    <script src="views/cart/cart.factory.js"></script>
+    <script src="views/main/main.controller.js"></script>
+    <script src="views/product/product.controller.js"></script>
+    <script src="modules/appbar/appbar.controller.js"></script>
+    <script src="modules/auth/auth.controller.js"></script>
+    <script src="modules/auth/auth.factory.js"></script>
+    <script src="modules/auth/upload.directive.js"></script>
     <script src="modules/banner/banner.controller.js"></script>
     <script src="modules/banner/banner.directive.js"></script>
     <script src="modules/card/card.controller.js"></script>
     <script src="modules/card/card.directive.js"></script>
     <script src="modules/carousel/carousel.controller.js"></script>
     <script src="modules/carousel/carousel.directive.js"></script>
-    <script src="modules/cart/cart.controller.js"></script>
-    <script src="modules/cart/cart.directive.js"></script>
-    <script src="modules/cart/cart.factory.js"></script>
-    <script src="modules/cart/cart.service.js"></script>
+    <script src="modules/cluster/cluster.controller.js"></script>
+    <script src="modules/cluster/cluster.directive.js"></script>
     <script src="modules/filter/filters.controller.js"></script>
     <script src="modules/filter/fitler.directive.js"></script>
+    <script src="modules/heading/heading.directive.js"></script>
     <script src="modules/navigation/nav.controller.js"></script>
     <script src="modules/navigation/nav.factory.js"></script>
     <script src="modules/slider/slider.controller.js"></script>
     <script src="modules/slider/slider.directive.js"></script>
+    <script src="modules/tile/tile.directive.js"></script>
     <!-- endinject -->
 </body>
 

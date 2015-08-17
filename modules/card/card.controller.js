@@ -8,21 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('CardCtrl', function($scope, $mdDialog, $cookies, auth, cart, ngCart) {
-
-        //AUTHENTICATION
-        $scope.logged = false;
-        $scope.accountLink = '/account/login'
-        $scope.account = {};
-        $scope.$watch(function() {
-                return auth;
-            },
-            function(newVal, oldVal) {
-                $scope.logged = auth.isAuthenticated;
-                $scope.account = auth.account;
-                $scope.account.admin = auth.account.admin;
-            }, true);
-
+    .controller('CardCtrl', function($scope, $mdDialog, $cookies, cart, ngCart) {
 
         $scope.cartItem = {
             'userid': "",

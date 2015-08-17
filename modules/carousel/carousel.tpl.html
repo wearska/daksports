@@ -1,7 +1,6 @@
 <div class="gd-carousel">
     
-    <div class="gd-carousel-heading">
-        <h2 class="carousel-heading-title single-line">Produse recomandate</h2>
+    <gd-heading title="{{title}}">
         <a href="">
             <md-button class="md-primary md-icon-button carousel-heading-button">
                 <md-tooltip>
@@ -12,10 +11,10 @@
                 </md-icon>
             </md-button>
         </a>
-    </div>
+    </gd-heading>
     
     <div class="gd-carousel-wrapper" layout="row">
-        <gd-carousel-item flex-gt-lg="{{100/lgSize | number:0}}" flex-gt-md="{{100/mdSize | number:0}}" flex-gt-sm="{{100/smSize | number:0}}" flex-sm="{{100/xsSize | number:0}}" ng-repeat="item in items | limitTo:limit:start">
+        <gd-carousel-item flex-gt-lg="{{100/lg | number:0}}" flex-gt-md="{{100/md | number:0}}" flex-gt-sm="{{100/sm | number:0}}" flex="{{100/xs | number:0}}" ng-repeat="item in items | limitTo:limit:start">
             <gd-card card-resource="item"></gd-card>
         </gd-carousel-item>
     </div>

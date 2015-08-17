@@ -1,0 +1,68 @@
+.gd-cluster {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+.cluster-heading{
+    height: 64px;
+}
+.cluster-list {
+    &.carousel {
+        margin: 0 52px;
+    }
+}
+.cluster-item {
+    display: inline-block;
+    padding: 4px;
+    margin: 0;
+}
+.cluster-wrapper{
+    display: block;
+    position: relative;
+    .carousel-controls {
+        position: absolute;
+        margin: auto;
+        top: 4px;
+        bottom: 12px;
+        left: 0;
+        right: 0;
+        width: auto;
+        height: auto;
+        pointer-events: none;
+        .carousel-control {
+            background-color: #fff;
+            cursor: pointer;
+            user-select: none;
+            position: absolute;
+            height: 100%;
+            width: 48px;
+            will-change: background, opacity;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            outline: none;
+            pointer-events: all;
+            i {
+                width: 48px;
+                height: 48px;
+                position: absolute;
+                margin: auto;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                opacity: 0.3;
+            }
+            &.next {
+                right: 0;
+            }
+            &.prev {
+                left: 0;
+            }
+            &:hover {
+                i {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
