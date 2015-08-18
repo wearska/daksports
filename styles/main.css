@@ -3806,8 +3806,10 @@ aside {
       text-align: right; } }
 
 .gd-card.gd-tile .product-media {
-  padding: 0 65% 0 0;
-  z-index: 1; }
+  padding: 0 65% 0 0; }
+  .gd-card.gd-tile .product-media .hoverlay {
+    right: 65%;
+    width: auto; }
 
 .gd-card.gd-tile .product-info {
   position: absolute;
@@ -3816,7 +3818,8 @@ aside {
   .gd-card.gd-tile .product-info .excerpt-container {
     display: block; }
     .gd-card.gd-tile .product-info .excerpt-container p {
-      font-weight: 100;
+      font-size: 13px;
+      font-weight: 300;
       line-height: 1.1;
       color: rgba(0, 0, 0, 0.87); }
 
@@ -3825,6 +3828,8 @@ aside {
   right: 0;
   left: 35%;
   width: auto; }
+  .gd-card.gd-tile .product-actions i {
+    color: rgba(0, 0, 0, 0.87); }
 
 .gd-card.gd-tile .product-order {
   display: none;
@@ -4026,67 +4031,6 @@ aside {
     .gd-carousel .gd-carousel-controls {
       display: inherit; } }
 
-.gd-cluster {
-  position: relative;
-  display: block;
-  width: 100%;
-  overflow: hidden; }
-
-.cluster-heading {
-  height: 64px; }
-
-.cluster-list.carousel {
-  margin: 0 52px; }
-
-.cluster-item {
-  display: inline-block;
-  padding: 4px;
-  margin: 0; }
-
-.cluster-wrapper {
-  display: block;
-  position: relative; }
-  .cluster-wrapper .carousel-controls {
-    position: absolute;
-    margin: auto;
-    top: 4px;
-    bottom: 12px;
-    left: 0;
-    right: 0;
-    width: auto;
-    height: auto;
-    pointer-events: none; }
-    .cluster-wrapper .carousel-controls .carousel-control {
-      background-color: #fff;
-      cursor: pointer;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      position: absolute;
-      height: 100%;
-      width: 48px;
-      will-change: background, opacity;
-      transition: background-color 0.3s ease, opacity 0.3s ease;
-      outline: none;
-      pointer-events: all; }
-      .cluster-wrapper .carousel-controls .carousel-control i {
-        width: 48px;
-        height: 48px;
-        position: absolute;
-        margin: auto;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        opacity: 0.3; }
-      .cluster-wrapper .carousel-controls .carousel-control.next {
-        right: 0; }
-      .cluster-wrapper .carousel-controls .carousel-control.prev {
-        left: 0; }
-      .cluster-wrapper .carousel-controls .carousel-control:hover i {
-        opacity: 1; }
-
 #filter-block {
   overflow: hidden;
   position: relative; }
@@ -4156,6 +4100,67 @@ aside {
       vertical-align: middle; }
     #filter-block .filter-parent-list .filter-brand-name-count {
       max-width: 32px; }
+
+.gd-cluster {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden; }
+
+.cluster-heading {
+  height: 64px; }
+
+.cluster-list.carousel {
+  margin: 0 52px; }
+
+.cluster-item {
+  display: inline-block;
+  padding: 4px;
+  margin: 0; }
+
+.cluster-wrapper {
+  display: block;
+  position: relative; }
+  .cluster-wrapper .carousel-controls {
+    position: absolute;
+    margin: auto;
+    top: 4px;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    pointer-events: none; }
+    .cluster-wrapper .carousel-controls .carousel-control {
+      background-color: #fff;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      position: absolute;
+      height: 100%;
+      width: 48px;
+      will-change: background, opacity;
+      transition: background-color 0.3s ease, opacity 0.3s ease;
+      outline: none;
+      pointer-events: all; }
+      .cluster-wrapper .carousel-controls .carousel-control i {
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0.3; }
+      .cluster-wrapper .carousel-controls .carousel-control.next {
+        right: 0; }
+      .cluster-wrapper .carousel-controls .carousel-control.prev {
+        left: 0; }
+      .cluster-wrapper .carousel-controls .carousel-control:hover i {
+        opacity: 1; }
 
 .gd-heading {
   box-sizing: border-box;

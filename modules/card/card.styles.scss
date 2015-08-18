@@ -8,10 +8,10 @@
     -webkit-backface-visibility: hidden;
     overflow: hidden;
     .product-media {
-        
+
         // padding: 16px;
         position: relative;
-        
+
         // overflow: hidden;
         .product-img {
             background-size: contain;
@@ -177,7 +177,7 @@
             &:hover {
                 .price,
                 .add-to-cart {
-                    
+
                 }
                 .price {
                     bottom: -100%;
@@ -240,7 +240,11 @@
     &.gd-tile {
         .product-media {
             padding: 0 65% 0 0;
-            z-index: 1;
+            // z-index: 0;
+            .hoverlay{
+                right: 65%;
+                width: auto;
+            }
         }
         .product-info {
             position: absolute;
@@ -249,7 +253,8 @@
             .excerpt-container {
                 display: block;
                 p {
-                    font-weight: 100;
+                    font-size: 13px;
+                    font-weight: 300;
                     line-height: 1.1;
                     color: rgba(0,0,0,.87);
                 }
@@ -260,6 +265,9 @@
             right: 0;
             left: 35%;
             width: auto;
+            i{
+                color: rgba(0,0,0,.87);
+            }
         }
         .product-order {
             display: none;

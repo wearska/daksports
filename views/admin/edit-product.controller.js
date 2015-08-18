@@ -8,8 +8,8 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('EditProductCtrl', function($scope, $http, $filter, $parse, $location, $stateParams, FileUploader, $interval, productRes) {
-        
+    .controller('EditCtrl', function($scope, $http, $filter, $parse, $location, $stateParams, FileUploader, $interval, productRes) {
+
         var firstChanged = false,
             secondChanged = false,
             thirdChanged = false,
@@ -138,6 +138,7 @@ angular.module('daksportsApp')
             console.log(fileItem.formData[0].uploader);
             var uploaderNo = fileItem.formData[0].uploader;
             var photoSrc = '/uploads/temp/' + fileItem.file.name;
+            photoSrc = photoSrc.replace(/\s+/g, '_');
             var str = 'temp.photo' + uploaderNo;
             var model = $parse(str);
             model.assign($scope, photoSrc);

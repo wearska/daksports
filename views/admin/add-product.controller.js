@@ -8,7 +8,7 @@
  * Controller of the daksportsApp
  */
 angular.module('daksportsApp')
-    .controller('AddProductCtrl', function($scope, $http, $filter, $parse, FileUploader, $interval) {
+    .controller('AddCtrl', function($scope, $http, $filter, $parse, FileUploader, $interval) {
 
         var firstDone = false,
             secondDone = false,
