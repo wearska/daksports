@@ -1,0 +1,62 @@
+<div class="account-wrapper">
+    <div class="daksports-header-bar"></div>
+    <div class="main content clearfix">
+        <div class="banner">
+            <h2>
+                Intra in cont
+            </h2>
+        </div>
+        <div class="main-content">
+            <div class="paper raised sign-in-card">
+                <div class="circle-mask" style="background-image: url(/app/assets/img/avatar_2x.png)">
+                    <div class="circle-photo" ng-class="{'scaled' : secondStep}" style="background-image: url({{userData.user_photo}})"></div>
+                </div>
+                <form autocomplete="off" name="loginForm" ng-submit="login(user)" novalidate>
+                    <div class="login-parts-wrapper" ng-class="{'second-step' : secondStep}">
+                        <div class="login-part one" ng-hide="secondStep">
+                            <md-input-container>
+                                <label>e-mail</label>
+                                <input autocomplete="off" name="email" ng-model="user.email" required type="email">
+                                <div ng-messages="loginForm.email.$valid" ng-show="loginForm.email.$invalid && loginForm.email.$dirty || loginForm.submitted">
+                                    <div ng-message="required">Introduceti o adresa de email</div>
+                                    <div ng-message="email">Doar adresele de email sunt permise</div>
+                                </div>
+                            </md-input-container>
+                            <md-button class="md-raised md-primary account-access-button" ng-click="loginStep(user)" ng-cloak ng-disabled="loginForm.email.$invalid" type="button">
+                                Next
+                            </md-button>
+                            <a class="need-help" href="/contact">
+                                Ai nevoie de ajutor?
+                            </a>
+                        </div>
+                        <div class="login-part two">
+                            <p class="profile-name single-line">{{user.firstName}}
+                                {{user.lastName}}</p>
+                            <span class="email-display">{{user.email}}</span>
+                            <md-input-container>
+                                <label>parola</label>
+                                <input ng-focus="secondStep" autocomplete="off" name="password" ng-model="user.password" required type="password">
+                            </md-input-container>
+                            <md-button class="md-raised md-primary account-access-button" ng-cloak ng-disabled="!loginForm.$valid" type="submit">
+                                Intra
+                            </md-button>
+                            <a class="need-help" href="/recover">
+                                Ai uitat parola?
+                            </a>
+                        </div>
+                    </div>
+                </form>
+                <md-button class="md-icon-button back-to-first" ng-click="stepBack()" ng-show="secondStep">
+                    <md-icon>
+                        <i class="material-icons">&#xE5C4;</i>
+                    </md-icon>
+                </md-button>
+            </div>
+            <p class="create-account">
+                <a href="/account/signup">
+                    Creeaza cont
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,63 +1,57 @@
 <!doctype html>
 <html ng-app="daksportsApp">
-
-<head>
+  <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>daksportsApp</title>
     <base href="/">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- Material icon font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- build:css styles/vendor.css -->
+
+    <!-- build:css({.tmp/serve,app}) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css styles/main.min.css -->
+    <!-- build:css({.tmp/serve,app}) styles/app.css -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="styles/main.min.css">
+    <link rel="stylesheet" href="app/styles/app.styles.css">
     <!-- endinject -->
     <!-- endbuild -->
-</head>
+  </head>
+  <body ng-controller = "AppCtrl">
+      <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+      <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'app/components/appbar/appbar.tpl.html'"></header>
+      <md-content layout-padding md-scroll-y id="frontpage">
+          <div class="page c-max l-offset-nav">
+              <aside>
+                  <nav class="main-nav paper resting" ng-class="{open : $parent.navOpen}" ng-controller="NavCtrl" ng-include="'/app/components/navigation/nav.tpl.html'" ng-cloak></nav>
+              </aside>
+              <main id="main-content" role="main" ui-view></main>
+          </div>
+      </md-content>
+      <footer role="footer" id="bottom-bar" class="paper resting"></footer>
 
-<body ng-controller = "IndexCtrl">
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'modules/appbar/appbar.tpl.html'"></header>
-    <md-content layout-padding md-scroll-y id="frontpage">
-        <div class="page c-max l-offset-nav">
-            <aside>
-                <nav class="main-nav paper resting" ng-class="{open : $parent.navOpen}" ng-controller="NavCtrl" ng-include="'/modules/navigation/nav.tpl.html'" ng-cloak></nav>
-            </aside>
-            <main id="main-content" role="main" ui-view></main>
-        </div>
-    </md-content>
-    <footer role="footer" id="bottom-bar" class="paper resting"></footer>
-
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-
-
-    <!-- build:js scripts/vendor.js -->
+    <!-- build:js(app) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
-    <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/ngcart/dist/ngCart.js"></script>
@@ -65,43 +59,51 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/main.js -->
+    <!-- build:js({.tmp/serve,.tmp/partials,app}) scripts/app.js -->
     <!-- inject:js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers.js"></script>
-    <script src="scripts/filters.js"></script>
-    <script src="scripts/routes.js"></script>
-    <script src="scripts/services.js"></script>
-    <script src="views/account/account.controller.js"></script>
-    <script src="views/cart/cart.controller.js"></script>
-    <script src="views/cart/cart.extension.js"></script>
-    <script src="views/cart/cart.factory.js"></script>
-    <script src="views/admin/add-product.controller.js"></script>
-    <script src="views/admin/admin.controller.js"></script>
-    <script src="views/admin/edit-product.controller.js"></script>
-    <script src="views/main/main.controller.js"></script>
-    <script src="views/product/product.controller.js"></script>
-    <script src="modules/appbar/appbar.controller.js"></script>
-    <script src="modules/auth/auth.controller.js"></script>
-    <script src="modules/auth/auth.factory.js"></script>
-    <script src="modules/auth/upload.directive.js"></script>
-    <script src="modules/card/card.controller.js"></script>
-    <script src="modules/card/card.directive.js"></script>
-    <script src="modules/banner/banner.controller.js"></script>
-    <script src="modules/banner/banner.directive.js"></script>
-    <script src="modules/carousel/carousel.controller.js"></script>
-    <script src="modules/carousel/carousel.directive.js"></script>
-    <script src="modules/cluster/cluster.controller.js"></script>
-    <script src="modules/cluster/cluster.directive.js"></script>
-    <script src="modules/filter/filters.controller.js"></script>
-    <script src="modules/filter/fitler.directive.js"></script>
-    <script src="modules/heading/heading.directive.js"></script>
-    <script src="modules/navigation/nav.controller.js"></script>
-    <script src="modules/navigation/nav.factory.js"></script>
-    <script src="modules/slider/slider.controller.js"></script>
-    <script src="modules/slider/slider.directive.js"></script>
-    <script src="modules/tile/tile.directive.js"></script>
+    <script src="app/scripts/app.module.js"></script>
+    <script src="app/scripts/app.config.js"></script>
+    <script src="app/scripts/app.constants.js"></script>
+    <script src="app/scripts/app.controller.js"></script>
+    <script src="app/scripts/app.filters.js"></script>
+    <script src="app/scripts/app.route.js"></script>
+    <script src="app/scripts/app.run.js"></script>
+    <script src="app/scripts/app.service.js"></script>
+    <script src="app/components/appbar/appbar.controller.js"></script>
+    <script src="app/components/auth/auth.controller.js"></script>
+    <script src="app/components/auth/auth.factory.js"></script>
+    <script src="app/components/auth/upload.directive.js"></script>
+    <script src="app/components/banner/banner.controller.js"></script>
+    <script src="app/components/banner/banner.directive.js"></script>
+    <script src="app/components/card/card.controller.js"></script>
+    <script src="app/components/card/card.directive.js"></script>
+    <script src="app/components/carousel/carousel.controller.js"></script>
+    <script src="app/components/carousel/carousel.directive.js"></script>
+    <script src="app/components/cluster/cluster.controller.js"></script>
+    <script src="app/components/cluster/cluster.directive.js"></script>
+    <script src="app/components/filter/filters.controller.js"></script>
+    <script src="app/components/filter/fitler.directive.js"></script>
+    <script src="app/components/heading/heading.directive.js"></script>
+    <script src="app/components/navigation/nav.controller.js"></script>
+    <script src="app/components/navigation/nav.factory.js"></script>
+    <script src="app/components/tile/tile.directive.js"></script>
+    <script src="app/components/slider/slider.controller.js"></script>
+    <script src="app/components/slider/slider.directive.js"></script>
+    <script src="app/views/admin/add-product.controller.js"></script>
+    <script src="app/views/admin/admin.controller.js"></script>
+    <script src="app/views/admin/edit-product.controller.js"></script>
+    <script src="app/views/main/main.controller.js"></script>
+    <script src="app/views/cart/cart.controller.js"></script>
+    <script src="app/views/cart/cart.extension.js"></script>
+    <script src="app/views/cart/cart.factory.js"></script>
+    <script src="app/views/account/account.controller.js"></script>
+    <script src="app/views/product/product.controller.js"></script>
     <!-- endinject -->
-</body>
 
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+  </body>
 </html>
