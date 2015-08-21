@@ -15,16 +15,16 @@ function isAdded(file) {
 }
 gulp.task('watch', ['inject'], function () {
 
-  gulp.watch([path.join('*.html'), 'bower.json'], ['inject']);
+  gulp.watch(['bower.json'], ['inject']);
 
-  gulp.watch([
-    path.join(conf.paths.app, '/**/*.css'),
+  watch([
+    // path.join(conf.paths.app, '/**/*.css'),
     path.join(conf.paths.app, '/**/*.scss')
   ], function(event) {
-    if(isOnlyChange(event)) {
-      gulp.start('styles');
-    } else {
+    if(isAdded(event)) {
       gulp.start('inject');
+    } else {
+      gulp.start('styles');
     }
   });
 
@@ -41,7 +41,7 @@ gulp.task('watch', ['inject'], function () {
     }
   });
 
-  gulp.watch(path.join(conf.paths.app, '/**/*.html'), function(event) {
-    browserSync.reload(event.path);
-  });
+  // gulp.watch(path.join(conf.paths.app, '/**/*.html'), function(event) {
+  //   browserSync.reload(event.path);
+  // });
 });

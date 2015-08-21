@@ -10,8 +10,7 @@ var $ = require('gulp-load-plugins')({
 
 gulp.task('partials', function () {
   return gulp.src([
-    path.join(conf.paths.app, '/**/*.html'),
-    path.join(conf.paths.tmp, '/serve/app/**/*.html')
+    path.join(conf.paths.app, '/**/*.html')
   ])
     .pipe($.minifyHtml({
       empty: true,
@@ -20,13 +19,13 @@ gulp.task('partials', function () {
     }))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
       module: 'daksportsApp',
-      root: 'app'
+      root: ''
     }))
-    .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
+    .pipe(gulp.dest(conf.paths.app + '/partials/'));
 });
 
 gulp.task('html', ['inject', 'partials'], function () {
-  var partialsInjectFile = gulp.src(path.join(conf.paths.tmp, '/partials/templateCacheHtml.js'), { read: false });
+  var partialsInjectFile = gulp.src(path.join(conf.paths.app, '/partials/templateCacheHtml.js'), { read: false });
   var partialsInjectOptions = {
     starttag: '<!-- inject:partials -->',
     ignorePath: path.join(conf.paths.tmp, '/partials'),
@@ -38,10 +37,10 @@ gulp.task('html', ['inject', 'partials'], function () {
   var cssFilter = $.filter('**/*.css');
   var assets;
 
-  return gulp.src(path.join(conf.paths.tmp, '/serve/*.html'))
+  return gulp.src(path.join(conf.paths.root, 'index.html'))
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
     .pipe(assets = $.useref.assets())
-    .pipe($.rev())
+    // .pipe($.rev())
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
     .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
@@ -51,7 +50,7 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(cssFilter.restore())
     .pipe(assets.restore())
     .pipe($.useref())
-    .pipe($.revReplace())
+    // .pipe($.revReplace())
     .pipe(htmlFilter)
     .pipe($.minifyHtml({
       empty: true,
@@ -79,15 +78,38 @@ gulp.task('other', function () {
   });
 
   return gulp.src([
-    path.join(conf.paths.app, '/**/*'),
-    path.join('!' + conf.paths.app, '/**/*.{html,css,js,scss}')
+    path.join('*'),
+    path.join('.htaccess'),
+    path.join('!' + '/bower_components/**/*'),
+    path.join('!' + '/node_modules/**/*'),
+    path.join('!' + conf.paths.root, '/**/*.{html,css,js,scss,json,gitignore,bowerrc,editorconfig,.jshintrc,md}')
   ])
     .pipe(fileFilter)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
+});
+
+gulp.task('assets', function () {
+  return gulp.src([
+    path.join('app/assets/**/*')
+  ])
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/assets/')));
+});
+gulp.task('api', function () {
+  return gulp.src([
+    path.join('api/**/*')
+  ])
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/api/')));
+});
+
+gulp.task('uploads', function () {
+  return gulp.src([
+    path.join('uploads/**/*')
+  ])
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/uploads/')));
 });
 
 gulp.task('clean', function (done) {
   $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
 });
 
-gulp.task('build', ['html', 'fonts', 'other']);
+gulp.task('build', ['html', 'fonts', 'other', 'api', 'uploads']);

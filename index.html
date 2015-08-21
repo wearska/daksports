@@ -10,14 +10,14 @@
     <!-- Material icon font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- build:css({.tmp/serve,app}) styles/vendor.css -->
+    <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css({.tmp/serve,app}) styles/app.css -->
+    <!-- build:css styles/app.css -->
     <!-- inject:css -->
     <link rel="stylesheet" href="app/styles/app.styles.css">
     <!-- endinject -->
@@ -38,7 +38,7 @@
       </md-content>
       <footer role="footer" id="bottom-bar" class="paper resting"></footer>
 
-    <!-- build:js(app) scripts/vendor.js -->
+    <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -49,17 +49,17 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/ngcart/dist/ngCart.js"></script>
     <script src="bower_components/material-design-lite/material.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js({.tmp/serve,.tmp/partials,app}) scripts/app.js -->
+    <!-- build:js scripts/app.js -->
     <!-- inject:js -->
     <script src="app/scripts/app.module.js"></script>
     <script src="app/scripts/app.config.js"></script>
@@ -69,10 +69,11 @@
     <script src="app/scripts/app.route.js"></script>
     <script src="app/scripts/app.run.js"></script>
     <script src="app/scripts/app.service.js"></script>
-    <script src="app/components/appbar/appbar.controller.js"></script>
+    <script src="app/partials/templateCacheHtml.js"></script>
     <script src="app/components/auth/auth.controller.js"></script>
     <script src="app/components/auth/auth.factory.js"></script>
     <script src="app/components/auth/upload.directive.js"></script>
+    <script src="app/components/appbar/appbar.controller.js"></script>
     <script src="app/components/banner/banner.controller.js"></script>
     <script src="app/components/banner/banner.directive.js"></script>
     <script src="app/components/card/card.controller.js"></script>
@@ -84,19 +85,19 @@
     <script src="app/components/filter/filters.controller.js"></script>
     <script src="app/components/filter/fitler.directive.js"></script>
     <script src="app/components/heading/heading.directive.js"></script>
+    <script src="app/components/slider/slider.controller.js"></script>
+    <script src="app/components/slider/slider.directive.js"></script>
     <script src="app/components/navigation/nav.controller.js"></script>
     <script src="app/components/navigation/nav.factory.js"></script>
     <script src="app/components/tile/tile.directive.js"></script>
-    <script src="app/components/slider/slider.controller.js"></script>
-    <script src="app/components/slider/slider.directive.js"></script>
+    <script src="app/views/account/account.controller.js"></script>
     <script src="app/views/admin/add-product.controller.js"></script>
     <script src="app/views/admin/admin.controller.js"></script>
     <script src="app/views/admin/edit-product.controller.js"></script>
-    <script src="app/views/main/main.controller.js"></script>
     <script src="app/views/cart/cart.controller.js"></script>
     <script src="app/views/cart/cart.extension.js"></script>
     <script src="app/views/cart/cart.factory.js"></script>
-    <script src="app/views/account/account.controller.js"></script>
+    <script src="app/views/main/main.controller.js"></script>
     <script src="app/views/product/product.controller.js"></script>
     <!-- endinject -->
 

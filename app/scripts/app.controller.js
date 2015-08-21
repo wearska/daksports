@@ -9,7 +9,7 @@
 
       function setFavourite(id) {
         var product = $filter('filter')($scope.products, function(d) {
-          return d.id == id;
+          return d.id === id;
         })[0];
         product.favourite = true;
       }
