@@ -105,7 +105,7 @@
 
         // create process
         $scope.credentials = {
-          photo: 'app/assets/img/avatar_2x.png'
+          photo: 'assets//img/avatar_2x.png'
         };
 
         // uploader options
