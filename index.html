@@ -12,7 +12,6 @@
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css" />
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -31,7 +30,7 @@
       <md-content layout-padding md-scroll-y id="frontpage">
           <div class="page c-max l-offset-nav">
               <aside>
-                  <nav class="main-nav paper resting" ng-class="{open : $parent.navOpen}" ng-controller="NavCtrl" ng-include="'/app/components/navigation/nav.tpl.html'" ng-cloak></nav>
+                  <nav class="main-nav paper resting" ng-class="{open : $parent.navOpen}" ng-controller="NavCtrl" ng-include="'app/components/navigation/nav.tpl.html'" ng-cloak></nav>
               </aside>
               <main id="main-content" role="main" ui-view></main>
           </div>
@@ -54,7 +53,6 @@
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/ngcart/dist/ngCart.js"></script>
-    <script src="bower_components/material-design-lite/material.min.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -70,10 +68,10 @@
     <script src="app/scripts/app.run.js"></script>
     <script src="app/scripts/app.service.js"></script>
     <script src="app/partials/templateCacheHtml.js"></script>
+    <script src="app/components/appbar/appbar.controller.js"></script>
     <script src="app/components/auth/auth.controller.js"></script>
     <script src="app/components/auth/auth.factory.js"></script>
     <script src="app/components/auth/upload.directive.js"></script>
-    <script src="app/components/appbar/appbar.controller.js"></script>
     <script src="app/components/banner/banner.controller.js"></script>
     <script src="app/components/banner/banner.directive.js"></script>
     <script src="app/components/card/card.controller.js"></script>
@@ -83,13 +81,11 @@
     <script src="app/components/cluster/cluster.controller.js"></script>
     <script src="app/components/cluster/cluster.directive.js"></script>
     <script src="app/components/filter/filters.controller.js"></script>
-    <script src="app/components/filter/fitler.directive.js"></script>
     <script src="app/components/heading/heading.directive.js"></script>
-    <script src="app/components/slider/slider.controller.js"></script>
-    <script src="app/components/slider/slider.directive.js"></script>
     <script src="app/components/navigation/nav.controller.js"></script>
     <script src="app/components/navigation/nav.factory.js"></script>
-    <script src="app/components/tile/tile.directive.js"></script>
+    <script src="app/components/slider/slider.controller.js"></script>
+    <script src="app/components/slider/slider.directive.js"></script>
     <script src="app/views/account/account.controller.js"></script>
     <script src="app/views/admin/add-product.controller.js"></script>
     <script src="app/views/admin/admin.controller.js"></script>

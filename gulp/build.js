@@ -19,7 +19,7 @@ gulp.task('partials', function () {
     }))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
       module: 'daksportsApp',
-      root: ''
+      root: 'app'
     }))
     .pipe(gulp.dest(conf.paths.app + '/partials/'));
 });
