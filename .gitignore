@@ -4,6 +4,8 @@ bower_components/
 
 build/
 dist/
+assets/
+assets/*
 angular.io/
 resources/
 test
