@@ -18,20 +18,20 @@
           templateUrl: 'app/views/testing/test.view.html'
             // controller: 'TestCtrl'
         })
-        .state('account', {
-          url: '/account',
-          templateUrl: 'app/views/account/account.view.html',
+        .state('auth', {
+          url: '/auth',
+          templateUrl: 'app/views/auth/auth.view.html',
           controller: 'AuthCtrl'
         })
-        .state('account.login', {
+        .state('auth.login', {
           url: '/login',
-          templateUrl: 'app/views/account/account.login.view.html',
+          templateUrl: 'app/views/auth/auth.login.view.html',
           view: 'account',
           controller: 'AuthCtrl'
         })
-        .state('account.signup', {
-          url: '/signup',
-          templateUrl: 'app/views/account/account.signup.view.html',
+        .state('auth.create', {
+          url: '/create',
+          templateUrl: 'app/views/auth/auth.create.view.html',
           view: 'account',
           controller: 'AuthCtrl'
         })

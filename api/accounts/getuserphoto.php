@@ -14,14 +14,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$userid= $_GET['userid'];
+$email= $_GET['email'];
+$res = $conn->query("SELECT * FROM users WHERE email='$email';");
 
-$userfavs = $conn->query("SELECT productid FROM favourites WHERE userid='$userid';");
+$result = array();
 
-$array = array();
-while ($row = mysqli_fetch_array($userfavs)) {
-    $array[] = $row['productid'];
-}
-echo json_encode($array);
+while($row=mysqli_fetch_assoc($res)){
+        $result[] = $row;
+    }
+$obj = json_encode($result);
+
+echo ($obj);
+
 $conn->close();
 ?>

@@ -1,65 +1,54 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  angular.module('daksportsApp')
-    .controller('ProductCtrl', function($scope, $http, $filter, $stateParams, productRes) {
-      // Initial state
-      $scope.product = {};
-      $scope.files = {};
-      $scope.order = {
-        count: 1
-      };
-      $scope.mainView = "",
+    angular.module('daksportsApp')
+        .controller('ProductCtrl', function($scope, $http, $parse, $filter, $stateParams, productRes) {
+            // Initial state
+            $scope.product = {};
+            $scope.files = {};
+            $scope.order = {
+                count: 1
+            };
 
-        $scope.isFav = function() {
-          var bool = true;
-          return bool;
-        }
+            $scope.isFav = function() {
+                var bool = true;
+                return bool;
+            }
 
-      $scope.setMain = function(file) {
-        file = file.replace(/(\.[\w\d_-]+)$/i, '_medium$1');
-        $scope.mainView = file;
-      }
+            $scope.setMain = function(file) {
+                file = file.replace(/(\.[\w\d_-]+)$/i, '_medium$1');
+                $scope.mainView = file;
+            }
 
-      productRes.get($stateParams.productId)
-        .success(function(response) {
-          var reset = {
-            submissionDate: new Date(response[0].added),
-            name: response[0].name,
-            subname: response[0].subname,
-            price: parseFloat(response[0].price),
-            inv: parseFloat(response[0].inv),
-            excerpt: response[0].excerpt,
-            desc: response[0].description,
-            file1: response[0].file1,
-            file2: response[0].file2,
-            file3: response[0].file3,
-            file4: response[0].file4,
-            file5: response[0].file5
-          };
-          $scope.product = angular.copy(reset);
-          $scope.files = {
-            file1: response[0].file1,
-            file2: response[0].file2,
-            file3: response[0].file3,
-            file4: response[0].file4,
-            file5: response[0].file5
-          };
-          $scope.mainView = $scope.files.file1;
-          $scope.mainView = $scope.mainView.replace(/(\.[\w\d_-]+)$/i, '_medium$1');
-          $scope.product.sizes = [
-            "XS",
-            "S",
-            "M",
-            "L",
-            "XL"
-          ];
-          $scope.product.colours = [
-            "Rosu",
-            "Galben",
-            "Albastru"
-          ];
+            productRes.get($stateParams.productId)
+                .then(function(response) {
+                    var i=0;
+                    $scope.product = response.data[0];
+                    angular.forEach($scope.product, function(value, key){
+                        if(value !== ''  & key.indexOf("file") >= 0){
+                            i++;
+                            $scope.sliderLength = i;
+                            value = value.replace(/(\.[\w\d_-]+)$/i, '_medium$1');
+                            var model = $parse(key);
+                            model.assign($scope.files, value);
+                            console.log($scope);
+                        }
+                    });
+                    $scope.product.sizes = [
+                        "XS",
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ];
+                    $scope.product.colours = [
+                        "Rosu",
+                        "Galben",
+                        "Albastru"
+                    ];
+                }).catch(function(error) {
+                    return error;
+                });
         });
-    });
 
 })();

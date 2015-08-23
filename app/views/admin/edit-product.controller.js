@@ -58,31 +58,31 @@
         formData: []
       });
       var uploader1 = $scope.uploader1 = new FileUploader({
-        url: 'api/uploadtest.php',
+        url: 'api/products/upload.php',
         //queueLimit : 1,
         // autoUpload: true,
         formData: []
       });
       var uploader2 = $scope.uploader2 = new FileUploader({
-        url: 'api/uploadtest.php',
+        url: 'api/products/upload.php',
         //queueLimit : 1,
         // autoUpload: true,
         formData: []
       });
       var uploader3 = $scope.uploader3 = new FileUploader({
-        url: 'api/uploadtest.php',
+        url: 'api/products/upload.php',
         //queueLimit : 1,
         // autoUpload: true,
         formData: []
       });
       var uploader4 = $scope.uploader4 = new FileUploader({
-        url: 'api/uploadtest.php',
+        url: 'api/products/upload.php',
         //queueLimit : 1,
         // autoUpload: true,
         formData: []
       });
       var uploader5 = $scope.uploader5 = new FileUploader({
-        url: 'api/uploadtest.php',
+        url: 'api/products/upload.php',
         //queueLimit : 1,
         // autoUpload: true,
         formData: []
@@ -163,7 +163,7 @@
           year: $filter('date')($scope.product.submissionDate, 'yy'),
           month: $filter('date')($scope.product.submissionDate, 'MM')
         }];
-        uploader1.queue[uploader1.queue.length - 1].url = 'api/uploadtest.php';
+        uploader1.queue[uploader1.queue.length - 1].url = 'api/products/upload.php';
         Array.prototype.push.apply(item.formData, uploader1.formData);
       };
       uploader1.onCompleteAll = function() {
@@ -194,7 +194,7 @@
           year: $filter('date')($scope.product.submissionDate, 'yy'),
           month: $filter('date')($scope.product.submissionDate, 'MM')
         }];
-        uploader2.queue[uploader2.queue.length - 1].url = 'api/uploadtest.php';
+        uploader2.queue[uploader2.queue.length - 1].url = 'api/products/upload.php';
         Array.prototype.push.apply(item.formData, uploader2.formData);
       };
       uploader2.onCompleteAll = function() {
@@ -225,7 +225,7 @@
           year: $filter('date')($scope.product.submissionDate, 'yy'),
           month: $filter('date')($scope.product.submissionDate, 'MM')
         }];
-        uploader3.queue[uploader3.queue.length - 1].url = 'api/uploadtest.php';
+        uploader3.queue[uploader3.queue.length - 1].url = 'api/products/upload.php';
         Array.prototype.push.apply(item.formData, uploader3.formData);
       };
       uploader3.onCompleteAll = function() {
@@ -256,7 +256,7 @@
           year: $filter('date')($scope.product.submissionDate, 'yy'),
           month: $filter('date')($scope.product.submissionDate, 'MM')
         }];
-        uploader4.queue[uploader4.queue.length - 1].url = 'api/uploadtest.php';
+        uploader4.queue[uploader4.queue.length - 1].url = 'api/products/upload.php';
         Array.prototype.push.apply(item.formData, uploader4.formData);
       };
       uploader4.onCompleteAll = function() {
@@ -287,7 +287,7 @@
           year: $filter('date')($scope.product.submissionDate, 'yy'),
           month: $filter('date')($scope.product.submissionDate, 'MM')
         }];
-        uploader5.queue[uploader5.queue.length - 1].url = 'api/uploadtest.php';
+        uploader5.queue[uploader5.queue.length - 1].url = 'api/products/upload.php';
         Array.prototype.push.apply(item.formData, uploader5.formData);
       };
       uploader5.onCompleteAll = function() {

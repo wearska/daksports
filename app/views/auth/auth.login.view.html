@@ -8,8 +8,9 @@
         </div>
         <div class="main-content">
             <div class="paper raised sign-in-card">
-                <div class="circle-mask" style="background-image: url(assets//img/avatar_2x.png)">
-                    <div class="circle-photo" ng-class="{'scaled' : secondStep}" style="background-image: url({{userData.user_photo}})"></div>
+                <div class="circle-mask" style="background-image: url(assets/img/avatar_2x.png)">
+                    <div class="circle-photo" ng-class="{'scaled' : secondStep}"
+                        style="background-image: url({{$root.userData.user_photo}})"></div>
                 </div>
                 <form autocomplete="off" name="loginForm" ng-submit="login(user)" novalidate>
                     <div class="login-parts-wrapper" ng-class="{'second-step' : secondStep}">
@@ -30,8 +31,8 @@
                             </a>
                         </div>
                         <div class="login-part two">
-                            <p class="profile-name single-line">{{user.firstName}}
-                                {{user.lastName}}</p>
+                            <p class="profile-name single-line">{{$root.userData.first_name}}
+                                {{$root.userData.last_name}}</p>
                             <span class="email-display">{{user.email}}</span>
                             <md-input-container>
                                 <label>parola</label>
@@ -53,7 +54,7 @@
                 </md-button>
             </div>
             <p class="create-account">
-                <a href="/account/signup">
+                <a href="/auth/create">
                     Creeaza cont
                 </a>
             </p>

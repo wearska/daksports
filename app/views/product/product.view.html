@@ -1,10 +1,20 @@
 <div class="page-hero">
 
-    <div class="product-gallery" layout>
-        <div class="resting main-image" flex style="background-image: url({{mainView}});"></div>
-        <ul class="image-list" flex="20" layout="column">
-            <li class="resting select-image" flex md-ink-ripple ng-click="setMain(file)" ng-repeat="file in files" style="background-image: url({{file}});"></li>
-        </ul>
+<!-- Slider -->
+    <div class="hero-slider">
+        <gd-slider class="gd-slider ar_16-9" interval='3000'>
+            <div class="gd-slides" ng-controller="GdSlider" ng-mouseleave="playSlider()" ng-mouseover="pauseSlider()">
+                <gd-slide class="gd-slide ar_16-9" gd-slide-src="{{file}}" ng-repeat="file in files" style="transform:translateX({{$index * 100}}%);"></gd-slide>
+            </div>
+            <div class="gd-slider-controls" ng-mouseleave="playSlider()" ng-mouseover="pauseSlider()">
+                <div class="gd-slider-control prev l-left" md-ink-ripple ng-click="prevSlide()">
+                    <i class="material-icons md-48">&#xE5CB;</i>
+                </div>
+                <div class="gd-slider-control next l-right" md-ink-ripple ng-click="nextSlide()">
+                    <i class="material-icons md-48">&#xE5CC;</i>
+                </div>
+            </div>
+        </gd-slider>
     </div>
 
 </div>
@@ -19,7 +29,7 @@
                 <a class="product-category" href="/store/apps/category/GAME_ADVENTURE">Fotbal/Tricouri</a>
                 <div class="details-actions">
                     <form name="orderForm" ng-submit="orderProduct(order)" novalidate>
-                        <div class="" layout="row">
+                        <div class="" layout="column" layout-gt-sm="row">
                             <md-input-container class="item-size" flex flex-gt-md="20">
                                 <label>Selecteaza marime</label>
                                 <md-select aria-label="Size select" ng-model="order.size" required>
@@ -72,7 +82,7 @@
                             </md-icon>
                         </md-button>
                     </gd-heading>
-                    <md-content class="text-body" md-scroll-y>{{product.desc}}</md-content>
+                    <md-content class="text-body" md-scroll-y>{{product.description}}</md-content>
                 </div>
                 <div class="details-section-divider"></div>
             </div>
@@ -80,7 +90,7 @@
     </div>
 
 <!-- Others also bought -->
-    <gd-carousel data="products" lg="5" limit="10" md="4" sm="3" start="0" title="Altii au mai cumparat" xs="2"></gd-carousel>
+    <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" start="0" title="Altii au mai cumparat" xs="2"></gd-carousel>
 
 <!-- Similar products -->
-    <gd-carousel data="products" lg="5" limit="10" md="4" sm="3" start="0" title="Produse similare" xs="2"></gd-carousel>
+    <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" start="0" title="Produse similare" xs="2"></gd-carousel>

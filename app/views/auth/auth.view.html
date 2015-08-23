@@ -1,4 +1,6 @@
 <div class="page-hero">
+<!-- Nav -->
+
 <!-- Slider -->
     <div class="hero-slider">
         <gd-slider class="gd-slider ar_16-9">
@@ -15,25 +17,6 @@
             </div>
         </gd-slider>
     </div>
+
 </div>
-<gd-heading title="Cosul tau de cumparaturi">
-    <a href="#" md-button class="md-primary md-icon-button cart-heading-button">
-        <md-tooltip>
-            Vezi toate
-        </md-tooltip>
-        <md-icon>
-            <i class="material-icons">&#xE5C3;</i>
-        </md-icon>
-    </a>
-</gd-heading>
-
-<gd-cart></gd-cart>
-
-<!-- Others also bought -->
-<gd-carousel limit="10" lg="5" md="4" sm="3" xs="2" start="0" data="$root.products" title="Altii au mai cumparat"></gd-carousel>
-
-<!-- Similar products -->
-<gd-carousel limit="10" lg="5" md="4" sm="3" xs="2" start="0" data="$root.products" title="Produse similare"></gd-carousel>
-
-<!-- Recommended -->
-<gd-carousel limit="10" lg="5" md="4" sm="3" xs="2" start="0" data="$root.products" title="Produse recomandate"></gd-carousel>
+<div id="account-wrapper" class="paper resting" ui-view=""></div>

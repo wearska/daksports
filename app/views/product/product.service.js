@@ -5,7 +5,7 @@
     .module('daksportsApp')
     .factory('productRes', ['$http', function productResFactory($http) {
 
-      var api = 'api/';
+      var api = 'api/products/';
       var obj = {};
 
       obj.query = function() {

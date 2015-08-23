@@ -4,10 +4,10 @@
 <!-- Slider -->
     <div class="hero-slider">
         <gd-slider class="gd-slider ar_16-9">
-            <div ="playSlider()" class="gd-slides" ng-controller="GdSlider" ng-mouseleave ng-mouseover="pauseSlider()">
+            <div class="gd-slides" ng-controller="GdSlider" ng-mouseleave="playSlider()" ng-mouseover="pauseSlider()">
                 <gd-slide class="gd-slide ar_16-9" gd-slide-src="{{slide}}" ng-repeat="slide in slides" style="transform:translateX({{$index * 100}}%);"></gd-slide>
             </div>
-            <div ="playSlider()" class="gd-slider-controls" ng-mouseleave ng-mouseover="pauseSlider()">
+            <div class="gd-slider-controls" ng-mouseleave="playSlider()" ng-mouseover="pauseSlider()">
                 <div class="gd-slider-control prev l-left" md-ink-ripple ng-click="prevSlide()">
                     <i class="material-icons md-48">&#xE5CB;</i>
                 </div>
@@ -26,12 +26,12 @@
 </div>
 
 <!-- Recommended -->
-<gd-carousel limit="10" lg="5" md="4" sm="3" xs="2" start="0" data="products" title="Produse recomandate"></gd-carousel>
+<gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" start="0" title="Produse recomandate" xs="2"></gd-carousel>
 
 <!-- Promos -->
-<gd-heading title="Promotionale" subtitle="Nu pierde cele mai bune oferte!"></gd-heading>
+<gd-heading subtitle="Nu pierde cele mai bune oferte!" title="Promotionale"></gd-heading>
 <div class="gd-banner-container" layout-gt-sm="row" layout="column">
-    <gd-card card-resource="products[13]" flex flex-gt-sm="50" flex-gt-md="33" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
-    <gd-card card-resource="products[22]" flex flex-gt-sm="50" flex-gt-md="33" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
-    <gd-card card-resource="products[25]" flex flex-gt-sm="50" flex-gt-md="33" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
+    <gd-card card-resource="$root.products[13]" flex flex-gt-md="33" flex-gt-sm="50" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
+    <gd-card card-resource="$root.products[22]" flex flex-gt-md="33" flex-gt-sm="50" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
+    <gd-card card-resource="$root.products[25]" flex flex-gt-md="33" flex-gt-sm="50" gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
 </div>

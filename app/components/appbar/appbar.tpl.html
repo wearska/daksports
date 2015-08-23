@@ -26,8 +26,8 @@
             <i class="material-icons search-icon">&#xE8B6;</i>
         </div>
         <div class="material-one-right" flex-gt-md="25">
-            <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" md-button ng-href="/account/dashboard" ng-if="logged" style="background-image: url({{userData.user_photo}})" ng-click="logout()"></div>
-            <a aria-label="Login or Sign up" class="md-icon-button l-right" md-button ng-href="/account/login" ng-if="!logged">
+            <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" md-button ng-href="/account/dashboard" ng-if="$root.logged" style="background-image: url({{$root.userData.user_photo}})" ng-click="logout()"></div>
+            <a aria-label="Login or Sign up" class="md-icon-button l-right" md-button ng-href="/auth/login" ng-if="!$root.logged">
                 <md-tooltip>
                     Cont
                 </md-tooltip>

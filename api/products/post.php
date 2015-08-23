@@ -15,8 +15,15 @@ $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
     @$name = $request->name;
     @$subname = $request->subname;
+    @$brand = $request->brand;
+    @$main_cat = $request->main_cat;
+    @$sub_cat = $request->sub_cat;
     @$slug = "slug";
     @$price = $request->price;
+    @$promo = $request->promo;
+    @$promo_price = $request->promo_price;
+    @$promo_stock = $request->promo_stock;
+    @$promo_end = $request->propmo_end;
     @$excerpt = $request->excerpt;
     @$desc = $request->desc;
     @$inv = $request->inv;
@@ -27,8 +34,8 @@ $postdata = file_get_contents("php://input");
     @$file4 = $request->file4;
     @$file5 = $request->file5;
 
-$sql = "INSERT INTO products (name, subname, price, excerpt, description, inv, added, file1, file2, file3, file4, file5)
-VALUES ('$name', '$subname', '$price', '$excerpt', '$desc', '$inv', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
+$sql = "INSERT INTO products (name, subname, brand, main_cat, sub_cat, price, promo, promo_price, promo_stock, promo_end, excerpt, description, inv, added, file1, file2, file3, file4, file5)
+VALUES ('$name', '$subname', '$brand', '$main_cat', '$sub_cat', '$price', '$promo', '$promo_price', '$promo_stock', '$promo_end', '$excerpt', '$description', '$inv', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

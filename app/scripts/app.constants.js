@@ -3,6 +3,6 @@
 
   angular
     .module('daksportsApp')
-    .constant('FIREBASE', 'https://daksports.firebaseio.com');
+    .constant('FIREBASE_URL', 'https://daksports.firebaseio.com');
 
 })();

@@ -72,10 +72,10 @@
     </li>
     <!-- <md-divider></md-divider> -->
     <li class="account-list-item">
-        <a href="/promotii" ng-click="toggleAccount()" ng-if="logged">
+        <a href="/promotii" ng-click="toggleAccount()" ng-if="$root.logged">
             <span class="icon-container">
-                <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" ng-href="/account/dashboard" ng-show="logged" style="background-image: url({{userData.user_photo}})"></div>
-                <i class="material-icons" ng-hide="logged">&#xE853;</i>
+                <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" ng-href="/account/dashboard" ng-show="$root.logged" style="background-image: url({{$root.userData.user_photo}})"></div>
+                <i class="material-icons" ng-hide="$root.logged">&#xE853;</i>
             </span>
             <span class="list-item-title">
                 Contul meu

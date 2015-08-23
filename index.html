@@ -30,7 +30,7 @@
       <md-content layout-padding md-scroll-y id="frontpage">
           <div class="page c-max l-offset-nav">
               <aside>
-                  <nav class="main-nav paper resting" ng-class="{open : $parent.navOpen}" ng-controller="NavCtrl" ng-include="'app/components/navigation/nav.tpl.html'" ng-cloak></nav>
+                  <nav class="main-nav paper resting" ng-class="{open : $parent.navOpen}" ng-controller="NavCtrl" ng-include="'app/components/navigation/nav.tpl.html'" ng-cloak ng-if="!$root.noNav"></nav>
               </aside>
               <main id="main-content" role="main" ui-view></main>
           </div>
@@ -60,41 +60,39 @@
     <!-- build:js scripts/app.js -->
     <!-- inject:js -->
     <script src="app/scripts/app.module.js"></script>
-    <script src="app/scripts/app.config.js"></script>
-    <script src="app/scripts/app.constants.js"></script>
-    <script src="app/scripts/app.controller.js"></script>
-    <script src="app/scripts/app.filters.js"></script>
-    <script src="app/scripts/app.route.js"></script>
-    <script src="app/scripts/app.run.js"></script>
-    <script src="app/scripts/app.service.js"></script>
-    <script src="app/partials/templateCacheHtml.js"></script>
-    <script src="app/components/appbar/appbar.controller.js"></script>
-    <script src="app/components/auth/auth.controller.js"></script>
-    <script src="app/components/auth/auth.factory.js"></script>
-    <script src="app/components/auth/upload.directive.js"></script>
-    <script src="app/components/banner/banner.controller.js"></script>
-    <script src="app/components/banner/banner.directive.js"></script>
-    <script src="app/components/card/card.controller.js"></script>
-    <script src="app/components/card/card.directive.js"></script>
-    <script src="app/components/carousel/carousel.controller.js"></script>
-    <script src="app/components/carousel/carousel.directive.js"></script>
-    <script src="app/components/cluster/cluster.controller.js"></script>
-    <script src="app/components/cluster/cluster.directive.js"></script>
-    <script src="app/components/filter/filters.controller.js"></script>
-    <script src="app/components/heading/heading.directive.js"></script>
-    <script src="app/components/navigation/nav.controller.js"></script>
-    <script src="app/components/navigation/nav.factory.js"></script>
-    <script src="app/components/slider/slider.controller.js"></script>
-    <script src="app/components/slider/slider.directive.js"></script>
-    <script src="app/views/account/account.controller.js"></script>
-    <script src="app/views/admin/add-product.controller.js"></script>
-    <script src="app/views/admin/admin.controller.js"></script>
-    <script src="app/views/admin/edit-product.controller.js"></script>
-    <script src="app/views/cart/cart.controller.js"></script>
-    <script src="app/views/cart/cart.extension.js"></script>
-    <script src="app/views/cart/cart.factory.js"></script>
-    <script src="app/views/main/main.controller.js"></script>
+    <script src="app/views/product/product.service.js"></script>
     <script src="app/views/product/product.controller.js"></script>
+    <script src="app/views/main/main.controller.js"></script>
+    <script src="app/views/cart/cart.factory.js"></script>
+    <script src="app/views/cart/cart.extension.js"></script>
+    <script src="app/views/cart/cart.controller.js"></script>
+    <script src="app/views/auth/upload.directive.js"></script>
+    <script src="app/views/auth/auth.service.js"></script>
+    <script src="app/views/auth/auth.controller.js"></script>
+    <script src="app/views/admin/edit-product.controller.js"></script>
+    <script src="app/views/admin/admin.controller.js"></script>
+    <script src="app/views/admin/add-product.controller.js"></script>
+    <script src="app/components/slider/slider.directive.js"></script>
+    <script src="app/components/slider/slider.controller.js"></script>
+    <script src="app/components/navigation/nav.factory.js"></script>
+    <script src="app/components/navigation/nav.controller.js"></script>
+    <script src="app/components/heading/heading.directive.js"></script>
+    <script src="app/components/filter/filters.controller.js"></script>
+    <script src="app/components/cluster/cluster.directive.js"></script>
+    <script src="app/components/cluster/cluster.controller.js"></script>
+    <script src="app/components/carousel/carousel.directive.js"></script>
+    <script src="app/components/carousel/carousel.controller.js"></script>
+    <script src="app/components/card/card.directive.js"></script>
+    <script src="app/components/card/card.controller.js"></script>
+    <script src="app/components/banner/banner.directive.js"></script>
+    <script src="app/components/banner/banner.controller.js"></script>
+    <script src="app/components/appbar/appbar.controller.js"></script>
+    <script src="app/scripts/app.run.js"></script>
+    <script src="app/scripts/app.route.js"></script>
+    <script src="app/scripts/app.filters.js"></script>
+    <script src="app/scripts/app.controller.js"></script>
+    <script src="app/scripts/app.constants.js"></script>
+    <script src="app/scripts/app.config.js"></script>
     <!-- endinject -->
 
     <!-- inject:partials -->

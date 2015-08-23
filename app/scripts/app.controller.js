@@ -6,6 +6,7 @@
     .controller('AppCtrl', function($http, $rootScope, $scope, $filter, $location, productRes, Auth) {
       // Products
       $scope.products = {};
+      $rootScope.noNav = false;
 
       function setFavourite(id) {
         var product = $filter('filter')($scope.products, function(d) {
@@ -43,29 +44,6 @@
             return error;
           });
       }
-
-      Auth.$onAuth(function(authData) {
-        if (authData) {
-          // get user stored data
-          $http.get('api/accounts/getuserdata.php?email=' + authData.password.email)
-            .then(function(response) {
-              $scope.userData = response.data;
-              $rootScope.userData = response.data;
-              getFavs(response.data.id);
-            }).catch(function(error) {
-              $scope.userData = {};
-              $rootScope.userData = {};
-              return error;
-            });
-          $scope.logged = true;
-          $rootScope.logged = true;
-        } else {
-          $scope.userData = {};
-          $rootScope.userData = {};
-          $scope.logged = false;
-          $rootScope.logged = false;
-        }
-      });
 
       $scope.logout = function() {
         Auth.$unauth();
