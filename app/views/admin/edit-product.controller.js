@@ -17,7 +17,7 @@
           $scope.products = response[0];
           // Reset object
           var reset = {
-            submissionDate: new Date(response[0].added),
+            added: new Date(response[0].added),
             name: response[0].name,
             subname: response[0].subname,
             price: parseFloat(response[0].price),
@@ -150,8 +150,8 @@
         }];
         tempuploader.uploadItem(0);
         firstChanged = true;
-        var year = $filter('date')($scope.product.submissionDate, 'yy'),
-          month = $filter('date')($scope.product.submissionDate, 'MM'),
+        var year = $filter('date')($scope.product.added, 'yy'),
+          month = $filter('date')($scope.product.added, 'MM'),
           filename = uploader1.queue[uploader1.queue.length - 1].file.name,
           value = 'uploads/' + year + '/' + month + '/' + filename;
         value = value.replace(/\s+/g, '_');
@@ -160,8 +160,8 @@
       uploader1.onBeforeUploadItem = function(item) {
         item.formData = [];
         uploader1.formData = [{
-          year: $filter('date')($scope.product.submissionDate, 'yy'),
-          month: $filter('date')($scope.product.submissionDate, 'MM')
+          year: $filter('date')($scope.product.added, 'yy'),
+          month: $filter('date')($scope.product.added, 'MM')
         }];
         uploader1.queue[uploader1.queue.length - 1].url = 'api/products/upload.php';
         Array.prototype.push.apply(item.formData, uploader1.formData);
@@ -181,8 +181,8 @@
         }];
         tempuploader.uploadItem(0);
         secondChanged = true;
-        var year = $filter('date')($scope.product.submissionDate, 'yy'),
-          month = $filter('date')($scope.product.submissionDate, 'MM'),
+        var year = $filter('date')($scope.product.added, 'yy'),
+          month = $filter('date')($scope.product.added, 'MM'),
           filename = uploader2.queue[uploader2.queue.length - 1].file.name,
           value = 'uploads/' + year + '/' + month + '/' + filename;
         value = value.replace(/\s+/g, '_');
@@ -191,8 +191,8 @@
       uploader2.onBeforeUploadItem = function(item) {
         item.formData = [];
         uploader2.formData = [{
-          year: $filter('date')($scope.product.submissionDate, 'yy'),
-          month: $filter('date')($scope.product.submissionDate, 'MM')
+          year: $filter('date')($scope.product.added, 'yy'),
+          month: $filter('date')($scope.product.added, 'MM')
         }];
         uploader2.queue[uploader2.queue.length - 1].url = 'api/products/upload.php';
         Array.prototype.push.apply(item.formData, uploader2.formData);
@@ -212,8 +212,8 @@
         }];
         tempuploader.uploadItem(0);
         thirdChanged = true;
-        var year = $filter('date')($scope.product.submissionDate, 'yy'),
-          month = $filter('date')($scope.product.submissionDate, 'MM'),
+        var year = $filter('date')($scope.product.added, 'yy'),
+          month = $filter('date')($scope.product.added, 'MM'),
           filename = uploader3.queue[uploader3.queue.length - 1].file.name,
           value = 'uploads/' + year + '/' + month + '/' + filename;
         value = value.replace(/\s+/g, '_');
@@ -222,8 +222,8 @@
       uploader3.onBeforeUploadItem = function(item) {
         item.formData = [];
         uploader3.formData = [{
-          year: $filter('date')($scope.product.submissionDate, 'yy'),
-          month: $filter('date')($scope.product.submissionDate, 'MM')
+          year: $filter('date')($scope.product.added, 'yy'),
+          month: $filter('date')($scope.product.added, 'MM')
         }];
         uploader3.queue[uploader3.queue.length - 1].url = 'api/products/upload.php';
         Array.prototype.push.apply(item.formData, uploader3.formData);
@@ -243,8 +243,8 @@
         }];
         tempuploader.uploadItem(0);
         fourthChanged = true;
-        var year = $filter('date')($scope.product.submissionDate, 'yy'),
-          month = $filter('date')($scope.product.submissionDate, 'MM'),
+        var year = $filter('date')($scope.product.added, 'yy'),
+          month = $filter('date')($scope.product.added, 'MM'),
           filename = uploader4.queue[uploader4.queue.length - 1].file.name,
           value = 'uploads/' + year + '/' + month + '/' + filename;
         value = value.replace(/\s+/g, '_');
@@ -253,8 +253,8 @@
       uploader4.onBeforeUploadItem = function(item) {
         item.formData = [];
         uploader4.formData = [{
-          year: $filter('date')($scope.product.submissionDate, 'yy'),
-          month: $filter('date')($scope.product.submissionDate, 'MM')
+          year: $filter('date')($scope.product.added, 'yy'),
+          month: $filter('date')($scope.product.added, 'MM')
         }];
         uploader4.queue[uploader4.queue.length - 1].url = 'api/products/upload.php';
         Array.prototype.push.apply(item.formData, uploader4.formData);
@@ -274,8 +274,8 @@
         }];
         tempuploader.uploadItem(0);
         fifthChanged = true;
-        var year = $filter('date')($scope.product.submissionDate, 'yy'),
-          month = $filter('date')($scope.product.submissionDate, 'MM'),
+        var year = $filter('date')($scope.product.added, 'yy'),
+          month = $filter('date')($scope.product.added, 'MM'),
           filename = uploader5.queue[uploader5.queue.length - 1].file.name,
           value = 'uploads/' + year + '/' + month + '/' + filename;
         value = value.replace(/\s+/g, '_');
@@ -284,8 +284,8 @@
       uploader5.onBeforeUploadItem = function(item) {
         item.formData = [];
         uploader5.formData = [{
-          year: $filter('date')($scope.product.submissionDate, 'yy'),
-          month: $filter('date')($scope.product.submissionDate, 'MM')
+          year: $filter('date')($scope.product.added, 'yy'),
+          month: $filter('date')($scope.product.added, 'MM')
         }];
         uploader5.queue[uploader5.queue.length - 1].url = 'api/products/upload.php';
         Array.prototype.push.apply(item.formData, uploader5.formData);
@@ -329,7 +329,7 @@
             'file3': product.file3,
             'file4': product.file4,
             'file5': product.file5,
-            'added': product.submissionDate
+            'added': product.added
           }
           $scope.upload();
           $http.post("api/put.php?id=" + $stateParams.productId, data)

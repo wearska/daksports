@@ -16,15 +16,15 @@
         return $http.get(api + 'get.php?id=' + id);
       };
 
-      obj.post = function() {
-        return $http.post(api + 'post.php').then(function(results) {
+      obj.post = function(data) {
+        return $http.post(api + 'post.php', data).then(function(results) {
           return results;
         });
       };
 
-      obj.put = function(id) {
-        return $http.post(api + 'put.php?id=' + id).then(function(status) {
-          return status.data;
+      obj.put = function(data) {
+        return $http.post(api + 'put.php', data).then(function(results) {
+          return results;
         });
       };
 

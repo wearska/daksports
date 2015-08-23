@@ -25,8 +25,8 @@
             <div class="info-container">
                 <h1 class="product-title">{{product.name}}</h1>
                 <p class="product-subtitle">{{product.subname}}</p>
-                <a class="product-brand" href="">Nike</a>
-                <a class="product-category" href="/store/apps/category/GAME_ADVENTURE">Fotbal/Tricouri</a>
+                <a class="product-brand" href="">{{product.brand | uppercase}}</a>
+                <a class="product-category" href="">{{product.main_cat}} / {{product.sub_cat}}</a>
                 <div class="details-actions">
                     <form name="orderForm" ng-submit="orderProduct(order)" novalidate>
                         <div class="" layout="column" layout-gt-sm="row">

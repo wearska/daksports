@@ -11,16 +11,22 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$id = $_GET['id'];
-
 $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
+    @$id = $request->id;
     @$name = $request->name;
     @$subname = $request->subname;
+    @$brand = $request->brand;
+    @$main_cat = $request->main_cat;
+    @$sub_cat = $request->sub_cat;
     @$slug = "slug";
     @$price = $request->price;
+    @$promo = $request->promo;
+    @$promo_price = $request->promo_price;
+    @$promo_stock = $request->promo_stock;
+    @$promo_end = $request->propmo_end;
     @$excerpt = $request->excerpt;
-    @$desc = $request->desc;
+    @$desc = $request->description;
     @$inv = $request->inv;
     @$added = $request->added;
     @$file1 = $request->file1;

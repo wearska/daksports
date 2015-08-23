@@ -25,7 +25,7 @@ $postdata = file_get_contents("php://input");
     @$promo_stock = $request->promo_stock;
     @$promo_end = $request->propmo_end;
     @$excerpt = $request->excerpt;
-    @$desc = $request->desc;
+    @$desc = $request->description;
     @$inv = $request->inv;
     @$added = $request->added;
     @$file1 = $request->file1;
@@ -34,11 +34,17 @@ $postdata = file_get_contents("php://input");
     @$file4 = $request->file4;
     @$file5 = $request->file5;
 
-$sql = "INSERT INTO products (name, subname, brand, main_cat, sub_cat, price, promo, promo_price, promo_stock, promo_end, excerpt, description, inv, added, file1, file2, file3, file4, file5)
-VALUES ('$name', '$subname', '$brand', '$main_cat', '$sub_cat', '$price', '$promo', '$promo_price', '$promo_stock', '$promo_end', '$excerpt', '$description', '$inv', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
+$sql = "INSERT INTO products (name, subname, brand, main_cat, sub_cat, price, promo, promo_price, promo_stock, promo_end, excerpt, description, inv, added, file1, file2, file3, file4, file5) VALUES ('$name', '$subname', '$brand', '$main_cat', '$sub_cat', '$price', '$promo', '$promo_price', '$promo_stock', '$promo_end', '$excerpt', '$desc', '$inv', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
+
+$response = "SELECT LAST_INSERT_ID();";
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    // echo "New record created successfully";
+    $res = $conn->query($response);
+    while($row=mysqli_fetch_array($res)){
+            $result = $row['LAST_INSERT_ID()'];
+        }
+    echo($result);
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

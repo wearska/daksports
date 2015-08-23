@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('AddCtrl', function($scope, $http, $filter, $parse, FileUploader, $interval) {
+        .controller('AddCtrl', function($scope, $http, $filter, $parse, FileUploader, $interval, productRes) {
 
             var firstDone = false,
                 secondDone = false,
@@ -28,22 +28,22 @@
                 sub_cat: "Skate",
                 age: 0,
                 gender: 0,
-                file1: "/uploads/placeholder.png",
-                file2: "/uploads/placeholder.png",
-                file3: "/uploads/placeholder.png",
-                file4: "/uploads/placeholder.png",
-                file5: "/uploads/placeholder.png",
+                file1: "uploads/placeholder.png",
+                file2: "uploads/placeholder.png",
+                file3: "uploads/placeholder.png",
+                file4: "uploads/placeholder.png",
+                file5: "uploads/placeholder.png",
                 added: new Date(),
                 favourite: ""
             };
 
             // Temp object
             var tempreset = {
-                photo1: '/uploads/placeholder.png',
-                photo2: '/uploads/placeholder.png',
-                photo3: '/uploads/placeholder.png',
-                photo4: '/uploads/placeholder.png',
-                photo5: '/uploads/placeholder.png'
+                photo1: 'uploads/placeholder.png',
+                photo2: 'uploads/placeholder.png',
+                photo3: 'uploads/placeholder.png',
+                photo4: 'uploads/placeholder.png',
+                photo5: 'uploads/placeholder.png'
             }
 
             // Initial state
@@ -63,6 +63,20 @@
                 "Alergare",
                 "Accesorii"
             ];
+            
+            function rename(file){
+                var n = file.lastIndexOf('/');
+                return [file.slice(0, n+1), $scope.product.id + '/', file.slice(n+1)].join('');
+            }
+            
+            function setFiles(){
+                $scope.product.file1 = rename($scope.product.file1);
+                $scope.product.file2 = rename($scope.product.file2);
+                $scope.product.file3 = rename($scope.product.file3);
+                $scope.product.file4 = rename($scope.product.file4);
+                $scope.product.file5 = rename($scope.product.file5);
+                productRes.put($scope.product);
+            }
 
             //Reset form
             $scope.resetForm = function() {
@@ -157,7 +171,7 @@
             tempuploader.onCompleteItem = function(fileItem, response, status, headers) {
                 console.log(fileItem.formData[0].uploader);
                 var uploaderNo = fileItem.formData[0].uploader;
-                var photoSrc = '/uploads/temp/' + fileItem.file.name;
+                var photoSrc = 'uploads/temp/' + fileItem.file.name;
                 var str = 'temp.photo' + uploaderNo;
                 var model = $parse(str);
                 model.assign($scope, photoSrc);
@@ -174,12 +188,19 @@
                     uploader: '1'
                 }];
                 tempuploader.uploadItem(0);
+                var year = $filter('date')($scope.product.added, 'yy'),
+                  month = $filter('date')($scope.product.added, 'MM'),
+                  filename = uploader1.queue[uploader1.queue.length - 1].file.name,
+                  value = 'uploads/' + year + '/' + month + '/' + filename;
+                value = value.replace(/\s+/g, '_');
+                $scope.product.file1 = value;
             };
             uploader1.onBeforeUploadItem = function(item) {
                 item.formData = [];
                 uploader1.formData = [{
                     year: $filter('date')($scope.product.added, 'yy'),
-                    month: $filter('date')($scope.product.added, 'MM')
+                    month: $filter('date')($scope.product.added, 'MM'),
+                    id: $scope.product.id
                 }];
                 uploader1.queue[uploader1.queue.length - 1].url = 'api/products/upload.php';
                 Array.prototype.push.apply(item.formData, uploader1.formData);
@@ -200,12 +221,19 @@
                     uploader: '2'
                 }];
                 tempuploader.uploadItem(0);
+                var year = $filter('date')($scope.product.added, 'yy'),
+                  month = $filter('date')($scope.product.added, 'MM'),
+                  filename = uploader2.queue[uploader2.queue.length - 1].file.name,
+                  value = 'uploads/' + year + '/' + month + '/' + filename;
+                value = value.replace(/\s+/g, '_');
+                $scope.product.file2 = value;
             };
             uploader2.onBeforeUploadItem = function(item) {
                 item.formData = [];
                 uploader2.formData = [{
                     year: $filter('date')($scope.product.added, 'yy'),
-                    month: $filter('date')($scope.product.added, 'MM')
+                    month: $filter('date')($scope.product.added, 'MM'),
+                    id: $scope.product.id
                 }];
                 uploader2.queue[uploader2.queue.length - 1].url = 'api/products/upload.php';
                 Array.prototype.push.apply(item.formData, uploader2.formData);
@@ -226,12 +254,19 @@
                     uploader: '3'
                 }];
                 tempuploader.uploadItem(0);
+                var year = $filter('date')($scope.product.added, 'yy'),
+                  month = $filter('date')($scope.product.added, 'MM'),
+                  filename = uploader3.queue[uploader3.queue.length - 1].file.name,
+                  value = 'uploads/' + year + '/' + month + '/' + filename;
+                value = value.replace(/\s+/g, '_');
+                $scope.product.file3 = value;
             };
             uploader3.onBeforeUploadItem = function(item) {
                 item.formData = [];
                 uploader3.formData = [{
                     year: $filter('date')($scope.product.added, 'yy'),
-                    month: $filter('date')($scope.product.added, 'MM')
+                    month: $filter('date')($scope.product.added, 'MM'),
+                    id: $scope.product.id
                 }];
                 uploader3.queue[uploader3.queue.length - 1].url = 'api/products/upload.php';
                 Array.prototype.push.apply(item.formData, uploader3.formData);
@@ -252,12 +287,19 @@
                     uploader: '4'
                 }];
                 tempuploader.uploadItem(0);
+                var year = $filter('date')($scope.product.added, 'yy'),
+                  month = $filter('date')($scope.product.added, 'MM'),
+                  filename = uploader4.queue[uploader4.queue.length - 1].file.name,
+                  value = 'uploads/' + year + '/' + month + '/' + filename;
+                value = value.replace(/\s+/g, '_');
+                $scope.product.file4 = value;
             };
             uploader4.onBeforeUploadItem = function(item) {
                 item.formData = [];
                 uploader4.formData = [{
                     year: $filter('date')($scope.product.added, 'yy'),
-                    month: $filter('date')($scope.product.added, 'MM')
+                    month: $filter('date')($scope.product.added, 'MM'),
+                    id: $scope.product.id
                 }];
                 uploader4.queue[uploader4.queue.length - 1].url = 'api/products/upload.php';
                 Array.prototype.push.apply(item.formData, uploader4.formData);
@@ -278,12 +320,19 @@
                     uploader: '5'
                 }];
                 tempuploader.uploadItem(0);
+                var year = $filter('date')($scope.product.added, 'yy'),
+                  month = $filter('date')($scope.product.added, 'MM'),
+                  filename = uploader5.queue[uploader5.queue.length - 1].file.name,
+                  value = 'uploads/' + year + '/' + month + '/' + filename;
+                value = value.replace(/\s+/g, '_');
+                $scope.product.file5 = value;
             };
             uploader5.onBeforeUploadItem = function(item) {
                 item.formData = [];
                 uploader5.formData = [{
                     year: $filter('date')($scope.product.added, 'yy'),
-                    month: $filter('date')($scope.product.added, 'MM')
+                    month: $filter('date')($scope.product.added, 'MM'),
+                    id: $scope.product.id
                 }];
                 uploader5.queue[uploader5.queue.length - 1].url = 'api/products/upload.php';
                 Array.prototype.push.apply(item.formData, uploader5.formData);
@@ -297,18 +346,28 @@
             $scope.upload = function() {
                 if (uploader1.queue.length) {
                     uploader1.uploadItem(uploader1.queue.length - 1);
+                }else{
+                    firstDone = true;
                 }
                 if (uploader2.queue.length) {
                     uploader2.uploadItem(uploader2.queue.length - 1);
+                }else{
+                    secondDone = true;
                 }
                 if (uploader3.queue.length) {
                     uploader3.uploadItem(uploader3.queue.length - 1);
+                }else{
+                    thirdDone = true;
                 }
                 if (uploader4.queue.length) {
                     uploader4.uploadItem(uploader4.queue.length - 1);
+                }else{
+                    fourthDone = true;
                 }
                 if (uploader5.queue.length) {
                     uploader5.uploadItem(uploader5.queue.length - 1);
+                }else{
+                    fifthDone = true;
                 }
             }
 
@@ -333,25 +392,28 @@
                         'promo_end': product.promo_end,
                         'excerpt': product.excerpt,
                         'desc': product.description,
-                        // 'file1': product.file1,
-                        // 'file2': product.file2,
-                        // 'file3': product.file3,
-                        // 'file4': product.file4,
-                        // 'file5': product.file5,
+                        'file1': product.file1,
+                        'file2': product.file2,
+                        'file3': product.file3,
+                        'file4': product.file4,
+                        'file5': product.file5,
                         'added': product.added,
                         'favourite': null
                     }
 
-                    // if (!product.files.file1) {
-                    //     $scope.resetForm();
-                    // }
-                    // $http.post("api/post.php", data)
-                    //     .success(function(data) {
-                    //         console.log("new product added");
-                    //     });
-                    // $scope.upload();
+                    if (!product.file1) {
+                        $scope.resetForm();
+                    }
+                    productRes.post($scope.product)
+                    .then(function(response) {
+                        console.log(response.data);
+                        product.id = response.data;
+                        setFiles();
+                        $scope.upload();
+                    }).catch(function(error) {
+                        return error;
+                    });
                     
-                    console.log(data);
                 } else {
                     $scope.productForm.submitted = true;
                 }
