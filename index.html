@@ -12,6 +12,7 @@
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css" />
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -29,7 +30,7 @@
       <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'app/components/appbar/appbar.tpl.html'"></header>
       <md-content layout-padding md-scroll-y id="frontpage">
           <div class="page c-max l-offset-nav">
-              <aside>
+              <aside ng-cloak>
                   <nav class="main-nav paper resting" ng-class="{open : $parent.navOpen}" ng-controller="NavCtrl" ng-include="'app/components/navigation/nav.tpl.html'" ng-cloak ng-if="!$root.noNav"></nav>
               </aside>
               <main id="main-content" role="main" ui-view></main>
@@ -53,6 +54,7 @@
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/ngcart/dist/ngCart.js"></script>
+    <script src="bower_components/material-design-lite/material.min.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -69,9 +71,10 @@
     <script src="app/views/auth/upload.directive.js"></script>
     <script src="app/views/auth/auth.service.js"></script>
     <script src="app/views/auth/auth.controller.js"></script>
-    <script src="app/views/admin/edit-product.controller.js"></script>
-    <script src="app/views/admin/admin.controller.js"></script>
-    <script src="app/views/admin/add-product.controller.js"></script>
+    <script src="app/views/admin/admin.view.controller.js"></script>
+    <script src="app/views/admin/admin.list.controller.js"></script>
+    <script src="app/views/admin/admin.edit.controller.js"></script>
+    <script src="app/views/admin/admin.add.controller.js"></script>
     <script src="app/components/slider/slider.directive.js"></script>
     <script src="app/components/slider/slider.controller.js"></script>
     <script src="app/components/navigation/nav.factory.js"></script>

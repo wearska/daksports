@@ -17,7 +17,7 @@
                     <md-input-container>
                         <label>Brand</label>
                         <md-select ng-model="product.brand">
-                            <md-option ng-repeat="brand in brands" value="{{brand}}">{{brand}}</md-option>
+                            <md-option ng-repeat="brand in $root.brands" value="{{brand}}">{{brand}}</md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container flex>
@@ -30,7 +30,7 @@
                     <md-input-container>
                         <label>Categorie</label>
                         <md-select ng-model="product.main_cat">
-                            <md-option ng-repeat="cat in main_cats" value="{{cat}}">{{cat}}</md-option>
+                            <md-option ng-repeat="cat in $root.main_cats" value="{{cat}}">{{cat}}</md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container flex>

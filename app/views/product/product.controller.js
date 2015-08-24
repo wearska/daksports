@@ -31,7 +31,6 @@
                             value = value.replace(/(\.[\w\d_-]+)$/i, '_medium$1');
                             var model = $parse(key);
                             model.assign($scope.files, value);
-                            console.log($scope);
                         }
                     });
                     $scope.product.sizes = [

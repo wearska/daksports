@@ -12,20 +12,20 @@
 
             // Reset object
             var reset = {
-                name: "Pantofi skate",
-                subname: "Reebok Rcf Lite Tr Poly",
+                name: "",
+                subname: "",
                 slug: "",
-                price: 299.99,
-                inv: 23,
-                promo: 1,
-                promo_price: 259.99,
-                promo_stock: 10,
+                price: 0,
+                inv: 0,
+                promo: 0,
+                promo_price: 0,
+                promo_stock: 0,
                 promo_end: new Date(),
-                excerpt: "Reebok Rcf Lite Tr Poly sunt un must-have al oricarui impatimit de miscare!",
-                description: "Imbinand standardul de confort cu un stil cat se poate de cool, pantofii sport Reebok Rcf Lite Tr Poly sunt un must-have al oricarui impatimit de miscare! Material: exterior - material textil; interior - material textil; talpa - cauciuc. Culoare: albastru (Navy) cu elemente de design albe si albastre. Ortholite: gratie acestei tehnologii moderne, acesti pantofi sport iti asigura un confort sporit, impiedica aparitia transpiratiei si are agenti antimicrobieni. Gulerul inalt si captuseala vor transforma fiecare antrenament intr-o adevarata placere. Pe una dintre partile laterale, pantofii dispun de doua perforatii, lasandu-ti piciorul sa respire in voie. Talpa este una speciala, asigurand stabilitatea picioarelor tale indiferent de suprafata pe care mergi. Datorita design-ului inedit al pantofilor, te vei bucura de aprecierile celor din jur si de un oufit sport autentic.",
-                brand: "Reebok",
-                main_cat: "Outdoor",
-                sub_cat: "Skate",
+                excerpt: "",
+                description: "",
+                brand: "",
+                main_cat: "",
+                sub_cat: "",
                 age: 0,
                 gender: 0,
                 file1: "uploads/placeholder.png",
@@ -49,26 +49,12 @@
             // Initial state
             $scope.product = angular.copy(reset);
             $scope.temp = angular.copy(tempreset);
-            $scope.brands = [
-                "Adidas",
-                "Puma",
-                "Nike",
-                "Reebok",
-                "Le Coq Sportif"
-            ];
-            $scope.main_cats = [
-                "Sporturi",
-                "Outdoor",
-                "Fitness",
-                "Alergare",
-                "Accesorii"
-            ];
-            
+
             function rename(file){
                 var n = file.lastIndexOf('/');
                 return [file.slice(0, n+1), $scope.product.id + '/', file.slice(n+1)].join('');
             }
-            
+
             function setFiles(){
                 $scope.product.file1 = rename($scope.product.file1);
                 $scope.product.file2 = rename($scope.product.file2);
@@ -413,7 +399,7 @@
                     }).catch(function(error) {
                         return error;
                     });
-                    
+
                 } else {
                     $scope.productForm.submitted = true;
                 }

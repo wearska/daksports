@@ -14,7 +14,7 @@
                     product.favourite = true;
                 };
 
-                // CHECK AUTH 
+                // CHECK AUTH
                 authObj.$onAuth(function(authData) {
                     if (authData) {
                         // get user stored data
