@@ -52,6 +52,7 @@
                     </md-input-container>
                 </div>
             </div>
+            <br/>
             <md-input-container flex>
                 <label>Descriere scurta</label>
                 <input md-maxlength="80" ng-model="product.excerpt">
@@ -83,7 +84,7 @@
             </div>
 <!-- <md-divider></md-divider> -->
             <h2 class="md-headline" style="margin-top: 32px;">Setari promo</h2>
-            <md-switch aria-label="is promo" name="promo" ng-model="product.promo" ng-true-value="1" ng-false-value="0"></md-switch>
+            <md-switch aria-label="is promo" name="promo" ng-false-value="0" ng-model="product.promo" ng-true-value="1"></md-switch>
             <div layout="column">
 
                 <md-input-container flex>

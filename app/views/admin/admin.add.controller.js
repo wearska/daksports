@@ -80,7 +80,7 @@
 
             // Uploaders
             var tempuploader = $scope.tempuploader = new FileUploader({
-                url: 'api/uploadtemp.php',
+                url: 'api/products/uploadtemp.php',
                 formData: []
             });
             var uploader1 = $scope.uploader1 = new FileUploader({
@@ -158,6 +158,7 @@
                 console.log(fileItem.formData[0].uploader);
                 var uploaderNo = fileItem.formData[0].uploader;
                 var photoSrc = 'uploads/temp/' + fileItem.file.name;
+                photoSrc = photoSrc.replace(/\s+/g, '_');
                 var str = 'temp.photo' + uploaderNo;
                 var model = $parse(str);
                 model.assign($scope, photoSrc);
@@ -210,7 +211,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                   month = $filter('date')($scope.product.added, 'MM'),
                   filename = uploader2.queue[uploader2.queue.length - 1].file.name,
-                  value = 'uploads/' + year + '/' + month + '/' + filename;
+                  value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file2 = value;
             };
@@ -243,7 +244,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                   month = $filter('date')($scope.product.added, 'MM'),
                   filename = uploader3.queue[uploader3.queue.length - 1].file.name,
-                  value = 'uploads/' + year + '/' + month + '/' + filename;
+                  value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file3 = value;
             };
@@ -276,7 +277,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                   month = $filter('date')($scope.product.added, 'MM'),
                   filename = uploader4.queue[uploader4.queue.length - 1].file.name,
-                  value = 'uploads/' + year + '/' + month + '/' + filename;
+                  value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file4 = value;
             };
@@ -309,7 +310,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                   month = $filter('date')($scope.product.added, 'MM'),
                   filename = uploader5.queue[uploader5.queue.length - 1].file.name,
-                  value = 'uploads/' + year + '/' + month + '/' + filename;
+                  value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file5 = value;
             };
@@ -355,39 +356,12 @@
                 }else{
                     fifthDone = true;
                 }
-            }
+            };
 
             $scope.insertProduct = function(product) {
                 if ($scope.productForm.$valid) {
-                    //console.log(product);
-                    //make the call
-                    var product = $scope.product;
-                    // (product.promo) ? product.promo = 1 : product.promo = 0;
-                    var data = {
-                        'name': product.name,
-                        'subname': product.subname,
-                        'slug': product.slug,
-                        'brand': product.brand,
-                        'main_cat': product.main_cat,
-                        'sub_cat': product.sub_cat,
-                        'inv': product.inv,
-                        'price': product.price,
-                        'promo': product.promo,
-                        'promo_price': product.promo_price,
-                        'promo_stock': product.promo_stock,
-                        'promo_end': product.promo_end,
-                        'excerpt': product.excerpt,
-                        'desc': product.description,
-                        'file1': product.file1,
-                        'file2': product.file2,
-                        'file3': product.file3,
-                        'file4': product.file4,
-                        'file5': product.file5,
-                        'added': product.added,
-                        'favourite': null
-                    }
 
-                    if (!product.file1) {
+                    if (!$scope.product.file1) {
                         $scope.resetForm();
                     }
                     productRes.post($scope.product)
