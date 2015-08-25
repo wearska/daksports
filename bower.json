@@ -38,7 +38,6 @@
     "firebase": "~2.2.9",
     "angularfire": "~1.1.2",
     "ngcart": "~1.0.0",
-    "material-design-lite": "~1.0.4",
     "angular-material": "~0.10.1"
   },
   "devDependencies": {

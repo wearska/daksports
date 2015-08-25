@@ -30,8 +30,6 @@
       $scope.cartItemsCount = ngCart.getTotalItems() + "";
       $scope.$on('ngCart:change', function(event, data) {
         $scope.cartItemsCount = ngCart.getTotalItems() + "";
-        console.log(event);
-        console.log(ngCart.isEmpty());
       });
 
     });

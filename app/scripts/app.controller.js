@@ -40,6 +40,10 @@
                     return error;
                 });
 
+            $scope.logout = function(){
+                Auth.$unauth();
+            };
+
         });
 
 })();

@@ -67,12 +67,12 @@ ul.cart-list {
             display: inline-block;
             vertical-align: middle;
             padding: 16px 0;
-            line-height: 32px;
+            line-height: 48px;
             font-size: 24px;
             font-weight: 300;
         }
         .sort-title {
-            
+
         }
         .sort-quantity {
             padding: 16px 8px;
@@ -85,6 +85,7 @@ ul.cart-list {
             float: right;
             text-align: right;
             margin-right: 16px;
+            line-height: 48px;
         }
         .cart-clear,
         .back-to-shop {
@@ -103,7 +104,7 @@ ul.cart-list {
         &.grey {
             background-color: #fafafa;
         }
-        
+
         // border-bottom: 1px solid rgba(0,0,0,.06);
         .item-image {
             width: 64px;
@@ -127,7 +128,7 @@ ul.cart-list {
             }
         }
         .order-info {
-            
+
             // width: 96px;
             .item-qty,
             .item-price {

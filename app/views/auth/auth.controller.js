@@ -126,7 +126,7 @@
                 };
                 $scope.logout = function() {
                     $scope.loginForm.submitted = true;
-                    Auth.unauth();
+                    Auth.$unauth();
                 };
 
                 // create process

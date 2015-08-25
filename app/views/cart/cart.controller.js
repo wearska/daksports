@@ -12,9 +12,6 @@
       $scope.$on('ngCart:change', function(event, data) {
         $scope.getShipping();
       });
-      $scope.sayThis = function() {
-        console.log("data");
-      };
 
       console.log(cart.cartItems);
       $scope.cartItems = cart.cartItems;

@@ -5,7 +5,7 @@ require_once('../config.php');
 
 $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
-    @$userid = $request->uid;
+    @$userid = $request->userid;
     @$productid = $request->productid;
 
 $sql = "INSERT INTO favourites (userid, productid)

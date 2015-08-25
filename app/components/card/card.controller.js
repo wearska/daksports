@@ -43,7 +43,7 @@
           userid: $rootScope.userData.id,
           productid: productid
         };
-        $http.post('api/postuserfav.php', data)
+        $http.post('api/accounts/postuserfav.php', data)
           .then(function(response) {
             console.log(response)
           }).catch(function(error) {

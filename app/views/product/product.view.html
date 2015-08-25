@@ -26,10 +26,12 @@
                 <h1 class="product-title">{{product.name}}</h1>
                 <p class="product-subtitle">{{product.subname}}</p>
                 <a class="product-brand" href="">{{product.brand | uppercase}}</a>
-                <a class="product-category" href="">{{product.main_cat}} / {{product.sub_cat}}</a>
+                <a class="product-category" href="">{{product.main_cat}}
+                    /
+                    {{product.sub_cat}}</a>
                 <div class="details-actions">
                     <form name="orderForm" ng-submit="orderProduct(order)" novalidate>
-                        <div class="" layout="column" layout-gt-sm="row">
+                        <div class="" layout-gt-sm="row" layout="column">
                             <md-input-container class="item-size" flex flex-gt-md="20">
                                 <label>Selecteaza marime</label>
                                 <md-select aria-label="Size select" ng-model="order.size" required>
@@ -44,15 +46,36 @@
                             </md-input-container>
                             <md-input-container class="item-count" flex flex-gt-md="10">
                                 <label>Cantitate</label>
-                                <input name="itemCount" ng-model="order.count" step="any" type="number">
+                                <input name="itemCount" ng-model="order.quantity" step="any" type="number">
                                 <div ng-messages="productForm.promoprice.$error" ng-show="orderForm.itemCount.$invalid && orderForm.itemCount.$dirty">
                                     <div ng-message="number">Doar cifrele sunt permise</div>
                                 </div>
                             </md-input-container>
                         </div>
-                        <md-button aria-label="Comment" class="md-fab add-to-cart" ng-disabled="!orderForm.$valid">
+<!-- ng-disabled="!orderForm.$valid" -->
+<!-- <md-button aria-label="Add to cart" class="md-fab add-to-cart" md-theme="brand">
                             <md-icon md-svg-src="assets//icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
-                        </md-button>
+                        </md-button> -->
+
+                        <md-fab-speed-dial class="add-to-cart md-scale" md-direction="{{selectedDirection}}" md-open="isOpen" ng-click="sayCount()">
+                            <md-fab-trigger>
+                                <md-button aria-label="Order actions" class="md-fab md-primary" md-theme="brand">
+                                    <md-icon md-svg-src="assets//icons/ic_add_white_24px.svg"></md-icon>
+                                </md-button>
+                            </md-fab-trigger>
+                            <md-fab-actions>
+                                <!-- <gd-addtocart class="price-container" data="product" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="{{ order.count | number }}"> -->
+                                    <md-button aria-label="Add to cart" class="md-fab md-primary md-raised md-mini" ng-click="addToCart(order)">
+                                        <md-icon md-svg-src="assets//icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
+                                    </md-button>
+                                <!-- </gd-addtocart> -->
+                                <md-button aria-label="Add to cart" class="md-fab md-primary md-raised md-mini" ng-click="postFav(product.id)">
+                                    <md-icon md-svg-src="assets//icons/ic_favorite_border_white_24px.svg" ng-show="$root.logged && !product.favourite"></md-icon>
+                                    <md-icon md-svg-src="assets//icons/ic_favorite_white_24px.svg" ng-show="$root.logged && product.favourite"></md-icon>
+                                </md-button>
+                            </md-fab-actions>
+                        </md-fab-speed-dial>
+
                     </div>
                     <div class="details-stock">
                         <div class="stock-info-img"></div>

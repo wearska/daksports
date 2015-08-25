@@ -92,6 +92,10 @@
                 .item-count {
                     margin-right: 16px;
                 }
+                .gd-white{
+                    background-color: #fff;
+                    margin-left: 8px;
+                }
             }
             .details-stock {
                 color: #737373;
@@ -124,8 +128,8 @@
             .add-to-cart {
                 position: absolute;
                 bottom: 0;
-                right: 4px;
-                transform: translateY(50%);
+                right: 0;
+                transform: translateY(-8px);
                 z-index: 1;
                 will-change: background-color, box-shadow;
                 transition: background-color 0.55s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -321,7 +325,7 @@
                 font-size: 28px;
             }
             .text-body {
-                
+
             }
         }
     }

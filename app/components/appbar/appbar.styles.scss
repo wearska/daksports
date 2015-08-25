@@ -1,11 +1,11 @@
-.md-button {
-  margin: 0;
-}
 .app-bar {
   height: 56px;
   min-height: 56px;
   padding: 0;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+  .md-button {
+    margin: 0;
+  }
   &.main-bar {
 
     // background-color: #201f1f;
