@@ -92,9 +92,16 @@
                 .item-count {
                     margin-right: 16px;
                 }
-                .gd-white{
-                    background-color: #fff;
-                    margin-left: 8px;
+                .actions-trigger{
+                    .plus-icon{
+                        transition: transform .28s cubic-bezier(0.25, 0.8, 0.25, 1);
+                        transform: rotate(0);
+                    }
+                    &:hover {
+                        .plus-icon{
+                            transform: rotate(180deg);
+                        }
+                    }
                 }
             }
             .details-stock {

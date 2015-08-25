@@ -13,6 +13,17 @@
                     })[0];
                     product.favourite = true;
                 };
+                
+                function setTypes(item) {
+                    item.added = new Date(item.added);
+                    item.inv = parseFloat(item.inv);
+                    item.price = parseFloat(item.price);
+                    item.promo = parseFloat(item.promo);
+                    item.promo_price = parseFloat(item.promo_price);
+                    item.promo_stock = parseFloat(item.promo_stock);
+                    (item.tags) ? item.tags = item.tags.split(',') : item.tags = [];
+                    (angular.isDate(item.promo_end)) ?  item.promo_end = item.promo_end : item.promo_end = new Date(item.promo_end);
+                }
 
                 // CHECK AUTH
                 authObj.$onAuth(function(authData) {
@@ -29,6 +40,9 @@
                                                 $rootScope.products = response.data;
                                                 angular.forEach($rootScope.userData.favs, function(value, key) {
                                                     setFavourite(value);
+                                                });
+                                                angular.forEach($rootScope.products, function(value, key) {
+                                                    setTypes(value);
                                                 });
                                             }).catch(function(error) {
                                                 return error;
@@ -48,6 +62,9 @@
                         productRes.query()
                             .then(function(response) {
                                 $rootScope.products = response.data;
+                                angular.forEach($rootScope.products, function(value, key) {
+                                    setTypes(value);
+                                });
                             }).catch(function(error) {
                                 return error;
                             });

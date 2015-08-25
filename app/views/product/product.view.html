@@ -54,24 +54,24 @@
                         </div>
 <!-- ng-disabled="!orderForm.$valid" -->
 <!-- <md-button aria-label="Add to cart" class="md-fab add-to-cart" md-theme="brand">
-                            <md-icon md-svg-src="assets//icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
+                            <md-icon md-svg-src="assets/icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
                         </md-button> -->
 
                         <md-fab-speed-dial class="add-to-cart md-scale" md-direction="{{selectedDirection}}" md-open="isOpen" ng-click="sayCount()">
                             <md-fab-trigger>
-                                <md-button aria-label="Order actions" class="md-fab md-primary" md-theme="brand">
-                                    <md-icon md-svg-src="assets//icons/ic_add_white_24px.svg"></md-icon>
+                                <md-button aria-label="Order actions" class="md-fab md-primary actions-trigger" md-theme="brand">
+                                    <md-icon md-svg-src="assets/icons/ic_add_white_24px.svg" class="plus-icon"></md-icon>
                                 </md-button>
                             </md-fab-trigger>
                             <md-fab-actions>
                                 <!-- <gd-addtocart class="price-container" data="product" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="{{ order.count | number }}"> -->
                                     <md-button aria-label="Add to cart" class="md-fab md-primary md-raised md-mini" ng-click="addToCart(order)">
-                                        <md-icon md-svg-src="assets//icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
+                                        <md-icon md-svg-src="assets/icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
                                     </md-button>
                                 <!-- </gd-addtocart> -->
-                                <md-button aria-label="Add to cart" class="md-fab md-primary md-raised md-mini" ng-click="postFav(product.id)">
-                                    <md-icon md-svg-src="assets//icons/ic_favorite_border_white_24px.svg" ng-show="$root.logged && !product.favourite"></md-icon>
-                                    <md-icon md-svg-src="assets//icons/ic_favorite_white_24px.svg" ng-show="$root.logged && product.favourite"></md-icon>
+                                <md-button aria-label="Add to cart" class="md-fab md-primary md-raised md-mini" ng-show="$root.logged" ng-click="postFav(product.id)">
+                                    <md-icon md-svg-src="assets/icons/ic_favorite_border_white_24px.svg" ng-show="!product.favourite"></md-icon>
+                                    <md-icon md-svg-src="assets/icons/ic_favorite_white_24px.svg" ng-show="product.favourite"></md-icon>
                                 </md-button>
                             </md-fab-actions>
                         </md-fab-speed-dial>

@@ -1,87 +1,90 @@
 <div class="wrapper l-offset-nav">
     <md-content class="paper resting" layout-padding>
-        <h2 class="md-headline" style="margin-top: 32px;">Detalii produs</h2>
         <form name="productForm" ng-submit="updateProduct(product)" novalidate>
-            <div layout layout-sm="column">
-                <md-input-container flex>
-                    <label>Nume produs</label>
-                    <input ng-model="product.name">
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Sub-nume</label>
-                    <input ng-model="product.subname">
-                </md-input-container>
-            </div>
-            <div layout layout-sm="column">
-                <div flex layout>
-                    <md-input-container>
-                        <label>Brand</label>
-                        <md-select ng-model="product.brand">
-                            <md-option ng-repeat="brand in $root.brands" value="{{brand}}">{{brand}}</md-option>
-                        </md-select>
+            <section>
+                <h2 class="md-headline" style="margin-top: 32px;">Detalii produs</h2>
+                <div layout layout-sm="column">
+                    <md-input-container flex>
+                        <label>Nume produs</label>
+                        <input ng-model="product.name">
                     </md-input-container>
                     <md-input-container flex>
-                        <label>Adauga un brand</label>
-                        <input ng-model="product.brand">
+                        <label>Sub-nume</label>
+                        <input ng-model="product.subname">
                     </md-input-container>
                 </div>
-                <span flex="5"></span>
-                <div flex layout>
-                    <md-input-container>
-                        <label>Categorie</label>
-                        <md-select ng-model="product.main_cat">
-                            <md-option ng-repeat="cat in $root.main_cats" value="{{cat}}">{{cat}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container flex>
-                        <label>Adauga o categorie</label>
-                        <input ng-model="product.main_cat">
-                    </md-input-container>
-                </div>
-                <span flex="5"></span>
-                <div flex layout>
-                    <md-input-container>
-                        <label>Sub-categorie</label>
-                        <md-select ng-model="product.sub_cat">
-                            <md-option ng-repeat="cat in sub_cats" value="{{cat}}">{{cat}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container flex>
-                        <label>Adauga o sub-categorie</label>
-                        <input ng-model="product.sub_cat">
-                    </md-input-container>
-                </div>
-            </div>
-            <md-input-container flex>
-                <label>Descriere scurta</label>
-                <input md-maxlength="80" ng-model="product.excerpt">
-            </md-input-container>
-            <md-input-container flex>
-                <label>Descriere</label>
-                <textarea columns="1" ng-model="product.description"></textarea>
-            </md-input-container>
-            <div layout layout-sm="column">
-                <md-input-container flex>
-                    <label>Pret (RON)</label>
-                    <input name="price" ng-model="product.price" required step="any" type="number">
-                    <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
-                        <div ng-message="required">Introduceti un pret</div>
-                        <div ng-message="number">Doar cifrele sunt permise</div>
+                <div layout layout-sm="column">
+                    <div flex layout>
+                        <md-input-container>
+                            <label>Brand</label>
+                            <md-select ng-model="product.brand">
+                                <md-option ng-repeat="brand in $root.brands" value="{{brand}}">{{brand}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Adauga un brand</label>
+                            <input ng-model="product.brand">
+                        </md-input-container>
                     </div>
+                    <span flex="5"></span>
+                    <div flex layout>
+                        <md-input-container>
+                            <label>Categorie</label>
+                            <md-select ng-model="product.main_cat">
+                                <md-option ng-repeat="cat in $root.main_cats" value="{{cat}}">{{cat}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Adauga o categorie</label>
+                            <input ng-model="product.main_cat">
+                        </md-input-container>
+                    </div>
+                    <span flex="5"></span>
+                    <div flex layout>
+                        <md-input-container>
+                            <label>Sub-categorie</label>
+                            <md-select ng-model="product.sub_cat">
+                                <md-option ng-repeat="cat in sub_cats" value="{{cat}}">{{cat}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Adauga o sub-categorie</label>
+                            <input ng-model="product.sub_cat">
+                        </md-input-container>
+                    </div>
+                </div>
+                <md-chips delete-button-label="Sterge Tag" delete-hint="Apasa delete ca sa stergi tag" ng-if="ready" ng-model="product.tags" placeholder="Introdu un Tag" readonly="false" secondary-placeholder="+Tag"></md-chips>
+                <br>
+                <md-input-container flex>
+                    <label>Descriere scurta</label>
+                    <input md-maxlength="80" ng-model="product.excerpt">
                 </md-input-container>
                 <md-input-container flex>
-                    <label>Inventar pornire</label>
-                    <input name="inv" ng-model="product.inv" required step="any" type="number">
-                    <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
-                        <div ng-message="number">Doar cifrele sunt permise</div>
-                    </div>
+                    <label>Descriere</label>
+                    <textarea columns="1" ng-model="product.description"></textarea>
                 </md-input-container>
-                <md-input-container flex="">
-                    <label>Data publicarii</label>
-                    <input ng-model="product.added" type="date">
-                </md-input-container>
-            </div>
-<!-- <md-divider></md-divider> -->
+                <div layout layout-sm="column">
+                    <md-input-container flex>
+                        <label>Pret (RON)</label>
+                        <input name="price" ng-model="product.price" required step="any" type="number">
+                        <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
+                            <div ng-message="required">Introduceti un pret</div>
+                            <div ng-message="number">Doar cifrele sunt permise</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Inventar pornire</label>
+                        <input name="inv" ng-model="product.inv" required step="any" type="number">
+                        <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
+                            <div ng-message="number">Doar cifrele sunt permise</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container flex="">
+                        <label>Data publicarii</label>
+                        <input ng-model="product.added" type="date">
+                    </md-input-container>
+                </div>
+            </section>
             <h2 class="md-headline" style="margin-top: 32px;">Setari promo</h2>
             <md-switch aria-label="is promo" name="promo" ng-false-value="0" ng-model="product.promo" ng-true-value="1"></md-switch>
             <div layout="column">
@@ -98,7 +101,7 @@
 
                     <div flex="40" layout="column">
                         <div flex layout layout-align="start center">
-                            <md-checkbox aria-label="is promo" name="promostockcheck" ng-disabled="!product.promo" ng-model="product.promoStockCheck" ng-true-value="1" ng-false-value="0">
+                            <md-checkbox aria-label="is promo" name="promostockcheck" ng-disabled="!product.promo" ng-false-value="0" ng-model="product.promoStockCheck" ng-true-value="1">
                                 Promo pe stoc definit
                             </md-checkbox>
                         </div>
@@ -112,7 +115,7 @@
                     </div>
                     <div flex="40" layout="column" offset-gt-sm="20">
                         <div flex layout layout-align="start center">
-                            <md-checkbox aria-label="is promo" name="promodatecheck" ng-disabled="!product.promo" ng-model="product.promoDateCheck" ng-true-value="1" ng-false-value="0">
+                            <md-checkbox aria-label="is promo" name="promodatecheck" ng-disabled="!product.promo" ng-false-value="0" ng-model="product.promoDateCheck" ng-true-value="1">
                                 Promo pe perioada definita
                             </md-checkbox>
                         </div>
