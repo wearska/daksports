@@ -7,6 +7,17 @@
             $scope.$on('$destroy', function() {
                 $rootScope.noNav = false;
             });
+            $scope.colours = [
+                'black',
+                'white',
+                'red',
+                'yellow',
+                'blue',
+                'green',
+                'orange',
+                'teal',
+                'magenta'
+            ];
         });
 
 })();

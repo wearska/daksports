@@ -12,6 +12,7 @@
             // Initial state
             $scope.product = {};
             $scope.ready = false;
+            $scope.buttonTitle = "Editeaza Produs";
 
             function setTypes() {
                 $scope.product.added = new Date($scope.product.added);
@@ -21,6 +22,7 @@
                 $scope.product.promo_price = parseFloat($scope.product.promo_price);
                 $scope.product.promo_stock = parseFloat($scope.product.promo_stock);
                 ($scope.product.tags) ? $scope.product.tags = $scope.product.tags.split(', '): $scope.product.tags = [];
+                ($scope.product.colours) ? $scope.product.colours = $scope.product.colours.split(', '): $scope.product.colours = [];
                 ($scope.product.promo_end) ? $scope.product.promo_end = new Date($scope.product.promo_end): $scope.product.promo_end = $scope.product.promo_end;
                 $scope.ready = true;
             }
@@ -30,6 +32,7 @@
                     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
                 });
             };
+
 
             function catsCheck(cat) {
                 var bool = false;
@@ -59,6 +62,20 @@
                 } else {
                     //do nothing yet
                 };
+            }
+
+            $scope.addColour = function(ev, colour) {
+                console.log(ev);
+                var el = angular.element(ev.currentTarget);
+                if (el.hasClass("active")) {
+                    el.removeClass("active");
+                    var index =  $scope.product.colours.indexOf(colour);
+                    $scope.product.colours.splice(index, 1);
+                }else{
+                    el.addClass("active");
+                    $scope.product.colours.push(colour);
+                }
+                console.log($scope.product.colours);
             }
 
             productRes.get($stateParams.productId)
@@ -366,6 +383,7 @@
                     catsUpdate();
                     $scope.putData = angular.copy($scope.product);
                     $scope.putData.tags = $scope.putData.tags.join(", ");
+                    $scope.putData.colours = $scope.putData.colours.join(", ");
                     //make the call
                     console.log($scope.putData.promo_end);
                     productRes.put($scope.putData)

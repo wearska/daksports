@@ -50,6 +50,7 @@
             // Initial state
             $scope.product = angular.copy(reset);
             $scope.temp = angular.copy(tempreset);
+            $scope.buttonTitle = "Adauga Produs";
 
             function rename(file) {
                 var n = file.lastIndexOf('/');

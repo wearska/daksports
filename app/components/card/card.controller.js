@@ -31,6 +31,9 @@
                 $scope.orderUp = !$scope.orderUp;
             };
 
+            // UPDATE PRICE
+            // ($scope.item.promo_price) ? $scope.promo_price = $scope.promo_price : $scope.promo_price = $scope.price;
+
             // ADD TO CART
             $scope.inCart = false;
             $scope.addToCart = function() {
