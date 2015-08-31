@@ -2,15 +2,16 @@
 <!-- Nav -->
 </div>
 
-<gd-cluster
-     data="products"
-     type="carousel"
-     title="Produse recomandate"
-     subtitle="O lista a produselor recomandate de Daksports"
-     limit="10"
-     start="0"
-     xs="2"
-     sm="3"
-     md="4"
-     lg="5">
-</gd-cluster>
+
+<div class="gd-cluster-wrapper">
+    <div class="gd-cluster">
+        <gd-heading subtitle="Nu pierde cele mai bune oferte!" title="Promotionale"></gd-heading>
+        <div class="gd-lane-button prev"></div>
+        <div class="gd-lane-content prev">
+            <div class="gd-lane-item" ng-repeat="item in products">
+                    <gd-card card-resource="item"></gd-card>
+            </div>
+        </div>
+        <div class="gd-lane-button next"></div>
+    </div>
+</div>

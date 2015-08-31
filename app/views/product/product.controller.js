@@ -60,7 +60,7 @@
                     $scope.product = response.data[0];
                     // SET SLIDE LENGTH
                     angular.forEach($scope.product, function(value, key) {
-                        if (value !== '' & key.indexOf("file") !== -1) {
+                        if (key.indexOf("file") !== -1 && value.indexOf("placeholder") == -1) {
                             i++;
                             $scope.sliderLength = i;
                             value = value.replace(/(\.[\w\d_-]+)$/i, '_medium$1');

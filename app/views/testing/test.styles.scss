@@ -1,0 +1,11 @@
+.gd-cluster-wrapper{
+    position: relative;
+    display: block;
+    .gd-lane-item{
+        padding: 8px;
+        width: 20%;
+        min-width: 188px;
+        max-width: 224px;
+        display: inline-block;
+    }
+}

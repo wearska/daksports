@@ -11,6 +11,7 @@
                 fifthChanged = false;
             // Initial state
             $scope.product = {};
+            $scope.productForm = {};
             $scope.ready = false;
             $scope.buttonTitle = "Editeaza Produs";
 
@@ -19,7 +20,9 @@
                 $scope.product.inv = parseFloat($scope.product.inv);
                 $scope.product.price = parseFloat($scope.product.price);
                 $scope.product.promo = parseFloat($scope.product.promo);
+                $scope.product.published = parseFloat($scope.product.published);
                 $scope.product.promo_price = parseFloat($scope.product.promo_price);
+                $scope.product.promo_stock = parseFloat($scope.product.promo_stock);
                 $scope.product.promo_stock = parseFloat($scope.product.promo_stock);
                 ($scope.product.tags) ? $scope.product.tags = $scope.product.tags.split(', '): $scope.product.tags = [];
                 ($scope.product.colours) ? $scope.product.colours = $scope.product.colours.split(', '): $scope.product.colours = [];
@@ -64,19 +67,6 @@
                 };
             }
 
-            $scope.addColour = function(ev, colour) {
-                console.log(ev);
-                var el = angular.element(ev.currentTarget);
-                if (el.hasClass("active")) {
-                    el.removeClass("active");
-                    var index =  $scope.product.colours.indexOf(colour);
-                    $scope.product.colours.splice(index, 1);
-                }else{
-                    el.addClass("active");
-                    $scope.product.colours.push(colour);
-                }
-                console.log($scope.product.colours);
-            }
 
             productRes.get($stateParams.productId)
                 .then(function(response) {
@@ -378,18 +368,19 @@
             };
 
             $scope.putData = {};
-            $scope.updateProduct = function(product) {
+            $scope.submitProduct = function(product) {
                 if ($scope.productForm.$valid) {
                     catsUpdate();
                     $scope.putData = angular.copy($scope.product);
                     $scope.putData.tags = $scope.putData.tags.join(", ");
                     $scope.putData.colours = $scope.putData.colours.join(", ");
                     //make the call
-                    console.log($scope.putData.promo_end);
                     productRes.put($scope.putData)
                         .then(function(response) {
-                            // $location.path('admin/list');
                             $scope.upload();
+                            $location.path('/admin/list');
+                        }).catch(function(error) {
+                            return error;
                         });
                 } else {
                     $scope.productForm.submitted = true;

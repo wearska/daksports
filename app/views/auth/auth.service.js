@@ -19,9 +19,11 @@
                     item.inv = parseFloat(item.inv);
                     item.price = parseFloat(item.price);
                     item.promo = parseFloat(item.promo);
+                    item.published = parseFloat(item.published);
                     item.promo_price = parseFloat(item.promo_price);
                     item.promo_stock = parseFloat(item.promo_stock);
                     (item.tags) ? item.tags = item.tags.split(',') : item.tags = [];
+                    (item.colours) ? item.colours = item.colours.split(',') : item.colours = [];
                     (angular.isDate(item.promo_end)) ?  item.promo_end = item.promo_end : item.promo_end = new Date(item.promo_end);
                 }
 

@@ -1,0 +1,57 @@
+<md-content class="md-padding">
+    <md-input-container class="filter-field">
+        <md-icon>
+            <i class="material-icons">&#xE8B6;</i>
+        </md-icon>
+        <input ng-model="search">
+        <md-icon ng-click="clearSearch()" ng-show="search.length" style="left:100%; cursor: pointer;">
+            <i class="material-icons">&#xE14C;</i>
+        </md-icon>
+    </md-input-container>
+    <ul class="list-view" layout-align="center" layout="column">
+        <li class="list-item" layout="row" ng-repeat="product in products | searchAdminList : search | limitTo : displayLimit : displayPage">
+            <div class="list-header">
+                <div class="bubble" style="background-color: #b1deda;background-image: url({{product.file1}});"></div>
+            </div>
+            <div class="list-detail" flex>
+                <h3 class="name single-line">{{product.name}}</h3>
+                <p class="subname single-line">{{product.subname}}</p>
+                <p class="cats single-line">{{product.brand}}
+                    /
+                    {{product.main_cat}}
+                    /
+                    {{product.sub_cat}}</p>
+            </div>
+            <div class="list-actions">
+                <md-button aria-label="Remove" class="md-icon-button l-right" ng-click="removeProduct(product)">
+                    <md-icon>
+                        <i class="material-icons">&#xE872;</i>
+                    </md-icon>
+                </md-button>
+                <md-button ng-if="product.published" aria-label="Unpublish" class="md-icon-button l-right" ng-click="product.published = !product.published">
+                    <md-icon>
+                        <i class="material-icons" style="color:#00B16A;">&#xE862;</i>
+                    </md-icon>
+                </md-button>
+                <md-button ng-if="!product.published" aria-label="Publish" class="md-icon-button l-right" ng-click="product.published = !product.published">
+                    <md-icon>
+                        <i class="material-icons" style="color:#FF2929">&#xE85F;</i>
+                    </md-icon>
+                </md-button>
+                
+                <div class="gd-separator"></div>
+                
+                <a class="md-icon-button l-right" md-button ng-href="/admin/edit/{{product.id}}">
+                    <md-icon>
+                        <i class="material-icons">&#xE254;</i>
+                    </md-icon>
+                </a>
+                <a class="md-icon-button l-right" md-button ng-href="/product/{{product.id}}">
+                    <md-icon>
+                        <i class="material-icons">&#xE89E;</i>
+                    </md-icon>
+                </a>
+            </div>
+        </li>
+    </ul>
+</md-content>

@@ -29,6 +29,7 @@
                 tags: [],
                 age: 0,
                 gender: 0,
+                colours: [],
                 file1: "uploads/placeholder.png",
                 file2: "uploads/placeholder.png",
                 file3: "uploads/placeholder.png",
@@ -51,20 +52,24 @@
             $scope.product = angular.copy(reset);
             $scope.temp = angular.copy(tempreset);
             $scope.buttonTitle = "Adauga Produs";
+            $scope.productForm = {};
+            $scope.renameId = "";
 
             function rename(file) {
                 var n = file.lastIndexOf('/');
-                return [file.slice(0, n + 1), $scope.product.id + '/', file.slice(n + 1)].join('');
+                return [file.slice(0, n + 1), $scope.renameId + '/', file.slice(n + 1)].join('');
             }
 
-            function setFiles() {
+            $scope.setFiles = function() {
                 var putData = angular.copy($scope.postData);
-                putData.file1 = rename($scope.product.file1);
-                putData.file2 = rename($scope.product.file2);
-                putData.file3 = rename($scope.product.file3);
-                putData.file4 = rename($scope.product.file4);
-                putData.file5 = rename($scope.product.file5);
+                putData.id = $scope.renameId;
+                putData.file1 = rename(putData.file1);
+                putData.file2 = rename(putData.file2);
+                putData.file3 = rename(putData.file3);
+                putData.file4 = rename(putData.file4);
+                putData.file5 = rename(putData.file5);
                 productRes.put(putData);
+                console.log(putData);
             }
 
             //Reset form
@@ -200,6 +205,12 @@
                 firstDone = true;
                 $scope.resetForm();
             };
+            uploader1.clearThumb = function(){
+                console.log("thumb cleared");
+                tempuploader.clearQueue();
+                $scope.temp.photo1 = 'uploads/placeholder.png';
+                $scope.product.file1 = 'uploads/placeholder.png';
+            };
 
 
             // Uploader2 methods
@@ -214,7 +225,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                     month = $filter('date')($scope.product.added, 'MM'),
                     filename = uploader2.queue[uploader2.queue.length - 1].file.name,
-                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
+                    value = 'uploads/' + year + '/' + month + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file2 = value;
             };
@@ -233,6 +244,11 @@
                 secondDone = true;
                 $scope.resetForm();
             };
+            uploader2.clearThumb = function(){
+                console.log("thumb cleared");
+                $scope.temp.photo2 = 'uploads/placeholder.png';
+                $scope.product.file2 = 'uploads/placeholder.png';
+            };
 
 
             // Uploader3 methods
@@ -247,7 +263,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                     month = $filter('date')($scope.product.added, 'MM'),
                     filename = uploader3.queue[uploader3.queue.length - 1].file.name,
-                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
+                    value = 'uploads/' + year + '/' + month + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file3 = value;
             };
@@ -266,6 +282,11 @@
                 thirdDone = true;
                 $scope.resetForm();
             };
+            uploader3.clearThumb = function(){
+                console.log("thumb cleared");
+                $scope.temp.photo3 = 'uploads/placeholder.png';
+                $scope.product.file3 = 'uploads/placeholder.png';
+            };
 
 
             // Uploader4 methods
@@ -280,7 +301,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                     month = $filter('date')($scope.product.added, 'MM'),
                     filename = uploader4.queue[uploader4.queue.length - 1].file.name,
-                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
+                    value = 'uploads/' + year + '/' + month + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file4 = value;
             };
@@ -299,6 +320,11 @@
                 fourthDone = true;
                 $scope.resetForm();
             };
+            uploader4.clearThumb = function(){
+                console.log("thumb cleared");
+                $scope.temp.photo4 = 'uploads/placeholder.png';
+                $scope.product.file4 = 'uploads/placeholder.png';
+            };
 
 
             // Uploader5 methods
@@ -313,7 +339,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                     month = $filter('date')($scope.product.added, 'MM'),
                     filename = uploader5.queue[uploader5.queue.length - 1].file.name,
-                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
+                    value = 'uploads/' + year + '/' + month + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file5 = value;
             };
@@ -332,52 +358,62 @@
                 fifthDone = true;
                 $scope.resetForm();
             };
+            uploader5.clearThumb = function(){
+                console.log("thumb cleared");
+                $scope.temp.photo5 = 'uploads/placeholder.png';
+                $scope.product.file5 = 'uploads/placeholder.png';
+            };
 
             $scope.upload = function() {
                 if (uploader1.queue.length) {
                     uploader1.uploadItem(uploader1.queue.length - 1);
                 } else {
                     firstDone = true;
+                    $scope.resetForm();
                 }
                 if (uploader2.queue.length) {
                     uploader2.uploadItem(uploader2.queue.length - 1);
                 } else {
                     secondDone = true;
+                    $scope.resetForm();
                 }
                 if (uploader3.queue.length) {
                     uploader3.uploadItem(uploader3.queue.length - 1);
                 } else {
                     thirdDone = true;
+                    $scope.resetForm();
                 }
                 if (uploader4.queue.length) {
                     uploader4.uploadItem(uploader4.queue.length - 1);
                 } else {
                     fourthDone = true;
+                    $scope.resetForm();
                 }
                 if (uploader5.queue.length) {
                     uploader5.uploadItem(uploader5.queue.length - 1);
                 } else {
                     fifthDone = true;
+                    $scope.resetForm();
                 }
             };
 
             $scope.postData = {};
-            $scope.insertProduct = function(product) {
+            $scope.submitProduct = function(product) {
+                console.log($scope.productForm.$valid);
                 if ($scope.productForm.$valid) {
                     $scope.postData =  angular.copy($scope.product);
                     $scope.postData.tags = $scope.postData.tags.join(", ");
-                    if (!$scope.product.file1) {
-                        $scope.resetForm();
-                    }
+                    $scope.postData.colours = $scope.postData.colours.join(", ");
+                    // make the call
                     productRes.post($scope.postData)
                         .then(function(response) {
+                            $scope.renameId = response.data;
                             product.id = response.data;
-                            setFiles();
+                            $scope.setFiles();
                             $scope.upload();
                         }).catch(function(error) {
                             return error;
                         });
-
                 } else {
                     $scope.productForm.submitted = true;
                 }
