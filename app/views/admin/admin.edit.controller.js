@@ -17,16 +17,28 @@
 
             function setTypes() {
                 $scope.product.added = new Date($scope.product.added);
+                // (angular.isDate($scope.product.promo_end)) ? $scope.product.promo_end = new Date($scope.product.promo_end) : $scope.product.promo_end = undefined;
                 $scope.product.inv = parseFloat($scope.product.inv);
                 $scope.product.price = parseFloat($scope.product.price);
                 $scope.product.promo = parseFloat($scope.product.promo);
                 $scope.product.published = parseFloat($scope.product.published);
                 $scope.product.promo_price = parseFloat($scope.product.promo_price);
-                $scope.product.promo_stock = parseFloat($scope.product.promo_stock);
+                if ($scope.product.promo && $scope.product.promo_price) {
+                    console.log("promo");
+                    $scope.product.old_price = $scope.product.price;
+                    $scope.product.new_price = $scope.product.promo_price;
+                }else{
+                    $scope.product.old_price = 0;
+                    $scope.product.new_price = $scope.product.price;
+                };
                 $scope.product.promo_stock = parseFloat($scope.product.promo_stock);
                 ($scope.product.tags) ? $scope.product.tags = $scope.product.tags.split(', '): $scope.product.tags = [];
                 ($scope.product.colours) ? $scope.product.colours = $scope.product.colours.split(', '): $scope.product.colours = [];
-                ($scope.product.promo_end) ? $scope.product.promo_end = new Date($scope.product.promo_end): $scope.product.promo_end = $scope.product.promo_end;
+                // var year = $filter('date')($scope.product.promo_end, 'yy');
+                // var bool = angular.isDate($scope.product.promo_end);
+                // angular.equals(o1, o2);
+                // console.log(bool);
+                // (angular.isDate($scope.product.promo_end)) ? $scope.product.promo_end = new Date($scope.product.promo_end): $scope.product.promo_end = $scope.product.promo_end;
                 $scope.ready = true;
             }
 
@@ -71,8 +83,16 @@
             productRes.get($stateParams.productId)
                 .then(function(response) {
                     $scope.product = response.data[0];
-                    ($scope.product.promo_price != 0) ? $scope.product.promoStockCheck = 1: $scope.product.promoStockCheck = 0;
-                    ($scope.product.promo_end) ? $scope.product.promoDateCheck = 1: $scope.product.promoDateCheck = 0;
+                    ($scope.product.promo_stock != 0) ? $scope.product.promoStockCheck = 1: $scope.product.promoStockCheck = 0;
+                    var notDate = angular.equals($scope.product.promo_end, '0000-00-00 00:00:00');
+                    console.log(notDate);
+                    if(notDate){
+                        $scope.product.promoDateCheck = 0;
+                        $scope.product.promo_end = null;
+                    }else{
+                        $scope.product.promoDateCheck = 1;
+                        $scope.product.promo_end = new Date($scope.product.promo_end);
+                    };
                     setTypes();
 
                     // Set uploader images
@@ -209,6 +229,14 @@
             };
             uploader1.onCompleteAll = function() {
                 uploader1.clearQueue();
+                firstDone = true;
+                $scope.resetForm();
+            };
+            uploader1.clearThumb = function() {
+                console.log("thumb cleared");
+                tempuploader.clearQueue();
+                $scope.temp.photo1 = 'uploads/placeholder.png';
+                $scope.product.file1 = 'uploads/placeholder.png';
             };
 
 
@@ -241,6 +269,14 @@
             };
             uploader2.onCompleteAll = function() {
                 uploader2.clearQueue();
+                firstDone = true;
+                $scope.resetForm();
+            };
+            uploader2.clearThumb = function() {
+                console.log("thumb cleared");
+                tempuploader.clearQueue();
+                $scope.temp.photo2 = 'uploads/placeholder.png';
+                $scope.product.file2 = 'uploads/placeholder.png';
             };
 
 
@@ -273,6 +309,14 @@
             };
             uploader3.onCompleteAll = function() {
                 uploader3.clearQueue();
+                firstDone = true;
+                $scope.resetForm();
+            };
+            uploader3.clearThumb = function() {
+                console.log("thumb cleared");
+                tempuploader.clearQueue();
+                $scope.temp.photo3 = 'uploads/placeholder.png';
+                $scope.product.file3 = 'uploads/placeholder.png';
             };
 
 
@@ -305,6 +349,14 @@
             };
             uploader4.onCompleteAll = function() {
                 uploader4.clearQueue();
+                firstDone = true;
+                $scope.resetForm();
+            };
+            uploader4.clearThumb = function() {
+                console.log("thumb cleared");
+                tempuploader.clearQueue();
+                $scope.temp.photo4 = 'uploads/placeholder.png';
+                $scope.product.file4 = 'uploads/placeholder.png';
             };
 
 
@@ -337,6 +389,14 @@
             };
             uploader5.onCompleteAll = function() {
                 uploader5.clearQueue();
+                firstDone = true;
+                $scope.resetForm();
+            };
+            uploader5.clearThumb = function() {
+                console.log("thumb cleared");
+                tempuploader.clearQueue();
+                $scope.temp.photo5 = 'uploads/placeholder.png';
+                $scope.product.file5 = 'uploads/placeholder.png';
             };
 
             $scope.upload = function() {

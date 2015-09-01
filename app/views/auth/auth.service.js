@@ -13,7 +13,7 @@
                     })[0];
                     product.favourite = true;
                 };
-                
+
                 function setTypes(item) {
                     item.added = new Date(item.added);
                     item.inv = parseFloat(item.inv);
@@ -22,9 +22,16 @@
                     item.published = parseFloat(item.published);
                     item.promo_price = parseFloat(item.promo_price);
                     item.promo_stock = parseFloat(item.promo_stock);
-                    (item.tags) ? item.tags = item.tags.split(',') : item.tags = [];
-                    (item.colours) ? item.colours = item.colours.split(',') : item.colours = [];
-                    (angular.isDate(item.promo_end)) ?  item.promo_end = item.promo_end : item.promo_end = new Date(item.promo_end);
+                    if (item.promo && item.promo_price) {
+                        item.old_price = item.price;
+                        item.new_price = item.promo_price;
+                    }else{
+                        item.old_price = 0;
+                        item.new_price = item.price;
+                    };
+                    (item.tags) ? item.tags = item.tags.split(','): item.tags = [];
+                    (item.colours) ? item.colours = item.colours.split(','): item.colours = [];
+                    (angular.isDate(item.promo_end)) ? item.promo_end = item.promo_end: item.promo_end = new Date(item.promo_end);
                 }
 
                 // CHECK AUTH
@@ -46,6 +53,7 @@
                                                 angular.forEach($rootScope.products, function(value, key) {
                                                     setTypes(value);
                                                 });
+                                                $rootScope.$broadcast('products:filled', {});
                                             }).catch(function(error) {
                                                 return error;
                                             });
@@ -67,6 +75,7 @@
                                 angular.forEach($rootScope.products, function(value, key) {
                                     setTypes(value);
                                 });
+                                $rootScope.$broadcast('products:filled', {});
                             }).catch(function(error) {
                                 return error;
                             });

@@ -1,5 +1,16 @@
 <!-- Detalii produs -->
 <section>
+    <md-autocomplete md-item-text="item.name" md-items="item in querySearch(searchText)" md-menu-class="autocomplete-custom-template" md-min-length="0" md-no-cache="false" md-search-text-change="searchTextChange(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-selected-item="selectedItem" ng-disabled="false" placeholder="Pick an Angular repository">
+        <md-item-template>
+            <span class="item-thumb" style="background-image: url({{item.file1}})"></span>
+            <span class="item-title">
+                {{item.name}}
+            </span>
+            <span class="item-subtitle">
+                {{item.subname}}
+            </span>
+        </md-item-template>
+    </md-autocomplete>
     <h2 class="md-headline" style="margin-top: 32px;">Detalii produs</h2>
     <div layout layout-sm="column">
         <md-input-container flex>
@@ -71,7 +82,7 @@
             </div>
         </md-input-container>
         <md-input-container flex>
-            <label>Inventar pornire</label>
+            <label>Inventar</label>
             <input name="inv" ng-model="product.inv" required step="any" type="number">
             <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
                 <div ng-message="number">Doar cifrele sunt permise</div>
@@ -138,7 +149,7 @@
 <!-- Poze produs -->
 <section>
     <h2 class="md-headline" style="margin-top: 32px;">Adauga poze</h2>
-    <div layout="column">
+    <!-- <div layout="column">
         <md-input-container flex>
             <md-checkbox aria-label="culori disponibile" name="availableColours" ng-false-value="0" ng-model="product.coloursCheck" ng-true-value="1">
                 Disponibil in mai multe culori
@@ -148,7 +159,7 @@
             <div class="paper resting colour-selection" ng-class="{ enabled : product.coloursCheck}" ng-click="addColour($event, colour)" ng-repeat="colour in colours" ng-show="product.coloursCheck" style="background-color: {{colour}}"></div>
         </div>
         <md-chips delete-button-label="Sterge culoare" delete-hint="Apasa delete ca sa stergi culoare" ng-if="ready" ng-model="product.colours" placeholder="Alege o culoare deasupra" readonly="true" secondary-placeholder="+Culoare"></md-chips>
-    </div>
+    </div> -->
     <div ng-include="'app/views/admin/admin.upload.inc.html'"></div>
 </section>
 <!-- Submit -->

@@ -135,7 +135,7 @@
 }
 .list-actions {
     padding: 40px 0;
-    button{
+    button {
         margin: 0;
     }
 }
@@ -158,4 +158,52 @@
     .list-view {
         
     }
+}
+.autocomplete-custom-template li {
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: normal;
+}
+.autocomplete-custom-template li:last-child {
+    border-bottom-width: 0;
+}
+.autocomplete-custom-template .item-thumb{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: block;
+    float: left;
+    margin-right: 16px;
+}
+.autocomplete-custom-template .item-title,{
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 200px;
+    max-height: 36px;
+    min-height: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    position: relative;
+    white-space: nowrap;
+    font-weight: 300;
+}
+.autocomplete-custom-template .item-subtitle{
+    color: #aaa;
+    display: block;
+    font-size: 13px;
+    line-height: 16px;
+    margin: 1px 0;
+    max-width: 132px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.autocomplete-custom-template .item-title md-icon {
+    height: 18px;
+    width: 18px;
 }

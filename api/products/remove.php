@@ -5,7 +5,7 @@ require_once('../config.php');
 
 $id = $_REQUEST['id'];
 
-$conn->query("DELETE * FROM products WHERE id=$id;");
+$conn->query("DELETE FROM products WHERE id=$id;");
 
 $obj = $conn->error;
 if (!$obj){

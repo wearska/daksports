@@ -22,14 +22,14 @@
         </div>
         <div class="card-menu">
             <md-menu md-position-mode="target-right target">
-                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-button type="button" aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                     <md-icon md-menu-origin>
                         <i class="material-icons">&#xE5D4;</i>
                     </md-icon>
                 </md-button>
                 <md-menu-content width="3">
                     <md-menu-item>
-                        <md-button>
+                        <md-button type="button">
                             <div layout="row">
                                 <p flex>Adauga in cos</p>
                                 <md-icon class="md-icon" md-menu-align-target style="margin: auto 0 auto 0;">
@@ -40,7 +40,7 @@
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button>
+                        <md-button type="button">
                             <div layout="row">
                                 <p flex>Adauga la favorite</p>
                                 <md-icon class="md-icon" md-menu-align-target style="margin: auto 0 auto 0;">
@@ -63,7 +63,7 @@
             <div class="current-rating"></div>
         </div>
         <div class="price-container">
-            <div class="price">RON {{product.price}}</div>
+            <div class="price">RON {{product.new_price}}</div>
         </div>
     </div>
 </div>

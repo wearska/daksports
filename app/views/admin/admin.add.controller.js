@@ -36,7 +36,8 @@
                 file4: "uploads/placeholder.png",
                 file5: "uploads/placeholder.png",
                 added: new Date(),
-                favourite: ""
+                favourite: "",
+                published: 1
             };
 
             // Temp object
@@ -49,6 +50,7 @@
             }
 
             // Initial state
+
             $scope.product = angular.copy(reset);
             $scope.temp = angular.copy(tempreset);
             $scope.buttonTitle = "Adauga Produs";
@@ -205,7 +207,7 @@
                 firstDone = true;
                 $scope.resetForm();
             };
-            uploader1.clearThumb = function(){
+            uploader1.clearThumb = function() {
                 console.log("thumb cleared");
                 tempuploader.clearQueue();
                 $scope.temp.photo1 = 'uploads/placeholder.png';
@@ -244,7 +246,7 @@
                 secondDone = true;
                 $scope.resetForm();
             };
-            uploader2.clearThumb = function(){
+            uploader2.clearThumb = function() {
                 console.log("thumb cleared");
                 $scope.temp.photo2 = 'uploads/placeholder.png';
                 $scope.product.file2 = 'uploads/placeholder.png';
@@ -282,7 +284,7 @@
                 thirdDone = true;
                 $scope.resetForm();
             };
-            uploader3.clearThumb = function(){
+            uploader3.clearThumb = function() {
                 console.log("thumb cleared");
                 $scope.temp.photo3 = 'uploads/placeholder.png';
                 $scope.product.file3 = 'uploads/placeholder.png';
@@ -320,7 +322,7 @@
                 fourthDone = true;
                 $scope.resetForm();
             };
-            uploader4.clearThumb = function(){
+            uploader4.clearThumb = function() {
                 console.log("thumb cleared");
                 $scope.temp.photo4 = 'uploads/placeholder.png';
                 $scope.product.file4 = 'uploads/placeholder.png';
@@ -358,7 +360,7 @@
                 fifthDone = true;
                 $scope.resetForm();
             };
-            uploader5.clearThumb = function(){
+            uploader5.clearThumb = function() {
                 console.log("thumb cleared");
                 $scope.temp.photo5 = 'uploads/placeholder.png';
                 $scope.product.file5 = 'uploads/placeholder.png';
@@ -401,7 +403,7 @@
             $scope.submitProduct = function(product) {
                 console.log($scope.productForm.$valid);
                 if ($scope.productForm.$valid) {
-                    $scope.postData =  angular.copy($scope.product);
+                    $scope.postData = angular.copy($scope.product);
                     $scope.postData.tags = $scope.postData.tags.join(", ");
                     $scope.postData.colours = $scope.postData.colours.join(", ");
                     // make the call
@@ -418,6 +420,10 @@
                     $scope.productForm.submitted = true;
                 }
             }
+            // $scope.submitProduct = function(product){
+            //     var timestamp = product.added.getTime();
+            //     console.log(timestamp);
+            // }
         });
 
 })();
