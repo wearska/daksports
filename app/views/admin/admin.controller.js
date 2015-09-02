@@ -9,6 +9,7 @@
             $scope.$on('$destroy', function() {
                 $rootScope.noNav = false;
             });
+            $scope.state = null;
 
             //set product available colours
             $scope.colours = [
@@ -27,7 +28,41 @@
                 'violet',
                 'pink'
             ];
+            
+            // product
+            
+            // Reset object
+            var reset = {
+                name: "",
+                subname: "",
+                slug: "",
+                price: 0,
+                inv: 0,
+                promo: 0,
+                promo_price: 0,
+                promo_stock: 0,
+                promo_end: null,
+                excerpt: "",
+                description: "",
+                brand: "",
+                main_cat: "",
+                sub_cat: "",
+                tags: [],
+                age: 0,
+                gender: 0,
+                colours: [],
+                file1: "uploads/placeholder.png",
+                file2: "uploads/placeholder.png",
+                file3: "uploads/placeholder.png",
+                file4: "uploads/placeholder.png",
+                file5: "uploads/placeholder.png",
+                added: new Date(),
+                favourite: "",
+                published: 1
+            };
 
+            // Initial state
+            $scope.product = angular.copy(reset);
 
             // colour click function
             $scope.addColour = function(ev, colour) {

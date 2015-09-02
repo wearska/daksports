@@ -17,10 +17,10 @@
                 function setTypes(item) {
                     item.added = new Date(item.added);
                     item.inv = parseFloat(item.inv);
-                    item.price = parseFloat(item.price);
+                    item.price = parseFloat(item.price).toFixed(2);
                     item.promo = parseFloat(item.promo);
                     item.published = parseFloat(item.published);
-                    item.promo_price = parseFloat(item.promo_price);
+                    item.promo_price = parseFloat(item.promo_price).toFixed(2);
                     item.promo_stock = parseFloat(item.promo_stock);
                     if (item.promo && item.promo_price) {
                         item.old_price = item.price;

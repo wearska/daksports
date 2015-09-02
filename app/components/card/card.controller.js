@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('CardCtrl', function($http, $rootScope, $scope, $mdDialog, $cookies, cart, ngCart, Auth) {
+        .controller('CardCtrl', function($http, $rootScope, $scope, $mdDialog, $cookies, cart, ngCart, Auth, $mdBottomSheet) {
 
             // DUMMY CONTENT
             $scope.availableSizes = [
@@ -46,6 +46,19 @@
                 $mdnMenu(ev);
             };
 
+            // BOTTOM LIST
+            $scope.showListBottomSheet = function(ev) {
+                console.log(ev);
+                $mdBottomSheet.show({
+                    parent: ev.currentTarget.offsetParent,
+                    templateUrl: 'app/components/card/card.bs.tpl.html',
+                    controller: 'ListBottomSheetCtrl',
+                    targetEvent: ev
+                }).then(function(clickedItem) {
+                    $scope.alert = clickedItem.name + ' clicked!';
+                });
+            }
+
             // ADD TO FAV
             $scope.postFav = function(productid) {
                 var data = {
@@ -59,6 +72,19 @@
                         console.log(error);
                     });
             }
+        })
+        .controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {
+            $scope.items = [{
+                name: 'Comanda',
+                icon: 'assets/icons/ic_add_shopping_cart_black_24px.svg'
+            }, {
+                name: 'Favorite',
+                icon: 'assets/icons/ic_favorite_border_black_24px.svg'
+            }];
+            $scope.listItemClick = function($index) {
+                var clickedItem = $scope.items[$index];
+                $mdBottomSheet.hide(clickedItem);
+            };
         });
 
 })();

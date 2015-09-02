@@ -1,8 +1,8 @@
 <!-- Detalii produs -->
 <section>
-    <md-autocomplete md-item-text="item.name" md-items="item in querySearch(searchText)" md-menu-class="autocomplete-custom-template" md-min-length="0" md-no-cache="false" md-search-text-change="searchTextChange(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-selected-item="selectedItem" ng-disabled="false" placeholder="Pick an Angular repository">
+    <md-autocomplete ng-if="state==='add'" md-item-text="item.name" md-items="item in querySearch(searchText)" md-menu-class="autocomplete-custom-template" md-min-length="0" md-no-cache="false" md-search-text-change="searchTextChange(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-selected-item="selectedItem" ng-disabled="false" placeholder="Alege un template">
         <md-item-template>
-            <span class="item-thumb" style="background-image: url({{item.file1}})"></span>
+            <span class="item-thumb" style="background-image: url({{item.file1 | lowres}})"></span>
             <span class="item-title">
                 {{item.name}}
             </span>

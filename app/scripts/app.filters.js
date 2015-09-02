@@ -24,6 +24,21 @@
                 }
             };
         })
+        .filter('lowres', function() {
+            return function(input) {
+                return input ? input.replace(/(\.[\w\d_-]+)$/i, '_low$1') : input;
+            };
+        })
+        .filter('medres', function() {
+            return function(input) {
+                return input ? input.replace(/(\.[\w\d_-]+)$/i, '_medium$1') : input;
+            };
+        })
+        .filter('highres', function() {
+            return function(input) {
+                return input ? input.replace(/(\.[\w\d_-]+)$/i, '_high$1') : input;
+            };
+        })
         .filter('shuffle', function() {
             var shuffledArr = [],
                 shuffledLength = 0;

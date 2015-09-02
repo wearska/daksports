@@ -22,7 +22,7 @@
         </div>
         <div class="card-menu">
             <md-menu md-position-mode="target-right target">
-                <md-button type="button" aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-button type="button" aria-label="Open demo menu" class="md-icon-button">
                     <md-icon md-menu-origin>
                         <i class="material-icons">&#xE5D4;</i>
                     </md-icon>
@@ -62,8 +62,9 @@
             <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
             <div class="current-rating"></div>
         </div>
-        <div class="price-container">
-            <div class="price">RON {{product.new_price}}</div>
+        <div class="price-container" ng-class="{promo : product.promo}" data="product" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1">
+            <div class="price">RON {{(product.price).toFixed(2)}}</div>
+            <div ng-show="product.promo" class="promo-price">RON {{product.promo_price}}</div>
         </div>
     </div>
 </div>

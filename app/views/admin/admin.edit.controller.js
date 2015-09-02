@@ -14,6 +14,10 @@
             $scope.productForm = {};
             $scope.ready = false;
             $scope.buttonTitle = "Editeaza Produs";
+            $scope.state = "edit";
+            $scope.$on('$destroy', function() {
+                $scope.state = null;
+            });
 
             function setTypes() {
                 $scope.product.added = new Date($scope.product.added);
@@ -49,7 +53,21 @@
             };
 
 
-            function catsCheck(cat) {
+            function brandsCheck(brand) {
+                var bool = false;
+                angular.forEach($rootScope.brands, function(value, key) {
+                    brand = angular.lowercase(brand);
+                    value = angular.lowercase(value);
+                    if (brand.indexOf(value) != -1) {
+                        bool = true;
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+                return bool;
+            }
+            function subCatsCheck(cat) {
                 var bool = false;
                 angular.forEach($rootScope.sub_cats, function(value, key) {
                     cat = angular.lowercase(cat);
@@ -63,17 +81,61 @@
                 });
                 return bool;
             }
+            
+            function mainCatsCheck(cat) {
+                var bool = false;
+                angular.forEach($rootScope.main_cats, function(value, key) {
+                    cat = angular.lowercase(cat);
+                    value = angular.lowercase(value);
+                    if (cat.indexOf(value) != -1) {
+                        bool = true;
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+                return bool;
+            }
 
             function catsUpdate() {
+                // update brands
+                $scope.product.brand = $scope.product.brand.toProperCase();
+                var brand = $scope.product.brand;
+                console.log(brand);
+                if (!brandsCheck($scope.product.brand) && $scope.product.brand) {
+                    var data = {
+                        brand: brand
+                    };
+                    $http.post("api/categories/post.brands.php", data);
+                    $rootScope.brands.push(brand);
+                } else {
+                    //do nothing yet
+                };
+                
+                // update sub_cats
                 $scope.product.sub_cat = $scope.product.sub_cat.toProperCase();
                 var cat = $scope.product.sub_cat;
                 console.log(cat);
-                if (!catsCheck($scope.product.sub_cat)) {
+                if (!subCatsCheck($scope.product.sub_cat) && $scope.product.sub_cat) {
                     var data = {
                         sub_cat: cat
                     };
                     $http.post("api/categories/post.sub_cats.php", data);
                     $rootScope.sub_cats.push(cat);
+                } else {
+                    //do nothing yet
+                };
+                
+                // update main cats
+                $scope.product.main_cat = $scope.product.main_cat.toProperCase();
+                var cat = $scope.product.main_cat;
+                console.log(cat);
+                if (!mainCatsCheck($scope.product.main_cat) && $scope.product.main_cat) {
+                    var data = {
+                        main_cat: cat
+                    };
+                    $http.post("api/categories/post.main_cats.php", data);
+                    $rootScope.main_cats.push(cat);
                 } else {
                     //do nothing yet
                 };

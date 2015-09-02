@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('AddCtrl', function($scope, $http, $filter, $parse, FileUploader, $interval, productRes) {
+        .controller('AddCtrl', function($rootScope, $scope, $http, $filter, $parse, FileUploader, $interval, productRes) {
 
             var firstDone = false,
                 secondDone = false,
@@ -51,11 +51,15 @@
 
             // Initial state
 
-            $scope.product = angular.copy(reset);
+            // $scope.product = angular.copy(reset);
             $scope.temp = angular.copy(tempreset);
             $scope.buttonTitle = "Adauga Produs";
             $scope.productForm = {};
             $scope.renameId = "";
+            $scope.state = "add";
+            $scope.$on('$destroy', function() {
+                $scope.state = null;
+            });
 
             function rename(file) {
                 var n = file.lastIndexOf('/');
@@ -72,6 +76,103 @@
                 putData.file5 = rename(putData.file5);
                 productRes.put(putData);
                 console.log(putData);
+            }
+
+            // Update Categories and brands
+            String.prototype.toProperCase = function() {
+                return this.replace(/\w\S*/g, function(txt) {
+                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                });
+            };
+
+
+            function brandsCheck(brand) {
+                var bool = false;
+                angular.forEach($rootScope.brands, function(value, key) {
+                    brand = angular.lowercase(brand);
+                    value = angular.lowercase(value);
+                    if (brand.indexOf(value) != -1) {
+                        bool = true;
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+                return bool;
+            }
+
+            function subCatsCheck(cat) {
+                var bool = false;
+                angular.forEach($rootScope.sub_cats, function(value, key) {
+                    cat = angular.lowercase(cat);
+                    value = angular.lowercase(value);
+                    if (cat.indexOf(value) != -1) {
+                        bool = true;
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+                return bool;
+            }
+
+            function mainCatsCheck(cat) {
+                var bool = false;
+                angular.forEach($rootScope.main_cats, function(value, key) {
+                    cat = angular.lowercase(cat);
+                    value = angular.lowercase(value);
+                    if (cat.indexOf(value) != -1) {
+                        bool = true;
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+                return bool;
+            }
+
+            function catsUpdate() {
+                // update brands
+                $scope.product.brand = $scope.product.brand.toProperCase();
+                var brand = $scope.product.brand;
+                console.log(brand);
+                if (!brandsCheck($scope.product.brand)) {
+                    var data = {
+                        brand: brand
+                    };
+                    $http.post("api/categories/post.brands.php", data);
+                    $rootScope.brands.push(brand);
+                } else {
+                    //do nothing yet
+                };
+
+                // update sub_cats
+                $scope.product.sub_cat = $scope.product.sub_cat.toProperCase();
+                var cat = $scope.product.sub_cat;
+                console.log(cat);
+                if (!subCatsCheck($scope.product.sub_cat)) {
+                    var data = {
+                        sub_cat: cat
+                    };
+                    $http.post("api/categories/post.sub_cats.php", data);
+                    $rootScope.sub_cats.push(cat);
+                } else {
+                    //do nothing yet
+                };
+
+                // update main cats
+                $scope.product.main_cat = $scope.product.main_cat.toProperCase();
+                var cat = $scope.product.main_cat;
+                console.log(cat);
+                if (!mainCatsCheck($scope.product.main_cat)) {
+                    var data = {
+                        main_cat: cat
+                    };
+                    $http.post("api/categories/post.main_cats.php", data);
+                    $rootScope.main_cats.push(cat);
+                } else {
+                    //do nothing yet
+                };
             }
 
             //Reset form
@@ -401,29 +502,29 @@
 
             $scope.postData = {};
             $scope.submitProduct = function(product) {
-                console.log($scope.productForm.$valid);
-                if ($scope.productForm.$valid) {
-                    $scope.postData = angular.copy($scope.product);
-                    $scope.postData.tags = $scope.postData.tags.join(", ");
-                    $scope.postData.colours = $scope.postData.colours.join(", ");
-                    // make the call
-                    productRes.post($scope.postData)
-                        .then(function(response) {
-                            $scope.renameId = response.data;
-                            product.id = response.data;
-                            $scope.setFiles();
-                            $scope.upload();
-                        }).catch(function(error) {
-                            return error;
-                        });
-                } else {
-                    $scope.productForm.submitted = true;
+                    if ($scope.productForm.$valid) {
+                        catsUpdate();
+                        $scope.postData = angular.copy($scope.product);
+                        $scope.postData.tags = $scope.postData.tags.join(", ");
+                        $scope.postData.colours = $scope.postData.colours.join(", ");
+                        // make the call
+                        productRes.post($scope.postData)
+                            .then(function(response) {
+                                $scope.renameId = response.data;
+                                product.id = response.data;
+                                $scope.setFiles();
+                                $scope.upload();
+                            }).catch(function(error) {
+                                return error;
+                            });
+                    } else {
+                        $scope.productForm.submitted = true;
+                    }
                 }
-            }
-            // $scope.submitProduct = function(product){
-            //     var timestamp = product.added.getTime();
-            //     console.log(timestamp);
-            // }
+                // $scope.submitProduct = function(product){
+                //     var timestamp = product.added.getTime();
+                //     console.log(timestamp);
+                // }
         });
 
 })();
