@@ -9,7 +9,7 @@
             
             // sidebar toggle
             
-            $scope.sidebarOpen = false;
+            $scope.sidebarOpen = true;
             $scope.toggleSidebar = function(){
                 $scope.sidebarOpen = !$scope.sidebarOpen;
             }
