@@ -69,6 +69,10 @@
                 opacity: 1;
             }
         }
+        .card-menu{
+            opacity: 1;
+            pointer-events: all;
+        }
     }
     .info-container,
     .card-menu {
@@ -77,6 +81,10 @@
     .card-menu {
         position: absolute;
         right: 0;
+        opacity: 0;
+        pointer-events: none;
+        will-change: opacity;
+        transition: opacity .28s ease-in-out;
         .md-menu-content {
             padding: 0;
         }
@@ -154,19 +162,17 @@
         background: #fff;
         bottom: 0;
         display: block;
-        padding: 8px 16px 0;
+        padding: 0 16px;
         width: 100%;
         overflow: hidden;
         .stars-container,
         .price-container {
             height: 14px;
-            margin-bottom: 8px;
-            
-            // overflow: hidden;
             width: 100%;
         }
         .stars-container {
             position: relative;
+            width: 70px;
             height: 14px;
             margin-top: 5px;
             float: left;
@@ -194,10 +200,10 @@
             color: #e12a2a;
             float: left;
             position: relative;
+            margin-bottom: 8px;
             .price,
             .promo-price,
             .add-to-cart {
-                width: 100%;
                 bottom: 0;
                 background: #fff;
                 cursor: pointer;
@@ -205,29 +211,24 @@
                 font-size: 13px;
                 font-weight: 400;
                 line-height: 14px;
-                position: absolute;
                 text-align: left;
                 text-transform: uppercase;
                 font-weight: normal;
+                float: left;
                 
                 // text-decoration: underline;
             }
             .price {
                 transition: all 0.28s ease;
             }
-            .promo-price {
-                bottom: -100%;
-            }
             &.promo {
                 .price {
-                    bottom: 100%;
-                    font-size: 11px;
-                    line-height: 11px;
                     color: #aaa;
                     text-decoration: line-through;
+                    padding-left: 8px;
                 }
                 .promo-price {
-                    bottom: 0;
+                    
                 }
             }
         }
@@ -250,6 +251,13 @@
         }
     }
 }
+
+.promo-badge{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 @media #{$small-and-up} {
     .cluster-heading {
         padding: 0 24px;
@@ -263,17 +271,10 @@
         .product-actions {
             .stars-container {
                 clear: none;
-                width: 70px;
             }
             .price-container {
                 float: right;
                 margin-top: 5px;
-                width: 70px;
-                .price,
-                .promo-price,
-                .add-to-cart {
-                    text-align: right;
-                }
             }
         }
     }

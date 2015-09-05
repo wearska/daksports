@@ -1,0 +1,23 @@
+<div class="nav-section">
+    <a class="nav-item-container" md-ink-ripple href="/auth/login" ng-if="!$root.logged">
+        <md-icon md-svg-src="assets/icons/ic_account_circle_24px.svg">
+            <span class="badge" ng-show="cartItemsCount > 0">{{cartItemsCount}}</span>
+        </md-icon>Contul meu</a>
+    <a class="nav-item-container" md-ink-ripple href="/account" ng-if="$root.logged">
+        <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" style="background-image: url({{$root.userData.user_photo}})"></div>{{$root.userData.email}}</a>
+    <!-- <a class="nav-item-container" href="/auth/create" ng-hide="$root.logged">
+        <md-icon md-svg-src=""></md-icon>Inregistreaza-te</a> -->
+    <a class="nav-item-container sub" md-ink-ripple ng-show="$root.logged" ng-click="nav.logout()">
+        <md-icon md-svg-src=""></md-icon>Logout</a>
+
+</div>
+<div class="nav-section-divider"></div>
+<div class="nav-section">
+    <a class="nav-item-container" md-ink-ripple href="{{item.ref}}" ng-repeat="item in nav.navItems">
+        <md-icon md-svg-src="{{item.icon}}"></md-icon><span ng-if="item.ref == '/cart'" class="badge" ng-show="cartItemsCount > 0">{{cartItemsCount}}</span>{{item.title}}</a>
+
+    <a class="nav-item-container button" data-type="sub" href="">
+        <md-button class=" md-primary md-raised" md-theme="brand">Newsletter</md-button>
+    </a>
+</div>
+<div class="nav-section-divider"></div>

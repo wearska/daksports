@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('daksportsApp')
-    .controller('CartCtrl', function($rootScope, $scope, nav, cart, ngCart) {
+    .controller('CartCtrl', function($rootScope, $scope, cart, ngCart) {
 
       // ngCart.setTaxRate(7.5);
       $scope.getShipping = function() {

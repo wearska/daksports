@@ -1,7 +1,7 @@
 <div class="gd-card paper resting" ng-mouseenter="toggleOrderFab()" ng-mouseleave="toggleOrderFab()">
     <div class="product-media">
         <a href="/product/{{item.id}}" md-ink-ripple>
-            <div ng-cloak class="product-img ar_1-1" style="background-image: url({{item.file1 | lowres}});"></div>
+            <div class="product-img ar_1-1" ng-cloak style="background-image: url({{item.file1 | lowres}});"></div>
             <div class="hoverlay"></div>
         </a>
         <div class="product-media-actions">
@@ -25,11 +25,12 @@
                 <md-icon md-svg-src="assets/icons/ic_create_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
             </a>
         </div>
-<!-- <gd-addtocart class="price-container" data="item" id="{{ item.id }}" name="{{ item.name }}" ng-click="showConfirm($event)" price="{{ item.price }}" quantity="1">
-            <md-button aria-label="Add to cart" class="product-order md-fab" ng-class="{shown : showOrderFab}" ng-show="showOrderFab">
-                <md-icon md-svg-src="assets/icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
-            </md-button>
-        </gd-addtocart> -->
+        <div class="promo-badge" ng-show="item.promo">
+            <md-tooltip>
+                Produs promo
+            </md-tooltip>
+            <md-icon md-svg-src="assets/icons/promo_badge.svg" style="width: 48px; height: 48px;"></md-icon>
+        </div>
     </div>
     <div class="product-info">
         <div class="info-container">
@@ -54,45 +55,48 @@
                 </md-button>
                 <md-menu-content width="3">
                     <md-menu-item>
-                        <md-button  ng-click="addToCart()">
+                        <md-button ng-click="addToCart()">
                             <div layout="row">
                                 <p flex>Adauga in cos</p>
                                 <md-icon class="md-icon" md-menu-align-target style="margin: auto 0 auto 0;">
                                     <i class="material-icons">&#xE854;</i>
                                 </md-icon>
                             </div>
-                            </gd-addtocart>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="postFav(item.id)">
-                            <div layout="row">
-                                <p flex>Adauga la favorite</p>
-                                <md-icon class="md-icon" md-menu-align-target ng-if="!item.favourite" style="margin: auto 0 auto 0;">
-                                    <i class="material-icons">&#xE87E;</i>
-                                </md-icon>
-                                <md-icon class="md-icon" md-menu-align-target ng-if="item.favourite" style="margin: auto 0 auto 0;">
-                                    <i class="material-icons">&#xE87D;</i>
-                                </md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-        </div>
+                        </gd-addtocart>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="postFav(item.id)">
+                        <div layout="row">
+                            <p flex>Adauga la favorite</p>
+                            <md-icon class="md-icon" md-menu-align-target ng-if="!item.favourite" style="margin: auto 0 auto 0;">
+                                <i class="material-icons">&#xE87E;</i>
+                            </md-icon>
+                            <md-icon class="md-icon" md-menu-align-target ng-if="item.favourite" style="margin: auto 0 auto 0;">
+                                <i class="material-icons">&#xE87D;</i>
+                            </md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
     </div>
-    <div class="product-actions">
-        <div class="stars-container">
-            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-            <div class="current-rating"></div>
-        </div>
-        <div class="price-container" ng-class="{promo : item.promo}" data="item" id="{{ item.id }}" name="{{ item.name }}" price="{{ item.price }}" quantity="1">
-            <div class="price">RON {{item.price}}</div>
-            <div ng-show="{{item.promo}}" class="promo-price">RON {{item.promo_price}}</div>
-        </div>
+</div>
+<div class="product-actions">
+    <div class="stars-container">
+        <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+        <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+        <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+        <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+        <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+        <div class="current-rating"></div>
     </div>
+    <div class="price-container" data="item" id="{{ item.id }}" name="{{ item.name }}" ng-class="{promo : item.promo}" price="{{ item.price }}" quantity="1">
+        <div class="promo-price" ng-show="{{item.promo}}">RON
+            {{item.promo_price}}</div>
+        <div class="price">
+            <span ng-show="{{!item.promo}}">RON</span>
+            {{item.price}}</div>
+    </div>
+</div>
 </div>

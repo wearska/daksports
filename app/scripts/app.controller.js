@@ -6,6 +6,13 @@
         .controller('AppCtrl', function($http, $rootScope, $parse, $scope, $filter, $location, productRes, Auth) {
 
             $rootScope.noNav = false;
+            
+            // sidebar toggle
+            
+            $scope.sidebarOpen = false;
+            $scope.toggleSidebar = function(){
+                $scope.sidebarOpen = !$scope.sidebarOpen;
+            }
 
             //   get structure
             var api = 'api/categories/';

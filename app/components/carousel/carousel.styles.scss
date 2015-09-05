@@ -2,7 +2,7 @@
     position: relative;
     display: block;
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
     .gd-carousel-item {
         display: inline-block;
         padding: 4px;
@@ -59,8 +59,16 @@
         }
     }
     .gd-carousel-wrapper {
+        margin: 0 -4px;
+        
+        // overflow-x: auto;
+    }
+    .gd-carousel-lane {
         margin: 0;
+        left: 0;
         overflow-x: auto;
+        position: relative;
+        transition: left 0.28s ease-in-out;
     }
     .gd-carousel-controls {
         display: none;
@@ -70,18 +78,23 @@
         bottom: 0;
         left: 0;
         right: 0;
-        top: 68px;
+        top: 60px;
         bottom: 12px;
         width: auto;
         height: auto;
         pointer-events: none;
         .gd-carousel-control {
-            background-color: #fff;
+            background-color: transparent;
+            color: $brand-primary;
             cursor: pointer;
             user-select: none;
             position: absolute;
-            height: 100%;
+            height: 48px;
             width: 48px;
+            border-radius: 50%;
+            top: 0;
+            bottom: 0;
+            margin: auto;
             will-change: background, opacity;
             transition: background-color 0.3s ease, opacity 0.3s ease;
             outline: none;
@@ -95,13 +108,13 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                opacity: .3;
+                opacity: 0.3;
             }
             &.next {
-                right: 0;
+                right: -48px;
             }
             &.prev {
-                left: 0;
+                left: -48px;
             }
             &:hover {
                 i {
@@ -134,12 +147,14 @@
             line-height: 32px;
         }
     }
-    @media #{$medium-and-up}{
-        .gd-carousel-wrapper{
-            margin: 0 52px;
+    @media #{$medium-and-up} {
+        .gd-carousel-wrapper {
+            overflow: hidden;
+        }
+        .gd-carousel-lane {
             overflow: visible;
         }
-        .gd-carousel-controls{
+        .gd-carousel-controls {
             display: inherit;
         }
     }

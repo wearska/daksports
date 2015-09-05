@@ -13,17 +13,19 @@
         </a>
     </gd-heading>
     
-    <div class="gd-carousel-wrapper" layout="row">
-        <gd-carousel-item flex-gt-lg="{{100/lg | number:0}}" flex-gt-md="{{100/md | number:0}}" flex-gt-sm="{{100/sm | number:0}}" flex="{{100/xs | number:0}}" ng-repeat="item in items | orderBy:item.id:true | limitTo:limit:start">
-            <gd-card card-resource="item"></gd-card>
-        </gd-carousel-item>
+    <div class="gd-carousel-wrapper">
+        <div class="gd-carousel-lane" layout="row">
+            <gd-carousel-item flex-gt-lg="{{100/lg | number:0}}" flex-gt-md="{{100/md | number:0}}" flex-gt-sm="{{100/sm | number:0}}" flex="{{100/xs | number:0}}" ng-repeat="item in items | orderBy:item.id:true | limitTo:limit:start">
+                <gd-card card-resource="item"></gd-card>
+            </gd-carousel-item>
+        </div>
     </div>
     
     <div class="gd-carousel-controls">
-        <div class="gd-carousel-control prev l-left" md-ink-ripple ng-click="bck()">
+        <div class="gd-carousel-control prev l-left" ng-click="bck()" ng-show="!atStart">
             <i class="material-icons md-48">&#xE5CB;</i>
         </div>
-        <div class="gd-carousel-control next l-right" md-ink-ripple ng-click="fwd()">
+        <div class="gd-carousel-control next l-right" ng-click="fwd()" ng-show="!atEnd">
             <i class="material-icons md-48">&#xE5CC;</i>
         </div>
     </div>

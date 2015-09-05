@@ -26,7 +26,34 @@
       <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
-      <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'app/components/appbar/appbar.tpl.html'"></header>
+      
+      <div id="frontpage">
+         <header role="banner" id="main-header" ng-controller="AppBarCtrl" ng-include="'app/components/appbar/appbar.tpl.html'"></header>
+         <div class="frontpage-content">
+              <div drawer id="sidebar" role="navigation" aria-hidden="false" class="locked-open" ng-class="{open : sidebarOpen}">
+                 <md-toolbar class="app-bar nav-bar">
+                     <div class="" layout="row">
+                         <div flex ng-show="sidebarOpen" class="slide-right">
+                             <md-button aria-label="Toggle Menu" class="md-icon-button l-left" ng-click="toggleSidebar(); hideSearchBar()">
+                                 <md-icon md-svg-src="assets/icons/ic_menu_black_24px.svg"></md-icon>
+                             </md-button>
+                             <h1>
+                                 <a href="/" style="background: url('assets/img/daksports_logo_red_black_noborder.svg')center no-repeat;"md-button>Daksports</a>
+                             </h1>
+                         </div>
+                     </div>
+                 </md-toolbar>
+                 <nav id="nav" ng-include="'app/components/navigation/navigation.tpl.html'" ng-controller="NavCtrl as nav"></nav>
+             </div>
+             <main id="main" class="l-offset-nav" ng-class="{narrow : sidebarOpen}">
+                 <div id="page" gd-scroll ng-class="{min : boolChangeClass}" ui-view>
+                 </div>
+             </main>
+         </div>
+      </div>
+      
+      
+      <!-- <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'app/components/appbar/appbar.tpl.html'"></header>
       <md-content layout-padding md-scroll-y id="frontpage">
           <div class="page c-max l-offset-nav">
               <aside ng-cloak>
@@ -34,7 +61,7 @@
               </aside>
               <main id="main-content" role="main" ui-view></main>
           </div>
-      </md-content>
+      </md-content> -->
       <footer role="footer" id="bottom-bar" class="paper resting"></footer>
 
     <!-- build:js scripts/vendor.js -->
@@ -76,8 +103,8 @@
     <script src="app/views/admin/admin.add.controller.js"></script>
     <script src="app/components/slider/slider.directive.js"></script>
     <script src="app/components/slider/slider.controller.js"></script>
-    <script src="app/components/navigation/nav.factory.js"></script>
-    <script src="app/components/navigation/nav.controller.js"></script>
+    <script src="app/components/scroll/scroll.directive.js"></script>
+    <script src="app/components/navigation/navigation.controller.js"></script>
     <script src="app/components/heading/heading.directive.js"></script>
     <script src="app/components/filter/filters.controller.js"></script>
     <script src="app/components/cluster/cluster.directive.js"></script>

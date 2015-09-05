@@ -1,22 +1,3 @@
-<div class="page-hero">
-<!-- Nav -->
-
-<!-- Slider -->
-    <div class="hero-slider">
-        <gd-slider class="gd-slider ar_16-9">
-            <div ="playSlider()" class="gd-slides" ng-controller="GdSlider" ng-mouseleave ng-mouseover="pauseSlider()">
-                <gd-slide class="gd-slide ar_16-9" gd-slide-src="{{slide}}" ng-repeat="slide in slides" style="transform:translateX({{$index * 100}}%);"></gd-slide>
-            </div>
-            <div ="playSlider()" class="gd-slider-controls" ng-mouseleave ng-mouseover="pauseSlider()">
-                <div class="gd-slider-control prev l-left" md-ink-ripple ng-click="prevSlide()">
-                    <i class="material-icons md-48">&#xE5CB;</i>
-                </div>
-                <div class="gd-slider-control next l-right" md-ink-ripple ng-click="nextSlide()">
-                    <i class="material-icons md-48">&#xE5CC;</i>
-                </div>
-            </div>
-        </gd-slider>
-    </div>
-
+<div class="page-content c-max">
+    <div id="account-wrapper" class="paper resting" ui-view=""></div>
 </div>
-<div id="account-wrapper" class="paper resting" ui-view=""></div>

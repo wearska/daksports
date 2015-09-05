@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('daksportsApp')
-    .controller('AppBarCtrl', function($rootScope, $scope, $location, $timeout, nav, ngCart) {
+    .controller('AppBarCtrl', function($rootScope, $scope, $location, $timeout, ngCart) {
 
       // TOGGLE SEARCH BAR
       $scope.showSearchBar = false;
@@ -12,25 +12,6 @@
       $scope.hideSearchBar = function() {
         $scope.showSearchBar = false;
       };
-
-      // TOGGLE NAV
-      $scope.navOpen = false;
-      $scope.toggleNav = function() {
-        nav.toggleNav();
-      }
-      $scope.$watch(function() {
-          return nav;
-        },
-        function(newVal, oldVal) {
-          $scope.navOpen = nav.navOpen;
-        }, true);
-
-      // CAR ITEMS
-
-      $scope.cartItemsCount = ngCart.getTotalItems() + "";
-      $scope.$on('ngCart:change', function(event, data) {
-        $scope.cartItemsCount = ngCart.getTotalItems() + "";
-      });
 
     });
 

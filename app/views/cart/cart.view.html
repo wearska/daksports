@@ -1,39 +1,25 @@
-<div class="page-hero">
-<!-- Slider -->
-    <div class="hero-slider">
-        <gd-slider class="gd-slider ar_16-9">
-            <div ="playSlider()" class="gd-slides" ng-controller="GdSlider" ng-mouseleave ng-mouseover="pauseSlider()">
-                <gd-slide class="gd-slide ar_16-9" gd-slide-src="{{slide}}" ng-repeat="slide in slides" style="transform:translateX({{$index * 100}}%);"></gd-slide>
-            </div>
-            <div ="playSlider()" class="gd-slider-controls" ng-mouseleave ng-mouseover="pauseSlider()">
-                <div class="gd-slider-control prev l-left" md-ink-ripple ng-click="prevSlide()">
-                    <i class="material-icons md-48">&#xE5CB;</i>
-                </div>
-                <div class="gd-slider-control next l-right" md-ink-ripple ng-click="nextSlide()">
-                    <i class="material-icons md-48">&#xE5CC;</i>
-                </div>
-            </div>
-        </gd-slider>
-    </div>
-</div>
-<gd-heading title="Cosul tau de cumparaturi">
-    <a href="#" md-button class="md-primary md-icon-button cart-heading-button">
-        <md-tooltip>
-            Vezi toate
-        </md-tooltip>
-        <md-icon>
-            <i class="material-icons">&#xE5C3;</i>
-        </md-icon>
-    </a>
-</gd-heading>
+<div class="page-content c-max">
+    <gd-heading title="Cosul tau de cumparaturi">
+        <div class="page-content c-max">
+            <a class="md-primary md-icon-button cart-heading-button" href="#" md-button>
+                <md-tooltip>
+                    Vezi toate
+                </md-tooltip>
+                <md-icon>
+                    <i class="material-icons">&#xE5C3;</i>
+                </md-icon>
+            </a>
+        </div>
+    </gd-heading>
 
-<gd-cart></gd-cart>
+    <gd-cart></gd-cart>
 
 <!-- Others also bought -->
-<gd-carousel limit="10" lg="5" md="4" sm="3" xs="2" start="0" data="$root.products" title="Altii au mai cumparat"></gd-carousel>
+    <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" start="0" title="Altii au mai cumparat" xs="2"></gd-carousel>
 
 <!-- Similar products -->
-<gd-carousel limit="10" lg="5" md="4" sm="3" xs="2" start="0" data="$root.products" title="Produse similare"></gd-carousel>
+    <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" start="0" title="Produse similare" xs="2"></gd-carousel>
 
 <!-- Recommended -->
-<gd-carousel limit="10" lg="5" md="4" sm="3" xs="2" start="0" data="$root.products" title="Produse recomandate"></gd-carousel>
+    <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" start="0" title="Produse recomandate" xs="2"></gd-carousel>
+</div>
