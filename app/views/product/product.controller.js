@@ -6,10 +6,11 @@
 
             // Make appbar transparent
             $rootScope.transparentAppbar = true;
+            $rootScope.mainScrolled = false;
             $scope.$on('$destroy', function() {
                 // Make sure that the interval is destroyed too
-                $rootScope.transparentAppbar = true;
-                $rootScope.mainScrolled = false;
+                $rootScope.transparentAppbar = false;
+                $rootScope.mainScrolled = true;
             });
             $scope.$on('$viewContentLoaded', function(event) {
                 console.log("loaded");

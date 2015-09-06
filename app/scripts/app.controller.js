@@ -6,6 +6,7 @@
         .controller('AppCtrl', function($http, $rootScope, $parse, $scope, $filter, $location, $mdMedia, productRes, Auth) {
 
             $rootScope.noNav = false;
+            $rootScope.mainScrolled = true;
             
             // screen size
             

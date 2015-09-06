@@ -20,7 +20,7 @@
         }
         .hoverlay {
             pointer-events: none;
-            position: absolute;
+            // position: absolute;
             overflow: hidden;
             left: 0;
             top: 0;
@@ -286,10 +286,19 @@
         .product-media {
             padding: 0 60% 0 0;
             
-            // z-index: 0;
+            .product-media-actions{
+                .scrim{
+                    display: none;
+                }
+            }
             .hoverlay {
                 right: 60%;
                 width: auto;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                height: 100%;
+                position: absolute;
             }
             &>a{
                 position: relative;

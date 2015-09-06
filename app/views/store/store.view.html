@@ -1,3 +1,3 @@
 <div class="product-grid" layout layout-wrap>
-    <gd-card card-resource="item" ng-repeat="item in products | brandFilter : BrandFilter.selected | limitTo : 12" flex="15" style="margin: 4px;"></gd-card>
+    <gd-card card-resource="item" ng-repeat="item in products | brandFilter : BrandFilter.selected | mainCatFilter : MainCatFilter.selected | subCatFilter : SubCatFilter.selected | limitTo : 12 | filter : q as results" flex="15" style="margin: 4px;"></gd-card>
 </div>

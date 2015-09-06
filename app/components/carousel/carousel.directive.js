@@ -13,6 +13,7 @@
                     limit: '@',
                     start: '@',
                     promoFilter: '@',
+                    length: '=carouselLength',
                     xs: '=',
                     sm: '=',
                     md: '=',

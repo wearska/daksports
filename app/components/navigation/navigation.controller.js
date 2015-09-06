@@ -2,19 +2,17 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, ngCart, BrandFilter) {
+        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, ngCart, BrandFilter, MainCatFilter, SubCatFilter) {
 
             // LOGOUT
             this.logout = function() {
                 Auth.$unauth();
             };
 
-            // GD FILTER
+            // FILTERS
             $scope.BrandFilter = BrandFilter;
-            // this.toggle = function(brand){
-            //     BrandFilter.toggle(brand);
-            // };
-
+            $scope.MainCatFilter = MainCatFilter;
+            $scope.SubCatFilter = SubCatFilter;
             // MENU ITEMS
             this.navItems = [{
                 title: 'Cos de cumparaturi',
@@ -83,6 +81,9 @@
 
         })
         .controller('NavSectionCtrl', function($rootScope, $scope, BrandFilter) {
+
+        })
+        .controller('NavListCtrl', function($rootScope, $scope, BrandFilter) {
 
             this.size = 0;
             this.expanded = false;

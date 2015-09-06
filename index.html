@@ -43,7 +43,7 @@
                          </div>
                      </div>
                  </md-toolbar>
-                 <nav id="nav" ng-include="'app/components/navigation/navigation.tpl.html'" ng-controller="NavCtrl as nav"></nav>
+                 <nav id="nav" class="l-offset-nav" ng-include="'app/components/navigation/navigation.tpl.html'" ng-controller="NavCtrl as nav"></nav>
              </div>
              <main id="main" class="l-offset-nav" ng-class="{narrow : sidebarOpen}">
                  <div id="page" gd-scroll ng-class="{min : boolChangeClass}" ui-view autoscroll="true">
@@ -88,8 +88,6 @@
     <!-- inject:js -->
     <script src="app/views/testing/testing.controller.js"></script>
     <script src="app/scripts/app.module.js"></script>
-    <script src="app/components/filter/filters.controller.js"></script>
-    <script src="app/components/filter/filter.factory.js"></script>
     <script src="app/views/store/store.controller.js"></script>
     <script src="app/views/product/product.service.js"></script>
     <script src="app/views/product/product.controller.js"></script>
@@ -109,6 +107,9 @@
     <script src="app/components/scroll/scroll.directive.js"></script>
     <script src="app/components/navigation/navigation.controller.js"></script>
     <script src="app/components/heading/heading.directive.js"></script>
+    <script src="app/components/filters/filters.js"></script>
+    <script src="app/components/filters/filters.factory.js"></script>
+    <script src="app/components/filters/filters.controller.js"></script>
     <script src="app/components/cluster/cluster.directive.js"></script>
     <script src="app/components/cluster/cluster.controller.js"></script>
     <script src="app/components/carousel/carousel.directive.js"></script>

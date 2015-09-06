@@ -31,25 +31,6 @@
                 return filtered;
             };
         })
-        .filter('brandFilter', function() {
-            return function(items, brand) {
-                console.log(brand.length);
-                var filtered = [];
-                // return items;
-                if (brand.length <= 0) {
-                    return items;
-                }
-                angular.forEach(items, function(item) {
-                    // if (item.brand && angular.lowercase(item.brand).indexOf(angular.lowercase(brand)) != -1) {
-                    //     filtered.push(item);
-                    // }
-                    if (item.brand && brand.indexOf(item.brand) > -1) {
-                        filtered.push(item);
-                    }
-                });
-                return filtered;
-            };
-        })
         .filter('randomize', function() {
             return function(input, scope) {
                 if (input != null && input != undefined && input > 1) {

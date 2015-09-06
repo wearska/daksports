@@ -59,6 +59,10 @@ nav {
                 right: auto;
                 background: $brand-primary;
             }
+            .reset-icon{
+                color: $brand-primary;
+                fill: $brand-primary;
+            }
             &>md-icon {
                 transform: rotate(0);
                 will-change: transform;
@@ -100,7 +104,7 @@ nav {
         .nav-items-list {
             overflow: hidden;
             transition: height .18s cubic-bezier(0.25, 0.8, 0.25, 1);
-            margin: 4px 0;
+            // margin: 4px 0;
             md-checkbox {
                 margin: 2px 12px;
                 md-icon {
