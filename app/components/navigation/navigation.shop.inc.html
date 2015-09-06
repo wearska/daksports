@@ -1,2 +1,2 @@
-<a href="{{item.ref}}" class="nav-item-container" ng-repeat="item in nav.shopItems">
+<a data-filter="item.filter" class="nav-item-container" ng-repeat="item in nav.shopItems">
     <md-icon md-svg-src="{{item.icon}}"></md-icon>{{item.title}}</a>

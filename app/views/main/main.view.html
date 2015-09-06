@@ -31,7 +31,8 @@
     
     <!-- Promos -->
     <gd-heading subtitle="Nu pierde cele mai bune oferte!" title="Promotionale"></gd-heading>
-    <div class="gd-banner-container" layout-gt-sm="row" layout="column">
+    <gd-carousel data="$root.products" lg="3" md="2" sm="1" start="0" title="Produse recomandate" xs="1" promo-filter="1" gd-tiles="true"></gd-carousel>
+    <!-- <div class="gd-banner-container" layout-gt-md="row" layout="column">
         <div class="gd-cell" flex flex-gt-md="50" flex-gt-lg="33">
             <gd-card card-resource="$root.products[11]"  gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
         </div>
@@ -41,5 +42,5 @@
         <div class="gd-cell" flex flex-gt-md="50" flex-gt-lg="33">
             <gd-card card-resource="$root.products[32]"  gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>
         </div>
-    </div>
+    </div> -->
 </div>

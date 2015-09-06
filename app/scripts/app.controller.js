@@ -3,13 +3,15 @@
 
     angular
         .module('daksportsApp')
-        .controller('AppCtrl', function($http, $rootScope, $parse, $scope, $filter, $location, productRes, Auth) {
+        .controller('AppCtrl', function($http, $rootScope, $parse, $scope, $filter, $location, $mdMedia, productRes, Auth) {
 
             $rootScope.noNav = false;
             
+            // screen size
+            
             // sidebar toggle
             
-            $scope.sidebarOpen = true;
+            $scope.sidebarOpen = $mdMedia('gt-sm');
             $scope.toggleSidebar = function(){
                 $scope.sidebarOpen = !$scope.sidebarOpen;
             }

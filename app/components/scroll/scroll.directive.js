@@ -6,6 +6,7 @@
         return function(scope, element, attrs) {
             var i = 0;
             element.bind("scroll", function() {
+                scope.scrollAmnt = angular.element(this)[0].scrollTop;
                  if (angular.element(this)[0].scrollTop >= 16) {
                      i++
                      scope.boolChangeClass = true;

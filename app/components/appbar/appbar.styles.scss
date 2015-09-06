@@ -3,18 +3,22 @@
     min-height: 56px;
     padding: 0;
     box-shadow: 0 0;
-    transition: all .08s linear;
+    transition: all 0.28s ease;
     .md-button {
         margin: 0;
     }
-    &.raised{
+    &.transparent {
+        background: transparent;
+    }
+    &.raised {
+        
         // box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.16), 0 3px 5px 0 rgba(0, 0, 0, 0.24);
         box-shadow: 0 2px 4px -1px rgba(0,0,0,.14),0 4px 5px 0 rgba(0,0,0,.098),0 1px 10px 0 rgba(0,0,0,.084);
     }
     &.nav-bar {
         background-color: #fff;
         color: rgba(0,0,0,.87);
-        &.raised{
+        &.raised {
             box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.16);
         }
     }
@@ -198,14 +202,15 @@ only screen and (min-device-pixel-ratio:2) {
 // Search
 .app-bar {
     .material-one-left {
+        
     }
     .material-one-center {
         position: relative;
-        transition: all .28s ease-in-out;
+        transition: all 0.28s ease-in-out;
     }
     input {
         &.material-search {
-            background-color: rgba(127,127,127,.16);
+            background-color: rgba(255,255,255,.16);
             transition: background-color 0.2s;
             padding: 0 16px 0 0;
             box-sizing: border-box;
@@ -289,18 +294,12 @@ only screen and (min-device-pixel-ratio:2) {
 }
 .search-bar {
     @extend .app-bar;
-    margin-top: 0;
     position: absolute;
-    transition: margin 0.3s ease;
-    &.open {
-        margin-top: 56px;
-    }
+    margin-top: 56px;
 }
 @media #{$small-and-up} {
     .search-bar {
-        &.open {
-            margin-top: 64px;
-        }
+        margin-top: 64px;
     }
 }
 @media #{$medium-and-up} {
@@ -309,4 +308,57 @@ only screen and (min-device-pixel-ratio:2) {
             margin-top: 0;
         }
     }
+}
+
+// SEARCH BAR ANIMATION
+.search-bar {
+    transition: all 0 cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* easeOutQuad */
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* easeOutQuad */
+}
+/* line 111, ../sass/ng-animation.scss */
+.search-bar.ng-enter {
+    transform: translateY(-60px);
+    transition-duration: 250ms;
+    opacity: 0;
+}
+/* line 117, ../sass/ng-animation.scss */
+.search-bar.ng-enter-active {
+    transform: translateY(0);
+    opacity: 1;
+}
+/* line 122, ../sass/ng-animation.scss */
+.search-bar.ng-leave {
+    transform: translateY(0);
+    transition-duration: 250ms;
+    opacity: 1;
+}
+/* line 128, ../sass/ng-animation.scss */
+.search-bar.ng-leave-active {
+    transform: translateY(-60px);
+    opacity: 0;
+}
+/* line 134, ../sass/ng-animation.scss */
+.search-bar.ng-hide-add {
+    transform: translateY(0);
+    transition-duration: 250ms;
+    opacity: 1;
+}
+/* line 139, ../sass/ng-animation.scss */
+.search-bar.ng-hide-add.ng-hide-add-active {
+    transform: translateY(-60px);
+    opacity: 0;
+}
+/* line 145, ../sass/ng-animation.scss */
+.search-bar.ng-hide-remove {
+    transform: translateY(-60px);
+    transition-duration: 250ms;
+    display: block !important;
+    opacity: 0;
+}
+/* line 151, ../sass/ng-animation.scss */
+.search-bar.ng-hide-remove.ng-hide-remove-active {
+    transform: translateY(0);
+    opacity: 1;
 }

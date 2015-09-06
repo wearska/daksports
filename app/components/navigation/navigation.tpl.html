@@ -12,7 +12,7 @@
 
 </div>
 <div class="nav-section-divider"></div>
-<div class="nav-section">
+<div class="nav-section" ng-if="$root.state != 'store'">
     <a class="nav-item-container" md-ink-ripple href="{{item.ref}}" ng-repeat="item in nav.navItems">
         <md-icon md-svg-src="{{item.icon}}"></md-icon><span ng-if="item.ref == '/cart'" class="badge" ng-show="cartItemsCount > 0">{{cartItemsCount}}</span>{{item.title}}</a>
 
@@ -20,4 +20,4 @@
         <md-button class=" md-primary md-raised" md-theme="brand">Newsletter</md-button>
     </a>
 </div>
-<div class="nav-section-divider"></div>
+<div class="nav-section" ng-controller="NavSectionCtrl as section" ng-if="$root.state == 'store'" ng-include="'app/components/navigation/navigation.filters.inc.html'"></div>

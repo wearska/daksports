@@ -1,0 +1,3 @@
+<div class="product-grid" layout layout-wrap>
+    <gd-card card-resource="item" ng-repeat="item in products | brandFilter : BrandFilter.selected | limitTo : 12" flex="15" style="margin: 4px;"></gd-card>
+</div>

@@ -61,14 +61,31 @@
     width: auto;
     transition: left 0.28s .1s ease-in-out;
     &.narrow{
-        left: 240px;
+        left: 0;
     }
 }
-
+@media only screen and (min-width: 800px){
+    #main {
+        &.narrow{
+            left: 240px;
+        }
+    }
+}
 // Header
 #main-header {
     width: 100%;
-    position: relative;
+    // position: relative;
+}
+
+// Hero
+#page-hero{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    background-color: #e12a2a;
+    min-height: 50%;
 }
 
 // Content
@@ -80,6 +97,11 @@
     box-sizing: border-box;
     
     // display: block;
+}
+@media #{$small-and-up} {
+    .c-max {
+        max-width: 540px;
+    }
 }
 @media #{$medium-and-up} {
     .c-max {

@@ -2,7 +2,21 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('ProductCtrl', function($scope, $rootScope, $http, $parse, $filter, $timeout, $stateParams, productRes, ngCart) {
+        .controller('ProductCtrl', function($scope, $rootScope, $http, $parse, $filter, $timeout, $stateParams, productRes, ngCart, $state) {
+
+            // Make appbar transparent
+            $rootScope.transparentAppbar = true;
+            $scope.$on('$destroy', function() {
+                // Make sure that the interval is destroyed too
+                $rootScope.transparentAppbar = true;
+                $rootScope.mainScrolled = false;
+            });
+            $scope.$on('$viewContentLoaded', function(event) {
+                console.log("loaded");
+                $rootScope.transparentAppbar = true;
+                $rootScope.mainScrolled = false;
+            });
+
             // Initial state
             $scope.product = {};
             $scope.files = {};
@@ -21,13 +35,25 @@
                 $scope.mainView = file;
             }
 
-            $scope.topDirections = ['left', 'up'];
-            $scope.bottomDirections = ['down', 'right'];
-            $scope.isOpen = false;
-            $scope.availableModes = ['md-fling', 'md-scale'];
-            $scope.selectedMode = 'md-fling';
-            $scope.availableDirections = ['up', 'down', 'left', 'right'];
-            $scope.selectedDirection = 'up';
+            function setTypes(item) {
+                item.added = new Date(item.added);
+                item.inv = parseFloat(item.inv);
+                item.price = parseFloat(item.price).toFixed(2);
+                item.promo = parseFloat(item.promo);
+                item.published = parseFloat(item.published);
+                item.promo_price = parseFloat(item.promo_price).toFixed(2);
+                item.promo_stock = parseFloat(item.promo_stock);
+                if (item.promo && item.promo_price) {
+                    item.old_price = item.price;
+                    item.new_price = item.promo_price;
+                } else {
+                    item.old_price = 0;
+                    item.new_price = item.price;
+                };
+                (item.tags) ? item.tags = item.tags.split(','): item.tags = [];
+                (item.colours) ? item.colours = item.colours.split(','): item.colours = [];
+                (angular.isDate(item.promo_end)) ? item.promo_end = item.promo_end: item.promo_end = new Date(item.promo_end);
+            }
 
             // ADD TO FAV
 
@@ -58,6 +84,7 @@
                 .then(function(response) {
                     var i = 0;
                     $scope.product = response.data[0];
+                    setTypes($scope.product);
                     // SET SLIDE LENGTH
                     angular.forEach($scope.product, function(value, key) {
                         if (key.indexOf("file") !== -1 && value.indexOf("placeholder") == -1) {
@@ -89,6 +116,8 @@
                         "Galben",
                         "Albastru"
                     ];
+                    $scope.product.rating = 50;
+                    $scope.product.inv = 0;
                 }).catch(function(error) {
                     return error;
                 });

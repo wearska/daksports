@@ -2,12 +2,18 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, ngCart) {
+        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, ngCart, BrandFilter) {
 
             // LOGOUT
             this.logout = function() {
                 Auth.$unauth();
             };
+
+            // GD FILTER
+            $scope.BrandFilter = BrandFilter;
+            // this.toggle = function(brand){
+            //     BrandFilter.toggle(brand);
+            // };
 
             // MENU ITEMS
             this.navItems = [{
@@ -24,31 +30,49 @@
             this.shopItems = [{
                 title: 'Recomandari',
                 icon: 'assets/icons/nav_whatshot_24px.svg',
-                ref: '/recommended'
+                ref: '/recommended',
+                filter: 'recommended'
             }, {
                 title: 'Promotii',
                 icon: 'assets/icons/nav_promo_24px.svg',
-                ref: '/promos'
+                ref: '/promos',
+                filter: 'promo'
             }, {
                 title: 'Sporturi',
                 icon: 'assets/icons/nav_sports_24px.svg',
-                ref: '/sports'
+                ref: '/sports',
+                filter: {
+                    main_cat: 'sports'
+                }
             }, {
                 title: 'Fitness',
                 icon: 'assets/icons/nav_fitness_24px.svg',
-                ref: '/fitness'
+                ref: '/fitness',
+                filter: {
+                    main_cat: 'fitness'
+                }
+
             }, {
                 title: 'Alergare',
                 icon: 'assets/icons/nav_running_24px.svg',
-                ref: '/running'
+                ref: '/running',
+                filter: {
+                    main_cat: 'alergare'
+                }
             }, {
                 title: 'Outdoor',
                 icon: 'assets/icons/nav_outdoor_24px.svg',
-                ref: '/outdoor'
+                ref: '/outdoor',
+                filter: {
+                    main_cat: 'outdoor'
+                }
             }, {
                 title: 'Accesorii',
                 icon: 'assets/icons/nav_accessories_24px.svg',
-                ref: '/accessories'
+                ref: '/accessories',
+                filter: {
+                    main_cat: 'accesorii'
+                }
             }];
 
             // CART ITEMS
@@ -56,6 +80,16 @@
             $scope.$on('ngCart:change', function(event, data) {
                 $scope.cartItemsCount = ngCart.getTotalItems() + "";
             });
+
+        })
+        .controller('NavSectionCtrl', function($rootScope, $scope, BrandFilter) {
+
+            this.size = 0;
+            this.expanded = false;
+            this.expand = function() {
+                this.expanded = !this.expanded;
+                (this.expanded) ? this.size = 30 : this.size = 0;
+            };
 
         });
 

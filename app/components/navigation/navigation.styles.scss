@@ -2,6 +2,19 @@ nav {
     .nav-section {
         font-weight: 700;
         padding-top: 6px;
+        .nav-section-title {
+            color: rgba(0, 0, 0, 0.54);
+            position: relative;
+            font-size: 13px;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+            outline: none;
+            padding: 0 0 0 12px;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
         .nav-item-container {
             position: relative;
             box-sizing: content-box;
@@ -46,7 +59,10 @@ nav {
                 right: auto;
                 background: $brand-primary;
             }
-            md-icon {
+            &>md-icon {
+                transform: rotate(0);
+                will-change: transform;
+                transition: transform .18s cubic-bezier(0.25, 0.8, 0.25, 1);
                 color: rgba(0,0,0,.87);
                 fill: rgba(0,0,0,.87);
                 margin-right: 12px;
@@ -73,6 +89,27 @@ nav {
                 md-icon {
                     
                     // fill: #e12a2a;
+                }
+            }
+            &.expanded{
+                &>md-icon{
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        .nav-items-list {
+            overflow: hidden;
+            transition: height .18s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin: 4px 0;
+            md-checkbox {
+                margin: 2px 12px;
+                md-icon {
+                    width: 14px;
+                    top: -1px;
+                }
+                span {
+                    font-size: 13px;
+                    color: rgba(0,0,0,.87);
                 }
             }
         }

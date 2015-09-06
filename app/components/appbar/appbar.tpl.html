@@ -1,5 +1,8 @@
 <!-- Toolbars -->
-<md-toolbar class="search-bar" ng-class="{open : showSearchBar}">
+
+<div class="scrim top has-hero" ng-if="!$root.mainScrolled"></div>
+<!-- <md-toolbar class="search-bar" ng-if="showSearchBar" ng-class="{open : showSearchBar}"> -->
+<md-toolbar class="search-bar" ng-if="showSearchBar">
     <div class="" layout="row">
         <div class="material-one-center" flex="80" offset="10">
             <input aria-label="Cauta produs" class="material-search label-input-label" no-focus="" placeholder="Cauta produs" role="search">
@@ -7,25 +10,26 @@
         </div>
     </div>
 </md-toolbar>
-<md-toolbar class="app-bar main-bar" ng-class="{raised : $root.mainScrolled}">
+<md-toolbar class="app-bar main-bar" ng-class="{raised : $root.mainScrolled, transparent : $root.transparentAppbar && !$root.mainScrolled}">
     <div class="" layout="row">
-        <div class="material-one-left" flex="25">
+        <div class="material-one-left" flex="60" flex-gt-md="25">
             <div class="slide-left" ng-hide="sidebarOpen">
                 <md-button aria-label="Toggle Menu" class="md-icon-button l-left" ng-click="toggleSidebar(); hideSearchBar()">
                     <md-icon>
                         <i class="material-icons">&#xE5D2;</i>
                     </md-icon>
                 </md-button>
-                
+
                 <h1>
-                    <a href="/" style="background: url('assets/img/daksports_logo_red_white_noborder.svg')center no-repeat;"md-button>Daksports</a>
+                    <a href="/" md-button style="background: url('assets/img/daksports_logo_red_white_noborder.svg')center no-repeat;">Daksports</a>
                 </h1>
             </div>
         </div>
-        <div class="material-one-center" hide show-gt-md flex="50">
+        <div class="material-one-center" flex="50" hide show-gt-md>
             <input aria-label="Cauta produs" class="material-search label-input-label" no-focus="" placeholder="Cauta produs" role="search">
             <i class="material-icons search-icon">&#xE8B6;</i>
         </div>
+        <span flex hide-gt-md></span>
         <div class="material-one-right" flex-gt-md="25">
             <a aria-label="View facebook page" class="md-icon-button l-right" md-button ng-href="https://www.facebook.com/daksportsmagazin" target="_blank">
                 <md-icon md-svg-src="assets/icons/social_facebook_24px.svg"></md-icon>
@@ -33,6 +37,11 @@
             <a aria-label="View facebook page" class="md-icon-button l-right" md-button ng-href="https://www.google.com/+ionutachim23" target="_blank">
                 <md-icon md-svg-src="assets/icons/social_google_plus_24px.svg"></md-icon>
             </a>
+            <md-button aria-label="Search" class="appbar-search-button md-icon-button l-right" ng-click="toggleSearchBar($event)">
+                <md-icon>
+                    <i class="material-icons">&#xE8B6;</i>
+                </md-icon>
+            </md-button>
         </div>
     </div>
 </md-toolbar>

@@ -1,0 +1,11 @@
+<div class="nav-section-title">Filtreaza dupa:</div>
+<div class="nav-item-container" ng-class="{expanded : section.expanded}" ng-click="section.expand();">
+    Branduri
+    <md-icon class="right-icon l-right" md-svg-src="assets/icons/ic_keyboard_arrow_down_black_24px.svg" style="width:20px;"></md-icon>
+</div>
+<div class="nav-items-list" style="height:{{results.length * section.size}}px;">
+    <md-checkbox ng-checked="BrandFilter.exists(brand)" ng-click="BrandFilter.toggle(brand)" ng-repeat="brand in $root.brands | filter: q as results">
+        {{ brand }}
+    </md-checkbox>
+</div>
+<div class="gd-divider left-inset"></div>

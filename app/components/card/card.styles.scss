@@ -284,18 +284,21 @@
 .gd-card {
     &.gd-tile {
         .product-media {
-            padding: 0 65% 0 0;
+            padding: 0 60% 0 0;
             
             // z-index: 0;
             .hoverlay {
-                right: 65%;
+                right: 60%;
                 width: auto;
+            }
+            &>a{
+                position: relative;
             }
         }
         .product-info {
             position: absolute;
             top: 0;
-            left: 35%;
+            left: 40%;
             .excerpt-container {
                 display: block;
                 p {
@@ -309,7 +312,7 @@
         .product-actions {
             position: absolute;
             right: 0;
-            left: 35%;
+            left: 40%;
             width: auto;
             i {
                 color: rgba(0,0,0,.87);

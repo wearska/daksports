@@ -18,6 +18,11 @@
             margin: 0;
         }
     }
+    &:hover{
+        .gd-carousel-controls{
+            opacity: 1;
+        }
+    }
     @media #{$xsmall-only} {
         $i: 1;
         @while $i <= 12 {
@@ -83,6 +88,7 @@
         width: auto;
         height: auto;
         pointer-events: none;
+        opacity: 0;
         .gd-carousel-control {
             background-color: transparent;
             color: $brand-primary;

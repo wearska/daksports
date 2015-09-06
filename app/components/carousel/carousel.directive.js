@@ -7,10 +7,12 @@
                 restrict: 'E',
                 scope: {
                     items: '=data',
+                    tiles: '=gdTiles',
                     title: '@',
                     subtitle: '@',
                     limit: '@',
                     start: '@',
+                    promoFilter: '@',
                     xs: '=',
                     sm: '=',
                     md: '=',
@@ -40,7 +42,7 @@
                                 left: -i * step + 'px'
                             });
                             scope.atStart = false;
-                            (i == maxSteps) ? scope.atEnd = true : scope.atEnd = false;
+                            (i == maxSteps) ? scope.atEnd = true: scope.atEnd = false;
                         } else {
                             i = maxSteps;
                         }
@@ -57,7 +59,7 @@
                                 left: -i * step + 'px'
                             });
                             scope.atEnd = false;
-                            (i == 0) ? scope.atStart = true : scope.atStart = false;
+                            (i == 0) ? scope.atStart = true: scope.atStart = false;
                         } else {
                             i = 0;
                         }

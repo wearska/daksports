@@ -13,10 +13,10 @@
           templateUrl: 'app/views/main/main.view.html',
           controller: 'MainCtrl'
         })
-        .state('test', {
-          url: '/test',
-          templateUrl: 'app/views/testing/test.view.html'
-            // controller: 'TestCtrl'
+        .state('store', {
+          url: '/store',
+          templateUrl: 'app/views/store/store.view.html',
+          controller: 'StoreCtrl'
         })
         .state('auth', {
           url: '/auth',
