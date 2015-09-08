@@ -75,13 +75,13 @@ nav {
             &.button {
                 height: auto;
             }
-            
+
             //sub
             &.sub {
                 color: rgba(0,0,0,.54);
                 fill: rgba(0,0,0,.54);
             }
-            
+
             //sub
             &.active {
                 md-icon {
@@ -91,7 +91,7 @@ nav {
             &:hover {
                 background-color: rgb(240, 240, 240);
                 md-icon {
-                    
+
                     // fill: #e12a2a;
                 }
             }
@@ -103,7 +103,8 @@ nav {
         }
         .nav-items-list {
             overflow: hidden;
-            transition: height .18s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: max-height, height;
+            transition: max-height .18s cubic-bezier(0.25, 0.8, 0.25, 1), height .18s cubic-bezier(0.25, 0.8, 0.25, 1);
             // margin: 4px 0;
             md-checkbox {
                 margin: 2px 12px;
@@ -115,16 +116,19 @@ nav {
                     font-size: 13px;
                     color: rgba(0,0,0,.87);
                 }
+                &[disabled]{
+                    pointer-events: none;
+                }
             }
         }
     }
-    
+
     //nav-section
     .nav-section-divider {
         margin: 12px 0;
         border-bottom: 1px solid #eee;
     }
-    
+
     // nav-section-divider
 }
 

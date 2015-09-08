@@ -11,13 +11,16 @@
                 var idx = obj.selected.indexOf(brand);
                 if (idx > -1) obj.selected.splice(idx, 1);
                 else obj.selected.push(brand);
-                obj.active = true;
+                $rootScope.activeFilter = "brands";
+                if (!obj.selected.length){
+                    $rootScope.activeFilter = "";
+                }
             };
             obj.exists = function(brand) {
                 return obj.selected.indexOf(brand) > -1;
             };
             obj.count = function(brand) {
-                return $filter('brandFilter')($rootScope.filtered, brand).length;
+                return $filter('brandFilter')($rootScope.filteredBrands, brand).length;
             }
             obj.reset = function() {
                 obj.selected = [];
@@ -36,13 +39,16 @@
                 var idx = obj.selected.indexOf(cat);
                 if (idx > -1) obj.selected.splice(idx, 1);
                 else obj.selected.push(cat);
-                obj.active = true;
+                $rootScope.activeFilter = "mains";
+                if (!obj.selected.length){
+                    $rootScope.activeFilter = "";
+                }
             };
             obj.exists = function(cat) {
                 return obj.selected.indexOf(cat) > -1;
             };
             obj.count = function(cat) {
-                return $filter('mainCatFilter')($rootScope.filtered, cat).length;
+                return $filter('mainCatFilter')($rootScope.filteredMainCats, cat).length;
             }
             obj.reset = function() {
                 obj.selected = [];
@@ -60,13 +66,16 @@
                 var idx = obj.selected.indexOf(cat);
                 if (idx > -1) obj.selected.splice(idx, 1);
                 else obj.selected.push(cat);
-                obj.active = true;
+                $rootScope.activeFilter = "subs";
+                if (!obj.selected.length){
+                    $rootScope.activeFilter = "";
+                }
             };
             obj.exists = function(cat) {
                 return obj.selected.indexOf(cat) > -1;
             };
             obj.count = function(cat) {
-                return $filter('subCatFilter')($rootScope.filtered, cat).length;
+                return $filter('subCatFilter')($rootScope.filteredSubCats, cat).length;
             }
             obj.reset = function() {
                 obj.selected = [];

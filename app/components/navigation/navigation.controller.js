@@ -13,6 +13,7 @@
             $scope.BrandFilter = BrandFilter;
             $scope.MainCatFilter = MainCatFilter;
             $scope.SubCatFilter = SubCatFilter;
+
             // MENU ITEMS
             this.navItems = [{
                 title: 'Cos de cumparaturi',

@@ -6,8 +6,8 @@
         <md-icon class="reset-icon" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="BrandFilter.reset()" ng-show="BrandFilter.selected.length" style="margin-left: 8px; width:16px;"></md-icon>
         <md-icon class="right-icon l-right" md-svg-src="assets/icons/ic_keyboard_arrow_down_black_24px.svg" ng-click="list.expand();" style="width:20px;"></md-icon>
     </div>
-    <div class="nav-items-list" style="height:{{results.length * list.size}}px;">
-        <md-checkbox ng-checked="BrandFilter.exists(brand)" ng-click="BrandFilter.toggle(brand)" ng-repeat="brand in $root.brands | filter: q as results">
+    <div class="nav-items-list" style="max-height:{{results.length * list.size}}px;">
+        <md-checkbox ng-checked="BrandFilter.exists(brand)" ng-click="BrandFilter.toggle(brand)" ng-repeat="brand in $root.brands | filter: q as results" ng-disabled="!BrandFilter.count(brand)">
             {{ brand}}
             <span style="color: rgba(0,0,0,.54)">• ({{ BrandFilter.count(brand)}})</span>
         </md-checkbox>
@@ -20,7 +20,7 @@
         <md-icon class="reset-icon" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="MainCatFilter.reset()" ng-show="MainCatFilter.selected.length" style="margin-left: 8px; width:16px;"></md-icon>
         <md-icon class="right-icon l-right" md-svg-src="assets/icons/ic_keyboard_arrow_down_black_24px.svg" ng-click="list.expand();" style="width:20px;"></md-icon>
     </div>
-    <div class="nav-items-list" style="height:{{results.length * list.size}}px;">
+    <div class="nav-items-list" style="max-height:{{results.length * list.size}}px;">
         <md-checkbox ng-checked="MainCatFilter.exists(cat)" ng-click="MainCatFilter.toggle(cat)" ng-repeat="cat in $root.main_cats | filter: q as results" ng-disabled="!MainCatFilter.count(cat)">
             {{ cat }}
             <span style="color: rgba(0,0,0,.54)">• ({{ MainCatFilter.count(cat)}})</span>
@@ -34,8 +34,8 @@
         <md-icon class="reset-icon" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="SubCatFilter.reset()" ng-show="SubCatFilter.selected.length" style="margin-left: 8px; width:16px;"></md-icon>
         <md-icon class="right-icon l-right" md-svg-src="assets/icons/ic_keyboard_arrow_down_black_24px.svg" ng-click="list.expand();" style="width:20px;"></md-icon>
     </div>
-    <div class="nav-items-list" style="height:{{results.length * list.size}}px;">
-        <md-checkbox ng-checked="SubCatFilter.exists(cat)" ng-click="SubCatFilter.toggle(cat)" ng-repeat="cat in $root.sub_cats | filter: q as results">
+    <div class="nav-items-list" style="max-height:{{results.length * list.size}}px;">
+        <md-checkbox ng-checked="SubCatFilter.exists(cat)" ng-click="SubCatFilter.toggle(cat)" ng-repeat="cat in $root.sub_cats | filter: q as results" ng-disabled="!SubCatFilter.count(cat)">
             {{ cat }}
             <span style="color: rgba(0,0,0,.54)">• ({{ SubCatFilter.count(cat)}})</span>
         </md-checkbox>

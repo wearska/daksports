@@ -1,8 +1,8 @@
 <div class="page-content c-max">
-    <div class="product-grid" layout layout-padding layout-wrap style="margin-left: -16px; margin-right: -16px;">
-        <div class="grid-cell scale-fade" ng-repeat="item in products | brandFilter : BrandFilter.selected | mainCatFilter : MainCatFilter.selected | subCatFilter : SubCatFilter.selected | limitTo : 15" flex="20" >
+    <!-- <div class="product-grid" layout layout-padding layout-wrap style="margin-left: -16px; margin-right: -16px;">
+        <div class="grid-cell scale-fade" ng-repeat="item in $root.products | brandFilter : BrandFilter.selected | mainCatFilter : MainCatFilter.selected | subCatFilter : SubCatFilter.selected | limitTo : 15" flex="20" >
             <gd-card card-resource="item"></gd-card>
         </div>
-    </div>
-    <div ng-hide ng-repeat="item in products | brandFilter : BrandFilter.selected | mainCatFilter : MainCatFilter.selected | subCatFilter : SubCatFilter.selected | filter : q as filtered" ></div>
+    </div> -->
+    <div ng-hide ng-repeat="item in $root.products | dummyBrandFilter : BrandFilter.selected |  dummyMainCatFilter : MainCatFilter.selected |  dummySubCatFilter : SubCatFilter.selected | filter : q as filtered" ></div>
 </div>
