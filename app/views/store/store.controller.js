@@ -6,6 +6,22 @@
             $rootScope.state = $state.current.name;
             $scope.filtered = [];
 
+            $rootScope.filtered = angular.copy($scope.filtered);
+
+            $scope.$watch(
+                // This function returns the value being watched. It is called for each turn of the $digest loop
+                function() {
+                    return $scope.filtered;
+                },
+                // This is the change listener, called when the value returned from the above function changes
+                function(newValue, oldValue) {
+                    if (newValue !== oldValue) {
+                        // Only increment the counter if the value changed
+                        $rootScope.filtered = angular.copy($scope.filtered);
+                    }
+                }
+            );
+
             $scope.$on('$destroy', function() {
                 // Make sure that the interval is destroyed too
                 $rootScope.state = undefined;
