@@ -12,6 +12,7 @@
 
             // Reset object
             var reset = {
+                code:" ",
                 name: "",
                 subname: "",
                 slug: "",
@@ -51,7 +52,7 @@
 
             // Initial state
 
-            // $scope.product = angular.copy(reset);
+            $scope.product = angular.copy(reset);
             $scope.temp = angular.copy(tempreset);
             $scope.buttonTitle = "Adauga Produs";
             $scope.productForm = {};
@@ -64,6 +65,10 @@
             function rename(file) {
                 var n = file.lastIndexOf('/');
                 return [file.slice(0, n + 1), $scope.renameId + '/', file.slice(n + 1)].join('');
+            }
+            
+            $scope.setShort = function(short){
+                $scope.product.code = short;
             }
 
             $scope.setFiles = function() {

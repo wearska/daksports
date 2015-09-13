@@ -18,7 +18,6 @@
             };
         })
         .filter('promoFilter', function() {
-            console.log('promo');
             return function(products, value) {
                 var filtered = [];
                 if (!value) {

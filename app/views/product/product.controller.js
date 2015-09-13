@@ -118,7 +118,6 @@
                         "Albastru"
                     ];
                     $scope.product.rating = 50;
-                    $scope.product.inv = 0;
                 }).catch(function(error) {
                     return error;
                 });

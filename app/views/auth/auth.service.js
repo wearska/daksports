@@ -32,6 +32,8 @@
                     (item.tags) ? item.tags = item.tags.split(','): item.tags = [];
                     (item.colours) ? item.colours = item.colours.split(','): item.colours = [];
                     (angular.isDate(item.promo_end)) ? item.promo_end = item.promo_end: item.promo_end = new Date(item.promo_end);
+                    // set some defaults for testing purposes
+                    item.code = " ";
                 }
 
                 // CHECK AUTH

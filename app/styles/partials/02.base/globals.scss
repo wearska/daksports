@@ -3,18 +3,26 @@ html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
-*{
+* {
     outline: none;
 }
+*::-webkit-scrollbar {
+    background:  rgba(0,0,0,.06);
+    width: 8px;
+}
+*::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.21);
+}
 body,
-{
+ {
     margin: 0;
     background-color: #e5e5e5;
     outline: none;
 }
-body{
+body {
     overflow: hidden;
 }
+
 // body {
 //     background-image: url("/uploads/bg/lebron-james.jpg");
 //     background-size: cover;

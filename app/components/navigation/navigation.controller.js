@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, ngCart, GdFilter) {
+        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, ngCart, BrandFilter, MainCatFilter, SubCatFilter) {
 
             // LOGOUT
             this.logout = function() {
@@ -10,7 +10,9 @@
             };
 
             // FILTERS
-            $scope.GdFilter = GdFilter;
+            $scope.BrandFilter = BrandFilter;
+            $scope.MainCatFilter = MainCatFilter;
+            $scope.SubCatFilter = SubCatFilter;
 
             // MENU ITEMS
             this.navItems = [{
@@ -79,10 +81,10 @@
             });
 
         })
-        .controller('NavSectionCtrl', function($rootScope, $scope) {
+        .controller('NavSectionCtrl', function($rootScope, $scope, BrandFilter) {
 
         })
-        .controller('NavListCtrl', function($rootScope, $scope) {
+        .controller('NavListCtrl', function($rootScope, $scope, BrandFilter) {
 
             this.size = 0;
             this.expanded = false;

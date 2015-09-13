@@ -1,6 +1,6 @@
 <!-- Detalii produs -->
 <section>
-    <md-autocomplete ng-if="state==='add'" md-item-text="item.name" md-items="item in querySearch(searchText)" md-menu-class="autocomplete-custom-template" md-min-length="0" md-no-cache="false" md-search-text-change="searchTextChange(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-selected-item="selectedItem" ng-disabled="false" placeholder="Alege un template">
+    <md-autocomplete md-item-text="item.name" md-items="item in querySearch(searchText)" md-menu-class="autocomplete-custom-template" md-min-length="0" md-no-cache="false" md-search-text-change="searchTextChange(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-selected-item="selectedItem" ng-disabled="false" ng-if="state==='add'" placeholder="Alege un template">
         <md-item-template>
             <span class="item-thumb" style="background-image: url({{item.file1 | lowres}})"></span>
             <span class="item-title">
@@ -21,8 +21,7 @@
             <label>Sub-nume</label>
             <input ng-model="product.subname">
         </md-input-container>
-    </div>
-    <div layout layout-sm="column">
+        <span flex="5"></span>
         <div flex layout>
             <md-input-container>
                 <label>Brand</label>
@@ -35,30 +34,38 @@
                 <input ng-model="product.brand">
             </md-input-container>
         </div>
-        <span flex="5"></span>
+    </div>
+    <div layout layout-sm="column">
         <div flex layout>
             <md-input-container>
                 <label>Categorie</label>
-                <md-select ng-model="product.main_cat">
-                    <md-option ng-repeat="cat in $root.main_cats" value="{{cat}}">{{cat}}</md-option>
+                <md-select ng-model="product.type">
+                    <md-option ng-repeat="item in $root.types" value="{{item.type}}">{{item.type}}</md-option>
                 </md-select>
             </md-input-container>
             <md-input-container flex>
                 <label>Adauga o categorie</label>
-                <input ng-model="product.main_cat">
+                <input ng-model="product.type">
             </md-input-container>
         </div>
         <span flex="5"></span>
         <div flex layout>
             <md-input-container>
                 <label>Sub-categorie</label>
-                <md-select ng-model="product.sub_cat">
-                    <md-option ng-repeat="cat in sub_cats" value="{{cat}}">{{cat}}</md-option>
+                <md-select ng-model="product.kind">
+                    <md-option ng-repeat="kind in kinds" value="{{kind}}">{{kind}}</md-option>
                 </md-select>
             </md-input-container>
             <md-input-container flex>
                 <label>Adauga o sub-categorie</label>
-                <input ng-model="product.sub_cat">
+                <input ng-model="product.kind">
+            </md-input-container>
+        </div>
+        <div flex layout>
+            <md-input-container flex>
+                <label>Cod produs</label>
+                <span class="product-code-series">DAK-</span>
+                <input ng-model="product.code" style="text-indent: 30px;">
             </md-input-container>
         </div>
     </div>
@@ -149,7 +156,7 @@
 <!-- Poze produs -->
 <section>
     <h2 class="md-headline" style="margin-top: 32px;">Adauga poze</h2>
-    <!-- <div layout="column">
+<!-- <div layout="column">
         <md-input-container flex>
             <md-checkbox aria-label="culori disponibile" name="availableColours" ng-false-value="0" ng-model="product.coloursCheck" ng-true-value="1">
                 Disponibil in mai multe culori

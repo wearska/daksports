@@ -22,6 +22,12 @@
             $scope.getBrands = function() {
                 return $http.get(api + 'query.brands.php');
             };
+            $scope.getTypes = function() {
+                return $http.get(api + 'query.types.php');
+            };
+            $scope.getKinds = function() {
+                return $http.get(api + 'query.kinds.php');
+            };
             $scope.getMainCats = function() {
                 return $http.get(api + 'query.main_cats.php');
             };
@@ -32,6 +38,20 @@
             $scope.getBrands()
                 .then(function(response) {
                     $rootScope.brands = response.data;
+                }).catch(function(error) {
+                    return error;
+                });
+
+            $scope.getTypes()
+                .then(function(response) {
+                    $rootScope.types = response.data;
+                }).catch(function(error) {
+                    return error;
+                });
+
+            $scope.getKinds()
+                .then(function(response) {
+                    $rootScope.kinds = response.data;
                 }).catch(function(error) {
                     return error;
                 });
