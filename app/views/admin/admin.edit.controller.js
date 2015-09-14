@@ -31,7 +31,7 @@
                     console.log("promo");
                     $scope.product.old_price = $scope.product.price;
                     $scope.product.new_price = $scope.product.promo_price;
-                }else{
+                } else {
                     $scope.product.old_price = 0;
                     $scope.product.new_price = $scope.product.price;
                 };
@@ -53,6 +53,17 @@
             };
 
 
+            $scope.setShort = function(ev) {
+                var typeSt = $scope.product.type;
+                angular.forEach($rootScope.types, function(type) {
+                    if (typeSt.indexOf(type.type) > -1) {
+                        console.log(type.short);
+                        var series = $filter('serialize')(type.short);
+                        $scope.product.code = series;
+                    }
+                });
+            }
+
             function brandsCheck(brand) {
                 var bool = false;
                 angular.forEach($rootScope.brands, function(value, key) {
@@ -67,6 +78,7 @@
                 });
                 return bool;
             }
+
             function subCatsCheck(cat) {
                 var bool = false;
                 angular.forEach($rootScope.sub_cats, function(value, key) {
@@ -81,7 +93,7 @@
                 });
                 return bool;
             }
-            
+
             function mainCatsCheck(cat) {
                 var bool = false;
                 angular.forEach($rootScope.main_cats, function(value, key) {
@@ -111,7 +123,7 @@
                 } else {
                     //do nothing yet
                 };
-                
+
                 // update sub_cats
                 $scope.product.sub_cat = $scope.product.sub_cat.toProperCase();
                 var cat = $scope.product.sub_cat;
@@ -125,7 +137,7 @@
                 } else {
                     //do nothing yet
                 };
-                
+
                 // update main cats
                 $scope.product.main_cat = $scope.product.main_cat.toProperCase();
                 var cat = $scope.product.main_cat;
@@ -148,10 +160,10 @@
                     ($scope.product.promo_stock != 0) ? $scope.product.promoStockCheck = 1: $scope.product.promoStockCheck = 0;
                     var notDate = angular.equals($scope.product.promo_end, '0000-00-00 00:00:00');
                     console.log(notDate);
-                    if(notDate){
+                    if (notDate) {
                         $scope.product.promoDateCheck = 0;
                         $scope.product.promo_end = null;
-                    }else{
+                    } else {
                         $scope.product.promoDateCheck = 1;
                         $scope.product.promo_end = new Date($scope.product.promo_end);
                     };

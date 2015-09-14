@@ -66,9 +66,16 @@
                 var n = file.lastIndexOf('/');
                 return [file.slice(0, n + 1), $scope.renameId + '/', file.slice(n + 1)].join('');
             }
-            
-            $scope.setShort = function(short){
-                $scope.product.code = short;
+
+            $scope.setShort = function(ev){
+                var typeSt = $scope.product.type;
+                angular.forEach($rootScope.types, function(type){
+                    if(typeSt.indexOf(type.type) > -1){
+                        console.log(type.short);
+                        var series = $filter('serialize')(type.short);
+                        $scope.product.code = series;
+                    }
+                });
             }
 
             $scope.setFiles = function() {

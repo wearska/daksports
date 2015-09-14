@@ -38,6 +38,16 @@
                 }
             };
         })
+        .filter('serialize', function() {
+            return function(input) {
+                if (input != null && input != undefined) {
+                    var min = 10000;
+                    var max = 99999;
+                    var num = Math.floor(Math.random() * (max - min + 1)) + min;
+                    return input + '' + num;
+                }
+            }
+        })
         .filter('lowres', function() {
             return function(input) {
                 return input ? input.replace(/(\.[\w\d_-]+)$/i, '_low$1') : input;

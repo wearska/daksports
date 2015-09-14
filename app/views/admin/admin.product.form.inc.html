@@ -39,7 +39,7 @@
         <div flex layout>
             <md-input-container>
                 <label>Categorie</label>
-                <md-select ng-model="product.type">
+                <md-select ng-model="product.type" ng-change="setShort()">
                     <md-option ng-repeat="item in $root.types" value="{{item.type}}">{{item.type}}</md-option>
                 </md-select>
             </md-input-container>
@@ -57,15 +57,15 @@
                 </md-select>
             </md-input-container>
             <md-input-container flex>
-                <label>Adauga o sub-categorie</label>
+                <label>{{'Adauga o sub-categorie' | serialize}}</label>
                 <input ng-model="product.kind">
             </md-input-container>
         </div>
         <div flex layout>
             <md-input-container flex>
                 <label>Cod produs</label>
-                <span class="product-code-series">DAK-</span>
-                <input ng-model="product.code" style="text-indent: 30px;">
+                <span class="product-code-series">DAK</span>
+                <input ng-model="product.code" style="text-indent: 26px;">
             </md-input-container>
         </div>
     </div>
