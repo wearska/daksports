@@ -38,11 +38,7 @@
                 $scope.product.promo_stock = parseFloat($scope.product.promo_stock);
                 ($scope.product.tags) ? $scope.product.tags = $scope.product.tags.split(', '): $scope.product.tags = [];
                 ($scope.product.colours) ? $scope.product.colours = $scope.product.colours.split(', '): $scope.product.colours = [];
-                // var year = $filter('date')($scope.product.promo_end, 'yy');
-                // var bool = angular.isDate($scope.product.promo_end);
-                // angular.equals(o1, o2);
-                // console.log(bool);
-                // (angular.isDate($scope.product.promo_end)) ? $scope.product.promo_end = new Date($scope.product.promo_end): $scope.product.promo_end = $scope.product.promo_end;
+                $scope.product.code = $scope.product.code.substring(3);
                 $scope.ready = true;
             }
 
@@ -81,7 +77,7 @@
 
             function subCatsCheck(cat) {
                 var bool = false;
-                angular.forEach($rootScope.sub_cats, function(value, key) {
+                angular.forEach($rootScope.kinds, function(value, key) {
                     cat = angular.lowercase(cat);
                     value = angular.lowercase(value);
                     if (cat.indexOf(value) != -1) {
@@ -96,7 +92,7 @@
 
             function mainCatsCheck(cat) {
                 var bool = false;
-                angular.forEach($rootScope.main_cats, function(value, key) {
+                angular.forEach($rootScope.types, function(value, key) {
                     cat = angular.lowercase(cat);
                     value = angular.lowercase(value);
                     if (cat.indexOf(value) != -1) {
@@ -114,7 +110,7 @@
                 $scope.product.brand = $scope.product.brand.toProperCase();
                 var brand = $scope.product.brand;
                 console.log(brand);
-                if (!brandsCheck($scope.product.brand) && $scope.product.brand) {
+                if (!brandsCheck($scope.product.brand) && $scope.product.brand !== '') {
                     var data = {
                         brand: brand
                     };
@@ -124,30 +120,30 @@
                     //do nothing yet
                 };
 
-                // update sub_cats
-                $scope.product.sub_cat = $scope.product.sub_cat.toProperCase();
-                var cat = $scope.product.sub_cat;
+                // update kinds
+                $scope.product.kind = $scope.product.kind.toProperCase();
+                var cat = $scope.product.kind;
                 console.log(cat);
-                if (!subCatsCheck($scope.product.sub_cat) && $scope.product.sub_cat) {
+                if (!subCatsCheck($scope.product.kind) && $scope.product.kind !== '') {
                     var data = {
-                        sub_cat: cat
+                        kind: cat
                     };
-                    $http.post("api/categories/post.sub_cats.php", data);
-                    $rootScope.sub_cats.push(cat);
+                    $http.post("api/categories/post.kinds.php", data);
+                    $rootScope.kinds.push(cat);
                 } else {
                     //do nothing yet
                 };
 
                 // update main cats
-                $scope.product.main_cat = $scope.product.main_cat.toProperCase();
-                var cat = $scope.product.main_cat;
+                $scope.product.type = $scope.product.type.toProperCase();
+                var cat = $scope.product.type;
                 console.log(cat);
-                if (!mainCatsCheck($scope.product.main_cat) && $scope.product.main_cat) {
+                if (!mainCatsCheck($scope.product.type) && $scope.product.type !== '') {
                     var data = {
-                        main_cat: cat
+                        type: cat
                     };
-                    $http.post("api/categories/post.main_cats.php", data);
-                    $rootScope.main_cats.push(cat);
+                    $http.post("api/categories/post.types.php", data);
+                    $rootScope.types.push(cat);
                 } else {
                     //do nothing yet
                 };
@@ -504,10 +500,11 @@
             $scope.putData = {};
             $scope.submitProduct = function(product) {
                 if ($scope.productForm.$valid) {
-                    catsUpdate();
+                    // catsUpdate();
                     $scope.putData = angular.copy($scope.product);
                     $scope.putData.tags = $scope.putData.tags.join(", ");
                     $scope.putData.colours = $scope.putData.colours.join(", ");
+                    $scope.putData.code = 'DAK' + $scope.putData.code;
                     //make the call
                     productRes.put($scope.putData)
                         .then(function(response) {

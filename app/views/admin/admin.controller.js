@@ -11,28 +11,10 @@
             });
             $scope.state = null;
 
-            //set product available colours
-            $scope.colours = [
-                'black',
-                'white',
-                'brown',
-                'red',
-                'orange',
-                'gold',
-                'yellow',
-                'green',
-                'teal',
-                'cyan',
-                'blue',
-                'indigo',
-                'violet',
-                'pink'
-            ];
-            
-            // product
-            
+
             // Reset object
             var reset = {
+                code: " ",
                 name: "",
                 subname: "",
                 slug: "",
@@ -45,8 +27,8 @@
                 excerpt: "",
                 description: "",
                 brand: "",
-                main_cat: "",
-                sub_cat: "",
+                type: "",
+                kind: "",
                 tags: [],
                 age: 0,
                 gender: 0,
@@ -91,7 +73,7 @@
             $scope.searchTextChange = searchTextChange;
 
             // Search for templates... use $timeout to simulate remote dataservice call.
-            
+
             function querySearch(query) {
                 var results = query ? $scope.templates.filter(createFilterFor(query)) : $scope.templates,
                     deferred;

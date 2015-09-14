@@ -47,6 +47,10 @@
                 <label>Adauga o categorie</label>
                 <input ng-model="product.type">
             </md-input-container>
+            <md-input-container flex>
+                <label>Indicator categorie</label>
+                <input ng-model="product.typeShort">{{item.short}}</input>
+            </md-input-container>
         </div>
         <span flex="5"></span>
         <div flex layout>

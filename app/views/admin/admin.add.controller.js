@@ -25,8 +25,8 @@
                 excerpt: "",
                 description: "",
                 brand: "",
-                main_cat: "",
-                sub_cat: "",
+                type: "",
+                kind: "",
                 tags: [],
                 age: 0,
                 gender: 0,
@@ -115,7 +115,7 @@
 
             function subCatsCheck(cat) {
                 var bool = false;
-                angular.forEach($rootScope.sub_cats, function(value, key) {
+                angular.forEach($rootScope.kinds, function(value, key) {
                     cat = angular.lowercase(cat);
                     value = angular.lowercase(value);
                     if (cat.indexOf(value) != -1) {
@@ -130,7 +130,7 @@
 
             function mainCatsCheck(cat) {
                 var bool = false;
-                angular.forEach($rootScope.main_cats, function(value, key) {
+                angular.forEach($rootScope.types, function(value, key) {
                     cat = angular.lowercase(cat);
                     value = angular.lowercase(value);
                     if (cat.indexOf(value) != -1) {
@@ -158,30 +158,30 @@
                     //do nothing yet
                 };
 
-                // update sub_cats
-                $scope.product.sub_cat = $scope.product.sub_cat.toProperCase();
-                var cat = $scope.product.sub_cat;
+                // update kinds
+                $scope.product.kind = $scope.product.kind.toProperCase();
+                var cat = $scope.product.kind;
                 console.log(cat);
-                if (!subCatsCheck($scope.product.sub_cat)) {
+                if (!subCatsCheck($scope.product.kind)) {
                     var data = {
-                        sub_cat: cat
+                        kind: cat
                     };
-                    $http.post("api/categories/post.sub_cats.php", data);
-                    $rootScope.sub_cats.push(cat);
+                    $http.post("api/categories/post.kinds.php", data);
+                    $rootScope.kinds.push(cat);
                 } else {
                     //do nothing yet
                 };
 
                 // update main cats
-                $scope.product.main_cat = $scope.product.main_cat.toProperCase();
-                var cat = $scope.product.main_cat;
+                $scope.product.type = $scope.product.type.toProperCase();
+                var cat = $scope.product.type;
                 console.log(cat);
-                if (!mainCatsCheck($scope.product.main_cat)) {
+                if (!mainCatsCheck($scope.product.type)) {
                     var data = {
-                        main_cat: cat
+                        type: cat
                     };
-                    $http.post("api/categories/post.main_cats.php", data);
-                    $rootScope.main_cats.push(cat);
+                    $http.post("api/categories/post.types.php", data);
+                    $rootScope.types.push(cat);
                 } else {
                     //do nothing yet
                 };

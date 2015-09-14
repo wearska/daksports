@@ -6,11 +6,12 @@ require_once('../config.php');
 $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
     @$id = $request->id;
+    @$code = $request->code;
     @$name = $request->name;
     @$subname = $request->subname;
     @$brand = $request->brand;
-    @$main_cat = $request->main_cat;
-    @$sub_cat = $request->sub_cat;
+    @$type = $request->type;
+    @$kind = $request->kind;
     @$tags = $request->tags;
     @$slug = "slug";
     @$price = $request->price;
@@ -28,7 +29,7 @@ $postdata = file_get_contents("php://input");
     @$file4 = $request->file4;
     @$file5 = $request->file5;
 
-$sql = "UPDATE `products` SET `name`='$name', `subname`='$subname', `price`='$price', `promo`='$promo', `promo_price`='$promo_price', `promo_stock`='$promo_stock', `promo_end`='$promo_end', `excerpt`='$excerpt', `description`='$desc', `inv`='$inv', `brand`='$brand', `main_cat`='$main_cat', `sub_cat`='$sub_cat', `tags`='$tags', `file1`='$file1', `file2`='$file2', `file3`='$file3', `file4`='$file4', `file5`='$file5', `added`='$added' WHERE `id`='$id';";
+$sql = "UPDATE `products` SET `code`='$code', `name`='$name', `subname`='$subname', `price`='$price', `promo`='$promo', `promo_price`='$promo_price', `promo_stock`='$promo_stock', `promo_end`='$promo_end', `excerpt`='$excerpt', `description`='$desc', `inv`='$inv', `brand`='$brand', `type`='$type', `kind`='$kind', `tags`='$tags', `file1`='$file1', `file2`='$file2', `file3`='$file3', `file4`='$file4', `file5`='$file5', `added`='$added' WHERE `id`='$id';";
 
 if ($conn->query($sql) === TRUE) {
     echo $promo_end;

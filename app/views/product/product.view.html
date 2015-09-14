@@ -20,9 +20,9 @@
                     <div class="product-stats">
                         <span class="brand">{{product.brand | uppercase}}</span>
                         •
-                        <span class="main_cat">{{product.main_cat}}</span>
+                        <span class="type">{{product.type}}</span>
                         •
-                        <span class="sub_cat">{{product.sub_cat}}</span>
+                        <span class="kind">{{product.kind}}</span>
                     </div>
                     <md-divider></md-divider>
                     <div class="stars-container">
@@ -40,7 +40,7 @@
                             <span ng-show="!product.promo">RON</span>
                             {{product.price}}</div>
                     </div>
-                    
+
                     <div class="product-actions">
                         <form name="orderForm" ng-submit="orderProduct(order)" novalidate>
                             <div class="" layout-gt-sm="row" layout="column">

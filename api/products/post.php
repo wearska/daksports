@@ -5,11 +5,12 @@ require_once('../config.php');
 
 $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
+    @$code = $request->code;
     @$name = $request->name;
     @$subname = $request->subname;
     @$brand = $request->brand;
-    @$main_cat = $request->main_cat;
-    @$sub_cat = $request->sub_cat;
+    @$type = $request->type;
+    @$kind = $request->kind;
     @$slug = "slug";
     @$price = $request->price;
     @$promo = $request->promo;
@@ -26,7 +27,7 @@ $postdata = file_get_contents("php://input");
     @$file4 = $request->file4;
     @$file5 = $request->file5;
 
-$sql = "INSERT INTO products (name, subname, brand, main_cat, sub_cat, price, promo, promo_price, promo_stock, promo_end, excerpt, description, inv, added, file1, file2, file3, file4, file5) VALUES ('$name', '$subname', '$brand', '$main_cat', '$sub_cat', '$price', '$promo', '$promo_price', '$promo_stock', '$promo_end', '$excerpt', '$desc', '$inv', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
+$sql = "INSERT INTO products (code, name, subname, brand, type, kind, price, promo, promo_price, promo_stock, promo_end, excerpt, description, inv, added, file1, file2, file3, file4, file5) VALUES ('$code', '$name', '$subname', '$brand', '$type', '$kind', '$price', '$promo', '$promo_price', '$promo_stock', '$promo_end', '$excerpt', '$desc', '$inv', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
 
 $response = "SELECT LAST_INSERT_ID();";
 

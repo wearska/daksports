@@ -18,9 +18,9 @@
                 <p class="subname single-line">{{product.subname}}</p>
                 <p class="cats single-line">{{product.brand}}
                     /
-                    {{product.main_cat}}
+                    {{product.type}}
                     /
-                    {{product.sub_cat}}</p>
+                    {{product.kind}}</p>
             </div>
             <div class="list-actions">
                 <md-button aria-label="Remove" class="md-icon-button l-right" ng-click="removeItem(product.id)">
@@ -38,9 +38,9 @@
                         <i class="material-icons" style="color:#FF2929">&#xE85F;</i>
                     </md-icon>
                 </md-button>
-                
+
                 <div class="gd-separator"></div>
-                
+
                 <a class="md-icon-button l-right" md-button ng-href="/admin/edit/{{product.id}}">
                     <md-icon>
                         <i class="material-icons">&#xE254;</i>
