@@ -2,9 +2,11 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('StoreCtrl', function($rootScope, $scope, $state, BrandFilter, MainCatFilter, SubCatFilter) {
+        .controller('StoreCtrl', function($rootScope, $scope, $state, BrandFilter, MainCatFilter, SubCatFilter, PriceFilter) {
             $rootScope.state = $state.current.name;
             $scope.filtered = [];
+
+            $scope.limit = 16;
 
             $rootScope.filtered = angular.copy($scope.filtered);
 
@@ -18,6 +20,7 @@
                     if (newValue !== oldValue) {
                         // Only increment the counter if the value changed
                         $rootScope.filtered = angular.copy($scope.filtered);
+                        (BrandFilter.selected.length > 0 || MainCatFilter.selected.length > 0 || SubCatFilter.selected.length > 0) ?  $scope.limit = null : $scope.limit = 16;
                     }
                 }
             );
@@ -31,16 +34,8 @@
             $scope.BrandFilter = BrandFilter;
             $scope.MainCatFilter = MainCatFilter;
             $scope.SubCatFilter = SubCatFilter;
+            $scope.PriceFilter = PriceFilter;
 
-            $scope.toggle = function(brand, list) {
-                console.log("toggle");
-                var idx = list.indexOf(brand);
-                if (idx > -1) list.splice(idx, 1);
-                else list.push(brand);
-            };
-            $scope.exists = function(brand, list) {
-                return list.indexOf(brand) > -1;
-            };
         });
 
 })();

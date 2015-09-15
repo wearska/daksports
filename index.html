@@ -26,7 +26,7 @@
       <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
-      
+
       <div id="frontpage">
          <header role="banner" id="main-header" ng-controller="AppBarCtrl" ng-include="'app/components/appbar/appbar.tpl.html'"></header>
          <div class="frontpage-content">
@@ -45,14 +45,19 @@
                  </md-toolbar>
                  <nav id="nav" class="l-offset-nav" ng-include="'app/components/navigation/navigation.tpl.html'" ng-controller="NavCtrl as nav"></nav>
              </div>
-             <main id="main" class="l-offset-nav" ng-class="{narrow : sidebarOpen}">
-                 <div id="page" gd-scroll ng-class="{min : boolChangeClass}" ui-view autoscroll="true">
-                 </div>
+             <main id="main" class="l-offset-nav" ng-class="{narrow : sidebarOpen}" layout="column">
+                 <div id="page" gd-scroll ng-class="{min : boolChangeClass}" ui-view autoscroll="true" flex></div>
+                 <footer ng-controller="FooterCtrl" role="footer" id="bottom-bar" class="paper resting" ng-class="{open : showFooter}">
+                    <span style="position:absolute; color: #fff; width:100%; text-align:center; font-size: 14px; line-height:48px; font-weight: 300; top:0; bottom:0;">© Copyright Daksports 2015</span>
+                    <md-button aria-label="Toggle Footer" class="md-icon-button l-right" ng-click="toggleFooter();">
+                        <md-icon md-svg-src="assets/icons/ic_launch_white_24px.svg" class="expand-footer-icon" ng-class="{rotated : showFooter}"></md-icon>
+                    </md-button>
+                 </footer>
              </main>
          </div>
       </div>
-      
-      
+
+
       <!-- <header role="banner" class="site-header" ng-controller="AppBarCtrl" ng-include="'app/components/appbar/appbar.tpl.html'"></header>
       <md-content layout-padding md-scroll-y id="frontpage">
           <div class="page c-max l-offset-nav">
@@ -62,7 +67,6 @@
               <main id="main-content" role="main" ui-view></main>
           </div>
       </md-content> -->
-      <footer role="footer" id="bottom-bar" class="paper resting"></footer>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -107,6 +111,7 @@
     <script src="app/components/scroll/scroll.directive.js"></script>
     <script src="app/components/navigation/navigation.controller.js"></script>
     <script src="app/components/heading/heading.directive.js"></script>
+    <script src="app/components/footer/footer.controller.js"></script>
     <script src="app/components/filters/filters.js"></script>
     <script src="app/components/filters/filters.factory.js"></script>
     <script src="app/components/filters/filters.controller.js"></script>

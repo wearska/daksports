@@ -17,7 +17,7 @@
     overflow: hidden;
 }
 #page {
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
     padding: 16px;
     width: 100%;
@@ -87,7 +87,7 @@ nav {
 // Header
 #main-header {
     width: 100%;
-    
+
     // position: relative;
 }
 
@@ -109,7 +109,7 @@ nav {
     margin-right: auto;
     position: relative;
     box-sizing: border-box;
-    
+
     // display: block;
 }
 @media #{$small-and-up} {
@@ -155,10 +155,10 @@ nav {
 
 //Sidenav
 aside {
-    
+
 }
 
 // Footer
 footer {
-    
+
 }

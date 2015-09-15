@@ -41,3 +41,21 @@
         </md-checkbox>
     </div>
 </div>
+<!-- price filter -->
+<div ng-controller="NavListCtrl as list">
+    <div class="nav-item-container" ng-class="{expanded : list.expanded}">
+        Pret
+        <md-icon class="reset-icon" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="PriceFilter.reset()" ng-show="PriceFilter.selected.length" style="margin-left: 8px; width:16px;"></md-icon>
+        <md-icon class="right-icon l-right" md-svg-src="assets/icons/ic_keyboard_arrow_down_black_24px.svg" ng-click="list.expand();" style="width:20px;"></md-icon>
+    </div>
+    <div class="nav-items-list" style="max-height:{{results.length * list.size}}px;">
+        <md-checkbox ng-checked="PriceFilter.exists(range)" ng-click="PriceFilter.toggle(range)" ng-repeat="range in PriceFilter.ranges | filter: q as results">
+            <span ng-if="!range.min"> < </span>
+            <span ng-if="!range.max"> > </span>
+            <span ng-if="range.min">{{ range.min }}</span>
+            <span ng-if="range.min && range.max"> - </span>
+            <span ng-if="range.max">{{ range.max }}</span> RON
+            <!-- <span style="color: rgba(0,0,0,.54)">• ({{ PriceFilter.count(range)}})</span> -->
+        </md-checkbox>
+    </div>
+</div>

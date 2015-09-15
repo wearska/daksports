@@ -57,17 +57,20 @@
                     el.addClass("active");
                     $scope.product.colours.push(colour);
                 }
-                console.log($scope.product.colours);
             }
 
             // product templates
 
             $scope.simulateQuery = false;
             $scope.isDisabled = false;
-            $scope.$on('products:filled', function(event, item) {
-                console.log("products ready");
-                    $scope.templates = loadAll();
-            });
+            if ($rootScope.products){
+                $scope.templates = loadAll();
+            }else{
+                $scope.$on('products:filled', function(event, item) {
+                        $scope.templates = loadAll();
+                });
+            }
+
             $scope.querySearch = querySearch;
             $scope.selectedItemChange = selectedItemChange;
             $scope.searchTextChange = searchTextChange;
@@ -101,7 +104,6 @@
              * Build `components` list of key/value pairs
              */
             function loadAll() {
-                console.log("loadall");
                 var templates = $rootScope.products;
                 return templates.map(function(template) {
                     template.value = template.name.toLowerCase();

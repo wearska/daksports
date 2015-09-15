@@ -70,7 +70,7 @@
                     $rootScope.filteredMainCats = angular.copy(filtered);
                     $rootScope.filteredSubCats = angular.copy(filtered);
                 }
-                console.log($rootScope.activeFilter);
+                // console.log($rootScope.activeFilter);
                 return filtered;
             };
         })
@@ -78,7 +78,7 @@
             return function(items, cat) {
                 var filtered = [];
                 // return items;
-                console.log(cat);
+                // console.log(cat);
                 if (cat.length <= 0) {
                     // console.log("updating from main cats");
                     if (!$rootScope.activeFilter) {
@@ -97,7 +97,7 @@
                     $rootScope.filteredBrands = angular.copy(filtered);
                     $rootScope.filteredSubCats = angular.copy(filtered);
                 }
-                console.log($rootScope.activeFilter);
+                // console.log($rootScope.activeFilter);
                 return filtered;
             };
         })
@@ -123,7 +123,7 @@
                     $rootScope.filteredBrands = angular.copy(filtered);
                     $rootScope.filteredMainCats = angular.copy(filtered);
                 }
-                console.log($rootScope.activeFilter);
+                // console.log($rootScope.activeFilter);
                 return filtered;
             };
         });
