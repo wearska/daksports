@@ -5,11 +5,11 @@
     .controller('FooterCtrl', function($rootScope, $scope, $location, $timeout, ngCart) {
 
       // TOGGLE FOOTER
-      $scope.showFooter = false;
-      $scope.toggleFooter = function() {
-        $scope.showFooter = !$scope.showFooter;
+      $scope.expandedFooter = false;
+      $scope.expandFooter = function() {
+        $scope.expandedFooter = !$scope.expandedFooter;
       };
-      $scope.hideFooter = function() {
+      $scope.showFooter = function() {
         $scope.showFooter = false;
       };
 

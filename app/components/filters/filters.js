@@ -48,6 +48,23 @@
                 return filtered;
             };
         })
+        .filter('priceFilter', function($rootScope) {
+            return function(items, range) {
+                var filtered = [];
+                // return items;
+                if (!angular.isObject(range)) {
+                    return items;
+                }
+                angular.forEach(items, function(item) {
+                    if (range.max && item.price >= range.min && item.price < range.max) {
+                        filtered.push(item);
+                    }else if (!range.max && item.price >= range.min){
+                        filtered.push(item);
+                    }
+                });
+                return filtered;
+            };
+        })
         .filter('dummyBrandFilter', function($rootScope) {
             return function(items, brand) {
                 var filtered = [];
@@ -57,6 +74,7 @@
                     if ($rootScope.activeFilter == 'brands' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
                     $rootScope.filteredMainCats = angular.copy(items);
                     $rootScope.filteredSubCats = angular.copy(items);
+                    $rootScope.filteredPrice = angular.copy(items);
                     }
                     return items;
                 }
@@ -69,6 +87,7 @@
                 if ($rootScope.activeFilter == 'brands') {
                     $rootScope.filteredMainCats = angular.copy(filtered);
                     $rootScope.filteredSubCats = angular.copy(filtered);
+                    $rootScope.filteredPrice = angular.copy(filtered);
                 }
                 // console.log($rootScope.activeFilter);
                 return filtered;
@@ -84,6 +103,7 @@
                     if (!$rootScope.activeFilter) {
                     $rootScope.filteredBrands = angular.copy(items);
                     $rootScope.filteredSubCats = angular.copy(items);
+                    $rootScope.filteredPrice = angular.copy(items);
                     }
                     return items;
                 }
@@ -96,6 +116,7 @@
                 if ($rootScope.activeFilter == 'mains' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
                     $rootScope.filteredBrands = angular.copy(filtered);
                     $rootScope.filteredSubCats = angular.copy(filtered);
+                    $rootScope.filteredPrice = angular.copy(filtered);
                 }
                 // console.log($rootScope.activeFilter);
                 return filtered;
@@ -110,6 +131,7 @@
                     if ($rootScope.activeFilter == 'subs' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
                     $rootScope.filteredBrands = angular.copy(items);
                     $rootScope.filteredMainCats = angular.copy(items);
+                    $rootScope.filteredPrice = angular.copy(items);
                     }
                     return items;
                 }
@@ -122,8 +144,36 @@
                 if ($rootScope.activeFilter == 'subs') {
                     $rootScope.filteredBrands = angular.copy(filtered);
                     $rootScope.filteredMainCats = angular.copy(filtered);
+                    $rootScope.filteredPrice = angular.copy(filtered);
                 }
                 // console.log($rootScope.activeFilter);
+                return filtered;
+            };
+        })
+        .filter('dummyPriceFilter', function($rootScope) {
+            return function(items, range) {
+                var filtered = [];
+                // return items;
+                if (!angular.isObject(range)) {
+                    if ($rootScope.activeFilter == 'price' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
+                        $rootScope.filteredBrands = angular.copy(items);
+                        $rootScope.filteredMainCats = angular.copy(items);
+                        $rootScope.filteredSubCats = angular.copy(items);
+                    }
+                    return items;
+                }
+                angular.forEach(items, function(item) {
+                    if (range.max && item.price >= range.min && item.price < range.max) {
+                        filtered.push(item);
+                    }else if (!range.max && item.price >= range.min){
+                        filtered.push(item);
+                    }
+                });
+                if ($rootScope.activeFilter == 'price') {
+                    $rootScope.filteredBrands = angular.copy(filtered);
+                    $rootScope.filteredMainCats = angular.copy(filtered);
+                    $rootScope.filteredSubCats = angular.copy(items);
+                }
                 return filtered;
             };
         });

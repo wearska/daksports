@@ -110,19 +110,6 @@
         })
         .factory('PriceFilter', function($rootScope, $http, $filter) {
             var obj = {};
-            // obj.ranges = [
-            //     '< 50 RON',
-            //     '50 - 100 RON',
-            //     '100 - 150 RON',
-            //     '150 - 200 RON',
-            //     '200 - 250 RON',
-            //     '250 - 300 RON',
-            //     '300 - 350 RON',
-            //     '350 - 400 RON',
-            //     '400 - 450 RON',
-            //     '450 - 500 RON',
-            //     '> 500 RON'
-            // ];
             obj.ranges = [
                 {
                     'min' : 0,
@@ -166,39 +153,29 @@
                 },
                 {
                     'min' : 500,
-                    'max' : null
+                    'max' : undefined
                 }
             ];
-            obj.selected = [];
-            obj.active = false;
-
-            obj.toggle = function(range) {
-                console.log(range);
-                var idx = obj.selected.indexOf(range);
-                if (idx > -1) obj.selected.splice(idx, 1);
-                else obj.selected.push(range);
-                $rootScope.activeFilter = "subs";
+            
+            obj.toggle = function(cat) {
+                $rootScope.activeFilter = "price";
                 obj.active = true;
-                if (!obj.selected.length) {
+                if (obj.selected == null) {
                     $rootScope.activeFilter = "";
                     obj.active = false;
                 }
-                $rootScope.subsActive = obj.active;
-            };
-            obj.exists = function(range) {
-                return obj.selected.indexOf(range) > -1;
+                $rootScope.priceActive = obj.active;
             };
             obj.count = function(range) {
-                if ($rootScope.brandsActive || $rootScope.mainsActive) {
-                    return $filter('priceFilter')($rootScope.filteredSubCats, range).length;
+                if ($rootScope.brandsActive || $rootScope.mainsActive || $rootScope.subsActive) {
+                    return $filter('priceFilter')($rootScope.filteredPrice, range).length;
                 }else{
                     return $filter('priceFilter')($rootScope.products, range).length;
                 }
             }
-            obj.reset = function() {
-                obj.selected = [];
-                obj.active = false;
-            }
+            obj.selected = null;
+            obj.active = false;
+
             return obj;
         });
 

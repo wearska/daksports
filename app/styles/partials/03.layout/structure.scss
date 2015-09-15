@@ -71,7 +71,7 @@ nav {
     will-change: left;
     right: 0;
     width: auto;
-    transition: left 0.28s 0.1s ease-in-out;
+    transition: left 0.08s 0.1s ease-in-out;
     &.narrow {
         left: 0;
     }
@@ -87,8 +87,6 @@ nav {
 // Header
 #main-header {
     width: 100%;
-
-    // position: relative;
 }
 
 // Hero

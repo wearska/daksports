@@ -59,14 +59,14 @@ nav {
                 right: auto;
                 background: $brand-primary;
             }
-            .reset-icon{
+            .reset-icon {
                 color: $brand-primary;
                 fill: $brand-primary;
             }
             &>md-icon {
                 transform: rotate(0);
                 will-change: transform;
-                transition: transform .18s cubic-bezier(0.25, 0.8, 0.25, 1);
+                transition: transform 0.18s cubic-bezier(0.25, 0.8, 0.25, 1);
                 color: rgba(0,0,0,.87);
                 fill: rgba(0,0,0,.87);
                 margin-right: 12px;
@@ -75,13 +75,13 @@ nav {
             &.button {
                 height: auto;
             }
-
+            
             //sub
             &.sub {
                 color: rgba(0,0,0,.54);
                 fill: rgba(0,0,0,.54);
             }
-
+            
             //sub
             &.active {
                 md-icon {
@@ -91,12 +91,12 @@ nav {
             &:hover {
                 background-color: rgb(240, 240, 240);
                 md-icon {
-
+                    
                     // fill: #e12a2a;
                 }
             }
-            &.expanded{
-                &>md-icon{
+            &.expanded {
+                &>md-icon {
                     transform: rotate(180deg);
                 }
             }
@@ -104,9 +104,11 @@ nav {
         .nav-items-list {
             overflow: hidden;
             will-change: max-height, height;
-            transition: max-height .18s cubic-bezier(0.25, 0.8, 0.25, 1), height .18s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: max-height 0.18s cubic-bezier(0.25, 0.8, 0.25, 1), height 0.18s cubic-bezier(0.25, 0.8, 0.25, 1);
+            
             // margin: 4px 0;
-            md-checkbox {
+            md-checkbox,
+            md-radio-button {
                 margin: 2px 12px;
                 md-icon {
                     width: 14px;
@@ -116,19 +118,19 @@ nav {
                     font-size: 13px;
                     color: rgba(0,0,0,.87);
                 }
-                &[disabled]{
+                &[disabled] {
                     pointer-events: none;
                 }
             }
         }
     }
-
+    
     //nav-section
     .nav-section-divider {
         margin: 12px 0;
         border-bottom: 1px solid #eee;
     }
-
+    
     // nav-section-divider
 }
 

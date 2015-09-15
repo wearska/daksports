@@ -9,21 +9,21 @@
             var page = angular.element(element).find('.page-content');
             element.bind("scroll", function() {
                 scope.scrollAmnt = angular.element(this)[0].scrollTop;
-                var sHeight = page.outerHeight() + page[0].offsetTop + 152;
+                var sHeight = page.outerHeight() + page[0].offsetTop + 96;
 
-                if (($window.outerHeight + scope.scrollAmnt) >= sHeight) {
-                    console.log($window.innerHeight + scope.scrollAmnt);
-                    console.log(sHeight);
+                if (($window.outerHeight + scope.scrollAmnt) >= sHeight && !$rootScope.scrolledBottom) {
+                    console.log('scrolledBottom');
+                    $rootScope.scrolledBottom = true;
+                }else if(($window.outerHeight + scope.scrollAmnt) < sHeight && $rootScope.scrolledBottom){
+                    $rootScope.scrolledBottom = false;
                 }
                  if (angular.element(this)[0].scrollTop >= 16) {
                      i++
-                     scope.boolChangeClass = true;
                      if (i === 1){
                          $rootScope.mainScrolled = true;
                      }
                  } else {
                      i = 0;
-                     scope.boolChangeClass = false;
                      $rootScope.mainScrolled = false;
                  }
                 scope.$apply();

@@ -7,6 +7,7 @@
 
             $rootScope.noNav = false;
             $rootScope.mainScrolled = true;
+            $rootScope.scrolledBottom = false;
             
             // screen size
             
