@@ -14,6 +14,7 @@
                 if (($window.outerHeight + scope.scrollAmnt) >= sHeight && !$rootScope.scrolledBottom) {
                     console.log('scrolledBottom');
                     $rootScope.scrolledBottom = true;
+                    $rootScope.$broadcast('scroll:bottom', {});
                 }else if(($window.outerHeight + scope.scrollAmnt) < sHeight && $rootScope.scrolledBottom){
                     $rootScope.scrolledBottom = false;
                 }

@@ -1,0 +1,83 @@
+.gd-loader {
+    width: 100%;
+    height: 5px;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    margin: 0 auto;
+    animation: colours 2s infinite cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+}
+.gd-loader-colours {
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: #e12a2a;
+    animation: loader 2s infinite cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+}
+@keyframes loader {
+    0% {
+        width: 0;
+        background-color: #e12a2a;
+    }
+    24.9% {
+        width: 100%;
+        background-color: #e12a2a;
+    }
+    25% {
+        width: 0;
+        background-color: #888888;
+    }
+    49.9% {
+        width: 100%;
+        background-color: #888888;
+    }
+    50% {
+        width: 0;
+        background-color: #e12a2a;
+    }
+    74.9% {
+        width: 100%;
+        background-color: #e12a2a;
+    }
+    75% {
+        width: 0;
+        background-color: #888888;
+    }
+    100% {
+        width: 100%;
+        background-color: #888888;
+    }
+}
+
+@keyframes colours {
+    0% {
+        background-color: #212121;
+    }
+    24.9% {
+        background-color: #212121;
+    }
+    25% {
+        background-color: #e12a2a;
+    }
+    49.9% {
+        background-color: #e12a2a;
+    }
+    50% {
+        background-color: #212121;
+    }
+    74.9% {
+        background-color: #212121;
+    }
+    75% {
+        background-color: #e12a2a;
+    }
+    100% {
+        background-color: #e12a2a;
+    }
+}

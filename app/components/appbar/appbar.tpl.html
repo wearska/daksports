@@ -12,7 +12,7 @@
 </md-toolbar>
 <md-toolbar class="app-bar main-bar" ng-class="{raised : $root.mainScrolled, transparent : $root.transparentAppbar && !$root.mainScrolled}">
     <div class="" layout="row">
-        <div class="material-one-left" flex="60" flex-gt-md="25">
+        <div class="material-one-left" flex-gt-md="25" flex="60">
             <div class="slide-left" ng-hide="sidebarOpen">
                 <md-button aria-label="Toggle Menu" class="md-icon-button l-left" ng-click="toggleSidebar(); hideSearchBar()">
                     <md-icon>
@@ -45,3 +45,6 @@
         </div>
     </div>
 </md-toolbar>
+<div class="gd-loader">
+    <div class="gd-loader-colours"></div>
+</div>
