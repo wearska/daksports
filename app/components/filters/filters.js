@@ -18,30 +18,32 @@
                 return filtered;
             };
         })
-        .filter('mainCatFilter', function($rootScope) {
-            return function(items, cat) {
+        .filter('typeFilter', function($rootScope) {
+            return function(items, type) {
                 var filtered = [];
                 // return items;
-                if (cat.length <= 0) {
+                if (type.length <= 0) {
                     return items;
                 }
                 angular.forEach(items, function(item) {
-                    if (item.main_cat && cat.indexOf(item.main_cat) > -1) {
+                    var itemType = item.type;
+                    // console.log(itemType);
+                    if (itemType && type.indexOf(itemType) > -1) {
                         filtered.push(item);
                     }
                 });
                 return filtered;
             };
         })
-        .filter('subCatFilter', function($rootScope) {
-            return function(items, cat) {
+        .filter('kindFilter', function($rootScope) {
+            return function(items, kind) {
                 var filtered = [];
                 // return items;
-                if (cat.length <= 0) {
+                if (kind.length <= 0) {
                     return items;
                 }
                 angular.forEach(items, function(item) {
-                    if (item.sub_cat && cat.indexOf(item.sub_cat) > -1) {
+                    if (item.kind && kind.indexOf(item.kind) > -1) {
                         filtered.push(item);
                     }
                 });
@@ -72,8 +74,8 @@
                 if (brand.length <= 0) {
                     // console.log("updating from brands");
                     if ($rootScope.activeFilter == 'brands' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
-                    $rootScope.filteredMainCats = angular.copy(items);
-                    $rootScope.filteredSubCats = angular.copy(items);
+                    $rootScope.filteredTypes = angular.copy(items);
+                    $rootScope.filteredKinds = angular.copy(items);
                     $rootScope.filteredPrice = angular.copy(items);
                     }
                     return items;
@@ -85,65 +87,65 @@
                 });
                 // console.log("updating from brands");
                 if ($rootScope.activeFilter == 'brands') {
-                    $rootScope.filteredMainCats = angular.copy(filtered);
-                    $rootScope.filteredSubCats = angular.copy(filtered);
+                    $rootScope.filteredTypes = angular.copy(filtered);
+                    $rootScope.filteredKinds = angular.copy(filtered);
                     $rootScope.filteredPrice = angular.copy(filtered);
                 }
                 // console.log($rootScope.activeFilter);
                 return filtered;
             };
         })
-        .filter('dummyMainCatFilter', function($rootScope) {
-            return function(items, cat) {
+        .filter('dummyTypeFilter', function($rootScope) {
+            return function(items, type) {
                 var filtered = [];
                 // return items;
-                // console.log(cat);
-                if (cat.length <= 0) {
-                    // console.log("updating from main cats");
+                // console.log(type);
+                if (type.length <= 0) {
+                    // console.log("updating from main types");
                     if (!$rootScope.activeFilter) {
                     $rootScope.filteredBrands = angular.copy(items);
-                    $rootScope.filteredSubCats = angular.copy(items);
+                    $rootScope.filteredKinds = angular.copy(items);
                     $rootScope.filteredPrice = angular.copy(items);
                     }
                     return items;
                 }
                 angular.forEach(items, function(item) {
-                    if (item.main_cat && cat.indexOf(item.main_cat) > -1) {
+                    if (item.type && type.indexOf(item.type) > -1) {
                         filtered.push(item);
                     }
                 });
-                // console.log("updating from main cats");
+                // console.log("updating from main types");
                 if ($rootScope.activeFilter == 'mains' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
                     $rootScope.filteredBrands = angular.copy(filtered);
-                    $rootScope.filteredSubCats = angular.copy(filtered);
+                    $rootScope.filteredKinds = angular.copy(filtered);
                     $rootScope.filteredPrice = angular.copy(filtered);
                 }
                 // console.log($rootScope.activeFilter);
                 return filtered;
             };
         })
-        .filter('dummySubCatFilter', function($rootScope) {
-            return function(items, cat) {
+        .filter('dummyKindFilter', function($rootScope) {
+            return function(items, kind) {
                 var filtered = [];
                 // return items;
-                if (cat.length <= 0) {
-                    // console.log("updating from sub cats");
+                if (kind.length <= 0) {
+                    // console.log("updating from sub kinds");
                     if ($rootScope.activeFilter == 'subs' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
                     $rootScope.filteredBrands = angular.copy(items);
-                    $rootScope.filteredMainCats = angular.copy(items);
+                    $rootScope.filteredTypes = angular.copy(items);
                     $rootScope.filteredPrice = angular.copy(items);
                     }
                     return items;
                 }
                 angular.forEach(items, function(item) {
-                    if (item.sub_cat && cat.indexOf(item.sub_cat) > -1) {
+                    if (item.kind && kind.indexOf(item.kind) > -1) {
                         filtered.push(item);
                     }
                 });
-                // console.log("updating from sub cats");
+                // console.log("updating from sub kinds");
                 if ($rootScope.activeFilter == 'subs') {
                     $rootScope.filteredBrands = angular.copy(filtered);
-                    $rootScope.filteredMainCats = angular.copy(filtered);
+                    $rootScope.filteredTypes = angular.copy(filtered);
                     $rootScope.filteredPrice = angular.copy(filtered);
                 }
                 // console.log($rootScope.activeFilter);
@@ -157,8 +159,8 @@
                 if (!angular.isObject(range)) {
                     if ($rootScope.activeFilter == 'price' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
                         $rootScope.filteredBrands = angular.copy(items);
-                        $rootScope.filteredMainCats = angular.copy(items);
-                        $rootScope.filteredSubCats = angular.copy(items);
+                        $rootScope.filteredTypes = angular.copy(items);
+                        $rootScope.filteredKinds = angular.copy(items);
                     }
                     return items;
                 }
@@ -171,8 +173,8 @@
                 });
                 if ($rootScope.activeFilter == 'price') {
                     $rootScope.filteredBrands = angular.copy(filtered);
-                    $rootScope.filteredMainCats = angular.copy(filtered);
-                    $rootScope.filteredSubCats = angular.copy(items);
+                    $rootScope.filteredTypes = angular.copy(filtered);
+                    $rootScope.filteredKinds = angular.copy(items);
                 }
                 return filtered;
             };

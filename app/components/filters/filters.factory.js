@@ -16,8 +16,8 @@
                 if (!obj.selected.length) {
                     $rootScope.activeFilter = "";
                     obj.active = false;
-                    $rootScope.filteredSubCats = [];
-                    $rootScope.filteredMainCats = [];
+                    $rootScope.filteredKinds = [];
+                    $rootScope.filteredTypes = [];
                 }
                 $rootScope.brandsActive = obj.active;
             };
@@ -38,34 +38,34 @@
 
             return obj;
         })
-        .factory('MainCatFilter', function($rootScope, $http, $filter) {
+        .factory('TypeFilter', function($rootScope, $http, $filter) {
             var obj = {};
             obj.selected = [];
             obj.active = false;
 
-            obj.toggle = function(cat) {
-                console.log(cat);
-                var idx = obj.selected.indexOf(cat);
+            obj.toggle = function(type) {
+                console.log(type);
+                var idx = obj.selected.indexOf(type);
                 if (idx > -1) obj.selected.splice(idx, 1);
-                else obj.selected.push(cat);
+                else obj.selected.push(type);
                 $rootScope.activeFilter = "mains";
                 obj.active = true;
                 if (!obj.selected.length) {
                     $rootScope.activeFilter = "";
                     obj.active = false;
-                    $rootScope.filteredSubCats = [];
+                    $rootScope.filteredKinds = [];
                     $rootScope.filteredBrands = [];
                 }
                 $rootScope.mainsActive = obj.active;
             };
-            obj.exists = function(cat) {
-                return obj.selected.indexOf(cat) > -1;
+            obj.exists = function(type) {
+                return obj.selected.indexOf(type) > -1;
             };
-            obj.count = function(cat) {
+            obj.count = function(type) {
                 if ($rootScope.brandsActive || $rootScope.subsActive) {
-                    return $filter('mainCatFilter')($rootScope.filteredMainCats, cat).length;
+                    return $filter('typeFilter')($rootScope.filteredTypes, type).length;
                 } else {
-                    return $filter('mainCatFilter')($rootScope.products, cat).length;
+                    return $filter('typeFilter')($rootScope.products, type).length;
                 }
             }
             obj.reset = function() {
@@ -74,16 +74,16 @@
             }
             return obj;
         })
-        .factory('SubCatFilter', function($rootScope, $http, $filter) {
+        .factory('KindFilter', function($rootScope, $http, $filter) {
             var obj = {};
             obj.selected = [];
             obj.active = false;
 
-            obj.toggle = function(cat) {
-                console.log(cat);
-                var idx = obj.selected.indexOf(cat);
+            obj.toggle = function(kind) {
+                console.log(kind);
+                var idx = obj.selected.indexOf(kind);
                 if (idx > -1) obj.selected.splice(idx, 1);
-                else obj.selected.push(cat);
+                else obj.selected.push(kind);
                 $rootScope.activeFilter = "subs";
                 obj.active = true;
                 if (!obj.selected.length) {
@@ -92,14 +92,14 @@
                 }
                 $rootScope.subsActive = obj.active;
             };
-            obj.exists = function(cat) {
-                return obj.selected.indexOf(cat) > -1;
+            obj.exists = function(kind) {
+                return obj.selected.indexOf(kind) > -1;
             };
-            obj.count = function(cat) {
+            obj.count = function(kind) {
                 if ($rootScope.brandsActive || $rootScope.mainsActive) {
-                    return $filter('subCatFilter')($rootScope.filteredSubCats, cat).length;
+                    return $filter('kindFilter')($rootScope.filteredKinds, kind).length;
                 }else{
-                    return $filter('subCatFilter')($rootScope.products, cat).length;
+                    return $filter('kindFilter')($rootScope.products, kind).length;
                 }
             }
             obj.reset = function() {
@@ -156,8 +156,8 @@
                     'max' : undefined
                 }
             ];
-            
-            obj.toggle = function(cat) {
+
+            obj.toggle = function(price) {
                 $rootScope.activeFilter = "price";
                 obj.active = true;
                 if (obj.selected == null) {

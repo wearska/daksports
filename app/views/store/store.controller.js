@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('StoreCtrl', function($rootScope, $scope, $state, $timeout, BrandFilter, MainCatFilter, SubCatFilter, PriceFilter) {
+        .controller('StoreCtrl', function($rootScope, $scope, $state, $timeout, BrandFilter, TypeFilter, KindFilter, PriceFilter) {
             $rootScope.state = $state.current.name;
             $scope.filtered = [];
 
@@ -25,7 +25,7 @@
                     if (newValue !== oldValue) {
                         // Only increment the counter if the value changed
                         $rootScope.filtered = angular.copy($scope.filtered);
-                        (BrandFilter.selected.length > 0 || MainCatFilter.selected.length > 0 || SubCatFilter.selected.length > 0) ? $scope.limit = null: $scope.limit = 16;
+                        (BrandFilter.selected.length > 0 || TypeFilter.selected.length > 0 || KindFilter.selected.length > 0) ? $scope.limit = null: $scope.limit = 16;
                     }
                 }
             );
@@ -37,8 +37,8 @@
 
             // FILTERS
             $scope.BrandFilter = BrandFilter;
-            $scope.MainCatFilter = MainCatFilter;
-            $scope.SubCatFilter = SubCatFilter;
+            $scope.TypeFilter = TypeFilter;
+            $scope.KindFilter = KindFilter;
             $scope.PriceFilter = PriceFilter;
 
         });

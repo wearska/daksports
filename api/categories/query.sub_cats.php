@@ -3,12 +3,12 @@
 // require config file
 require_once('../config.php');
 
-$res = $conn->query("SELECT parent_cat, sub_cat FROM sub_cats;");
+$res = $conn->query("SELECT parent_cat, kind FROM kinds;");
 
 
 $array = array();
 while ($row = mysqli_fetch_array($res)) {
-    $array[] = $row['sub_cat'];
+    $array[] = $row['kind'];
 }
 echo json_encode($array);
 

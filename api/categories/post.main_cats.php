@@ -5,9 +5,9 @@ require_once('../config.php');
 
 $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
-    @$main_cat = $request->main_cat;
+    @$type = $request->type;
 
-$sql = "INSERT INTO main_cats (main_cat) VALUES ('$main_cat')";
+$sql = "INSERT INTO types (type) VALUES ('$type')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New category created successfully";

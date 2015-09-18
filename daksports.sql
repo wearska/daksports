@@ -123,22 +123,22 @@ INSERT INTO `kinds` (`id`, `kind`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `main_cats`
+-- Table structure for table `types`
 --
 
-DROP TABLE IF EXISTS `main_cats`;
-CREATE TABLE IF NOT EXISTS `main_cats` (
+DROP TABLE IF EXISTS `types`;
+CREATE TABLE IF NOT EXISTS `types` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `main_cat` varchar(45) NOT NULL,
+  `type` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `main_cats`
+-- Dumping data for table `types`
 --
 
-INSERT INTO `main_cats` (`id`, `main_cat`) VALUES
+INSERT INTO `types` (`id`, `type`) VALUES
 (1, 'Sporturi'),
 (2, 'Outdoor'),
 (3, 'Fitness'),
@@ -169,8 +169,8 @@ CREATE TABLE IF NOT EXISTS `products` (
   `brand` varchar(45) DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
   `kind` varchar(45) DEFAULT NULL,
-  `main_cat` varchar(45) NOT NULL,
-  `sub_cat` varchar(45) NOT NULL,
+  `type` varchar(45) NOT NULL,
+  `kind` varchar(45) NOT NULL,
   `tags` longtext,
   `age` int(11) NOT NULL,
   `gender` tinyint(1) DEFAULT '0',
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `code`, `name`, `subname`, `slug`, `price`, `promo`, `promo_price`, `promo_stock`, `promo_end`, `excerpt`, `description`, `inv`, `brand`, `type`, `kind`, `main_cat`, `sub_cat`, `tags`, `age`, `gender`, `colours`, `file1`, `file2`, `file3`, `file4`, `file5`, `added`, `favourite`, `published`) VALUES
+INSERT INTO `products` (`id`, `code`, `name`, `subname`, `slug`, `price`, `promo`, `promo_price`, `promo_stock`, `promo_end`, `excerpt`, `description`, `inv`, `brand`, `type`, `kind`, `type`, `kind`, `tags`, `age`, `gender`, `colours`, `file1`, `file2`, `file3`, `file4`, `file5`, `added`, `favourite`, `published`) VALUES
 (18, 'DAKBKG58227', 'Ochelari moto', 'Nofear Glasses', '', '60.33', 0, '0.00', 0, '0000-00-00 00:00:00', 'Lorem ipsum', 'Lorem ipsum dolor sit amet.', 5, 'Nofear', 'Biking', 'Accesorii', 'Outdoor', 'Auto-moto', '', 0, 0, NULL, 'uploads/15/07/nofear-goggles.jpg', 'uploads/placeholder.png', 'uploads/placeholder.png', 'uploads/placeholder.png', 'uploads/placeholder.png', '2015-07-13 11:34:00', NULL, '1'),
 (29, 'DAKBKG70821', 'Bicicleta', 'Ghost Kato 3', '', '2699.00', 0, '0.00', 0, '0000-00-00 00:00:00', 'Bicicleta Ghost Kato 3 Black Red White 2015', 'Bicicleta Ghost Kato 3 Black Red White 2015 este proiectata special pentru distractie alaturi de prieteni ori familie.', 3, 'Ghost', 'Biking', 'Accesorii', 'Outdoor', 'Biking', '', 0, 0, NULL, 'uploads/15/07/bicicleta_ghost.jpg', 'uploads/placeholder.png', 'uploads/placeholder.png', 'uploads/placeholder.png', 'uploads/placeholder.png', '2015-07-13 11:34:00', NULL, '1'),
 (8, 'DAKBKG80153', 'Cana izoterma', 'Nike Thermal Mug', '', '24.99', 0, '0.00', 0, '0000-00-00 00:00:00', 'Ideala pentru mentinerea lichidelor la o temp', 'Ideala pentru mentinerea lichidelor la o temperatura optima, cana izoterma Nike Thermal Mug, de la Nike, se va dovedi aliatul perfect atat in timpul antrenamentelor si a drumetiilor!\n\nMaterialele folosite in crearea acestora ajuta la pastrarea lichidului la o temperatura optima, iar siliconul asigura inchiderea etans a acesteia.\n\nDesignul special si sistemul de inchidere al canii Nike Thermal Mug, de la Nike, impiedica scurgerea lichidului, iar folosirea cauciucului in partea exterioara a acesteia manevrarea cu usurinta a canii, mai ales pe durata antrenamentului, cand este posibil ca palmele sa nu fie perfect uscate.\n\nOrificiul creat pentru a cosnuma lichidul din cana se deschide prin sistemul prevazut in capacul canii, prin rotire.', 32, 'Nike', 'Biking', 'Accesorii', '', '', '', 0, 0, NULL, 'uploads/15/07/cana-izoterma-unisex-nike-thermal-mug.jpg', 'uploads/placeholder.png', 'uploads/placeholder.png', 'uploads/placeholder.png', 'uploads/placeholder.png', '2015-07-13 14:26:25', NULL, '1'),
@@ -248,23 +248,23 @@ CREATE TABLE IF NOT EXISTS `promos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub_cats`
+-- Table structure for table `kinds`
 --
 
-DROP TABLE IF EXISTS `sub_cats`;
-CREATE TABLE IF NOT EXISTS `sub_cats` (
+DROP TABLE IF EXISTS `kinds`;
+CREATE TABLE IF NOT EXISTS `kinds` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `sub_cat` varchar(45) NOT NULL,
+  `kind` varchar(45) NOT NULL,
   `parent_cat` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
--- Dumping data for table `sub_cats`
+-- Dumping data for table `kinds`
 --
 
-INSERT INTO `sub_cats` (`id`, `sub_cat`, `parent_cat`) VALUES
+INSERT INTO `kinds` (`id`, `kind`, `parent_cat`) VALUES
 (1, 'Fotbal', ''),
 (2, 'Tenis', ''),
 (3, 'Volei', ''),

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, ngCart, BrandFilter, MainCatFilter, SubCatFilter, PriceFilter) {
+        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, ngCart, BrandFilter, TypeFilter, KindFilter, PriceFilter) {
 
             // LOGOUT
             this.logout = function() {
@@ -11,8 +11,8 @@
 
             // FILTERS
             $scope.BrandFilter = BrandFilter;
-            $scope.MainCatFilter = MainCatFilter;
-            $scope.SubCatFilter = SubCatFilter;
+            $scope.TypeFilter = TypeFilter;
+            $scope.KindFilter = KindFilter;
             $scope.PriceFilter = PriceFilter;
 
             // MENU ITEMS
@@ -42,14 +42,14 @@
                 icon: 'assets/icons/nav_sports_24px.svg',
                 ref: '/sports',
                 filter: {
-                    main_cat: 'sports'
+                    type: 'sports'
                 }
             }, {
                 title: 'Fitness',
                 icon: 'assets/icons/nav_fitness_24px.svg',
                 ref: '/fitness',
                 filter: {
-                    main_cat: 'fitness'
+                    type: 'fitness'
                 }
 
             }, {
@@ -57,21 +57,21 @@
                 icon: 'assets/icons/nav_running_24px.svg',
                 ref: '/running',
                 filter: {
-                    main_cat: 'alergare'
+                    type: 'alergare'
                 }
             }, {
                 title: 'Outdoor',
                 icon: 'assets/icons/nav_outdoor_24px.svg',
                 ref: '/outdoor',
                 filter: {
-                    main_cat: 'outdoor'
+                    type: 'outdoor'
                 }
             }, {
                 title: 'Accesorii',
                 icon: 'assets/icons/nav_accessories_24px.svg',
                 ref: '/accessories',
                 filter: {
-                    main_cat: 'accesorii'
+                    type: 'accesorii'
                 }
             }];
 
@@ -93,6 +93,7 @@
                 this.expanded = !this.expanded;
                 (this.expanded) ? this.size = 30 : this.size = 0;
             };
+            this.expand();
 
         });
 

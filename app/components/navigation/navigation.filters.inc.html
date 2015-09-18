@@ -17,13 +17,13 @@
 <div ng-controller="NavListCtrl as list">
     <div class="nav-item-container" ng-class="{expanded : list.expanded}">
         Categorii
-        <md-icon class="reset-icon" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="MainCatFilter.reset()" ng-show="MainCatFilter.selected.length" style="margin-left: 8px; width:16px;"></md-icon>
+        <md-icon class="reset-icon" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="TypeFilter.reset()" ng-show="TypeFilter.selected.length" style="margin-left: 8px; width:16px;"></md-icon>
         <md-icon class="right-icon l-right" md-svg-src="assets/icons/ic_keyboard_arrow_down_black_24px.svg" ng-click="list.expand();" style="width:20px;"></md-icon>
     </div>
     <div class="nav-items-list" style="max-height:{{results.length * list.size}}px;">
-        <md-checkbox ng-checked="MainCatFilter.exists(cat)" ng-click="MainCatFilter.toggle(cat)" ng-disabled="!MainCatFilter.count(cat)" ng-repeat="cat in $root.main_cats | filter: q as results" ng-show="MainCatFilter.count(cat)">
-            {{ cat }}
-            <span style="color: rgba(0,0,0,.54)">• ({{ MainCatFilter.count(cat)}})</span>
+        <md-checkbox ng-checked="TypeFilter.exists(type.type)" ng-click="TypeFilter.toggle(type.type)" ng-disabled="!TypeFilter.count(type.type)" ng-repeat="type in $root.types | filter: q as results" ng-show="TypeFilter.count(type.type)">
+            {{ type.type }}
+            <span style="color: rgba(0,0,0,.54)">• ({{ TypeFilter.count(type.type)}})</span>
         </md-checkbox>
     </div>
 </div>
@@ -31,13 +31,13 @@
 <div ng-controller="NavListCtrl as list">
     <div class="nav-item-container" ng-class="{expanded : list.expanded}">
         Sub-categorii
-        <md-icon class="reset-icon" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="SubCatFilter.reset()" ng-show="SubCatFilter.selected.length" style="margin-left: 8px; width:16px;"></md-icon>
+        <md-icon class="reset-icon" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="KindFilter.reset()" ng-show="KindFilter.selected.length" style="margin-left: 8px; width:16px;"></md-icon>
         <md-icon class="right-icon l-right" md-svg-src="assets/icons/ic_keyboard_arrow_down_black_24px.svg" ng-click="list.expand();" style="width:20px;"></md-icon>
     </div>
     <div class="nav-items-list" style="max-height:{{results.length * list.size}}px;">
-        <md-checkbox ng-checked="SubCatFilter.exists(cat)" ng-click="SubCatFilter.toggle(cat)" ng-disabled="!SubCatFilter.count(cat)" ng-repeat="cat in $root.sub_cats | filter: q as results" ng-show="SubCatFilter.count(cat)">
-            {{ cat }}
-            <span style="color: rgba(0,0,0,.54)">• ({{ SubCatFilter.count(cat)}})</span>
+        <md-checkbox ng-checked="KindFilter.exists(kind)" ng-click="KindFilter.toggle(kind)" ng-disabled="!KindFilter.count(kind)" ng-repeat="kind in $root.kinds | filter: q as results" ng-show="KindFilter.count(kind)">
+            {{ kind }}
+            <span style="color: rgba(0,0,0,.54)">• ({{ KindFilter.count(kind)}})</span>
         </md-checkbox>
     </div>
 </div>

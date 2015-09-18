@@ -3,12 +3,12 @@
 // require config file
 require_once('../config.php');
 
-$res = $conn->query("SELECT * FROM main_cats;");
+$res = $conn->query("SELECT * FROM types;");
 
 
 $array = array();
 while ($row = mysqli_fetch_array($res)) {
-    $array[] = $row['main_cat'];
+    $array[] = $row['type'];
 }
 echo json_encode($array);
 
