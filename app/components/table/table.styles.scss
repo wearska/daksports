@@ -1,0 +1,188 @@
+.gd-table {
+    display: block;
+    position: relative;
+    background-color: #ddd;
+    border: rgba(0,0,0,.4);
+    box-sizing: border-box;
+    padding: 20px 16px;
+}
+.gd-table-row {
+    position: relative;
+    display: block;
+    background: #fff;
+    color: rgb(33, 33, 33);
+    cursor: pointer;
+    font-size: 13px;
+    width: 100%;
+    height: 48px;
+    line-height: 16px;
+    white-space: nowrap;
+    margin: 1px 0;
+    outline: none;
+    will-change: transform, background;
+    transition: all .28s ease-in-out;
+    overflow: hidden;
+    &:before {
+        bottom: 0;
+        box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+        content: '';
+        display: block;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    
+    &:after {
+        background: transparent;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 2px;
+    }
+    &.selected{
+        margin: 16px 0;
+        width: 106%;
+        height: 96px;
+        margin-left: -3%;
+        .row-media{
+            width: 64px;
+            height: 64px;
+            border-radius: 32px;
+            margin: 16px 0 16px 16px;
+            position: absolute;
+            left: 0;
+        }
+        .row-title, .row-subtitle, .row-info{
+            opacity: 1;
+            float: left;
+            clear: both;
+            margin-left: 80px;
+            padding: 0 16px;
+        }
+        .row-title{
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: lighter;
+        }
+        .row-subtitle{
+            font-size: 14px;
+            line-height: 20px;
+            color: rgba(0,0,0,.54);
+        }
+        .row-info{
+            line-height: 16px;
+            margin-top: 4px;
+        }
+        .row-actions{
+            width: 172px;
+            height: 32px;
+            .supplemental-actions{
+                width: 132px;
+            }
+        }
+        @extend .raised;
+        &:before{
+        }
+        &:after{
+            background: $brand-primary;
+        }
+    }
+    &:hover{
+        .hoverlay{
+            opacity: .54;
+        }
+        .row-title, .row-subtitle, .row-info{
+            opacity: 1;
+        }
+        .row-actions{
+            width: 172px;
+            .supplemental-actions{
+                width: 132px;
+            }
+        }
+    }
+}
+[class*='row-']{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 16px;
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(0,0,0,.87);
+}
+.row-media{
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    margin-left: 16px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.row-title, .row-subtitle, .row-info{
+    opacity: .87;
+}
+.row-title{
+    width: 160px;
+}
+.row-subtitle{
+    width: 192px;
+}
+.row-info{
+    width: 112px;
+    &.promo-price{
+        color: $brand-primary;
+    }
+}
+.row-excerpt{
+    font-weight: lighter;
+    color: rgba(0,0,0,.54);
+}
+.row-actions, .row-media{
+    padding: 0 16px;
+}
+.row-actions{
+    position: absolute;
+    right: 0;
+    padding: 0;
+    width: 44px;
+    height: 100%;
+    will-change: width;
+    transition: width .28s ease-in-out;
+    background-color: #fff;
+    box-shadow: -16px 0 16px #fff;
+    overflow: hidden;
+    md-icon{
+        padding: 2px;
+        color: rgba(0,0,0,.54);
+        fill: rgba(0,0,0,.54);
+        &:hover{
+            color: rgba(0,0,0,.87);
+            fill: rgba(0,0,0,.87);
+        }
+    }
+    .md-icon-button{
+        max-width: 32px;
+        width: 32px;
+        float: left;
+    }
+    .menu-action, .supplemental-actions{
+        background-color: #fff;
+        position: absolute;
+        right: 0;
+    }
+    .supplemental-actions{
+        width: 0;
+        right: 44px;
+        will-change: width;
+        transition: width .16s ease-in-out;
+    }
+}

@@ -1,4 +1,4 @@
-<a class="nav-item-container" md-ink-ripple href="/admin/list">
+<a class="nav-item-container" md-ink-ripple href="/store" style="margin-bottom: 8px;">
     <md-icon md-svg-src="assets/icons/ic_filter_list_24px.svg"></md-icon>Filtreaza dupa</a>
 <div class="nav-section-title">Departamente:</div>
 <!-- brand filter -->
@@ -47,7 +47,7 @@
 <!-- price filter -->
 <div ng-controller="NavListCtrl as list">
     <div class="nav-item-container" ng-class="{expanded : list.expanded}">
-        Pret
+        <span class="nav-section-title expander">Pret / Promo:</span>
         <md-icon class="reset-icon" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="PriceFilter.selected = null" ng-show="PriceFilter.selected != null" style="margin-left: 8px; width:16px;"></md-icon>
         <md-icon class="right-icon l-right" md-svg-src="assets/icons/ic_keyboard_arrow_down_black_24px.svg" ng-click="list.expand();" style="width:20px;"></md-icon>
     </div>

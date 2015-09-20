@@ -86,11 +86,7 @@ INSERT INTO `favourites` (`id`, `userid`, `productid`) VALUES
 (21, 'simplelogin:45', 46),
 (22, 'simplelogin:47', 29),
 (23, 'simplelogin:47', 26),
-(24, 'simplelogin:47', 25),
-(25, '', 52),
-(26, '', 52),
-(27, '', 52),
-(28, '', 52);
+(24, 'simplelogin:47', 25);
 
 -- --------------------------------------------------------
 

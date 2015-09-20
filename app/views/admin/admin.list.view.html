@@ -1,57 +1,30 @@
-<md-content class="md-padding">
-    <md-input-container class="filter-field">
-        <md-icon>
-            <i class="material-icons">&#xE8B6;</i>
-        </md-icon>
-        <input ng-model="search" aria-label="search product list">
-        <md-icon ng-click="clearSearch()" ng-show="search.length" style="left:100%; cursor: pointer;">
-            <i class="material-icons">&#xE14C;</i>
-        </md-icon>
-    </md-input-container>
-    <ul class="list-view" layout-align="center" layout="column">
-        <li class="list-item" layout="row" ng-repeat="product in products | searchAdminList : search | limitTo : displayLimit : displayPage">
-            <div class="list-header">
-                <div class="bubble" style="background-color: #b1deda;background-image: url({{product.file1}});"></div>
-            </div>
-            <div class="list-detail" flex>
-                <h3 class="name single-line">{{product.name}}</h3>
-                <p class="subname single-line">{{product.subname}}</p>
-                <p class="cats single-line">{{product.brand}}
-                    /
-                    {{product.type}}
-                    /
-                    {{product.kind}}</p>
-            </div>
-            <div class="list-actions">
-                <md-button aria-label="Remove" class="md-icon-button l-right" ng-click="removeItem(product.id)">
-                    <md-icon>
-                        <i class="material-icons">&#xE872;</i>
-                    </md-icon>
-                </md-button>
-                <md-button ng-if="product.published" aria-label="Unpublish" class="md-icon-button l-right" ng-click="product.published = !product.published">
-                    <md-icon>
-                        <i class="material-icons" style="color:#00B16A;">&#xE862;</i>
-                    </md-icon>
-                </md-button>
-                <md-button ng-if="!product.published" aria-label="Publish" class="md-icon-button l-right" ng-click="product.published = !product.published">
-                    <md-icon>
-                        <i class="material-icons" style="color:#FF2929">&#xE85F;</i>
-                    </md-icon>
-                </md-button>
-
-                <div class="gd-separator"></div>
-
-                <a class="md-icon-button l-right" md-button ng-href="/admin/edit/{{product.id}}">
-                    <md-icon>
-                        <i class="material-icons">&#xE254;</i>
-                    </md-icon>
+<gd-table class="gd-table" ng-controller="GdTable as table">
+    <gd-table-header class="gd-table-header"></gd-table-header>
+    <gd-table-row class="gd-table-row" data="item" ng-class="{selected : table.isActive(item.code)}" ng-click="table.toggle(item.code)" ng-repeat="item in $root.products track by $index">
+        <div class="row-media" style="background-image: url({{item.file1}})"></div>
+        <div class="row-title">{{item.name}}</div>
+        <div class="row-subtitle">{{item.subname}}</div>
+        <div class="row-info" ng-class="{'promo-price' : item.promo}"><span style="font-weight: lighter; font-size: 13px;">RON </span>{{item.new_price}}</div>
+        <div class="row-excerpt">{{item.excerpt}}</div>
+        <div class="row-actions">
+            <div class="supplemental-actions l-right">
+                <a class="md-icon-button" md-button ng-href="/product/{{item.id}}">
+                    <md-icon height="18px" md-svg-src="assets/icons/ic_open_in_new_24px.svg" width="18px"></md-icon>
                 </a>
-                <a class="md-icon-button l-right" md-button ng-href="/product/{{product.id}}">
-                    <md-icon>
-                        <i class="material-icons">&#xE89E;</i>
-                    </md-icon>
-                </a>
+                <md-button class="md-icon-button" ng-click="table.viewCard()">
+                    <md-icon height="18px" md-svg-src="assets/icons/ic_view_carousel_24px.svg" width="18px"></md-icon>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="table.publish(item.code)">
+                    <md-icon height="18px" md-svg-src="assets/icons/ic_done_24px.svg" width="18px"></md-icon>
+                </md-button>
             </div>
-        </li>
-    </ul>
-</md-content>
+            <div class="menu-action l-right">
+                <md-button class="md-icon-button" ng-click="table.openMore()">
+                    <md-icon height="18px" md-svg-src="assets/icons/ic_more_vert_24px.svg" width="18px"></md-icon>
+                </md-button>
+            </div>
+        </div>
+<!-- <div style="position:absolute; margin:auto; top:0; bottom: 0; left: 0; right: 0; height:1px; background-color: rgba(0,0,0,.12)"></div> -->
+    <div class="hoverlay"></div>
+    </gd-table-row>
+</gd-table>
