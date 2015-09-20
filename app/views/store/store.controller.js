@@ -2,11 +2,12 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('StoreCtrl', function($rootScope, $scope, $state, $timeout, BrandFilter, TypeFilter, KindFilter, PriceFilter) {
+        .controller('StoreCtrl', function($rootScope, $scope, $state, $timeout, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter) {
             $rootScope.state = $state.current.name;
             $scope.filtered = [];
 
             $scope.limit = 16;
+            $scope.promoFilter = 0;
             $scope.$on('scroll:bottom', function(event, item) {
                 $timeout(function(){
                     $scope.limit = $scope.limit + 8;
@@ -40,6 +41,7 @@
             $scope.TypeFilter = TypeFilter;
             $scope.KindFilter = KindFilter;
             $scope.PriceFilter = PriceFilter;
+            $scope.PromoFilter = PromoFilter;
 
         });
 

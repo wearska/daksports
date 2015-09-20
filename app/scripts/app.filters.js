@@ -10,21 +10,7 @@
                     return products;
                 }
                 angular.forEach(products, function(product) {
-                    if (angular.lowercase(product.name).indexOf(angular.lowercase(search)) != -1 || angular.lowercase(product.subname).indexOf(angular.lowercase(search)) != -1) {
-                        filtered.push(product);
-                    }
-                });
-                return filtered;
-            };
-        })
-        .filter('promoFilter', function() {
-            return function(products, value) {
-                var filtered = [];
-                if (!value) {
-                    return products;
-                }
-                angular.forEach(products, function(product) {
-                    if (product.promo == value) {
+                    if (angular.lowercase(product.name).indexOf(angular.lowercase(search)) != -1 || angular.lowercase(product.subname).indexOf(angular.lowercase(search)) != -1 || angular.lowercase(product.tags).indexOf(angular.lowercase(search)) != -1) {
                         filtered.push(product);
                     }
                 });

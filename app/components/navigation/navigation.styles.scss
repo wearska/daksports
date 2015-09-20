@@ -103,6 +103,7 @@ nav {
         }
         .nav-items-list {
             overflow: hidden;
+            position: relative;
             will-change: max-height, height;
             transition: max-height 0.18s cubic-bezier(0.25, 0.8, 0.25, 1), height 0.18s cubic-bezier(0.25, 0.8, 0.25, 1);
             
@@ -110,6 +111,7 @@ nav {
             md-checkbox,
             md-radio-button {
                 margin: 2px 12px;
+                opacity: .65;
                 md-icon {
                     width: 14px;
                     top: -1px;
@@ -117,10 +119,30 @@ nav {
                 span {
                     font-size: 13px;
                     color: rgba(0,0,0,.87);
+                    font-weight: 100;
                 }
                 &[disabled] {
                     pointer-events: none;
                 }
+                &.selected{
+                    opacity: 1;
+                    span {
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+        .price-range{
+            input{
+                font-size: 13px;
+                color: rgba(0,0,0,.87);
+                font-weight: 100;
+            }
+            label{
+                font-size: 13px;
+                color: rgba(0,0,0,.54);
+                font-weight: 100;
+                top: -8px
             }
         }
     }

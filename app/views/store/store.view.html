@@ -7,7 +7,7 @@
     </div>
     <div ng-hide ng-repeat="item in $root.products | dummyBrandFilter : BrandFilter.selected |  dummyTypeFilter : TypeFilter.selected |  dummyKindFilter : KindFilter.selected | dummyPriceFilter : PriceFilter.selected | filter : q as filtered"></div>
     <div class="product-grid" layout layout-padding layout-wrap style="margin-left: -16px; margin-right: -16px;">
-        <div class="grid-cell scale-fade" flex="50" flex-gt-md="33" flex-gt-lg="25" ng-repeat="item in $root.filtered | brandFilter : BrandFilter.selected | typeFilter : TypeFilter.selected | kindFilter : KindFilter.selected | priceFilter : PriceFilter.selected | limitTo : limit">
+        <div class="grid-cell scale-fade" flex="50" flex-gt-md="33" flex-gt-lg="25" ng-repeat="item in $root.filtered | brandFilter : BrandFilter.selected | typeFilter : TypeFilter.selected | kindFilter : KindFilter.selected | priceFilter : PriceFilter.selected | promoFilter : PromoFilter.state | limitTo : limit">
             <gd-card card-resource="item"></gd-card>
         </div>
     </div>

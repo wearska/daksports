@@ -53,14 +53,42 @@
         .filter('priceFilter', function($rootScope) {
             return function(items, range) {
                 var filtered = [];
+                if(range != null){
+                    range.min = parseFloat(range.min), range.max = parseFloat(range.max);
+                }
                 // return items;
                 if (!angular.isObject(range)) {
                     return items;
                 }
                 angular.forEach(items, function(item) {
-                    if (range.max && item.price >= range.min && item.price < range.max) {
+                    
+                    if(!range.min && !range.max){
                         filtered.push(item);
-                    }else if (!range.max && item.price >= range.min){
+                    }else if(range.min && !range.max){
+                        if(item.new_price >= range.min){
+                            filtered.push(item);
+                        }
+                    }else if(!range.min && range.max){
+                        if(item.new_price < range.max){
+                            filtered.push(item);
+                        }
+                    }else if(range.min && range.max){
+                        if(item.new_price >= range.min && item.new_price < range.max){
+                            filtered.push(item);
+                        }
+                    }
+                });
+                return filtered;
+            };
+        })
+        .filter('promoFilter', function() {
+            return function(items, value) {
+                var filtered = [];
+                if (!value) {
+                    return items;
+                }
+                angular.forEach(items, function(item) {
+                    if (item.promo == value) {
                         filtered.push(item);
                     }
                 });
@@ -72,12 +100,6 @@
                 var filtered = [];
                 // return items;
                 if (brand.length <= 0) {
-                    // console.log("updating from brands");
-                    if ($rootScope.activeFilter == 'brands' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
-                    $rootScope.filteredTypes = angular.copy(items);
-                    $rootScope.filteredKinds = angular.copy(items);
-                    $rootScope.filteredPrice = angular.copy(items);
-                    }
                     return items;
                 }
                 angular.forEach(items, function(item) {
@@ -85,13 +107,6 @@
                         filtered.push(item);
                     }
                 });
-                // console.log("updating from brands");
-                if ($rootScope.activeFilter == 'brands') {
-                    $rootScope.filteredTypes = angular.copy(filtered);
-                    $rootScope.filteredKinds = angular.copy(filtered);
-                    $rootScope.filteredPrice = angular.copy(filtered);
-                }
-                // console.log($rootScope.activeFilter);
                 return filtered;
             };
         })
@@ -101,12 +116,6 @@
                 // return items;
                 // console.log(type);
                 if (type.length <= 0) {
-                    // console.log("updating from main types");
-                    if (!$rootScope.activeFilter) {
-                    $rootScope.filteredBrands = angular.copy(items);
-                    $rootScope.filteredKinds = angular.copy(items);
-                    $rootScope.filteredPrice = angular.copy(items);
-                    }
                     return items;
                 }
                 angular.forEach(items, function(item) {
@@ -114,13 +123,6 @@
                         filtered.push(item);
                     }
                 });
-                // console.log("updating from main types");
-                if ($rootScope.activeFilter == 'mains' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
-                    $rootScope.filteredBrands = angular.copy(filtered);
-                    $rootScope.filteredKinds = angular.copy(filtered);
-                    $rootScope.filteredPrice = angular.copy(filtered);
-                }
-                // console.log($rootScope.activeFilter);
                 return filtered;
             };
         })
@@ -129,12 +131,6 @@
                 var filtered = [];
                 // return items;
                 if (kind.length <= 0) {
-                    // console.log("updating from sub kinds");
-                    if ($rootScope.activeFilter == 'subs' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
-                    $rootScope.filteredBrands = angular.copy(items);
-                    $rootScope.filteredTypes = angular.copy(items);
-                    $rootScope.filteredPrice = angular.copy(items);
-                    }
                     return items;
                 }
                 angular.forEach(items, function(item) {
@@ -142,40 +138,37 @@
                         filtered.push(item);
                     }
                 });
-                // console.log("updating from sub kinds");
-                if ($rootScope.activeFilter == 'subs') {
-                    $rootScope.filteredBrands = angular.copy(filtered);
-                    $rootScope.filteredTypes = angular.copy(filtered);
-                    $rootScope.filteredPrice = angular.copy(filtered);
-                }
-                // console.log($rootScope.activeFilter);
                 return filtered;
             };
         })
         .filter('dummyPriceFilter', function($rootScope) {
             return function(items, range) {
                 var filtered = [];
+                if(range != null){
+                    range.min = parseFloat(range.min), range.max = parseFloat(range.max);
+                }
                 // return items;
                 if (!angular.isObject(range)) {
-                    if ($rootScope.activeFilter == 'price' || !$rootScope.activeFilter || $rootScope.activeFilter == "") {
-                        $rootScope.filteredBrands = angular.copy(items);
-                        $rootScope.filteredTypes = angular.copy(items);
-                        $rootScope.filteredKinds = angular.copy(items);
-                    }
                     return items;
                 }
                 angular.forEach(items, function(item) {
-                    if (range.max && item.price >= range.min && item.price < range.max) {
+                    
+                    if(!range.min && !range.max){
                         filtered.push(item);
-                    }else if (!range.max && item.price >= range.min){
-                        filtered.push(item);
+                    }else if(range.min && !range.max){
+                        if(item.new_price >= range.min){
+                            filtered.push(item);
+                        }
+                    }else if(!range.min && range.max){
+                        if(item.new_price < range.max){
+                            filtered.push(item);
+                        }
+                    }else if(range.min && range.max){
+                        if(item.new_price >= range.min && item.new_price < range.max){
+                            filtered.push(item);
+                        }
                     }
                 });
-                if ($rootScope.activeFilter == 'price') {
-                    $rootScope.filteredBrands = angular.copy(filtered);
-                    $rootScope.filteredTypes = angular.copy(filtered);
-                    $rootScope.filteredKinds = angular.copy(items);
-                }
                 return filtered;
             };
         });
