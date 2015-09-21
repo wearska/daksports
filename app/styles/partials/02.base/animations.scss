@@ -828,6 +828,56 @@
 }
 
 /* ------------------------------------------- */
+/* Fade
+/* ------------------------------------------- */
+/* line 544, ../sass/ng-animation.scss */
+.fade {
+    transition: all 0 cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* easeOutQuad */
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* easeOutQuad */
+}
+/* line 547, ../sass/ng-animation.scss */
+.fade.ng-enter {
+    opacity: 0;
+    transition-duration: 250ms;
+}
+/* line 553, ../sass/ng-animation.scss */
+.fade.ng-enter-active {
+    opacity: 1;
+}
+.fade.ng-enter-stagger {
+    transition-delay: 0.028s;
+    transition-duration: 0s ;
+}
+/* line 558, ../sass/ng-animation.scss */
+.fade.ng-leave {
+    opacity: 1;
+    transition-duration: 250ms;
+}
+/* line 564, ../sass/ng-animation.scss */
+.fade.ng-leave-active {
+    opacity: 0;
+}
+/* line 570, ../sass/ng-animation.scss */
+.fade.ng-hide-add {
+    opacity: 1;
+    transition-duration: 250ms;
+}
+/* line 575, ../sass/ng-animation.scss */
+.fade.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+/* line 581, ../sass/ng-animation.scss */
+.fade.ng-hide-remove {
+    opacity: 0;
+    transition-duration: 250ms;
+}
+/* line 587, ../sass/ng-animation.scss */
+.fade.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+/* ------------------------------------------- */
 /* Scale Fade
 /* ------------------------------------------- */
 /* line 544, ../sass/ng-animation.scss */

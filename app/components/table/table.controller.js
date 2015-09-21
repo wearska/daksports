@@ -8,10 +8,11 @@
             scope.predicate = 'added';
             scope.reverse = false;
             scope.allToggle = false;
-            scope.toggle = function(code) {
+            scope.toggle = function(event, code) {
                 var idx = scope.selected.indexOf(code);
                 if (idx > -1) scope.selected.splice(idx, 1);
                 else scope.selected.push(code);
+                event.stopPropagation();
             };
             scope.toggleAll = function(){
                 scope.allToggle = !scope.allToggle;
@@ -47,6 +48,15 @@
                     scope.predicate = column;
                     scope.reverse = false;
                 }
+            };
+            scope.expanded = '';
+            scope.isExpanded = function(code) {
+                return scope.expanded.indexOf(code) > -1;
+            };
+            scope.expand = function(code){
+                var idx = scope.expanded.indexOf(code);
+                if (idx > -1) scope.expanded = [];
+                else scope.expanded = code;
             };
         });
 

@@ -18,9 +18,10 @@
     line-height: 16px;
     white-space: nowrap;
     margin: 1px 0;
+    padding: 0;
     outline: none;
     will-change: transform, background;
-    transition: all 0.28s ease-in-out;
+    transition: all 0.18s ease-in-out;
     overflow: hidden;
     &:before {
         bottom: 0;
@@ -43,15 +44,121 @@
         top: 0;
         width: 2px;
     }
-    &.selected {
-        &:before {
-
+    [class*='row-'] {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 16px;
+        font-weight: bold;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: rgba(0,0,0,.87);
+    }
+    .row-media {
+        position: relative;
+        user-select: none;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin-left: 16px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        will-change: background;
+        transition: all 0.28s ease-in-out;
+        &:hover {
+            background-size: 0;
+            .item-select {
+                opacity: 1;
+            }
         }
+        .item-select {
+            position: absolute;
+            top: -3px;
+            border-bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            opacity: 0;
+            will-change: opacity;
+            transition: all 0.08s ease-in-out;
+            md-checkbox {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+    .row-title,
+    .row-subtitle,
+    .row-info {
+        opacity: 0.87;
+    }
+    .row-title {
+        width: 160px;
+    }
+    .row-subtitle {
+        width: 192px;
+    }
+    .row-info {
+        width: 112px;
+        &.promo-price {
+            color: $brand-primary;
+        }
+    }
+    .row-excerpt {
+        font-weight: lighter;
+        color: rgba(0,0,0,.54);
+    }
+    .row-actions,
+    .row-media {
+        padding: 0 16px;
+    }
+    .row-actions {
+        position: absolute;
+        right: 0;
+        padding: 0;
+        width: 44px;
+        height: 100%;
+        will-change: width;
+        transition: width 0.28s ease-in-out;
+        background-color: #fff;
+        box-shadow: -16px 0 16px #fff;
+        overflow: hidden;
+        md-icon {
+            padding: 2px;
+            color: rgba(0,0,0,.54);
+            fill: rgba(0,0,0,.54);
+            &:hover {
+                color: rgba(0,0,0,.87);
+                fill: rgba(0,0,0,.87);
+            }
+        }
+        .md-icon-button {
+            max-width: 32px;
+            width: 32px;
+            float: left;
+        }
+        .menu-action,
+        .supplemental-actions {
+            background-color: #fff;
+            position: absolute;
+            right: 0;
+        }
+        .supplemental-actions {
+            width: 0;
+            right: 44px;
+            will-change: width;
+            transition: width 0.16s ease-in-out;
+        }
+    }
+    &.selected {
         &:after {
             background: $brand-primary;
         }
     }
-    &:hover {.hoverlay {
+    &:hover {
+        .hoverlay {
             opacity: 0.54;
         }
         .row-title,
@@ -66,113 +173,26 @@
             }
         }
     }
-}
-[class*='row-'] {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 16px;
-    font-weight: bold;
-    text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: rgba(0,0,0,.87);
-}
-.row-media {
-    position: relative;
-    user-select: none;
-    width: 28px;
-    height: 28px;
-    border-radius: 14px;
-    margin-left: 16px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    will-change: background;
-    transition: all .28s ease-in-out;
-    &:hover{
-        background-size: 0;
-        .item-select{
-            opacity: 1;
+    &.expanded {
+        width: 106%;
+        height: 296px;
+        margin: 16px 0 16px -3%;
+        @extend .raised;
+        .single-product-main{
+            margin-top: 0;
         }
-    }
-    .item-select {
-        position: absolute;
-        top: -3px;
-        border-bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        opacity: 0;
-        will-change: opacity;
-        transition: all .08s ease-in-out;
-        md-checkbox {
-            width:18px;
-            height: 18px;
+        .row-actions {
+            width: 172px;
+            margin-top: -16px;
+            .supplemental-actions {
+                width: 132px;
+            }
         }
-    }
-}
-.row-title,
-.row-subtitle,
-.row-info {
-    opacity: 0.87;
-}
-.row-title {
-    width: 160px;
-}
-.row-subtitle {
-    width: 192px;
-}
-.row-info {
-    width: 112px;
-    &.promo-price {
-        color: $brand-primary;
-    }
-}
-.row-excerpt {
-    font-weight: lighter;
-    color: rgba(0,0,0,.54);
-}
-.row-actions,
-.row-media {
-    padding: 0 16px;
-}
-.row-actions {
-    position: absolute;
-    right: 0;
-    padding: 0;
-    width: 44px;
-    height: 100%;
-    will-change: width;
-    transition: width 0.28s ease-in-out;
-    background-color: #fff;
-    box-shadow: -16px 0 16px #fff;
-    overflow: hidden;
-    md-icon {
-        padding: 2px;
-        color: rgba(0,0,0,.54);
-        fill: rgba(0,0,0,.54);
         &:hover {
-            color: rgba(0,0,0,.87);
-            fill: rgba(0,0,0,.87);
+            .hoverlay {
+                opacity: 0;
+            }
         }
-    }
-    .md-icon-button {
-        max-width: 32px;
-        width: 32px;
-        float: left;
-    }
-    .menu-action,
-    .supplemental-actions {
-        background-color: #fff;
-        position: absolute;
-        right: 0;
-    }
-    .supplemental-actions {
-        width: 0;
-        right: 44px;
-        will-change: width;
-        transition: width 0.16s ease-in-out;
     }
 }
 .gd-table-header {
@@ -215,11 +235,11 @@
                 fill: rgba(0, 0, 0, .3);
             }
             &.sort-ascending {
-
+                
             }
         }
         &.media-column {
-
+            
         }
         &.title-column {
             margin-left: -12px;

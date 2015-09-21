@@ -1,7 +1,7 @@
 <gd-table class="gd-table" ng-controller="GdTable as table">
     <gd-table-header class="gd-table-header">
         <div class="column-name media-column">
-            <md-checkbox ng-checked="table.allToggle" aria-label="Selecteaza toate" ng-click="table.toggleAll()"></md-checkbox>
+            <md-checkbox aria-label="Selecteaza toate" ng-checked="table.allToggle" ng-click="table.toggleAll()"></md-checkbox>
         </div>
         <div class="column-name title-column" ng-click="table.setActiveSort($event, 'name')">
             <span>Nume produs</span>
@@ -21,36 +21,113 @@
         </div>
 <!-- <div style="position:absolute; margin:auto; top:0; bottom: 0; left: 0; right: 0; height:1px; background-color: rgba(0,0,0,.12)"></div> -->
     </gd-table-header>
-    <gd-table-row class="gd-table-row" data="item" ng-class="{selected : table.exists(item.code)}" ng-repeat="item in $root.products | orderBy : table.predicate">
-        <div class="row-media" style="background-image: url({{item.file1}})">
-            <div class="item-select">
-                <md-checkbox ng-checked="table.exists(item.code)" aria-label="Selecteaza produs" ng-click="table.toggle(item.code)"></md-checkbox>
+    <gd-table-row class="gd-table-row" data="item" ng-class="{selected : table.exists(item.code), expanded : table.isExpanded(item.code)}" ng-click="table.expand(item.code)" ng-repeat="item in $root.products | orderBy : table.predicate">
+        <div class="closed" ng-if="!table.isExpanded(item.code)">
+            <div class="row-media" style="background-image: url({{item.file1}})">
+                <div class="item-select">
+                    <md-checkbox aria-label="Selecteaza produs" ng-checked="table.exists(item.code)" ng-click="table.toggle($event, item.code)"></md-checkbox>
+                </div>
+            </div>
+            <div class="row-title">{{item.name}}</div>
+            <div class="row-subtitle">{{item.subname}}</div>
+            <div class="row-info" ng-class="{'promo-price' : item.promo}">
+                <span style="font-weight: lighter; font-size: 13px;">RON
+                </span>{{item.new_price | float}}</div>
+            <div class="row-excerpt">{{item.excerpt}}</div>
+            <div class="row-actions">
+                <div class="supplemental-actions l-right">
+                    <a aria-label="Vezi produs" class="md-icon-button" md-button ng-href="/product/{{item.id}}">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_open_in_new_24px.svg" width="18px"></md-icon>
+                    </a>
+                    <md-button aria-label="Vezi card produs" class="md-icon-button" ng-click="table.viewCard()">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_view_carousel_24px.svg" width="18px"></md-icon>
+                    </md-button>
+                    <md-button aria-label="Publica produs" class="md-icon-button" ng-click="table.publish(item.code)">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_done_24px.svg" width="18px"></md-icon>
+                    </md-button>
+                </div>
+                <div class="menu-action l-right">
+                    <md-button aria-label="Meniu produs" class="md-icon-button" ng-click="table.openMore()">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_more_vert_24px.svg" width="18px"></md-icon>
+                    </md-button>
+                </div>
             </div>
         </div>
-        <div class="row-title">{{item.name}}</div>
-        <div class="row-subtitle">{{item.subname}}</div>
-        <div class="row-info" ng-class="{'promo-price' : item.promo}">
-            <span style="font-weight: lighter; font-size: 13px;">RON
-            </span>{{item.new_price | float}}</div>
-        <div class="row-excerpt">{{item.excerpt}}</div>
-        <div class="row-actions">
-            <div class="supplemental-actions l-right">
-                <a aria-label="Vezi produs" class="md-icon-button" md-button ng-href="/product/{{item.id}}">
-                    <md-icon height="18px" md-svg-src="assets/icons/ic_open_in_new_24px.svg" width="18px"></md-icon>
-                </a>
-                <md-button aria-label="Vezi card produs" class="md-icon-button" ng-click="table.viewCard()">
-                    <md-icon height="18px" md-svg-src="assets/icons/ic_view_carousel_24px.svg" width="18px"></md-icon>
-                </md-button>
-                <md-button aria-label="Publica produs" class="md-icon-button" ng-click="table.publish(item.code)">
-                    <md-icon height="18px" md-svg-src="assets/icons/ic_done_24px.svg" width="18px"></md-icon>
-                </md-button>
+
+        <section class="single-product-main" ng-if="table.isExpanded(item.code)">
+            <div class="row-actions">
+                <div class="supplemental-actions l-right">
+                    <a aria-label="Vezi produs" class="md-icon-button" md-button ng-href="/product/{{item.id}}">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_open_in_new_24px.svg" width="18px"></md-icon>
+                    </a>
+                    <md-button aria-label="Vezi card produs" class="md-icon-button" ng-click="table.viewCard()">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_view_carousel_24px.svg" width="18px"></md-icon>
+                    </md-button>
+                    <md-button aria-label="Publica produs" class="md-icon-button" ng-click="table.publish(item.code)">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_done_24px.svg" width="18px"></md-icon>
+                    </md-button>
+                </div>
+                <div class="menu-action l-right">
+                    <md-button aria-label="Meniu produs" class="md-icon-button" ng-click="table.openMore()">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_more_vert_24px.svg" width="18px"></md-icon>
+                    </md-button>
+                </div>
             </div>
-            <div class="menu-action l-right">
-                <md-button aria-label="Meniu produs" class="md-icon-button" ng-click="table.openMore()">
-                    <md-icon height="18px" md-svg-src="assets/icons/ic_more_vert_24px.svg" width="18px"></md-icon>
-                </md-button>
+            <div id="product-info">
+                <div class="product-details" layout-gt-md="row" layout="column">
+                    <div class="cover" style="background-image: url({{item.file1}})">
+                        <div class="promo-badge" ng-show="product.promo">
+                            <md-tooltip>
+                                Produs promo
+                            </md-tooltip>
+                            <md-icon md-svg-src="assets/icons/promo_badge.svg" style="width: 48px; height: 48px;"></md-icon>
+                        </div>
+                    </div>
+                    <div class="info" flex>
+                        <h1 class="product-title">{{item.name}}</h1>
+                        <p class="product-subtitle">{{item.subname}}</p>
+                        <div class="product-stats">
+                            <span class="brand">{{item.brand | uppercase}}</span>
+                            •
+                            <span class="type">{{item.type}}</span>
+                            •
+                            <span class="kind">{{item.kind}}</span>
+                        </div>
+                        <md-divider></md-divider>
+                        <div class="stars-container">
+                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+                            <div class="current-rating" style="width:{{product.rating}}%"></div>
+                        </div>
+                        <div class="price-container" data="product" id="{{ item.id }}" name="{{ item.name }}" ng-class="{promo : item.promo}" price="{{ item.price }}" quantity="1">
+                            <div class="promo-price" ng-cloak ng-show="item.promo">RON
+                                {{item.promo_price}}</div>
+                            <div class="price" ng-cloak>
+                                <span ng-show="!item.promo">RON</span>
+                                {{item.price}}</div>
+                        </div>
+<!-- STOCK INFO -->
+                        <div class="stock-info">
+                            <md-divider></md-divider>
+                            <div ng-cloak ng-show="product.inv">
+                                <md-icon md-svg-src="assets/icons/ic_check_circle_green_24px.svg" style="width:16px; height:16px;"></md-icon>
+                                <span>Acest produs se afla in stoc.</span>
+                            </div>
+                            <div ng-cloak ng-show="!product.inv">
+                                <md-icon md-svg-src="assets/icons/ic_warning_red_24px.svg" style="width:16px; height:16px;"></md-icon>
+                                <span>Acest produs se afla doar in stoc furnizor.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-description"></div>
             </div>
-        </div>
+            <md-checkbox aria-label="Selecteaza produs" class="md-default-theme" ng-checked="table.exists(item.code)" ng-click="table.toggle($event, item.code)" role="checkbox" style="position: absolute; top: 0; left: 8px;">
+            </md-checkbox>
+        </section>
 <!-- <div style="position:absolute; margin:auto; top:0; bottom: 0; left: 0; right: 0; height:1px; background-color: rgba(0,0,0,.12)"></div> -->
         <div class="hoverlay"></div>
     </gd-table-row>
