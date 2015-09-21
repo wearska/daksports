@@ -49,6 +49,11 @@
                 return input ? input.replace(/(\.[\w\d_-]+)$/i, '_high$1') : input;
             };
         })
+        .filter('float', function(){
+            return function(input){
+                return input.toFixed(2);
+            }
+        })
         .filter('shuffle', function() {
             var shuffledArr = [],
                 shuffledLength = 0;

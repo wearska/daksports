@@ -17,10 +17,10 @@
                 function setTypes(item) {
                     item.added = new Date(item.added);
                     item.inv = parseFloat(item.inv);
-                    item.price = parseFloat(item.price).toFixed(2);
+                    item.price = parseFloat(item.price);
                     item.promo = parseFloat(item.promo);
                     item.published = parseFloat(item.published);
-                    item.promo_price = parseFloat(item.promo_price).toFixed(2);
+                    item.promo_price = parseFloat(item.promo_price);
                     item.promo_stock = parseFloat(item.promo_stock);
                     if (item.promo && item.promo_price) {
                         item.old_price = item.price;
@@ -29,6 +29,8 @@
                         item.old_price = 0;
                         item.new_price = item.price;
                     };
+                    item.old_price = parseFloat(item.old_price);
+                    item.new_price = parseFloat(item.new_price);
                     (item.tags) ? item.tags = item.tags.split(','): item.tags = [];
                     (item.colours) ? item.colours = item.colours.split(','): item.colours = [];
                     (angular.isDate(item.promo_end)) ? item.promo_end = item.promo_end: item.promo_end = new Date(item.promo_end);

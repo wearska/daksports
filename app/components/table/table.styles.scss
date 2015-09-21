@@ -20,7 +20,7 @@
     margin: 1px 0;
     outline: none;
     will-change: transform, background;
-    transition: all .28s ease-in-out;
+    transition: all 0.28s ease-in-out;
     overflow: hidden;
     &:before {
         bottom: 0;
@@ -33,7 +33,6 @@
         right: 0;
         top: 0;
     }
-    
     &:after {
         background: transparent;
         bottom: 0;
@@ -44,70 +43,31 @@
         top: 0;
         width: 2px;
     }
-    &.selected{
-        margin: 16px 0;
-        width: 106%;
-        height: 96px;
-        margin-left: -3%;
-        .row-media{
-            width: 64px;
-            height: 64px;
-            border-radius: 32px;
-            margin: 16px 0 16px 16px;
-            position: absolute;
-            left: 0;
+    &.selected {
+        &:before {
+
         }
-        .row-title, .row-subtitle, .row-info{
-            opacity: 1;
-            float: left;
-            clear: both;
-            margin-left: 80px;
-            padding: 0 16px;
-        }
-        .row-title{
-            font-size: 18px;
-            line-height: 24px;
-            font-weight: lighter;
-        }
-        .row-subtitle{
-            font-size: 14px;
-            line-height: 20px;
-            color: rgba(0,0,0,.54);
-        }
-        .row-info{
-            line-height: 16px;
-            margin-top: 4px;
-        }
-        .row-actions{
-            width: 172px;
-            height: 32px;
-            .supplemental-actions{
-                width: 132px;
-            }
-        }
-        @extend .raised;
-        &:before{
-        }
-        &:after{
+        &:after {
             background: $brand-primary;
         }
     }
-    &:hover{
-        .hoverlay{
-            opacity: .54;
+    &:hover {.hoverlay {
+            opacity: 0.54;
         }
-        .row-title, .row-subtitle, .row-info{
+        .row-title,
+        .row-subtitle,
+        .row-info {
             opacity: 1;
         }
-        .row-actions{
+        .row-actions {
             width: 172px;
-            .supplemental-actions{
+            .supplemental-actions {
                 width: 132px;
             }
         }
     }
 }
-[class*='row-']{
+[class*='row-'] {
     display: inline-block;
     vertical-align: middle;
     padding: 16px;
@@ -118,7 +78,9 @@
     text-overflow: ellipsis;
     color: rgba(0,0,0,.87);
 }
-.row-media{
+.row-media {
+    position: relative;
+    user-select: none;
     width: 28px;
     height: 28px;
     border-radius: 14px;
@@ -126,63 +88,154 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    will-change: background;
+    transition: all .28s ease-in-out;
+    &:hover{
+        background-size: 0;
+        .item-select{
+            opacity: 1;
+        }
+    }
+    .item-select {
+        position: absolute;
+        top: -3px;
+        border-bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        opacity: 0;
+        will-change: opacity;
+        transition: all .08s ease-in-out;
+        md-checkbox {
+            width:18px;
+            height: 18px;
+        }
+    }
 }
-.row-title, .row-subtitle, .row-info{
-    opacity: .87;
+.row-title,
+.row-subtitle,
+.row-info {
+    opacity: 0.87;
 }
-.row-title{
+.row-title {
     width: 160px;
 }
-.row-subtitle{
+.row-subtitle {
     width: 192px;
 }
-.row-info{
+.row-info {
     width: 112px;
-    &.promo-price{
+    &.promo-price {
         color: $brand-primary;
     }
 }
-.row-excerpt{
+.row-excerpt {
     font-weight: lighter;
     color: rgba(0,0,0,.54);
 }
-.row-actions, .row-media{
+.row-actions,
+.row-media {
     padding: 0 16px;
 }
-.row-actions{
+.row-actions {
     position: absolute;
     right: 0;
     padding: 0;
     width: 44px;
     height: 100%;
     will-change: width;
-    transition: width .28s ease-in-out;
+    transition: width 0.28s ease-in-out;
     background-color: #fff;
     box-shadow: -16px 0 16px #fff;
     overflow: hidden;
-    md-icon{
+    md-icon {
         padding: 2px;
         color: rgba(0,0,0,.54);
         fill: rgba(0,0,0,.54);
-        &:hover{
+        &:hover {
             color: rgba(0,0,0,.87);
             fill: rgba(0,0,0,.87);
         }
     }
-    .md-icon-button{
+    .md-icon-button {
         max-width: 32px;
         width: 32px;
         float: left;
     }
-    .menu-action, .supplemental-actions{
+    .menu-action,
+    .supplemental-actions {
         background-color: #fff;
         position: absolute;
         right: 0;
     }
-    .supplemental-actions{
+    .supplemental-actions {
         width: 0;
         right: 44px;
         will-change: width;
-        transition: width .16s ease-in-out;
+        transition: width 0.16s ease-in-out;
+    }
+}
+.gd-table-header {
+    position: relative;
+    padding: 16px;
+    color: rgba(0,0,0,.54);
+    font-size: 12px;
+    font-weight: 300;
+    .column-name {
+        display: inline-block;
+        user-select: none;
+        cursor: pointer;
+        span {
+            color: rgba(0,0,0,.54);
+            font-size: 13px;
+            line-height: 24px;
+            font-weight: bold;
+        }
+        md-icon {
+            opacity: 0;
+            padding: 4px;
+            margin-bottom: 2px;
+            color: rgba(0, 0, 0,.3);
+            fill: rgba(0, 0, 0, .3);
+            transition: all 0.18s ease-in-out;
+            &.reverse {
+                transform: rotate(180deg);
+            }
+        }
+        &.active-sort {
+            display: inline-block;
+            span {
+                color: rgba(0,0,0,.87);
+                font-weight: bold;
+            }
+            md-icon {
+                opacity: 1;
+                padding: 4px;
+                color: rgba(0, 0, 0, .3);
+                fill: rgba(0, 0, 0, .3);
+            }
+            &.sort-ascending {
+
+            }
+        }
+        &.media-column {
+
+        }
+        &.title-column {
+            margin-left: -12px;
+            padding: 16px;
+            width: 160px;
+        }
+        &.subtitle-column {
+            padding: 16px;
+            width: 192px;
+        }
+        &.info-column {
+            padding: 16px;
+            width: 112px;
+        }
+        &.excerpt-column {
+            padding: 16px;
+        }
     }
 }
