@@ -65,6 +65,11 @@
           url: '/cart',
           templateUrl: 'app/views/cart/cart.view.html',
           controller: 'CartCtrl'
+        })
+        .state('test', {
+          url: '/test',
+          templateUrl: 'app/views/testing/test.view.html',
+          controller: 'TestCtrl'
         });
       $locationProvider.html5Mode(true);
     });

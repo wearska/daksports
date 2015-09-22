@@ -43,7 +43,7 @@
                         <md-icon height="18px" md-svg-src="assets/icons/ic_view_carousel_24px.svg" width="18px"></md-icon>
                     </md-button>
                     <md-button aria-label="Publica produs" class="md-icon-button" ng-click="table.publish(item.code)">
-                        <md-icon height="18px" md-svg-src="assets/icons/ic_done_24px.svg" width="18px"></md-icon>
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_done_24px.svg" width="18px" ng-class="{published : item.published}"></md-icon>
                     </md-button>
                 </div>
                 <div class="menu-action l-right">
@@ -64,7 +64,7 @@
                         <md-icon height="18px" md-svg-src="assets/icons/ic_view_carousel_24px.svg" width="18px"></md-icon>
                     </md-button>
                     <md-button aria-label="Publica produs" class="md-icon-button" ng-click="table.publish(item.code)">
-                        <md-icon height="18px" md-svg-src="assets/icons/ic_done_24px.svg" width="18px"></md-icon>
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_done_24px.svg" width="18px" ng-class="{published : item.published}"></md-icon>
                     </md-button>
                 </div>
                 <div class="menu-action l-right">
@@ -112,11 +112,11 @@
 <!-- STOCK INFO -->
                         <div class="stock-info">
                             <md-divider></md-divider>
-                            <div ng-cloak ng-show="product.inv">
+                            <div ng-cloak ng-show="item.inv">
                                 <md-icon md-svg-src="assets/icons/ic_check_circle_green_24px.svg" style="width:16px; height:16px;"></md-icon>
                                 <span>Acest produs se afla in stoc.</span>
                             </div>
-                            <div ng-cloak ng-show="!product.inv">
+                            <div ng-cloak ng-show="!item.inv">
                                 <md-icon md-svg-src="assets/icons/ic_warning_red_24px.svg" style="width:16px; height:16px;"></md-icon>
                                 <span>Acest produs se afla doar in stoc furnizor.</span>
                             </div>

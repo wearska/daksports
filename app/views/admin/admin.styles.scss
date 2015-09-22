@@ -48,20 +48,19 @@
     width: 32px;
     height: 32px;
     margin: 4px;
-    opacity: 0.33;
     cursor: pointer;
     pointer-events: none;
     user-select: none;
     transition: all 0.28s ease;
-    &:hover {
-        opacity: 1;
-    }
+    @extend .raised;
     &.enabled {
         pointer-events: all;
     }
     &.active {
-        @extend .raised;
         opacity: 1;
+    }
+    &.faded {
+        opacity: 0.33;
     }
 }
 #card-preview {

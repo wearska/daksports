@@ -39,7 +39,7 @@
         <div flex layout>
             <md-input-container>
                 <label>Categorie</label>
-                <md-select ng-model="product.type" ng-change="setShort()">
+                <md-select ng-change="setShort()" ng-model="product.type">
                     <md-option ng-repeat="item in $root.types" value="{{item.type}}">{{item.type}}</md-option>
                 </md-select>
             </md-input-container>
@@ -156,19 +156,14 @@
 <!-- Poze produs -->
 <section>
     <h2 class="md-headline" style="margin-top: 32px;">Adauga poze</h2>
-<div layout="column">
+    <div layout-gt-lg="row" layout="column">
         <md-input-container flex>
             <md-checkbox aria-label="culori disponibile" name="availableColours" ng-false-value="0" ng-model="product.coloursCheck" ng-true-value="1">
                 Disponibil in mai multe culori
             </md-checkbox>
         </md-input-container>
-        <div class="colour-select" flex>
-            <md-select ng-class="{ enabled : product.coloursCheck}" ng-model="selectedColour" ng-show="product.coloursCheck">
-                <md-option ng-repeat="colour in colours" ng-value="colour">
-                    <div class="" flex style="background-color:{{colour}}; height: 32px; width:32px; display:inline-block; vertical-align: middle; border:2px solid black"></div>
-                    <span style=" display:inline-block; vertical-align: middle">{{colour}}</span>
-                </md-option>
-            </md-select>
+        <div class="colour-select" layout layout-wrap>
+            <div class="paper resting colour-selection" ng-class="{enabled : product.coloursCheck, faded : !isColour(colour)}" ng-click="toggleColour(colour)" ng-repeat="colour in colours" ng-show="product.coloursCheck" style="background-color: {{colour}}"></div>
         </div>
     </div>
     <div ng-include="'app/views/admin/admin.upload.inc.html'"></div>

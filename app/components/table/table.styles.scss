@@ -129,6 +129,14 @@
             padding: 2px;
             color: rgba(0,0,0,.54);
             fill: rgba(0,0,0,.54);
+            &.published{
+                color: #36A70E;
+                fill: #36A70E;
+                &:hover{
+                    color: #36A70E;
+                    fill: #36A70E;
+                }
+            }
             &:hover {
                 color: rgba(0,0,0,.87);
                 fill: rgba(0,0,0,.87);
@@ -210,6 +218,7 @@
             font-size: 13px;
             line-height: 24px;
             font-weight: bold;
+            user-select: none;
         }
         md-icon {
             opacity: 0;

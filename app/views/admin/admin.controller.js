@@ -66,19 +66,23 @@
                 'blueviolet',
                 'magenta',
                 'pink'
-            ]
+            ];
 
-            $scope.addColour = function(ev, colour) {
-                var el = angular.element(ev.currentTarget);
-                if (el.hasClass("active")) {
-                    el.removeClass("active");
-                    var index = $scope.product.colours.indexOf(colour);
-                    $scope.product.colours.splice(index, 1);
+            $scope.isColour = function(colour) {
+                if ($scope.selectedColour === '') {
+                    return true;
                 } else {
-                    el.addClass("active");
-                    $scope.product.colours.push(colour);
+                    return $scope.selectedColour.indexOf(colour) > -1;
                 }
-            }
+            };
+
+            $scope.toggleColour = function(colour) {
+                if ($scope.selectedColour.indexOf(colour) > -1) {
+                    $scope.selectedColour = '';
+                } else {
+                    $scope.selectedColour = colour;
+                };
+            };
 
             // product templates
 
