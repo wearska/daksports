@@ -47,6 +47,27 @@
             $scope.product = angular.copy(reset);
 
             // colour click function
+            $scope.selectedColour = '';
+            $scope.colours = [
+                'black',
+                'grey',
+                'white',
+                'peru',
+                'maroon',
+                'red',
+                'orange',
+                'yellow',
+                'lime',
+                'green',
+                'teal',
+                'cyan',
+                'cornflowerblue',
+                'blue',
+                'blueviolet',
+                'magenta',
+                'pink'
+            ]
+
             $scope.addColour = function(ev, colour) {
                 var el = angular.element(ev.currentTarget);
                 if (el.hasClass("active")) {
@@ -63,11 +84,11 @@
 
             $scope.simulateQuery = false;
             $scope.isDisabled = false;
-            if ($rootScope.products){
+            if ($rootScope.products) {
                 $scope.templates = loadAll();
-            }else{
+            } else {
                 $scope.$on('products:filled', function(event, item) {
-                        $scope.templates = loadAll();
+                    $scope.templates = loadAll();
                 });
             }
 
