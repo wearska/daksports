@@ -126,6 +126,7 @@
                 ngCart.addItem($scope.product.id, $scope.product.name, parseFloat($scope.product.price), parseInt($scope.order.quantity), $scope.product);
             };
 
+
         });
 
 })();
