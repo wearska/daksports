@@ -1,7 +1,7 @@
 <div class="page-content c-max">
     <div class="page-hero">
     <!-- Nav -->
-    
+
     <!-- Slider -->
         <div class="hero-slider">
             <gd-slider class="gd-slider ar_16-9">
@@ -18,20 +18,20 @@
                 </div>
             </gd-slider>
         </div>
-    
+
     </div>
-    
+
     <!-- Ads -->
     <div class="gd-banner-container" layout-gt-sm="row" layout-margin layout="column" ng-controller="BannersCtrl">
         <gd-banner banner-src="banner" class="cell" flex ng-repeat="banner in banners | shuffle | limitTo:3:start"></gd-banner>
     </div>
-    
+
     <!-- Recommended -->
     <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" start="0" title="Produse recomandate" xs="2"></gd-carousel>
-    
+
     <!-- Promos -->
 
-    <gd-carousel data="$root.products" lg="3" md="2" sm="1" start="0" limit="10" title="Produse promo" subtitle="Nu pierde cele mai bune oferte!" xs="1" promo-filter="1" gd-tiles="true" carousel-length="0"></gd-carousel>
+    <gd-carousel data="$root.products" lg="3" md="2" sm="1" start="0" limit="5" title="Produse promo" subtitle="Nu pierde cele mai bune oferte!" xs="1" promo-filter="1" gd-tiles="true" carousel-length="0"></gd-carousel>
     <!-- <div class="gd-banner-container" layout-gt-md="row" layout="column">
         <div class="gd-cell" flex flex-gt-md="50" flex-gt-lg="33">
             <gd-card card-resource="$root.products[11]"  gd-brand="{{item.brand}}" gd-excerpt="{{item.excerpt}}" gd-price="{{item.price}}" gd-src="{{item.file1}}" gd-subtitle="{{item.subname}}" gd-tile gd-title="{{item.name}}"></gd-card>

@@ -65,6 +65,22 @@
                 shuffledLength = o.length;
                 return o;
             };
+        }).filter('getItem', function() {
+            return function(items, code) {
+                var filtered = {};
+                if (code == "") {
+                    return false;
+                }
+                console.log(items);
+                angular.forEach(items, function(item) {
+                    console.log(item.code);
+                    if (item.code == code) {
+                        filtered = angular.copy(item);
+                        console.log(item);
+                    }
+                });
+                return filtered;
+            };
         });
 
 })();

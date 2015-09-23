@@ -61,7 +61,7 @@
                     return items;
                 }
                 angular.forEach(items, function(item) {
-                    
+
                     if(!range.min && !range.max){
                         filtered.push(item);
                     }else if(range.min && !range.max){

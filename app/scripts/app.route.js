@@ -52,12 +52,12 @@
           controller: 'AddCtrl'
         })
         .state('admin.edit', {
-          url: '/edit/:productId',
+          url: '/edit/:productCode',
           templateUrl: 'app/views/admin/admin.edit.view.html',
           controller: 'EditCtrl'
         })
         .state('product', {
-          url: '/product/:productId',
+          url: '/product/:productCode',
           templateUrl: 'app/views/product/product.view.html',
           controller: 'ProductCtrl'
         })

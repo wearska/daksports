@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('EditCtrl', function($scope, $rootScope, $http, $filter, $parse, $location, $stateParams, FileUploader, $interval, productRes) {
+        .controller('EditCtrl', function($scope, $rootScope, $http, $filter, $timeout, $parse, $location, $stateParams, FileUploader, $interval, productRes) {
 
             var firstChanged = false,
                 secondChanged = false,
@@ -10,7 +10,34 @@
                 fourthChanged = false,
                 fifthChanged = false;
             // Initial state
-            $scope.product = {};
+            var code = $stateParams.productCode;
+
+            // Initial state
+            $scope.product = $filter('getItem')($rootScope.products, code);
+            productRes.$loaded()
+                .then(function() {
+                    $timeout(function() {
+                        $scope.product = $filter('getItem')($rootScope.products, code);
+                        setTypes();
+                        // Set uploader images
+                        var tempreset = {
+                            photo1: $scope.product.file1,
+                            photo2: $scope.product.file2,
+                            photo3: $scope.product.file3,
+                            photo4: $scope.product.file4,
+                            photo5: $scope.product.file5
+                        };
+                        angular.forEach(tempreset, function(value, key) {
+                            var str = 'temp.' + key;
+                            var model = $parse(str);
+                            model.assign($scope, value);
+                        });
+
+                    }, 1000);
+                })
+                .catch(function(error) {
+                    console.log("Error:", error);
+                });
             $scope.productForm = {};
             $scope.ready = false;
             $scope.buttonTitle = "Editeaza Produs";
@@ -21,25 +48,14 @@
 
             function setTypes() {
                 $scope.product.added = new Date($scope.product.added);
-                // (angular.isDate($scope.product.promo_end)) ? $scope.product.promo_end = new Date($scope.product.promo_end) : $scope.product.promo_end = undefined;
-                $scope.product.inv = parseFloat($scope.product.inv);
-                $scope.product.price = parseFloat($scope.product.price);
-                $scope.product.promo = parseFloat($scope.product.promo);
-                $scope.product.published = parseFloat($scope.product.published);
-                $scope.product.promo_price = parseFloat($scope.product.promo_price);
                 if ($scope.product.promo && $scope.product.promo_price) {
-                    console.log("promo");
                     $scope.product.old_price = $scope.product.price;
                     $scope.product.new_price = $scope.product.promo_price;
                 } else {
                     $scope.product.old_price = 0;
                     $scope.product.new_price = $scope.product.price;
                 };
-                $scope.product.promo_stock = parseFloat($scope.product.promo_stock);
-                ($scope.product.tags) ? $scope.product.tags = $scope.product.tags.split(', '): $scope.product.tags = [];
-                ($scope.product.colours) ? $scope.product.colours = $scope.product.colours.split(', '): $scope.product.colours = [];
                 $scope.product.code = $scope.product.code.substring(3);
-                $scope.ready = true;
             }
 
             String.prototype.toProperCase = function() {
@@ -150,37 +166,37 @@
             }
 
 
-            productRes.get($stateParams.productId)
-                .then(function(response) {
-                    $scope.product = response.data[0];
-                    ($scope.product.promo_stock != 0) ? $scope.product.promoStockCheck = 1: $scope.product.promoStockCheck = 0;
-                    var notDate = angular.equals($scope.product.promo_end, '0000-00-00 00:00:00');
-                    console.log(notDate);
-                    if (notDate) {
-                        $scope.product.promoDateCheck = 0;
-                        $scope.product.promo_end = null;
-                    } else {
-                        $scope.product.promoDateCheck = 1;
-                        $scope.product.promo_end = new Date($scope.product.promo_end);
-                    };
-                    setTypes();
-
-                    // Set uploader images
-                    var tempreset = {
-                        photo1: response.data[0].file1,
-                        photo2: response.data[0].file2,
-                        photo3: response.data[0].file3,
-                        photo4: response.data[0].file4,
-                        photo5: response.data[0].file5
-                    };
-                    angular.forEach(tempreset, function(value, key) {
-                        var str = 'temp.' + key;
-                        var model = $parse(str);
-                        model.assign($scope, value);
-                    });
-                }).catch(function(error) {
-                    return error;
-                });
+            // productRes.get($stateParams.productId)
+            //     .then(function(response) {
+            //         $scope.product = response.data[0];
+            //         ($scope.product.promo_stock != 0) ? $scope.product.promoStockCheck = 1: $scope.product.promoStockCheck = 0;
+            //         var notDate = angular.equals($scope.product.promo_end, '0000-00-00 00:00:00');
+            //         console.log(notDate);
+            //         if (notDate) {
+            //             $scope.product.promoDateCheck = 0;
+            //             $scope.product.promo_end = null;
+            //         } else {
+            //             $scope.product.promoDateCheck = 1;
+            //             $scope.product.promo_end = new Date($scope.product.promo_end);
+            //         };
+            //         setTypes();
+            //
+            //         // Set uploader images
+            //         var tempreset = {
+            //             photo1: response.data[0].file1,
+            //             photo2: response.data[0].file2,
+            //             photo3: response.data[0].file3,
+            //             photo4: response.data[0].file4,
+            //             photo5: response.data[0].file5
+            //         };
+            //         angular.forEach(tempreset, function(value, key) {
+            //             var str = 'temp.' + key;
+            //             var model = $parse(str);
+            //             model.assign($scope, value);
+            //         });
+            //     }).catch(function(error) {
+            //         return error;
+            //     });
 
             // Uploaders
             var tempuploader = $scope.tempuploader = new FileUploader({

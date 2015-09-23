@@ -25,7 +25,7 @@
                     if (item.promo && item.promo_price) {
                         item.old_price = item.price;
                         item.new_price = item.promo_price;
-                    }else{
+                    } else {
                         item.old_price = 0;
                         item.new_price = item.price;
                     };
@@ -47,19 +47,12 @@
                                 $http.get('api/accounts/getuserfav.php?uid=' + authData.uid)
                                     .then(function(response) {
                                         $rootScope.userData.favs = response.data;
-                                        productRes.query()
-                                            .then(function(response) {
-                                                $rootScope.products = response.data;
-                                                angular.forEach($rootScope.userData.favs, function(value, key) {
-                                                    setFavourite(value);
-                                                });
-                                                angular.forEach($rootScope.products, function(value, key) {
-                                                    setTypes(value);
-                                                });
-                                                $rootScope.$broadcast('products:filled', {});
-                                            }).catch(function(error) {
-                                                return error;
-                                            });
+                                        // load all the items from the database
+                                        productRes.$loaded().then(function() {
+                                            // bind all items to the root scope
+                                            $rootScope.products = angular.copy(productRes);
+                                        });
+
                                     }).catch(function(error) {
                                         $rootScope.userData = {};
                                         return error;
@@ -72,16 +65,11 @@
                     } else {
                         $rootScope.userData = {};
                         $rootScope.logged = false;
-                        productRes.query()
-                            .then(function(response) {
-                                $rootScope.products = response.data;
-                                angular.forEach($rootScope.products, function(value, key) {
-                                    setTypes(value);
-                                });
-                                $rootScope.$broadcast('products:filled', {});
-                            }).catch(function(error) {
-                                return error;
-                            });
+                        productRes.$loaded().then(function() {
+                            // console.log(productRes);
+                            // bind all items to the root scope
+                            $rootScope.products = angular.copy(productRes);
+                        });
                     }
                 });
                 return authObj;

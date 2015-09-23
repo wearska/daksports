@@ -1,6 +1,6 @@
 <div ng-cloak class="gd-card paper resting slide-top">
     <div class="product-media">
-        <a href="/product/{{item.id}}">
+        <a href="/product/{{item.code}}">
             <div class="product-img ar_1-1" ng-cloak style="background-image: url({{item.file1 | lowres}});" md-ink-ripple></div>
             <div class="hoverlay"></div>
         </a>
@@ -18,7 +18,7 @@
                 </md-tooltip>
                 <md-icon md-svg-src="assets/icons/ic_favorite_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
             </md-button>
-            <a class="md-icon-button add-to-favourites" md-button ng-href="/admin/edit/{{item.id}}" ng-if="$root.userData.admin && $root.logged">
+            <a class="md-icon-button add-to-favourites" md-button ng-href="/admin/edit/{{item.code}}" ng-if="$root.userData.admin && $root.logged">
                 <md-tooltip>
                     Editeaza produs
                 </md-tooltip>
