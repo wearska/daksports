@@ -30,7 +30,7 @@
                 tags: [],
                 age: 0,
                 gender: 0,
-                colours: [],
+                colour: "",
                 file1: "uploads/placeholder.png",
                 file2: "uploads/placeholder.png",
                 file3: "uploads/placeholder.png",
@@ -517,8 +517,7 @@
                     if ($scope.productForm.$valid) {
                         catsUpdate();
                         $scope.postData = angular.copy($scope.product);
-                        $scope.postData.tags = $scope.postData.tags.join(", ");
-                        $scope.postData.colours = $scope.postData.colours.join(", ");
+                        console.log($scope.postData);
                         // make the call
                         productRes.post($scope.postData)
                             .then(function(response) {

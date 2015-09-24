@@ -12,7 +12,7 @@ $postdata = file_get_contents("php://input");
     @$brand = $request->brand;
     @$type = $request->type;
     @$kind = $request->kind;
-    @$tags = $request->tags;
+    @$tags = serialize($request->tags);
     @$slug = "slug";
     @$price = $request->price;
     @$promo = $request->promo;
@@ -21,7 +21,7 @@ $postdata = file_get_contents("php://input");
     @$promo_end = $request->promo_end;
     @$excerpt = $request->excerpt;
     @$desc = $request->description;
-    @$inv = $request->inv;
+    @$sizes = serialize($request->sizes);
     @$added = $request->added;
     @$file1 = $request->file1;
     @$file2 = $request->file2;
@@ -29,10 +29,10 @@ $postdata = file_get_contents("php://input");
     @$file4 = $request->file4;
     @$file5 = $request->file5;
 
-$sql = "UPDATE `products` SET `code`='$code', `name`='$name', `subname`='$subname', `price`='$price', `promo`='$promo', `promo_price`='$promo_price', `promo_stock`='$promo_stock', `promo_end`='$promo_end', `excerpt`='$excerpt', `description`='$desc', `inv`='$inv', `brand`='$brand', `type`='$type', `kind`='$kind', `tags`='$tags', `file1`='$file1', `file2`='$file2', `file3`='$file3', `file4`='$file4', `file5`='$file5', `added`='$added' WHERE `id`='$id';";
+$sql = "UPDATE `products` SET `code`='$code', `name`='$name', `subname`='$subname', `price`='$price', `promo`='$promo', `promo_price`='$promo_price', `promo_stock`='$promo_stock', `promo_end`='$promo_end', `excerpt`='$excerpt', `description`='$desc', `sizes`='$sizes', `brand`='$brand', `type`='$type', `kind`='$kind', `tags`='$tags', `file1`='$file1', `file2`='$file2', `file3`='$file3', `file4`='$file4', `file5`='$file5', `added`='$added' WHERE `id`='$id';";
 
 if ($conn->query($sql) === TRUE) {
-    echo $promo_end;
+    echo "Product modified sucessfuly"
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

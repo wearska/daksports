@@ -19,7 +19,8 @@ $postdata = file_get_contents("php://input");
     @$promo_end = $request->promo_end;
     @$excerpt = $request->excerpt;
     @$desc = $request->description;
-    @$inv = $request->inv;
+    @$sizes = serialize($request->sizes);
+    @$tags = serialize($request->tags);
     @$added = $request->added;
     @$file1 = $request->file1;
     @$file2 = $request->file2;
@@ -27,7 +28,7 @@ $postdata = file_get_contents("php://input");
     @$file4 = $request->file4;
     @$file5 = $request->file5;
 
-$sql = "INSERT INTO products (code, name, subname, brand, type, kind, price, promo, promo_price, promo_stock, promo_end, excerpt, description, inv, added, file1, file2, file3, file4, file5) VALUES ('$code', '$name', '$subname', '$brand', '$type', '$kind', '$price', '$promo', '$promo_price', '$promo_stock', '$promo_end', '$excerpt', '$desc', '$inv', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
+$sql = "INSERT INTO products (code, name, subname, brand, type, kind, price, promo, promo_price, promo_stock, promo_end, excerpt, description, sizes, added, file1, file2, file3, file4, file5) VALUES ('$code', '$name', '$subname', '$brand', '$type', '$kind', '$price', '$promo', '$promo_price', '$promo_stock', '$promo_end', '$excerpt', '$desc', '$sizes', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
 
 $response = "SELECT LAST_INSERT_ID();";
 

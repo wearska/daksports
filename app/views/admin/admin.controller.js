@@ -10,6 +10,7 @@
                 $rootScope.noNav = false;
             });
             $scope.state = null;
+            $scope.ready = true;
 
 
             // Reset object
@@ -32,7 +33,7 @@
                 tags: [],
                 age: 0,
                 gender: 0,
-                colours: [],
+                colour: '',
                 file1: "uploads/placeholder.png",
                 file2: "uploads/placeholder.png",
                 file3: "uploads/placeholder.png",
@@ -79,8 +80,10 @@
             $scope.toggleColour = function(colour) {
                 if ($scope.selectedColour.indexOf(colour) > -1) {
                     $scope.selectedColour = '';
+                    $product.colour = '';
                 } else {
                     $scope.selectedColour = colour;
+                    $product.colour = colour;
                 };
             };
 
