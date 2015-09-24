@@ -60,17 +60,27 @@
             }
 
             // ADD TO FAV
-            $scope.postFav = function(productid) {
+            $scope.postFav = function(productid, fav) {
                 var data = {
                     userid: $rootScope.userData.uid,
                     productid: productid
                 };
-                $http.post('api/accounts/postuserfav.php', data)
-                    .then(function(response) {
-                        $scope.item.favourite = !$scope.item.favourite;
-                    }).catch(function(error) {
-                        console.log(error);
-                    });
+                if (fav) {
+                    $http.post('api/accounts/removeuserfav.php', data)
+                        .then(function(response) {
+                            $scope.item.favourite = false;
+                        }).catch(function(error) {
+                            console.log(error);
+                        });
+                } else {
+                    $http.post('api/accounts/postuserfav.php', data)
+                        .then(function(response) {
+                            $scope.item.favourite = true;
+                        }).catch(function(error) {
+                            console.log(error);
+                        });
+                }
+
             }
         })
         .controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {

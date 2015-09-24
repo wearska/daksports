@@ -14,29 +14,6 @@
                     product.favourite = true;
                 };
 
-                function setTypes(item) {
-                    item.added = new Date(item.added);
-                    item.inv = parseFloat(item.inv);
-                    item.price = parseFloat(item.price);
-                    item.promo = parseFloat(item.promo);
-                    item.published = parseFloat(item.published);
-                    item.promo_price = parseFloat(item.promo_price);
-                    item.promo_stock = parseFloat(item.promo_stock);
-                    if (item.promo && item.promo_price) {
-                        item.old_price = item.price;
-                        item.new_price = item.promo_price;
-                    }else{
-                        item.old_price = 0;
-                        item.new_price = item.price;
-                    };
-                    item.old_price = parseFloat(item.old_price);
-                    item.new_price = parseFloat(item.new_price);
-                    (item.tags) ? item.tags = item.tags.split(','): item.tags = [];
-                    (item.colours) ? item.colours = item.colours.split(','): item.colours = [];
-                    (angular.isDate(item.promo_end)) ? item.promo_end = item.promo_end: item.promo_end = new Date(item.promo_end);
-                    // set some defaults for testing purposes
-                }
-
                 // CHECK AUTH
                 authObj.$onAuth(function(authData) {
                     if (authData) {
@@ -48,13 +25,10 @@
                                     .then(function(response) {
                                         $rootScope.userData.favs = response.data;
                                         productRes.query()
-                                            .then(function(response) {
-                                                $rootScope.products = response.data;
+                                            .then(function(items) {
+                                                $rootScope.products = items;
                                                 angular.forEach($rootScope.userData.favs, function(value, key) {
                                                     setFavourite(value);
-                                                });
-                                                angular.forEach($rootScope.products, function(value, key) {
-                                                    setTypes(value);
                                                 });
                                                 $rootScope.$broadcast('products:filled', {});
                                             }).catch(function(error) {
@@ -73,15 +47,12 @@
                         $rootScope.userData = {};
                         $rootScope.logged = false;
                         productRes.query()
-                            .then(function(response) {
-                                $rootScope.products = response.data;
-                                angular.forEach($rootScope.products, function(value, key) {
-                                    setTypes(value);
-                                });
-                                $rootScope.$broadcast('products:filled', {});
-                            }).catch(function(error) {
-                                return error;
-                            });
+                        .then(function(items) {
+                            $rootScope.products = items;
+                            $rootScope.$broadcast('products:filled', {});
+                        }).catch(function(error) {
+                            return error;
+                        });
                     }
                 });
                 return authObj;
