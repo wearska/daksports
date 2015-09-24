@@ -10,36 +10,41 @@
                 fourthDone = false,
                 fifthDone = false;
 
-            // Reset object
-            var reset = {
-                code:" ",
-                name: "",
-                subname: "",
-                slug: "",
-                price: 0,
-                inv: 0,
-                promo: 0,
-                promo_price: 0,
-                promo_stock: 0,
-                promo_end: null,
-                excerpt: "",
-                description: "",
-                brand: "",
-                type: "",
-                kind: "",
-                tags: [],
-                age: 0,
-                gender: 0,
-                colour: "",
-                file1: "uploads/placeholder.png",
-                file2: "uploads/placeholder.png",
-                file3: "uploads/placeholder.png",
-                file4: "uploads/placeholder.png",
-                file5: "uploads/placeholder.png",
-                added: new Date(),
-                favourite: "",
-                published: 1
-            };
+                // Reset object
+                var reset = {
+                    code: " ",
+                    name: "",
+                    subname: "",
+                    slug: "",
+                    price: 0,
+                    sizes: [
+                        {
+                            name : "",
+                            count: 0
+                        }
+                    ],
+                    promo: 0,
+                    promo_price: 0,
+                    promo_stock: 0,
+                    promo_end: null,
+                    excerpt: "",
+                    description: "",
+                    brand: "",
+                    type: "",
+                    kind: "",
+                    tags: [],
+                    age: 0,
+                    gender: 0,
+                    colour: '',
+                    file1: "uploads/placeholder.png",
+                    file2: "uploads/placeholder.png",
+                    file3: "uploads/placeholder.png",
+                    file4: "uploads/placeholder.png",
+                    file5: "uploads/placeholder.png",
+                    added: new Date(),
+                    favourite: "",
+                    published: true
+                };
 
             // Temp object
             var tempreset = {
@@ -48,6 +53,39 @@
                 photo3: 'uploads/placeholder.png',
                 photo4: 'uploads/placeholder.png',
                 photo5: 'uploads/placeholder.png'
+            }
+
+            // Sizes
+            $scope.addMoreSizes = function(){
+                var sizes = $scope.product.sizes;
+                var newSize = {
+                    name: "",
+                    count : 0
+                }
+                sizes.push(newSize);
+            }
+
+            $scope.checkSizeExists = function(name){
+                var sizes = $scope.product.sizes;
+                angular.forEach($scope.product.sizes, function(size){
+                    var idx = size.name.indexOf(name);
+                    if( !idx > -1){
+                        sizes.splice(idx, 1);
+                    }
+                    console.log()
+                });
+            }
+
+            $scope.removeSize = function(name, count){
+                var sizes = $scope.product.sizes;
+                angular.forEach($scope.product.sizes, function(size){
+                    if(size.name == name && size.count == count ){
+                        var idx = sizes.indexOf(size);
+                        if( idx > -1){
+                            sizes.splice(idx, 1);
+                        }
+                    }
+                });
             }
 
             // Initial state

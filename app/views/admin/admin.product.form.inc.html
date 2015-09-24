@@ -31,7 +31,7 @@
             </md-input-container>
             <md-input-container flex>
                 <label>Adauga un brand</label>
-                <input ng-model="product.brand">
+                <input capitalize-first ng-model="product.brand">
             </md-input-container>
         </div>
     </div>
@@ -45,7 +45,7 @@
             </md-input-container>
             <md-input-container flex>
                 <label>Adauga o categorie</label>
-                <input ng-model="product.type">
+                <input capitalize-first ng-model="product.type">
             </md-input-container>
         </div>
         <span flex="5"></span>
@@ -58,7 +58,7 @@
             </md-input-container>
             <md-input-container flex>
                 <label>Adauga o sub-categorie</label>
-                <input ng-model="product.kind">
+                <input capitalize-first ng-model="product.kind">
             </md-input-container>
         </div>
         <div flex layout>
@@ -88,17 +88,35 @@
                 <div ng-message="number">Doar cifrele sunt permise</div>
             </div>
         </md-input-container>
-        <md-input-container flex>
+<!-- <md-input-container flex>
             <label>Inventar</label>
             <input name="inv" ng-model="product.inv" required step="any" type="number">
             <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
                 <div ng-message="number">Doar cifrele sunt permise</div>
             </div>
-        </md-input-container>
+        </md-input-container> -->
         <md-input-container flex="">
             <label>Data publicarii</label>
             <input ng-model="product.added" type="date">
         </md-input-container>
+    </div>
+</section>
+<section layout layout-sm="column">
+    <div class="size-settings" flex="75">
+        <gd-heading title="Adauga marimi"></gd-heading>
+        <div class="size" flex flex-gt-sm="50" layout ng-repeat="size in product.sizes">
+            <md-input-container flex="">
+                <label>Marime</label>
+                <input capitalize-first ng-model="size.name" type="text" ng-change="checkSizeExists(size.name)">
+            </md-input-container>
+            <span flex="10"></span>
+            <md-input-container flex="">
+                <label>Inventar</label>
+                <input ng-model="size.count" type="number">
+            </md-input-container>
+            <md-icon flex="5" md-svg-src="assets/icons/ic_add_box_24px.svg" ng-click="addMoreSizes()" style="cursor:pointer;" style="min-width: 0; width:24px;" width="24px"></md-icon>
+            <md-icon flex="5" md-svg-src="assets/icons/ic_remove_box_24px.svg" ng-click="removeSize(size.name, size.count)" ng-show="product.sizes.length > 1" style="cursor:pointer;" style="min-width: 0; width:24px;"></md-icon>
+        </div>
     </div>
 </section>
 <!-- Setari promo -->

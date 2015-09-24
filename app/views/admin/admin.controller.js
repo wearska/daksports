@@ -20,7 +20,10 @@
                 subname: "",
                 slug: "",
                 price: 0,
-                inv: 0,
+                sizes: {
+                    name : "",
+                    count: 0
+                },
                 promo: 0,
                 promo_price: 0,
                 promo_stock: 0,
@@ -41,11 +44,21 @@
                 file5: "uploads/placeholder.png",
                 added: new Date(),
                 favourite: "",
-                published: 1
+                published: true
             };
 
             // Initial state
             $scope.product = angular.copy(reset);
+
+            //Sizes
+            $scope.addMoreSizes = function(){
+                var sizes = $scope.product.sizes;
+                var newSize = {
+                    name: "",
+                    count : 0
+                }
+                sizes.push(newSize);
+            }
 
             // colour click function
             $scope.selectedColour = '';
