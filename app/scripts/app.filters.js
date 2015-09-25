@@ -34,6 +34,13 @@
                 }
             }
         })
+        .filter('shortify', function() {
+            return function(input) {
+                if (input != null && input != undefined && input !== "") {
+                    return angular.uppercase(input.replace(/[aeiou]/ig,'').substring(0, 3));
+                }
+            }
+        })
         .filter('lowres', function() {
             return function(input) {
                 return input ? input.replace(/(\.[\w\d_-]+)$/i, '_low$1') : input;

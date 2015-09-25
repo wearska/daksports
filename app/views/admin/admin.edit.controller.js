@@ -51,13 +51,15 @@
 
             $scope.setShort = function(ev) {
                 var typeSt = $scope.product.type;
-                angular.forEach($rootScope.types, function(type) {
-                    if (typeSt.indexOf(type.type) > -1) {
-                        console.log(type.short);
-                        var series = $filter('serialize')(type.short);
-                        $scope.product.code = series;
-                    }
-                });
+                if (typeSt !== initialType) {
+                    angular.forEach($rootScope.types, function(type) {
+                        if (typeSt.indexOf(type.type) > -1) {
+                            console.log(type.short);
+                            var series = $filter('serialize')(type.short);
+                            $scope.product.code = series;
+                        }
+                    });
+                }
             }
 
             function brandsCheck(brand) {

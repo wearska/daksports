@@ -11,7 +11,7 @@ $postdata = file_get_contents("php://input");
 $sql = "INSERT INTO types (type, short) VALUES ('$type', '$short')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "New category created successfully";
+    echo "New type created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

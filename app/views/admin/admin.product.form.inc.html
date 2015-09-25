@@ -53,7 +53,10 @@
             </md-input-container>
             <md-input-container flex>
                 <label>+ Categorie</label>
-                <input capitalize-first ng-model="product.type">
+                <input capitalize-first ng-model="product.type" ng-focus="setInitType()" ng-blur="defineShort(product.type)">
+            </md-input-container>
+            <md-input-container flex>
+                <input ng-model="temp.typeShort" ng-change="limitShort(temp.typeShort)" ng-focus="setInitShort()" ng-blur="setShort(temp.typeShort)">
             </md-input-container>
         </div>
         <span flex="5"></span>

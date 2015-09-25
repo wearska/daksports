@@ -8,13 +8,13 @@ if ( !empty( $_FILES ) ) {
     $filename = preg_replace('/\s+/', '_', $filename);
     $ydir = $_POST['year'];
     $mdir = $_POST['month'];
-    $id = $_POST['id'];
-    $root = $_SERVER['DOCUMENT_ROOT']; 
+    $code = $_POST['code'];
+    $root = $_SERVER['DOCUMENT_ROOT'];
     $baseDir = $root . DIRECTORY_SEPARATOR . 'uploads';
-    if (!file_exists($baseDir . DIRECTORY_SEPARATOR . $ydir . DIRECTORY_SEPARATOR . $mdir . DIRECTORY_SEPARATOR . $id)) {
-        mkdir($baseDir . DIRECTORY_SEPARATOR . $ydir . DIRECTORY_SEPARATOR . $mdir . DIRECTORY_SEPARATOR . $id, 0777, true);
+    if (!file_exists($baseDir . DIRECTORY_SEPARATOR . $ydir . DIRECTORY_SEPARATOR . $mdir . DIRECTORY_SEPARATOR . $code)) {
+        mkdir($baseDir . DIRECTORY_SEPARATOR . $ydir . DIRECTORY_SEPARATOR . $mdir . DIRECTORY_SEPARATOR . $code, 0777, true);
     }
-    $uploadPath = $root . DIRECTORY_SEPARATOR . 'uploads'. DIRECTORY_SEPARATOR .  $ydir . DIRECTORY_SEPARATOR . $mdir . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR . $filename;
+    $uploadPath = $root . DIRECTORY_SEPARATOR . 'uploads'. DIRECTORY_SEPARATOR .  $ydir . DIRECTORY_SEPARATOR . $mdir . DIRECTORY_SEPARATOR . $code . DIRECTORY_SEPARATOR . $filename;
 
     move_uploaded_file( $tempPath, $uploadPath );
 
