@@ -35,8 +35,7 @@
         opacity: 0;
         cursor: pointer;
     }
-    &:hover {
-        .search-file {
+    &:hover {.search-file {
             opacity: 1;
         }
         .hoverlay {
@@ -63,8 +62,7 @@
         opacity: 0.33;
     }
 }
-#card-preview {
-    .gd-card {
+#card-preview {.gd-card {
         margin: auto;
     }
 }
@@ -142,8 +140,7 @@
 .list-actions {
     border-bottom: 1px solid #e9e9e9;
 }
-@media #{$small-and-up} {
-    .list-view {
+@media #{$small-and-up} {.list-view {
 
     }
     .list-header {
@@ -153,8 +150,7 @@
         padding: 32px;
     }
 }
-@media #{$medium-and-up} {
-    .list-view {
+@media #{$medium-and-up} {.list-view {
 
     }
 }
@@ -168,7 +164,7 @@
 .autocomplete-custom-template li:last-child {
     border-bottom-width: 0;
 }
-.autocomplete-custom-template .item-thumb{
+.autocomplete-custom-template .item-thumb {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -179,7 +175,8 @@
     float: left;
     margin-right: 16px;
 }
-.autocomplete-custom-template .item-title,{
+.autocomplete-custom-template .item-title,
+ {
     display: block;
     font-size: 16px;
     line-height: 24px;
@@ -192,7 +189,7 @@
     white-space: nowrap;
     font-weight: 300;
 }
-.autocomplete-custom-template .item-subtitle{
+.autocomplete-custom-template .item-subtitle {
     color: #aaa;
     display: block;
     font-size: 13px;
@@ -208,10 +205,30 @@
 }
 
 // ADD/EDIT FORM
-.product-code-series{
+.product-code-series {
     position: absolute;
+
     // top: 25px;
     bottom: 33px;
     user-select: none;
     pointer-events: none;
+}
+
+// TAGS
+.md-chip-input-container {
+    font-size: 14px;
+    &::-webkit-input-placeholder {
+        color: red;
+    }
+    &:-moz-placeholder {
+        /* Firefox 18- */
+        color: red;
+    }
+    &::-moz-placeholder {
+        /* Firefox 19+ */
+        color: red;
+    }
+    &:-ms-input-placeholder {
+        color: red;
+    }
 }

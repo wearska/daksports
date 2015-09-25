@@ -23,6 +23,15 @@
         </md-input-container>
         <span flex="5"></span>
         <div flex layout>
+            <md-input-container flex>
+                <label>Cod produs</label>
+                <span class="product-code-series">DAK</span>
+                <input ng-model="product.code" style="text-indent: 26px;">
+            </md-input-container>
+        </div>
+    </div>
+    <div layout layout-sm="column">
+        <div flex layout>
             <md-input-container>
                 <label>Brand</label>
                 <md-select ng-model="product.brand">
@@ -30,12 +39,11 @@
                 </md-select>
             </md-input-container>
             <md-input-container flex>
-                <label>Adauga un brand</label>
+                <label>+ Brand</label>
                 <input capitalize-first ng-model="product.brand">
             </md-input-container>
         </div>
-    </div>
-    <div layout layout-sm="column">
+        <span flex="5"></span>
         <div flex layout>
             <md-input-container>
                 <label>Categorie</label>
@@ -44,7 +52,7 @@
                 </md-select>
             </md-input-container>
             <md-input-container flex>
-                <label>Adauga o categorie</label>
+                <label>+ Categorie</label>
                 <input capitalize-first ng-model="product.type">
             </md-input-container>
         </div>
@@ -57,15 +65,8 @@
                 </md-select>
             </md-input-container>
             <md-input-container flex>
-                <label>Adauga o sub-categorie</label>
+                <label>+ Sub-categorie</label>
                 <input capitalize-first ng-model="product.kind">
-            </md-input-container>
-        </div>
-        <div flex layout>
-            <md-input-container flex>
-                <label>Cod produs</label>
-                <span class="product-code-series">DAK</span>
-                <input ng-model="product.code" style="text-indent: 26px;">
             </md-input-container>
         </div>
     </div>
@@ -188,6 +189,7 @@
 </section>
 <!-- Submit -->
 <div layout layout-sm="column" style="margin: 32px -8px 0;">
+    <md-checkbox style="line-height: 32px;" ng-model="product.published" ng-true-value="1" ng-false-value="0">Publica produs automat</md-checkbox>
     <md-button class="md-raised md-primary" flex ng-cloak ng-disabled="!productForm.$valid" type="submit">{{ buttonTitle }}</md-button>
 </md-input-container>
 </div>
