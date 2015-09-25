@@ -1,24 +1,41 @@
-<div class="nav-section">
-    <a class="nav-item-container" md-ink-ripple href="/auth/login" ng-if="!$root.logged">
-        <md-icon md-svg-src="assets/icons/ic_account_circle_24px.svg">
-            <span class="badge" ng-show="cartItemsCount > 0">{{cartItemsCount}}</span>
-        </md-icon>Contul meu</a>
-    <a class="nav-item-container" md-ink-ripple href="/account" ng-if="$root.logged">
-        <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" style="background-image: url({{$root.userData.user_photo}})"></div>{{$root.userData.email}}</a>
-    <!-- <a class="nav-item-container" href="/auth/create" ng-hide="$root.logged">
-        <md-icon md-svg-src=""></md-icon>Inregistreaza-te</a> -->
-    <a class="nav-item-container sub" md-ink-ripple ng-show="$root.logged" ng-click="nav.logout()">
-        <md-icon md-svg-src=""></md-icon>Logout</a>
+<!-- ACCOUNT SECTION START -->
+<section>
+    <div class="nav-section">
+        <a class="nav-item-container" md-ink-ripple href="/auth/login" ng-if="!$root.logged">
+            <md-icon md-svg-src="assets/icons/ic_account_circle_24px.svg">
+                <span class="badge" ng-show="cartItemsCount > 0">{{cartItemsCount}}</span>
+            </md-icon>Contul meu</a>
+        <a class="nav-item-container" md-ink-ripple href="/account" ng-if="$root.logged">
+            <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" style="background-image: url({{$root.userData.user_photo}})"></div>{{$root.userData.email}}</a>
+        <!-- <a class="nav-item-container" href="/auth/create" ng-hide="$root.logged">
+            <md-icon md-svg-src=""></md-icon>Inregistreaza-te</a> -->
+        <a class="nav-item-container sub" md-ink-ripple ng-show="$root.logged" ng-click="nav.logout()">
+            <md-icon md-svg-src=""></md-icon>Logout</a>
+    </div>
+    <div class="nav-section-divider"></div>
+    <!-- ADMIN SECTION START -->
+    <section ng-if="$root.userData.admin">
+        <div ng-cloak class="nav-section" ng-include="'app/components/navigation/navigation.admin.inc.html'"></div>
+        <div class="nav-section-divider"></div>
+    </section>
+    <!-- ADMIN SECTION END -->
+</section>
+<!-- ACCOUNT SECTION END -->
+<!-- FILTERS SECTION START -->
+<section ng-if="$root.state == 'store'">
+    <div class="nav-section" ng-controller="NavSectionCtrl as section" ng-include="'app/components/navigation/navigation.filters.inc.html'"></div>
+    <div class="nav-section-divider"></div>
+</section>
+<!-- STORE SECTION START -->
+<section ng-if="$root.state != 'store'">
+    <div ng-cloak class="nav-section">
+        <a class="nav-item-container" md-ink-ripple href="{{item.ref}}" ng-repeat="item in nav.navItems">
+            <md-icon md-svg-src="{{item.icon}}"></md-icon><span ng-if="item.ref == '/cart'" class="badge" ng-show="cartItemsCount > 0">{{cartItemsCount}}</span>{{item.title}}</a>
 
-</div>
-<div class="nav-section-divider"></div>
-<div ng-cloak class="nav-section" ng-if="$root.state != 'store' && !$root.userData.admin">
-    <a class="nav-item-container" md-ink-ripple href="{{item.ref}}" ng-repeat="item in nav.navItems">
-        <md-icon md-svg-src="{{item.icon}}"></md-icon><span ng-if="item.ref == '/cart'" class="badge" ng-show="cartItemsCount > 0">{{cartItemsCount}}</span>{{item.title}}</a>
-
-    <a class="nav-item-container button" data-type="sub" href="">
-        <md-button class=" md-primary md-raised" md-theme="brand">Newsletter</md-button>
-    </a>
-</div>
-<div ng-cloak class="nav-section" ng-if="$root.state != 'store' && $root.userData.admin" ng-include="'app/components/navigation/navigation.admin.inc.html'"></div>
-<div class="nav-section" ng-controller="NavSectionCtrl as section" ng-if="$root.state == 'store'" ng-include="'app/components/navigation/navigation.filters.inc.html'"></div>
+        <a class="nav-item-container button" data-type="sub" href="">
+            <md-button class=" md-primary md-raised" md-theme="brand">Newsletter</md-button>
+        </a>
+    </div>
+    <div class="nav-section-divider"></div>
+</section>
+<!-- STORE SECTION END -->
