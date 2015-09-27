@@ -1,24 +1,24 @@
 <div ng-cloak class="gd-card paper resting slide-top">
     <div class="product-media">
-        <a href="/product/{{item.id}}">
+        <a href="/product/{{item.code}}">
             <div class="product-img ar_1-1" ng-cloak style="background-image: url({{item.file1 | lowres}});" md-ink-ripple></div>
             <div class="hoverlay"></div>
         </a>
         <div class="product-media-actions">
             <div class="scrim top"></div>
-            <md-button class="md-icon-button add-to-favourites" ng-click="postFav(item.id, item.favourite)" ng-if="!$root.userData.admin && $root.logged" ng-show="!item.favourite">
+            <md-button class="md-icon-button add-to-favourites" ng-click="postFav(item.code, item.favourite)" ng-if="!$root.userData.admin && $root.logged" ng-show="!item.favourite">
                 <md-tooltip>
                     Adauga la favorite
                 </md-tooltip>
                 <md-icon md-svg-src="assets/icons/ic_favorite_border_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
             </md-button>
-            <md-button class="md-icon-button add-to-favourites" ng-click="postFav(item.id, item.favourite)" ng-if="!$root.userData.admin && $root.logged" ng-show="item.favourite">
+            <md-button class="md-icon-button add-to-favourites" ng-click="postFav(item.code, item.favourite)" ng-if="!$root.userData.admin && $root.logged" ng-show="item.favourite">
                 <md-tooltip>
                     Elimina de la favorite
                 </md-tooltip>
                 <md-icon md-svg-src="assets/icons/ic_favorite_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
             </md-button>
-            <a class="md-icon-button add-to-favourites" md-button ng-href="/admin/edit/{{item.id}}" ng-if="$root.userData.admin && $root.logged">
+            <a class="md-icon-button add-to-favourites" md-button ng-href="/admin/edit/{{item.code}}" ng-if="$root.userData.admin && $root.logged">
                 <md-tooltip>
                     Editeaza produs
                 </md-tooltip>
@@ -66,7 +66,7 @@
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
-                    <md-button ng-click="postFav(item.id, item.favourite)">
+                    <md-button ng-click="postFav(item.code, item.favourite)">
                         <div layout="row">
                             <p flex>Adauga la favorite</p>
                             <md-icon class="md-icon" md-menu-align-target ng-if="!item.favourite" style="margin: auto 0 auto 0;">
@@ -91,7 +91,7 @@
         <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
         <div class="current-rating"></div>
     </div>
-    <div class="price-container" data="item" id="{{ item.id }}" name="{{ item.name }}" ng-class="{promo : item.promo}" price="{{ item.price }}" quantity="1">
+    <div class="price-container" data="item" id="{{ item.code }}" name="{{ item.name }}" ng-class="{promo : item.promo}" price="{{ item.price }}" quantity="1">
         <div class="promo-price" ng-show="item.promo">RON
             {{item.promo_price | float}}</div>
         <div class="price">

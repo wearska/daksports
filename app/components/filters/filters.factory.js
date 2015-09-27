@@ -38,6 +38,14 @@
                     return $filter('promoFilter')(res, query).length;
                 }
             }
+            
+            obj.filtersOn = function(){
+                var bool = false;
+                if(BrandFilter.selected.length || TypeFilter.selected.length || KindFilter.selected.length || PriceFilter.selected != null || PromoFilter.state){
+                    bool = true;
+                }
+                return bool;
+            }
             return obj;
         })
         .factory('BrandFilter', function() {

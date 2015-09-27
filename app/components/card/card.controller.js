@@ -37,7 +37,7 @@
             // ADD TO CART
             $scope.inCart = false;
             $scope.addToCart = function() {
-                ngCart.addItem($scope.item.id, $scope.item.name, parseFloat($scope.item.price), 1, $scope.item);
+                ngCart.addItem($scope.item.code, $scope.item.name, parseFloat($scope.item.price), 1, $scope.item);
             };
 
             // CARD MENU
@@ -60,10 +60,10 @@
             }
 
             // ADD TO FAV
-            $scope.postFav = function(productid, fav) {
+            $scope.postFav = function(code, fav) {
                 var data = {
                     userid: $rootScope.userData.uid,
-                    productid: productid
+                    code: code
                 };
                 if (fav) {
                     $http.post('api/accounts/removeuserfav.php', data)

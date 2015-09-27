@@ -7,9 +7,9 @@
                 var ref = new Firebase(FIREBASE_URL);
                 var authObj = $firebaseAuth(ref);
 
-                function setFavourite(id) {
+                function setFavourite(code) {
                     var product = $filter('filter')($rootScope.products, function(d) {
-                        return d.id === id;
+                        return d.code === code;
                     })[0];
                     product.favourite = true;
                 };

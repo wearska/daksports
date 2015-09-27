@@ -98,7 +98,7 @@
                         // CHECK IF FAV
                         $timeout(function() {
                             angular.forEach($rootScope.userData.favs, function(value, key) {
-                                if ($scope.product.id == value) {
+                                if ($scope.product.code == value) {
                                     $scope.product.favourite = true;
                                 }
                             });
@@ -123,7 +123,7 @@
                 });
 
             $scope.addToCart = function() {
-                ngCart.addItem($scope.product.id, $scope.product.name, parseFloat($scope.product.price), parseInt($scope.order.quantity), $scope.product);
+                ngCart.addItem($scope.product.code, $scope.product.name, parseFloat($scope.product.price), parseInt($scope.order.quantity), $scope.product);
             };
 
 

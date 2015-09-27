@@ -36,7 +36,7 @@
             <div class="row-excerpt">{{item.excerpt}}</div>
             <div class="row-actions">
                 <div class="supplemental-actions l-right">
-                    <a aria-label="Vezi produs" class="md-icon-button" md-button ng-href="/product/{{item.id}}">
+                    <a aria-label="Vezi produs" class="md-icon-button" md-button ng-href="/product/{{item.code}}">
                         <md-icon height="18px" md-svg-src="assets/icons/ic_open_in_new_24px.svg" width="18px"></md-icon>
                     </a>
                     <md-button aria-label="Vezi card produs" class="md-icon-button" ng-click="table.viewCard()">
@@ -57,7 +57,7 @@
         <section class="single-product-main" ng-if="table.isExpanded(item.code)">
             <div class="row-actions">
                 <div class="supplemental-actions l-right">
-                    <a aria-label="Vezi produs" class="md-icon-button" md-button ng-href="/product/{{item.id}}">
+                    <a aria-label="Vezi produs" class="md-icon-button" md-button ng-href="/product/{{item.code}}">
                         <md-icon height="18px" md-svg-src="assets/icons/ic_open_in_new_24px.svg" width="18px"></md-icon>
                     </a>
                     <md-button aria-label="Vezi card produs" class="md-icon-button" ng-click="table.viewCard()">
@@ -102,7 +102,7 @@
                             <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
                             <div class="current-rating" style="width:{{product.rating}}%"></div>
                         </div>
-                        <div class="price-container" data="product" id="{{ item.id }}" name="{{ item.name }}" ng-class="{promo : item.promo}" price="{{ item.price }}" quantity="1">
+                        <div class="price-container" data="product" id="{{ item.code }}" name="{{ item.name }}" ng-class="{promo : item.promo}" price="{{ item.price }}" quantity="1">
                             <div class="promo-price" ng-cloak ng-show="item.promo">RON
                                 {{item.promo_price}}</div>
                             <div class="price" ng-cloak>

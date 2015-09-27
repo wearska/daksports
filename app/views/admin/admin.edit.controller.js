@@ -285,7 +285,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                     month = $filter('date')($scope.product.added, 'MM'),
                     filename = uploader1.queue[uploader1.queue.length - 1].file.name,
-                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
+                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.code + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file1 = value;
             };
@@ -294,7 +294,7 @@
                 uploader1.formData = [{
                     year: $filter('date')($scope.product.added, 'yy'),
                     month: $filter('date')($scope.product.added, 'MM'),
-                    id: $scope.product.id
+                    id: $scope.product.code
                 }];
                 uploader1.queue[uploader1.queue.length - 1].url = 'api/products/upload.php';
                 Array.prototype.push.apply(item.formData, uploader1.formData);
@@ -325,7 +325,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                     month = $filter('date')($scope.product.added, 'MM'),
                     filename = uploader2.queue[uploader2.queue.length - 1].file.name,
-                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
+                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.code + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file2 = value;
             };
@@ -334,7 +334,7 @@
                 uploader2.formData = [{
                     year: $filter('date')($scope.product.added, 'yy'),
                     month: $filter('date')($scope.product.added, 'MM'),
-                    id: $scope.product.id
+                    id: $scope.product.code
                 }];
                 uploader2.queue[uploader2.queue.length - 1].url = 'api/products/upload.php';
                 Array.prototype.push.apply(item.formData, uploader2.formData);
@@ -365,7 +365,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                     month = $filter('date')($scope.product.added, 'MM'),
                     filename = uploader3.queue[uploader3.queue.length - 1].file.name,
-                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
+                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.code + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file3 = value;
             };
@@ -374,7 +374,7 @@
                 uploader3.formData = [{
                     year: $filter('date')($scope.product.added, 'yy'),
                     month: $filter('date')($scope.product.added, 'MM'),
-                    id: $scope.product.id
+                    id: $scope.product.code
                 }];
                 uploader3.queue[uploader3.queue.length - 1].url = 'api/products/upload.php';
                 Array.prototype.push.apply(item.formData, uploader3.formData);
@@ -405,7 +405,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                     month = $filter('date')($scope.product.added, 'MM'),
                     filename = uploader4.queue[uploader4.queue.length - 1].file.name,
-                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
+                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.code + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file4 = value;
             };
@@ -414,7 +414,7 @@
                 uploader4.formData = [{
                     year: $filter('date')($scope.product.added, 'yy'),
                     month: $filter('date')($scope.product.added, 'MM'),
-                    id: $scope.product.id
+                    id: $scope.product.code
                 }];
                 uploader4.queue[uploader4.queue.length - 1].url = 'api/products/upload.php';
                 Array.prototype.push.apply(item.formData, uploader4.formData);
@@ -445,7 +445,7 @@
                 var year = $filter('date')($scope.product.added, 'yy'),
                     month = $filter('date')($scope.product.added, 'MM'),
                     filename = uploader5.queue[uploader5.queue.length - 1].file.name,
-                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.id + '/' + filename;
+                    value = 'uploads/' + year + '/' + month + '/' + $scope.product.code + '/' + filename;
                 value = value.replace(/\s+/g, '_');
                 $scope.product.file5 = value;
             };
@@ -454,7 +454,7 @@
                 uploader5.formData = [{
                     year: $filter('date')($scope.product.added, 'yy'),
                     month: $filter('date')($scope.product.added, 'MM'),
-                    id: $scope.product.id
+                    id: $scope.product.code
                 }];
                 uploader5.queue[uploader5.queue.length - 1].url = 'api/products/upload.php';
                 Array.prototype.push.apply(item.formData, uploader5.formData);

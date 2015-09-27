@@ -33,7 +33,7 @@
                         <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
                         <div class="current-rating" style="width:{{product.rating}}%"></div>
                     </div>
-                    <div class="price-container" data="product" id="{{ product.id }}" name="{{ product.name }}" ng-class="{promo : product.promo}" price="{{ product.price }}" quantity="1">
+                    <div class="price-container" data="product" id="{{ product.code }}" name="{{ product.name }}" ng-class="{promo : product.promo}" price="{{ product.price }}" quantity="1">
                         <div ng-cloak class="promo-price" ng-show="product.promo">RON
                             {{product.promo_price}}</div>
                         <div ng-cloak class="price">

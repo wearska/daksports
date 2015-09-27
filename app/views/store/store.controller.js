@@ -2,16 +2,24 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('StoreCtrl', function($rootScope, $scope, $state, $timeout, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter) {
+        .controller('StoreCtrl', function($rootScope, $scope, $state, $window, $timeout, Counter, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter) {
+            
+            var page = angular.element($window).find('.page-content');
             $rootScope.state = $state.current.name;
             $scope.filtered = [];
 
-            $scope.limit = 16;
+            $scope.limit = 12;
             $scope.promoFilter = 0;
             $scope.$on('scroll:bottom', function(event, item) {
                 $timeout(function(){
                     $scope.limit = $scope.limit + 8;
                 }, 1000);
+            });
+            $scope.$on('products:filled', function(event, item) {
+                $timeout(function(){
+                    $scope.filtered = $rootScope.products;
+                    $rootScope.filtered = angular.copy($scope.filtered);
+                },500);
             });
 
             $rootScope.filtered = angular.copy($scope.filtered);
@@ -24,9 +32,12 @@
                 // This is the change listener, called when the value returned from the above function changes
                 function(newValue, oldValue) {
                     if (newValue !== oldValue) {
-                        // Only increment the counter if the value changed
                         $rootScope.filtered = angular.copy($scope.filtered);
-                        (BrandFilter.selected.length > 0 || TypeFilter.selected.length > 0 || KindFilter.selected.length > 0) ? $scope.limit = null: $scope.limit = 16;
+                        $scope.limit = 12;
+                        // page.scrollTop(0,0);
+                        // console.log(page);
+                        console.log($window);
+                        $scope.scrollToTop();
                     }
                 }
             );
@@ -37,6 +48,7 @@
             });
 
             // FILTERS
+            $scope.Counter = Counter;
             $scope.BrandFilter = BrandFilter;
             $scope.TypeFilter = TypeFilter;
             $scope.KindFilter = KindFilter;

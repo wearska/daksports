@@ -29,6 +29,9 @@
                  }
                 scope.$apply();
             });
+            scope.scrollToTop = function(){
+                angular.element(element)[0].scrollTop = 0;
+            }
         };
     });
 

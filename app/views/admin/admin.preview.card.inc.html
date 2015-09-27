@@ -1,6 +1,6 @@
 <div class="gd-card paper floating" ng-mouseenter="toggleOrderFab()" ng-mouseleave="toggleOrderFab()" style="max-width:200px">
     <div class="product-media">
-        <a href="/product/{{product.id}}" md-ink-ripple>
+        <a href="/product/{{product.code}}" md-ink-ripple>
             <div class="product-img ar_1-1" style="background-image: url({{temp.photo1}});"></div>
             <div class="hoverlay"></div>
         </a>
@@ -62,7 +62,7 @@
             <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
             <div class="current-rating"></div>
         </div>
-        <div class="price-container" ng-class="{promo : product.promo}" data="product" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1">
+        <div class="price-container" ng-class="{promo : product.promo}" data="product" id="{{ product.code }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1">
             <div class="price">RON {{(product.price).toFixed(2)}}</div>
             <div ng-show="product.promo" class="promo-price">RON {{product.promo_price}}</div>
         </div>
