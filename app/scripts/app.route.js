@@ -57,7 +57,7 @@
           controller: 'EditCtrl'
         })
         .state('product', {
-          url: '/product/:productId',
+          url: '/product/:productCode',
           templateUrl: 'app/views/product/product.view.html',
           controller: 'ProductCtrl'
         })

@@ -19,6 +19,7 @@ $postdata = file_get_contents("php://input");
     @$promo_end = $request->promo_end;
     @$excerpt = $request->excerpt;
     @$desc = $request->description;
+    $desc = $conn->real_escape_string($desc);
     @$sizes = serialize($request->sizes);
     @$tags = serialize($request->tags);
     @$added = $request->added;
@@ -30,18 +31,17 @@ $postdata = file_get_contents("php://input");
 
 $sql = "INSERT INTO products (code, name, subname, brand, type, kind, price, promo, promo_price, promo_stock, promo_end, excerpt, description, sizes, added, file1, file2, file3, file4, file5) VALUES ('$code', '$name', '$subname', '$brand', '$type', '$kind', '$price', '$promo', '$promo_price', '$promo_stock', '$promo_end', '$excerpt', '$desc', '$sizes', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
 
-$response = "SELECT LAST_INSERT_ID();";
+// if ($conn->query($sql) === TRUE) {
+//     // echo "New record created successfully";
+//     $res = $conn->query($response);
+//     while($row=mysqli_fetch_array($res)){
+//             $result = $row['LAST_INSERT_ID()'];
+//         }
+//     echo($result);
+// } else {
+//     echo "Error: " . $sql . "<br>" . $conn->error;
+// }
 
-if ($conn->query($sql) === TRUE) {
-    // echo "New record created successfully";
-    $res = $conn->query($response);
-    while($row=mysqli_fetch_array($res)){
-            $result = $row['LAST_INSERT_ID()'];
-        }
-    echo($result);
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
+echo $desc;
 $conn->close();
 ?>

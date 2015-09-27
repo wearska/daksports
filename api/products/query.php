@@ -9,11 +9,14 @@ $result = array();
 
 while($row=mysqli_fetch_assoc($res)){
         if($row['tags'] !== false){
-                $row['tags'] = unserialize($row['tags']);
-            };
+            $row['tags'] = unserialize($row['tags']);
+        };
         if($row['sizes'] !==false){
-                $row['sizes'] = unserialize($row['sizes']);
-            }
+            $row['sizes'] = unserialize($row['sizes']);
+        };
+        if($row['description'] !== ''){
+            $row['description'] = nl2br($row['description']);            
+        }
         $result[] = $row;
     }
 $obj = json_encode($result);

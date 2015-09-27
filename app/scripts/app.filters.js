@@ -56,6 +56,11 @@
                 return input ? input.replace(/(\.[\w\d_-]+)$/i, '_high$1') : input;
             };
         })
+        .filter('linebreak', function() {
+            return function(input) {
+                return input ? input.replace(/[\n]/g, '<br/>') : input;
+            };
+        })
         .filter('float', function(){
             return function(input){
                 return input.toFixed(2);

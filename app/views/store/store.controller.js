@@ -34,8 +34,6 @@
                     if (newValue !== oldValue) {
                         $rootScope.filtered = angular.copy($scope.filtered);
                         $scope.limit = 12;
-                        // page.scrollTop(0,0);
-                        // console.log(page);
                         console.log($window);
                         $scope.scrollToTop();
                     }

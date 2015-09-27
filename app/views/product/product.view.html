@@ -1,7 +1,7 @@
 <div class="page-content c-max">
     <div id="page-hero" style="top: -{{scrollAmnt/2}}px"></div>
-    <div class="single-product-main paper resting">
-        <section id="product-info">
+    <div class="single-product-main">
+        <section id="product-info" class="paper resting">
             <div class="product-details" layout-gt-md="row" layout="column">
                 <md-button aria-label="Use Android" class="md-fab md-primary add-to-cart" ng-click="addToCart()">
                     <md-icon md-svg-src="assets/icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
@@ -25,13 +25,19 @@
                         <span class="kind">{{product.kind}}</span>
                     </div>
                     <md-divider></md-divider>
-                    <div class="stars-container">
-                        <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                        <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                        <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                        <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                        <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                        <div class="current-rating" style="width:{{product.rating}}%"></div>
+                    <div class="review-info">
+                        <div class="stars-container">
+                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
+                            <div class="current-rating" style="left:{{product.rating}}%"></div>
+                        </div>
+                        <span class="review-count" ng-class="{disabled : !product.reviews.length}"> • {{product.reviews.length}} review-uri
+                            <span ng-if="!product.reviews.length"> • </span>
+                            <span ng-if="!product.reviews.length" class="review-anchor">fii primul care adauga un review</span>
+                        </span>
                     </div>
                     <div class="price-container" data="product" id="{{ product.code }}" name="{{ product.name }}" ng-class="{promo : product.promo}" price="{{ product.price }}" quantity="1">
                         <div ng-cloak class="promo-price" ng-show="product.promo">RON
@@ -74,9 +80,25 @@
                     </div>
                 </div>
             </div>
-            <div class="product-description"></div>
         </section>
-        <section id="product-comments"></section>
+        <section id="product-description" class="paper resting" gd-accordion style="height : {{accordion.maxHeight}}px">
+            <gd-heading title="Descriere" subtitle="Afla mai multe detalii despre acest produs">
+                    <a href="">
+                        <md-button class="md-primary md-icon-button carousel-heading-button">
+                            <md-tooltip>
+                                Arata
+                            </md-tooltip>
+                            <md-icon class="expand-icon" ng-class="{rotated : accordion.expanded}" md-svg-src="assets/icons/ic_keyboard_arrow_down_black_24px.svg" ng-click="accordion.expand()"></md-icon>
+                        </md-button>
+                    </a>
+            </gd-heading>
+            <md-divider ng-show="accordion.expanded"></md-divider>
+            <br>
+            <div class="product-description">
+                <p ng-bind-html="product.description"></p>
+            </div>
+        </section>
+        <section id="product-comments" class="paper resting"></section>
     </div>
 
 <!-- Others also bought -->
