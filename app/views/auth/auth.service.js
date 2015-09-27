@@ -2,8 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .factory('Auth', ['$rootScope', '$http', '$filter', '$firebaseAuth', 'FIREBASE_URL', '$location', 'productRes',
-            function($rootScope, $http, $filter, $firebaseAuth, FIREBASE_URL, $location, productRes) {
+        .factory('Auth', ['$rootScope', '$http', '$filter', '$firebaseAuth', 'FIREBASE_URL', '$location', 'productRes', 'reviews', function($rootScope, $http, $filter, $firebaseAuth, FIREBASE_URL, $location, productRes, reviews) {
                 var ref = new Firebase(FIREBASE_URL);
                 var authObj = $firebaseAuth(ref);
 
@@ -30,6 +29,7 @@
                                                 angular.forEach($rootScope.userData.favs, function(value, key) {
                                                     setFavourite(value);
                                                 });
+                                                reviews.query();
                                                 $rootScope.$broadcast('products:filled', {});
                                             }).catch(function(error) {
                                                 return error;

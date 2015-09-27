@@ -89,7 +89,7 @@
         <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
         <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
         <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-        <div class="current-rating"></div>
+        <div class="current-rating" style="left: {{item.rating}}%"></div>
     </div>
     <div class="price-container" data="item" id="{{ item.code }}" name="{{ item.name }}" ng-class="{promo : item.promo}" price="{{ item.price }}" quantity="1">
         <div class="promo-price" ng-show="item.promo">RON

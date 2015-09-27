@@ -14,6 +14,8 @@
                 item.price = parseFloat(item.price);
                 item.promo = parseFloat(item.promo);
                 item.published = parseFloat(item.published);
+                item.reviews = [];
+                item.rating = 0;
                 item.promo_price = parseFloat(item.promo_price);
                 item.promo_stock = parseFloat(item.promo_stock);
                 if (item.promo && item.promo_price) {
