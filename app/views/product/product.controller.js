@@ -17,6 +17,20 @@
                 $rootScope.transparentAppbar = true;
                 $rootScope.mainScrolled = false;
             });
+            $scope.heroes = [
+                {
+                    file: 'assets/img/heroes/baschet.jpg',
+                    position: 'right'
+                },
+                {
+                    file: 'assets/img/heroes/tenis.jpg',
+                    position: 'left'
+                },
+            ]
+
+            var rnd = $filter('randomize')($scope.heroes.length);
+            console.log(rnd);
+            $scope.hero = $scope.heroes[rnd-1];
 
             // Initial state
             if(!$rootScope.products){
@@ -43,8 +57,8 @@
                 // }, 3000)
                 // console.log($scope.product.description);
             }
-            
-            
+
+
             $scope.files = {};
             $scope.order = {
                 data: $scope.product,
@@ -80,9 +94,9 @@
             //     (item.colours) ? item.colours = item.colours.split(','): item.colours = [];
             //     (angular.isDate(item.promo_end)) ? item.promo_end = item.promo_end: item.promo_end = new Date(item.promo_end);
             // }
-            // 
+            //
             // // ADD TO FAV
-            // 
+            //
             // function setFavourite(id) {
             //     var product = $filter('filter')($rootScope.products, function(d) {
             //         return d.id === id;
@@ -128,7 +142,7 @@
             //                     }
             //                 });
             //             }, 1000);
-            // 
+            //
             //         });
             //         $scope.product.sizes = [
             //             "XS",

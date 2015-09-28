@@ -26,7 +26,7 @@
             <md-input-container flex>
                 <label>Cod produs</label>
                 <span class="product-code-series">DAK</span>
-                <input ng-model="product.code" style="text-indent: 26px;">
+                <input ng-disabled="state == 'edit'" ng-model="product.code" style="text-indent: 26px;">
             </md-input-container>
         </div>
     </div>
@@ -56,7 +56,7 @@
                 <input capitalize-first ng-model="product.type" ng-focus="setInitType()" ng-blur="defineShort(product.type)">
             </md-input-container>
             <md-input-container flex>
-                <input ng-model="temp.typeShort" ng-change="limitShort(temp.typeShort)" ng-focus="setInitShort()" ng-blur="setShort(temp.typeShort)">
+                <input ng-disabled="state == 'edit'" ng-model="temp.typeShort" ng-change="limitShort(temp.typeShort)" ng-focus="setInitShort()" ng-blur="setShort(temp.typeShort)">
             </md-input-container>
         </div>
         <span flex="5"></span>

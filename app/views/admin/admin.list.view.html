@@ -21,7 +21,7 @@
         </div>
 <!-- <div style="position:absolute; margin:auto; top:0; bottom: 0; left: 0; right: 0; height:1px; background-color: rgba(0,0,0,.12)"></div> -->
     </gd-table-header>
-    <gd-table-row class="gd-table-row" data="item" ng-class="{selected : table.exists(item.code), expanded : table.isExpanded(item.code)}" ng-click="table.expand(item.code)" ng-repeat="item in $root.products | orderBy : table.predicate">
+    <gd-table-row class="gd-table-row" data="item" ng-class="{selected : table.exists(item.code), expanded : table.isExpanded(item.code)}" ng-click="table.expand(item.code)" ng-repeat="item in $root.products | orderBy : table.predicate : table.reverse">
         <div class="closed" ng-if="!table.isExpanded(item.code)">
             <div class="row-media" style="background-image: url({{item.file1}})">
                 <div class="item-select">
@@ -55,25 +55,7 @@
         </div>
 
         <section class="single-product-main" ng-if="table.isExpanded(item.code)">
-            <div class="row-actions">
-                <div class="supplemental-actions l-right">
-                    <a aria-label="Vezi produs" class="md-icon-button" md-button ng-href="/product/{{item.code}}">
-                        <md-icon height="18px" md-svg-src="assets/icons/ic_open_in_new_24px.svg" width="18px"></md-icon>
-                    </a>
-                    <md-button aria-label="Vezi card produs" class="md-icon-button" ng-click="table.viewCard()">
-                        <md-icon height="18px" md-svg-src="assets/icons/ic_view_carousel_24px.svg" width="18px"></md-icon>
-                    </md-button>
-                    <md-button aria-label="Publica produs" class="md-icon-button" ng-click="table.publish(item.code)">
-                        <md-icon height="18px" md-svg-src="assets/icons/ic_done_24px.svg" width="18px" ng-class="{published : item.published}"></md-icon>
-                    </md-button>
-                </div>
-                <div class="menu-action l-right">
-                    <md-button aria-label="Meniu produs" class="md-icon-button" ng-click="table.openMore()">
-                        <md-icon height="18px" md-svg-src="assets/icons/ic_more_vert_24px.svg" width="18px"></md-icon>
-                    </md-button>
-                </div>
-            </div>
-            <div id="product-info">
+            <div id="product-info" style="margin-top: 0;">
                 <div class="product-details" layout-gt-md="row" layout="column">
                     <div class="cover" style="background-image: url({{item.file1}})">
                         <div class="promo-badge" ng-show="product.promo">
@@ -124,6 +106,24 @@
                     </div>
                 </div>
                 <div class="product-description"></div>
+            </div>
+            <div class="row-actions">
+                <div class="supplemental-actions l-right">
+                    <a aria-label="Vezi produs" class="md-icon-button" md-button ng-href="/product/{{item.code}}">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_open_in_new_24px.svg" width="18px"></md-icon>
+                    </a>
+                    <md-button aria-label="Vezi card produs" class="md-icon-button" ng-click="table.viewCard()">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_view_carousel_24px.svg" width="18px"></md-icon>
+                    </md-button>
+                    <md-button aria-label="Publica produs" class="md-icon-button" ng-click="table.publish(item.code)">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_done_24px.svg" width="18px" ng-class="{published : item.published}"></md-icon>
+                    </md-button>
+                </div>
+                <div class="menu-action l-right">
+                    <md-button aria-label="Meniu produs" class="md-icon-button" ng-click="table.openMore()">
+                        <md-icon height="18px" md-svg-src="assets/icons/ic_more_vert_24px.svg" width="18px"></md-icon>
+                    </md-button>
+                </div>
             </div>
             <md-checkbox aria-label="Selecteaza produs" class="md-default-theme" ng-checked="table.exists(item.code)" ng-click="table.toggle($event, item.code)" role="checkbox" style="position: absolute; top: 0; left: 8px;">
             </md-checkbox>

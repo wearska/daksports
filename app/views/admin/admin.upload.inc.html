@@ -5,7 +5,7 @@
         <md-icon class="search-file">
             <i class="material-icons">&#xE8B6;</i>
         </md-icon>
-        <md-button type="button" class="md-icon-button remove-file" ng-click="uploader1.clearQueue(); uploader1.clearThumb();" ng-show="uploader1.queue.length > 0">
+        <md-button type="button" class="md-icon-button remove-file" ng-click="uploader1.clearQueue(); uploader1.clearThumb();" ng-show="uploader1.queue.length > 0 || temp.photo1 != 'uploads/placeholder.png'">
             <md-icon>
                 <i class="material-icons">&#xE5CD;</i>
             </md-icon>

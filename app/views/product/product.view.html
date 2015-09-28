@@ -1,5 +1,5 @@
 <div class="page-content c-max">
-    <div id="page-hero" style="top: -{{scrollAmnt/2}}px"></div>
+    <div id="page-hero" style="top: -{{scrollAmnt/2}}px ; background-image: url({{hero.file}})" ng-class="{'left-positioned': hero.position == 'left', 'narrow' : sidebarOpen}"></div>
     <div class="single-product-main">
         <section id="product-info" class="paper resting">
             <div class="product-details" layout-gt-md="row" layout="column">

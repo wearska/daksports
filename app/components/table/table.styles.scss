@@ -191,7 +191,7 @@
         }
         .row-actions {
             width: 172px;
-            margin-top: -16px;
+            top: 0;
             .supplemental-actions {
                 width: 132px;
             }
@@ -244,11 +244,11 @@
                 fill: rgba(0, 0, 0, .3);
             }
             &.sort-ascending {
-                
+
             }
         }
         &.media-column {
-            
+
         }
         &.title-column {
             margin-left: -12px;

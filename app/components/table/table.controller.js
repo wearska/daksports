@@ -5,7 +5,7 @@
         .controller('GdTable', function($http, $rootScope, $scope) {
             var scope = this;
             scope.selected = [];
-            scope.predicate = 'added';
+            scope.predicate = '-added';
             scope.reverse = false;
             scope.allToggle = false;
             scope.toggle = function(event, code) {
@@ -41,11 +41,10 @@
                 var $target = angular.element(ev.currentTarget);
                 $target.parent().children().removeClass('active-sort');
                 $target.addClass('active-sort');
+                scope.predicate = column;
                 if (current === column) {
-                    scope.predicate = "-" + column;
                     scope.reverse = !scope.reverse;
                 }else{
-                    scope.predicate = column;
                     scope.reverse = false;
                 }
             };
