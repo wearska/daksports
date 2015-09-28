@@ -15,7 +15,9 @@ while($row=mysqli_fetch_assoc($res)){
             $row['sizes'] = unserialize($row['sizes']);
         };
         if($row['description'] !== ''){
-            $row['description'] = nl2br($row['description']);            
+            $row['edit_description'] = $row['description'];
+            $row['description'] = nl2br($row['description']);
+            
         }
         $result[] = $row;
     }

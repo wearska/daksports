@@ -44,7 +44,9 @@
                 file5: "uploads/placeholder.png",
                 added: new Date(),
                 favourite: null,
-                published: 1
+                published: 1,
+                reviews: [],
+                rating: 0
             };
 
             // Temp reset object
@@ -56,12 +58,6 @@
                 photo5: 'uploads/placeholder.png'
             }
 
-
-            //hide the nvigation menu
-            $rootScope.noNav = true;
-            $scope.$on('$destroy', function() {
-                $rootScope.noNav = false;
-            });
             $scope.state = null;
             $scope.ready = false;
 
@@ -304,17 +300,16 @@
 
 
 
-            //-------------------------------------
-            //  UPLOADERS
-            //-------------------------------------
-
             // Functions
 
             var initialType = "";
             var initialShort = "";
 
             $scope.setShort = function(short) {
-                if (short !== initialShort) {
+                console.log("setting short");
+                if (short !== initialShort && short != undefined) {
+                    console.log("short is initial short");
+                    console.log(short + " & " + initialShort);
                     var currentType = $scope.product.type;
                     if (typesCheck(currentType)) {
                         var typeSt = $scope.product.type;
@@ -326,6 +321,8 @@
                             }
                         });
                     } else {
+                        console.log("short is different to initial");
+                        console.log(short + " & " + initialShort);
                         var series = $filter('serialize')(short);
                         (currentType == "") ? $scope.product.code = " ": $scope.product.code = series;
                     }
@@ -352,6 +349,12 @@
                     $scope.setShort(short)
                 }
             }
+
+
+
+            //-------------------------------------
+            //  UPLOADERS
+            //-------------------------------------
 
             // Define the uploaders
             var tempuploader = $scope.tempuploader = new FileUploader({

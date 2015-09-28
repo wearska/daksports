@@ -10,179 +10,26 @@
                 fourthChanged = false,
                 fifthChanged = false;
             // Initial state
-            $scope.product = {};
-            $scope.productForm = {};
-            $scope.ready = false;
+            if(!$rootScope.products){
+                $scope.$on('products:filled', function(){
+                    $scope.product = $filter('filter')($rootScope.products, function(d) {
+                        return d.code === $stateParams.productCode;
+                    })[0];
+                    $scope.product.code = $scope.product.code.substring(3);
+                    $scope.product.description = $scope.product.edit_description;
+                });
+            }else if($rootScope.products){
+                $scope.product = $filter('filter')($rootScope.products, function(d) {
+                    return d.code === $stateParams.productCode;
+                })[0];
+                $scope.product.code = $scope.product.code.substring(3);
+                $scope.product.description = $scope.product.edit_description;
+            }
             $scope.buttonTitle = "Editeaza Produs";
             $scope.state = "edit";
             $scope.$on('$destroy', function() {
                 $scope.state = null;
             });
-
-            function setTypes() {
-                $scope.product.added = new Date($scope.product.added);
-                // (angular.isDate($scope.product.promo_end)) ? $scope.product.promo_end = new Date($scope.product.promo_end) : $scope.product.promo_end = undefined;
-                $scope.product.inv = parseFloat($scope.product.inv);
-                $scope.product.price = parseFloat($scope.product.price);
-                $scope.product.promo = parseFloat($scope.product.promo);
-                $scope.product.published = parseFloat($scope.product.published);
-                $scope.product.promo_price = parseFloat($scope.product.promo_price);
-                if ($scope.product.promo && $scope.product.promo_price) {
-                    console.log("promo");
-                    $scope.product.old_price = $scope.product.price;
-                    $scope.product.new_price = $scope.product.promo_price;
-                } else {
-                    $scope.product.old_price = 0;
-                    $scope.product.new_price = $scope.product.price;
-                };
-                $scope.product.promo_stock = parseFloat($scope.product.promo_stock);
-                ($scope.product.tags) ? $scope.product.tags = $scope.product.tags.split(', '): $scope.product.tags = [];
-                ($scope.product.colours) ? $scope.product.colours = $scope.product.colours.split(', '): $scope.product.colours = [];
-                $scope.product.code = $scope.product.code.substring(3);
-                $scope.ready = true;
-            }
-
-            String.prototype.toProperCase = function() {
-                return this.replace(/\w\S*/g, function(txt) {
-                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-                });
-            };
-
-
-            $scope.setShort = function(ev) {
-                var typeSt = $scope.product.type;
-                if (typeSt !== initialType) {
-                    angular.forEach($rootScope.types, function(type) {
-                        if (typeSt.indexOf(type.type) > -1) {
-                            console.log(type.short);
-                            var series = $filter('serialize')(type.short);
-                            $scope.product.code = series;
-                        }
-                    });
-                }
-            }
-
-            function brandsCheck(brand) {
-                var bool = false;
-                angular.forEach($rootScope.brands, function(value, key) {
-                    brand = angular.lowercase(brand);
-                    value = angular.lowercase(value);
-                    if (brand.indexOf(value) != -1) {
-                        bool = true;
-                        return false;
-                    } else {
-                        return true;
-                    }
-                });
-                return bool;
-            }
-
-            function subCatsCheck(cat) {
-                var bool = false;
-                angular.forEach($rootScope.kinds, function(value, key) {
-                    cat = angular.lowercase(cat);
-                    value = angular.lowercase(value);
-                    if (cat.indexOf(value) != -1) {
-                        bool = true;
-                        return false;
-                    } else {
-                        return true;
-                    }
-                });
-                return bool;
-            }
-
-            function mainCatsCheck(cat) {
-                var bool = false;
-                angular.forEach($rootScope.types, function(value, key) {
-                    cat = angular.lowercase(cat);
-                    value = angular.lowercase(value);
-                    if (cat.indexOf(value) != -1) {
-                        bool = true;
-                        return false;
-                    } else {
-                        return true;
-                    }
-                });
-                return bool;
-            }
-
-            function catsUpdate() {
-                // update brands
-                $scope.product.brand = $scope.product.brand.toProperCase();
-                var brand = $scope.product.brand;
-                console.log(brand);
-                if (!brandsCheck($scope.product.brand) && $scope.product.brand !== '') {
-                    var data = {
-                        brand: brand
-                    };
-                    $http.post("api/categories/post.brands.php", data);
-                    $rootScope.brands.push(brand);
-                } else {
-                    //do nothing yet
-                };
-
-                // update kinds
-                $scope.product.kind = $scope.product.kind.toProperCase();
-                var cat = $scope.product.kind;
-                console.log(cat);
-                if (!subCatsCheck($scope.product.kind) && $scope.product.kind !== '') {
-                    var data = {
-                        kind: cat
-                    };
-                    $http.post("api/categories/post.kinds.php", data);
-                    $rootScope.kinds.push(cat);
-                } else {
-                    //do nothing yet
-                };
-
-                // update main cats
-                $scope.product.type = $scope.product.type.toProperCase();
-                var cat = $scope.product.type;
-                console.log(cat);
-                if (!mainCatsCheck($scope.product.type) && $scope.product.type !== '') {
-                    var data = {
-                        type: cat
-                    };
-                    $http.post("api/categories/post.types.php", data);
-                    $rootScope.types.push(cat);
-                } else {
-                    //do nothing yet
-                };
-            }
-
-
-            productRes.get($stateParams.productId)
-                .then(function(response) {
-                    $scope.product = response.data[0];
-                    ($scope.product.promo_stock != 0) ? $scope.product.promoStockCheck = 1: $scope.product.promoStockCheck = 0;
-                    var notDate = angular.equals($scope.product.promo_end, '0000-00-00 00:00:00');
-                    console.log(notDate);
-                    if (notDate) {
-                        $scope.product.promoDateCheck = 0;
-                        $scope.product.promo_end = null;
-                    } else {
-                        $scope.product.promoDateCheck = 1;
-                        $scope.product.promo_end = new Date($scope.product.promo_end);
-                    };
-                    setTypes();
-
-                    // Set uploader images
-                    var tempreset = {
-                        photo1: response.data[0].file1,
-                        photo2: response.data[0].file2,
-                        photo3: response.data[0].file3,
-                        photo4: response.data[0].file4,
-                        photo5: response.data[0].file5
-                    };
-                    angular.forEach(tempreset, function(value, key) {
-                        var str = 'temp.' + key;
-                        var model = $parse(str);
-                        model.assign($scope, value);
-                    });
-                }).catch(function(error) {
-                    return error;
-                });
 
             // Uploaders
             var tempuploader = $scope.tempuploader = new FileUploader({
@@ -504,8 +351,6 @@
                 if ($scope.productForm.$valid) {
                     // catsUpdate();
                     $scope.putData = angular.copy($scope.product);
-                    $scope.putData.tags = $scope.putData.tags.join(", ");
-                    $scope.putData.colours = $scope.putData.colours.join(", ");
                     $scope.putData.code = 'DAK' + $scope.putData.code;
                     //make the call
                     productRes.put($scope.putData)

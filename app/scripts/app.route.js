@@ -52,7 +52,7 @@
           controller: 'AddCtrl'
         })
         .state('admin.edit', {
-          url: '/edit/:productId',
+          url: '/edit/:productCode',
           templateUrl: 'app/views/admin/admin.edit.view.html',
           controller: 'EditCtrl'
         })

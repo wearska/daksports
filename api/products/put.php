@@ -5,7 +5,6 @@ require_once('../config.php');
 
 $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
-    @$id = $request->id;
     @$code = $request->code;
     @$name = $request->name;
     @$subname = $request->subname;
@@ -29,10 +28,10 @@ $postdata = file_get_contents("php://input");
     @$file4 = $request->file4;
     @$file5 = $request->file5;
 
-$sql = "UPDATE `products` SET `code`='$code', `name`='$name', `subname`='$subname', `price`='$price', `promo`='$promo', `promo_price`='$promo_price', `promo_stock`='$promo_stock', `promo_end`='$promo_end', `excerpt`='$excerpt', `description`='$desc', `sizes`='$sizes', `brand`='$brand', `type`='$type', `kind`='$kind', `tags`='$tags', `file1`='$file1', `file2`='$file2', `file3`='$file3', `file4`='$file4', `file5`='$file5', `added`='$added' WHERE `id`='$id';";
+$sql = "UPDATE `products` SET `code`='$code', `name`='$name', `subname`='$subname', `price`='$price', `promo`='$promo', `promo_price`='$promo_price', `promo_stock`='$promo_stock', `promo_end`='$promo_end', `excerpt`='$excerpt', `description`='$desc', `sizes`='$sizes', `brand`='$brand', `type`='$type', `kind`='$kind', `tags`='$tags', `file1`='$file1', `file2`='$file2', `file3`='$file3', `file4`='$file4', `file5`='$file5', `added`='$added' WHERE `code`='$code';";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Product modified sucessfuly"
+    echo "Product modified sucessfuly";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
