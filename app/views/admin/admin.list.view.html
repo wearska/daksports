@@ -23,7 +23,7 @@
     </gd-table-header>
     <gd-table-row class="gd-table-row" data="item" ng-class="{selected : table.exists(item.code), expanded : table.isExpanded(item.code)}" ng-click="table.expand(item.code)" ng-repeat="item in $root.products | orderBy : table.predicate : table.reverse">
         <div class="closed" ng-if="!table.isExpanded(item.code)">
-            <div class="row-media" style="background-image: url({{item.file1}})">
+            <div class="row-media" style="background-image: url({{item.file1 | lowres}})">
                 <div class="item-select">
                     <md-checkbox aria-label="Selecteaza produs" ng-checked="table.exists(item.code)" ng-click="table.toggle($event, item.code)"></md-checkbox>
                 </div>
@@ -57,7 +57,7 @@
         <section class="single-product-main" ng-if="table.isExpanded(item.code)">
             <div id="product-info" style="margin-top: 0;">
                 <div class="product-details" layout-gt-md="row" layout="column">
-                    <div class="cover" style="background-image: url({{item.file1}})">
+                    <div class="cover" style="background-image: url({{item.file1 | medres}})">
                         <div class="promo-badge" ng-show="product.promo">
                             <md-tooltip>
                                 Produs promo
