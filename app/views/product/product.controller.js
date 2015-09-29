@@ -8,6 +8,7 @@
             //  INITIAL STATE
             //-----------------------------------------
             $scope.slides = [];
+            console.log("using product ctrl");
 
             // Make appbar transparent
             $rootScope.transparentAppbar = true;
@@ -41,24 +42,24 @@
                         return d.code === $stateParams.productCode;
                     })[0];
 
-                    $scope.slides.push($scope.product.file1);
-                    $scope.slides.push($scope.product.file2);
-                    $scope.slides.push($scope.product.file3);
-                    $scope.slides.push($scope.product.file4);
-                    $scope.slides.push($scope.product.file5);
-                    $scope.sliderLength = $scope.slides.length;
+                    angular.forEach($scope.product, function(value, key){
+                        if(key.indexOf('file') > -1 && value.indexOf('placeholder') == -1){
+                            $scope.slides.push(value);
+                            $scope.sliderLength = $scope.slides.length;
+                        }
+                    })
                 });
             } else if ($rootScope.products) {
                 $scope.product = $filter('filter')($rootScope.products, function(d) {
                     return d.code === $stateParams.productCode;
                 })[0];
 
-                $scope.slides.push($scope.product.file1);
-                $scope.slides.push($scope.product.file2);
-                $scope.slides.push($scope.product.file3);
-                $scope.slides.push($scope.product.file4);
-                $scope.slides.push($scope.product.file5);
-                $scope.sliderLength = $scope.slides.length;
+                angular.forEach($scope.product, function(value, key){
+                    if(key.indexOf('file') > -1 && value.indexOf('placeholder') == -1){
+                        $scope.slides.push(value);
+                        $scope.sliderLength = $scope.slides.length;
+                    }
+                })
             }
 
 
@@ -104,9 +105,8 @@
 
             $scope.showGallery = function(ev) {
                 $mdDialog.show({
-                        controller: 'GdSliderCtrl',
                         templateUrl: 'app/views/product/product.gallery.inc.html',
-                        parent: angular.element(document.body),
+                        parent: angular.element(document.main),
                         targetEvent: ev,
                         clickOutsideToClose: true
                     })

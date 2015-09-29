@@ -85,7 +85,7 @@
                 }
             }
         }
-        
+
         // stars-container
         .price-container {
             color: #e12a2a;
@@ -107,7 +107,7 @@
                 text-transform: uppercase;
                 font-weight: normal;
                 float: left;
-                
+
                 // text-decoration: underline;
             }
             .price {
@@ -120,11 +120,11 @@
                     padding-left: 8px;
                 }
                 .promo-price {
-                    
+
                 }
             }
         }
-        
+
         // price-container
         .product-actions {
             margin-top: 16px;
@@ -136,7 +136,7 @@
                 margin-left: 16px;
             }
         }
-        
+
         // product-actions
         .stock-info {
             color: #737373;
@@ -157,13 +157,13 @@
                 vertical-align: middle;
             }
         }
-        
+
         // stock-info
     }
 }
 @media #{$small-and-up} {
     #product-info{
-        
+
     }
 }
 @media #{$medium-and-up} {
@@ -202,5 +202,12 @@
         &.rotated{
             transform: rotate(180deg);
         }
+    }
+}
+
+// PRODUCT GALLERY
+
+.md-dialog-container{
+    #product-gallery{
     }
 }

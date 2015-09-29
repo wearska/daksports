@@ -1,14 +1,19 @@
-
-    <gd-slider class="gd-slider ar_16-9">
-        <div class="gd-slides" ng-controller="ProductCtrl" ng-mouseleave="playSlider()" ng-mouseover="pauseSlider()">
-            <gd-slide class="gd-slide ar_16-9" gd-slide-src="{{slide | highres}}" ng-repeat="slide in slides" style="transform:translateX({{$index * 100}}%);"></gd-slide>
+<md-dialog aria-label="Imagini produs" flex="">
+    <md-dialog-content>
+        <div id="product-gallery" ng-controller="ProductCtrl">
+            <gd-slider class="gd-slider ar_16-9">
+                <div class="gd-slides" ng-mouseleave="playSlider()" ng-mouseover="pauseSlider()">
+                    <gd-slide class="gd-slide containing ar_16-9" gd-slide-src="{{slide | highres}}" ng-repeat="slide in slides" style="transform:translateX({{$index * 100}}%);"></gd-slide>
+                </div>
+                <div class="gd-slider-controls" ng-mouseleave="playSlider()" ng-mouseover="pauseSlider()">
+                    <div class="gd-slider-control prev l-left" md-ink-ripple ng-click="prevSlide()">
+                        <i class="material-icons md-48">&#xE5CB;</i>
+                    </div>
+                    <div class="gd-slider-control next l-right" md-ink-ripple ng-click="nextSlide()">
+                        <i class="material-icons md-48">&#xE5CC;</i>
+                    </div>
+                </div>
+            </gd-slider>
         </div>
-        <div class="gd-slider-controls" ng-mouseleave="playSlider()" ng-mouseover="pauseSlider()">
-            <div class="gd-slider-control prev l-left" md-ink-ripple ng-click="prevSlide()">
-                <i class="material-icons md-48">&#xE5CB;</i>
-            </div>
-            <div class="gd-slider-control next l-right" md-ink-ripple ng-click="nextSlide()">
-                <i class="material-icons md-48">&#xE5CC;</i>
-            </div>
-        </div>
-    </gd-slider>
+    </md-dialog-content>
+</md-dialog>
