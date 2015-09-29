@@ -51,6 +51,24 @@
                 }
             };
         })
+        .filter('quantize', function() {
+            return function(input, steps) {
+                var step = 100 / steps;
+                var halfstep = step/2;
+                if (input != null && input != undefined) {
+                    input = parseFloat(input);
+                    while (--steps+1 > 0) {
+                        var threshold = step*steps + halfstep;
+                        console.log("is " + input + " bigger than " + threshold + " ?");
+                        console.log(input >= threshold);
+                        if(input >= threshold){
+                            return steps+1;
+                            break;
+                        }
+                    }
+                }
+            };
+        })
         .filter('serialize', function() {
             return function(input) {
                 if (input != null && input != undefined) {

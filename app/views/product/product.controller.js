@@ -42,8 +42,8 @@
                         return d.code === $stateParams.productCode;
                     })[0];
 
-                    angular.forEach($scope.product, function(value, key){
-                        if(key.indexOf('file') > -1 && value.indexOf('placeholder') == -1){
+                    angular.forEach($scope.product, function(value, key) {
+                        if (key.indexOf('file') > -1 && value.indexOf('placeholder') == -1) {
                             $scope.slides.push(value);
                             $scope.sliderLength = $scope.slides.length;
                         }
@@ -54,8 +54,8 @@
                     return d.code === $stateParams.productCode;
                 })[0];
 
-                angular.forEach($scope.product, function(value, key){
-                    if(key.indexOf('file') > -1 && value.indexOf('placeholder') == -1){
+                angular.forEach($scope.product, function(value, key) {
+                    if (key.indexOf('file') > -1 && value.indexOf('placeholder') == -1) {
                         $scope.slides.push(value);
                         $scope.sliderLength = $scope.slides.length;
                     }
@@ -117,6 +117,55 @@
                     });
             };
 
+            //-----------------------------------------
+            //  PRODUCT REVIEWS
+            //-----------------------------------------
+            
+            $scope.onestar = 0;
+            $scope.twostar = 0;
+            $scope.threestar = 0;
+            $scope.fourstar = 0;
+            $scope.fivestar = 0;
+            $scope.filledreviews = [];
+            if (!$rootScope.products) {
+                $scope.$on('ratings:filled', function() {
+                    $scope.currentRating = $filter('quantize')($scope.product.rating, 5);
+                    angular.forEach($scope.product.reviews, function(review){
+                        if(review.rating == 1){
+                            $scope.onestar = $scope.onestar + 1;
+                        }else if(review.rating == 2){
+                            $scope.twostar = $scope.twostar + 1;
+                        }else if(review.rating == 3){
+                            $scope.threestar = $scope.threestar + 1;
+                        }else if(review.rating == 4){
+                            $scope.fourstar = $scope.fourstar + 1;
+                        }else if(review.rating == 5){
+                            $scope.fivestar = $scope.fivestar + 1;
+                        };
+                        if(review.review != ""){
+                            $scope.filledreviews.push(review);
+                        };
+                    });
+                });
+            }else{
+                $scope.currentRating = $filter('quantize')($scope.product.rating, 5);
+                angular.forEach($scope.product.reviews, function(review){
+                    if(review.rating == 1){
+                        $scope.onestar = $scope.onestar + 1;
+                    }else if(review.rating == 2){
+                        $scope.twostar = $scope.twostar + 1;
+                    }else if(review.rating == 3){
+                        $scope.threestar = $scope.threestar + 1;
+                    }else if(review.rating == 4){
+                        $scope.fourstar = $scope.fourstar + 1;
+                    }else if(review.rating == 5){
+                        $scope.fivestar = $scope.fivestar + 1;
+                    };
+                    if(review.review != ""){
+                        $scope.filledreviews.push(review);
+                    };
+                });
+            }
 
         });
 

@@ -1,4 +1,5 @@
 <div class="gd-heading">
+    <md-icon class="heading-icon" md-svg-src="{{icon}}" ng-if="!noIcon"></md-icon>
     <h3 class="heading-title single-line" ng-bind="title"></h3>
     <p class="heading-subtitle single-line" ng-bind="subtitle" ng-if="!noSubtitle"></p>
     <div class="heading-actions" ng-transclude>

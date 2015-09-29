@@ -50,6 +50,7 @@
                         .then(function(items) {
                             $rootScope.products = items;
                             $rootScope.$broadcast('products:filled', {});
+                            reviews.query();
                         }).catch(function(error) {
                             return error;
                         });

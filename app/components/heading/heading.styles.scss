@@ -8,6 +8,15 @@
     position: relative;
     text-align: left;
     cursor: default;
+    .heading-icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 56px;
+        height: 56px;
+        color: $brand-primary;
+    }
     .heading-title {
         max-width: 80%;
         clear: both;
@@ -15,10 +24,19 @@
         line-height: 24px;
         font-weight: 100;
         float: left;
+        margin-left: 48px;
     }
-    &.no-subtitle{
-        .heading-title{
+    &.no-subtitle {
+        .heading-title {
             line-height: 48px;
+        }
+    }
+    &.no-icon {
+        .heading-title {
+            margin-left: 0;
+        }
+        .heading-subtitle{
+            margin-left: 0;
         }
     }
     .heading-subtitle {
@@ -31,15 +49,16 @@
         font-style: normal;
         font-weight: 300;
         padding-bottom: 4px;
+        margin-left: 48px;
     }
     .heading-actions {
         position: absolute;
         right: 0;
         height: 48px;
-        i{
+        i {
             will-change: transform;
             transition: transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
-            &.flipped{
+            &.flipped {
                 transform: rotate(180deg);
             }
         }

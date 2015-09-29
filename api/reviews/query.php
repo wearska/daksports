@@ -9,6 +9,9 @@ $result = array();
 
 while($row=mysqli_fetch_assoc($res)){
         $result[] = $row;
+        if($row['review'] !== ''){
+            $row['review'] = nl2br($row['review']);
+        }
     }
 $obj = json_encode($result);
 

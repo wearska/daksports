@@ -28,6 +28,7 @@
                         });
                     }).then(function() {
                         product.rating = product.rating/product.reviews.length / 5 * 100;
+                        $rootScope.$broadcast('ratings:filled', {});
                     });
                     deferred.resolve();
                 }

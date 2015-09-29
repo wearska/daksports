@@ -1,12 +1,12 @@
 <div class="page-content c-max">
-    <div id="page-hero" style="top: -{{scrollAmnt/2}}px ; background-image: url({{hero.file}})" ng-class="{'left-positioned': hero.position == 'left', 'narrow' : sidebarOpen}"></div>
+    <div id="page-hero" ng-class="{'left-positioned': hero.position == 'left', 'narrow' : sidebarOpen}" style="top: -{{scrollAmnt/2}}px ; background-image: url({{hero.file}})"></div>
     <div class="single-product-main">
-        <section id="product-info" class="paper resting">
+        <section class="paper resting" id="product-info">
             <div class="product-details" layout-gt-md="row" layout="column">
                 <md-button aria-label="Use Android" class="md-fab md-primary add-to-cart" ng-click="addToCart()">
                     <md-icon md-svg-src="assets/icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
                 </md-button>
-                <div class="cover" style="background-image: url({{product.file1 | medres}})" ng-click="showGallery($event);">
+                <div class="cover" ng-click="showGallery($event);" style="background-image: url({{product.file1 | medres}})">
                     <div class="promo-badge" ng-show="product.promo">
                         <md-tooltip>
                             Produs promo
@@ -34,15 +34,20 @@
                             <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
                             <div class="current-rating" style="left:{{product.rating}}%"></div>
                         </div>
-                        <span class="review-count" ng-class="{disabled : !product.reviews.length}"> • {{product.reviews.length}} review-uri
-                            <span ng-if="!product.reviews.length"> • </span>
-                            <span ng-if="!product.reviews.length" class="review-anchor">fii primul care adauga un review</span>
+                        <span class="review-count" ng-class="{disabled : !product.reviews.length}">
+                            •
+                            {{product.reviews.length}}
+                            review-uri
+                            <span ng-if="!product.reviews.length">
+                                •
+                            </span>
+                            <span class="review-anchor" ng-if="!product.reviews.length">fii primul care adauga un review</span>
                         </span>
                     </div>
                     <div class="price-container" data="product" id="{{ product.code }}" name="{{ product.name }}" ng-class="{promo : product.promo}" price="{{ product.price }}" quantity="1">
-                        <div ng-cloak class="promo-price" ng-show="product.promo">RON
+                        <div class="promo-price" ng-cloak ng-show="product.promo">RON
                             {{product.promo_price}}</div>
-                        <div ng-cloak class="price">
+                        <div class="price" ng-cloak>
                             <span ng-show="!product.promo">RON</span>
                             {{product.price}}</div>
                     </div>
@@ -66,9 +71,9 @@
                             </div>
                         </form>
                     </div>
-                    <!-- STOCK INFO -->
+<!-- STOCK INFO -->
                     <div class="stock-info">
-                    <md-divider></md-divider>
+                        <md-divider></md-divider>
                         <div ng-cloak ng-show="product.inv">
                             <md-icon md-svg-src="assets/icons/ic_check_circle_green_24px.svg" style="width:16px; height:16px;"></md-icon>
                             <span>Acest produs se afla in stoc.</span>
@@ -81,16 +86,16 @@
                 </div>
             </div>
         </section>
-        <section id="product-description" class="paper resting" gd-accordion style="height : {{accordion.maxHeight}}px">
-            <gd-heading title="Descriere" subtitle="Afla mai multe detalii despre acest produs">
-                    <a href="">
-                        <md-button class="md-primary md-icon-button carousel-heading-button">
-                            <md-tooltip>
-                                Arata
-                            </md-tooltip>
-                            <md-icon class="expand-icon" ng-class="{rotated : accordion.expanded}" md-svg-src="assets/icons/ic_keyboard_arrow_down_black_24px.svg" ng-click="accordion.expand()"></md-icon>
-                        </md-button>
-                    </a>
+        <section class="paper resting" gd-accordion id="product-description" style="height : {{accordion.maxHeight}}px">
+            <gd-heading icon="assets/icons/ic_description_24px.svg" subtitle="Afla mai multe detalii despre acest produs" title="Descriere">
+                <a href="">
+                    <md-button class="md-primary md-icon-button carousel-heading-button">
+                        <md-tooltip>
+                            Arata
+                        </md-tooltip>
+                        <md-icon class="expand-icon" md-svg-src="assets/icons/ic_keyboard_arrow_down_black_24px.svg" ng-class="{rotated : accordion.expanded}" ng-click="accordion.expand()"></md-icon>
+                    </md-button>
+                </a>
             </gd-heading>
             <md-divider ng-show="accordion.expanded"></md-divider>
             <br>
@@ -98,7 +103,81 @@
                 <p ng-bind-html="product.description"></p>
             </div>
         </section>
-        <section id="product-comments" class="paper resting"></section>
+        <section class="paper resting" id="product-reviews">
+            <gd-heading icon="assets/icons/ic_speaker_notes_24px.svg" subtitle="Afla ce cred altii despre acest produs" title="Review-uri"></gd-heading>
+            <md-divider></md-divider>
+            <div class="product-main-info" layout-gt-sm="row" layout="column">
+                <div class="product-main-rating" flex="">
+                    <h4>Rating general</h4>
+                    <div class="stars-container main-stars">
+                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 1 <= currentRating}"></md-icon>
+                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 2 <= currentRating}"></md-icon>
+                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 3 <= currentRating}"></md-icon>
+                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 4 <= currentRating}"></md-icon>
+                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 5 <= currentRating}"></md-icon>
+                    </div>
+                    <div class="gd-divider left-inset"></div>
+                    <h4 style="padding-top: 16px;">{{product.reviews.length}}
+                        review-uri</h4>
+                    <div class="ratings-counter" layout="column" ng-show="product.reviews.length">
+                        <div class="stars-container" flex>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <span class="review-count">
+                                • ({{fivestar}})</span>
+                        </div>
+                        <div class="stars-container" flex>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <span class="review-count">
+                                • ({{fourstar}})</span>
+                        </div>
+                        <div class="stars-container" flex>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <span class="review-count">
+                                • ({{threestar}})</span>
+                        </div>
+                        <div class="stars-container" flex>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <span class="review-count">
+                                • ({{twostar}})</span>
+                        </div>
+                        <div class="stars-container" flex>
+                            <md-icon class="rating-star fill" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg"></md-icon>
+                            <span class="review-count">
+                                • ({{onestar}})</span>
+                        </div>
+                    </div>
+                    <md-button class="md-primary md-raised add-rating-button" md-theme="brand">Adauga un rating</md-button>
+                </div>
+                <div class="gd-separator full padded"></div>
+                <div class="product-latest-review" flex="">
+                    <h4>Cel mai recent review</h4>
+                    <h2 class="latest-review-title single-line">{{filledreviews[0].title}}</h2>
+                    <div class="gd-divider right-inset"></div>
+                    <p class="latest-review-body" ng-bind-html="filledreviews[0].review"></p>
+                    <md-button class="md-primary md-raised add-review-button" md-theme="brand">Adauga un review</md-button>
+                </div>
+            </div>
+        </section>
     </div>
 
 <!-- Others also bought -->
