@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="material-one-center" flex="50" hide show-gt-md>
-            <input aria-label="Cauta produs" class="material-search label-input-label" no-focus="" placeholder="Cauta produs" role="search">
+            <input ng-focus="goToSearch()" ng-model="query" ng-change="search(query)" aria-label="Cauta produs" class="material-search label-input-label" no-focus="" placeholder="Cauta produs" role="search">
             <i class="material-icons search-icon">&#xE8B6;</i>
         </div>
         <span flex hide-gt-md></span>
@@ -48,3 +48,15 @@
 <div class="gd-loader" ng-if="0">
     <div class="gd-loader-colours"></div>
 </div>
+
+
+<!--
+<md-input-container class="filter-field">
+        <md-icon>
+            <i class="material-icons">&#xE8B6;</i>
+        </md-icon>
+        <input ng-model="search" aria-label="search product list">
+        <md-icon ng-click="clearSearch()" ng-show="search.length" style="left:100%; cursor: pointer;">
+            <i class="material-icons">&#xE14C;</i>
+        </md-icon>
+    </md-input-container> -->

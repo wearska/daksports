@@ -1,0 +1,24 @@
+<div class="page-content c-max">
+    <div class="paper resting filter-list">
+        <span ng-if="!Counter.filtersOn()" style="padding-left: 16px; color: rgba(0,0,0,.54);">Nici un filtru activ, foloseste filtrele pentru a gasi mai usor ce vrei.</span>
+        <span ng-if="Counter.filtersOn()" style="padding-left: 16px; color: rgba(0,0,0,.54);">Filtre active:</span>
+        <div layout="column" layout-gt-sm="row">
+            <md-chips delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" ng-model="BrandFilter.selected" placeholder="Adauga un brand" readonly="true" secondary-placeholder="+ Brand" flex capitalizeFirst></md-chips>
+            <span flex="5"></span>
+            <md-chips delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" ng-model="TypeFilter.selected" placeholder="Adauga o categorie" readonly="true" secondary-placeholder="+ Categorie" flex></md-chips>
+            <span flex="5"></span>
+            <md-chips delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" ng-model="KindFilter.selected" placeholder="Adauga o subcategorie" readonly="true" secondary-placeholder="+ Sub-categorie" flex></md-chips>
+        </div>
+    </div>
+    <md-divider></md-divider>
+
+    <div ng-hide>
+        <div ng-hide ng-repeat="item in $root.searchResults | brandFilter : BrandFilter.selected | typeFilter : TypeFilter.selected | kindFilter : KindFilter.selected | priceFilter : PriceFilter.selected | promoFilter : PromoFilter.state | filter : q as filtered"></div>
+    </div>
+    <div class="product-grid" layout layout-wrap style="margin-left: -8px; margin-right: -8px;">
+        <div class="grid-cell slide-bot" flex="50" flex-gt-md="33" flex-gt-lg="25" ng-repeat="item in $root.filtered track by $index | brandFilter : BrandFilter.selected | typeFilter : TypeFilter.selected | kindFilter : KindFilter.selected | priceFilter : PriceFilter.selected | promoFilter : PromoFilter.state | limitTo : limit">
+            <gd-card card-resource="item"></gd-card>
+        </div>
+    </div>
+    <md-divider></md-divider>
+</div>

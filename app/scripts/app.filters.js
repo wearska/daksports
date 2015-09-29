@@ -17,6 +17,33 @@
                 return filtered;
             };
         })
+        .filter('searchProduct', function() {
+            return function(products, query) {
+                var filtered = [];
+                var hashes = [];
+                var searchArr = query.split(' ');
+                if (!searchArr.length) {
+                    return products;
+                }
+                angular.forEach(products, function(product) {
+                    var pName = angular.lowercase(product.name);
+                    var pSubname = angular.lowercase(product.subname);
+                    var pTags = product.tags;
+                    var pBrand = angular.lowercase(product.brand);
+                    var pType = angular.lowercase(product.type);
+                    var pKind = angular.lowercase(product.kind);
+                    angular.forEach(searchArr, function(search) {
+                        if (pName.indexOf(angular.lowercase(search)) != -1 || pSubname.indexOf(angular.lowercase(search)) != -1 || pTags.indexOf(angular.lowercase(search)) != -1 || pBrand.indexOf(angular.lowercase(search)) != -1 || pType.indexOf(angular.lowercase(search)) != -1 || pKind.indexOf(angular.lowercase(search)) != -1) {
+                            if (hashes.indexOf(product.$$hashKey) == -1) {
+                                filtered.push(product);
+                                hashes.push(product.$$hashKey);
+                            }
+                        }
+                    })
+                });
+                return filtered;
+            };
+        })
         .filter('randomize', function() {
             return function(input, scope) {
                 if (input != null && input != undefined && input > 1) {
@@ -37,7 +64,7 @@
         .filter('shortify', function() {
             return function(input) {
                 if (input != null && input != undefined && input !== "") {
-                    return angular.uppercase(input.replace(/[aeiou]/ig,'').substring(0, 3));
+                    return angular.uppercase(input.replace(/[aeiou]/ig, '').substring(0, 3));
                 }
             }
         })
@@ -61,8 +88,8 @@
                 return input ? input.replace(/[\n]/g, '<br/>') : input;
             };
         })
-        .filter('float', function(){
-            return function(input){
+        .filter('float', function() {
+            return function(input) {
                 return input.toFixed(2);
             }
         })

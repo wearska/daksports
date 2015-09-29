@@ -28,6 +28,7 @@
                 item.old_price = parseFloat(item.old_price);
                 item.new_price = parseFloat(item.new_price);
                 (angular.isDate(item.promo_end)) ? item.promo_end = item.promo_end: item.promo_end = new Date(item.promo_end);
+                (!item.tags) ? item.tags = [] : item.tags = item.tags;
                 // set some defaults for testing purposes
             }
 

@@ -66,6 +66,11 @@
           templateUrl: 'app/views/cart/cart.view.html',
           controller: 'CartCtrl'
         })
+        .state('search', {
+          url: '/search',
+          templateUrl: 'app/views/search/search.view.html',
+          controller: 'SearchCtrl'
+        })
         .state('test', {
           url: '/test',
           templateUrl: 'app/views/testing/test.view.html',
