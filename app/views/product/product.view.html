@@ -171,7 +171,7 @@
                 <div class="gd-separator full padded"></div>
                 <div class="product-latest-review" flex="">
                     <h4>Cel mai recent review</h4>
-                    <h2 class="latest-review-title single-line">{{filledreviews[0].title}}</h2>
+                    <h2 class="latest-review-title single-line">{{filledreviews[filledreviews.length - 1].title}}</h2>
                     <div class="stars-container" style="margin-top: -4px; margin-left: -3px;" flex>
                         <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 1 <= filledreviews[filledreviews.length - 1].rating}"></md-icon>
                         <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 2 <= filledreviews[filledreviews.length - 1].rating}"></md-icon>
@@ -195,8 +195,51 @@
                     <p class="latest-review-body" ng-bind-html="filledreviews[filledreviews.length - 1].review"></p>
                 </div>
             </div>
-            <md-button class="md-primary md-raised add-review-button l-center" md-theme="brand">spune-ti parerea</md-button>
+            <md-button type="button" class="md-primary md-raised add-review-button l-center" md-theme="brand">spune-ti parerea</md-button>
+            <form class="review-form" name="reviewForm" ng-submit="submitReview(userReview)" novalidate>
+                <span class="disclaimer">Detii sau ai testat acest articol? Vrei sa ii informezi si pe alti cumparatori despre avantajele si dezavantajele acestuia?</span>
+                <br>
+                <span class="disclaimer">Scrie un review si ajuta-i pe ceilalti sa faca o alegere potrivita!</span>
+                <br>
+                <div class="gd-divider" style="margin: 16px 0"></div>
+                <span class="disclaimer">Acorda o nota de la 1 la 5 in functie de cat de multumit / nemultumit esti de acest articol</span>
+                <div class="stars-container" style="margin-top: -4px; margin-left: -9px;" flex>
+                    <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{'fill' : count <= userReview.rating}" ng-repeat="count in [1,2,3,4,5]" ng-mouseenter="setRating(count)" ng-mouseleave="unsetRating()" ng-click="rate(count)"></md-icon>
+                </div>
+            </form>
             <md-divider></md-divider>
+            <section class="reviews-list">
+                <div class="review" ng-repeat="review in product.reviews" >
+                    <div class=""layout="column" layout-gt-sm="row">
+                            <div class="review-user-info" flex="25">
+                                <div class="review-user-avatar" style="background-image: url({{review.user.user_photo}})"></div>
+                                <div class="">
+                                    <div class="review-user-name">
+                                        <span>Review adaugat de </span>
+                                        <br/>
+                                        <span class="name">{{review.user.first_name}}</span>
+                                        <span class="name">{{review.user.last_name}}</span>
+                                    </div>
+                                    <div class="review-added-date">
+                                        <span>in data de </span>
+                                        <br/>
+                                        <span class="date secondary-text-color">{{review.added}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- <span flex="5"><div class="gd-separator full padded"></div></span> -->
+                        <div class="review-body" flex="75">
+                            <h4 class="review-title">{{review.title}}</h4>
+                            <div class="stars-container" style="margin-top: -4px; margin-left: -3px;" flex>
+                                <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{'fill' : count <= review.rating}" ng-repeat="count in [1,2,3,4,5]"></md-icon>
+                            </div>
+                            <p ng-bind-html="review.review"></p>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                </div>
+                <md-button type="button" class="md-primary md-raised add-review-button l-center" md-theme="brand">spune-ti parerea</md-button>
+            </section>
         </section>
     </div>
 

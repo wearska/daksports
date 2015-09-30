@@ -20,6 +20,7 @@
                     return d.code === code;
                 })[0];
                 // console.log(product);
+                review.rating = parseFloat(review.rating);
                 product.reviews.push(review);
                 // product.rating = (parseFloat(product.rating) + parseFloat(review.rating));
                 // product.rating = product.rating / product.reviews.length;

@@ -130,41 +130,72 @@
             if (!$rootScope.products) {
                 $scope.$on('ratings:filled', function() {
                     $scope.currentRating = $filter('quantize')($scope.product.rating, 5);
-                    angular.forEach($scope.product.reviews, function(review){
-                        if(review.rating == 1){
+                    angular.forEach($scope.product.reviews, function(review) {
+                        if (review.rating == 1) {
                             $scope.onestar = $scope.onestar + 1;
-                        }else if(review.rating == 2){
+                        } else if (review.rating == 2) {
                             $scope.twostar = $scope.twostar + 1;
-                        }else if(review.rating == 3){
+                        } else if (review.rating == 3) {
                             $scope.threestar = $scope.threestar + 1;
-                        }else if(review.rating == 4){
+                        } else if (review.rating == 4) {
                             $scope.fourstar = $scope.fourstar + 1;
-                        }else if(review.rating == 5){
+                        } else if (review.rating == 5) {
                             $scope.fivestar = $scope.fivestar + 1;
                         };
-                        if(review.review != ""){
+                        if (review.review != "") {
                             $scope.filledreviews.push(review);
                         };
                     });
                 });
-            }else{
+            } else {
                 $scope.currentRating = $filter('quantize')($scope.product.rating, 5);
-                angular.forEach($scope.product.reviews, function(review){
-                    if(review.rating == 1){
+                angular.forEach($scope.product.reviews, function(review) {
+                    if (review.rating == 1) {
                         $scope.onestar = $scope.onestar + 1;
-                    }else if(review.rating == 2){
+                    } else if (review.rating == 2) {
                         $scope.twostar = $scope.twostar + 1;
-                    }else if(review.rating == 3){
+                    } else if (review.rating == 3) {
                         $scope.threestar = $scope.threestar + 1;
-                    }else if(review.rating == 4){
+                    } else if (review.rating == 4) {
                         $scope.fourstar = $scope.fourstar + 1;
-                    }else if(review.rating == 5){
+                    } else if (review.rating == 5) {
                         $scope.fivestar = $scope.fivestar + 1;
                     };
-                    if(review.review != ""){
+                    if (review.review != "") {
                         $scope.filledreviews.push(review);
                     };
                 });
+            }
+
+            //-----------------------------------------
+            //  USER REVIEW FORM
+            //-----------------------------------------
+
+            $scope.userReview = {
+                rated: false,
+                rating: 0,
+                title: '',
+                body: '',
+                added: new Date(),
+                userid: '',
+            }
+
+            var tempRating = 0;
+
+            $scope.setRating = function(stars) {
+                $scope.userReview.rating = stars;
+            }
+            $scope.unsetRating = function() {
+                if (!$scope.userReview.rated) {
+                    $scope.userReview.rating = 0;
+                }else{
+                    $scope.userReview.rating = tempRating;
+                }
+            }
+            $scope.rate = function(stars){
+                $scope.userReview.rated = true;
+                $scope.userReview.rating = stars;
+                tempRating = stars;
             }
 
         });
