@@ -110,11 +110,11 @@
                 <div class="product-main-rating" flex="">
                     <h4>Rating general</h4>
                     <div class="stars-container main-stars">
-                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 1 <= currentRating}"></md-icon>
-                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 2 <= currentRating}"></md-icon>
-                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 3 <= currentRating}"></md-icon>
-                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 4 <= currentRating}"></md-icon>
-                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 5 <= currentRating}"></md-icon>
+                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 1 <= product.rating}"></md-icon>
+                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 2 <= product.rating}"></md-icon>
+                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 3 <= product.rating}"></md-icon>
+                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 4 <= product.rating}"></md-icon>
+                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 5 <= product.rating}"></md-icon>
                     </div>
                     <div class="gd-divider left-inset"></div>
                     <h4 style="padding-top: 16px;">{{product.reviews.length}}
@@ -166,17 +166,37 @@
                                 • ({{onestar}})</span>
                         </div>
                     </div>
-                    <md-button class="md-primary md-raised add-rating-button" md-theme="brand">Adauga un rating</md-button>
+                    <!-- <md-button class="md-primary md-raised add-rating-button" md-theme="brand">Adauga un rating</md-button> -->
                 </div>
                 <div class="gd-separator full padded"></div>
                 <div class="product-latest-review" flex="">
                     <h4>Cel mai recent review</h4>
                     <h2 class="latest-review-title single-line">{{filledreviews[0].title}}</h2>
+                    <div class="stars-container" style="margin-top: -4px; margin-left: -3px;" flex>
+                        <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 1 <= filledreviews[filledreviews.length - 1].rating}"></md-icon>
+                        <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 2 <= filledreviews[filledreviews.length - 1].rating}"></md-icon>
+                        <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 3 <= filledreviews[filledreviews.length - 1].rating}"></md-icon>
+                        <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 4 <= filledreviews[filledreviews.length - 1].rating}"></md-icon>
+                        <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 5 <= filledreviews[filledreviews.length - 1].rating}"></md-icon>
+                    </div>
                     <div class="gd-divider right-inset"></div>
-                    <p class="latest-review-body" ng-bind-html="filledreviews[0].review"></p>
-                    <md-button class="md-primary md-raised add-review-button" md-theme="brand">Adauga un review</md-button>
+                    <div class="review-user-info" layout>
+                        <div class="review-user-avatar" style="background-image: url({{filledreviews[filledreviews.length - 1].user.user_photo}})"></div>
+                        <div class="" flex>
+                            <div class="review-user-name">
+                                <span class="title">{{filledreviews[filledreviews.length - 1].user.first_name}}</span>
+                                <span class="title">{{filledreviews[filledreviews.length - 1].user.last_name}}</span>
+                            </div>
+                            <div class="review-added-date">
+                                <span class="subhead secondary-text-color">{{filledreviews[filledreviews.length - 1].added}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="latest-review-body" ng-bind-html="filledreviews[filledreviews.length - 1].review"></p>
                 </div>
             </div>
+            <md-button class="md-primary md-raised add-review-button l-center" md-theme="brand">spune-ti parerea</md-button>
+            <md-divider></md-divider>
         </section>
     </div>
 

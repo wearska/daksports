@@ -8,6 +8,13 @@
             var api = 'api/reviews/';
             var obj = {};
 
+            $http.get('api/accounts/getuserphotos.php')
+                .then(function(response) {
+                    $rootScope.usersInfo = response.data;
+                }).catch(function(error) {
+                    return error;
+                });
+
             function setReviews(review, code) {
                 var product = $filter('filter')($rootScope.products, function(d) {
                     return d.code === code;
@@ -18,6 +25,13 @@
                 // product.rating = product.rating / product.reviews.length;
             }
 
+            function getUserInfo(review){
+                var user = $filter('filter')($rootScope.usersInfo, function(d) {
+                    return d.uid === review.userid;
+                })[0];
+                review.user = angular.copy(user);
+            }
+
             obj.setRating = function(product) {
                 var deferred = $q.defer();
                 var promise = deferred.promise;
@@ -25,9 +39,10 @@
                     promise.then(function() {
                         angular.forEach(product.reviews, function(review) {
                             product.rating = (parseFloat(product.rating) + parseFloat(review.rating));
+                            getUserInfo(review);
                         });
                     }).then(function() {
-                        product.rating = product.rating/product.reviews.length / 5 * 100;
+                        product.rating = Math.round(product.rating/product.reviews.length);
                         $rootScope.$broadcast('ratings:filled', {});
                     });
                     deferred.resolve();
