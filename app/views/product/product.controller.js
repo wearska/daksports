@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('ProductCtrl', function($scope, $rootScope, $http, $parse, $filter, $timeout, $stateParams, $state, $mdDialog, productRes, ngCart) {
+        .controller('ProductCtrl', function($scope, $rootScope, $http, $parse, $filter, $timeout, $stateParams, $state, $mdDialog, $mdToast, productRes, ngCart) {
 
             //-----------------------------------------
             //  INITIAL STATE
@@ -171,52 +171,84 @@
             //  USER REVIEW FORM
             //-----------------------------------------
 
+            $scope.resetReview = {
+                rated: false,
+                rating: 0,
+                title: '',
+                body: '',
+                added: new Date(),
+            };
             $scope.userReview = {
                 rated: false,
                 rating: 0,
                 title: '',
                 body: '',
                 added: new Date(),
-            }
-            
+            };
+
+            $scope.writeReview = false;
             $scope.formSubmitted = false;
 
             var tempRating = 0;
 
             $scope.setRating = function(stars) {
                 $scope.userReview.rating = stars;
-            }
+            };
             $scope.unsetRating = function() {
                 if (!$scope.userReview.rated) {
                     $scope.userReview.rating = 0;
-                }else{
+                } else {
                     $scope.userReview.rating = tempRating;
                 }
-            }
-            $scope.rate = function(stars){
+            };
+            $scope.rate = function(stars) {
                 $scope.userReview.rated = true;
                 $scope.userReview.rating = stars;
                 tempRating = stars;
-            }
-            $scope.submitReview = function(){
+            };
+
+            $scope.showSimpleToast = function() {
+                $mdToast.show(
+                    $mdToast.simple()
+                    .content('Review-ul tau va fi publicat in scurt timp')
+                    .hideDelay(3000)
+                );
+            };
+            $scope.showErrorToast = function() {
+                $mdToast.show(
+                    $mdToast.simple()
+                    .content('Am intampinat o eroare, incearca putin mai tarziu!')
+                    .action('Ok')
+                    .hideDelay(0)
+                );
+            };
+            $scope.discardReview = function(){
+                $scope.userReview = angular.copy($scope.resetReview);
+                tempRating = 0;
+                $scope.formSubmitted = false;
+                $scope.reviewForm.$setPristine();
+                $scope.reviewForm.$setUntouched();
+                $scope.writeReview = false;
+            };
+            $scope.submitReview = function() {
                 var title = $scope.userReview.title;
                 var body = $scope.userReview.body;
                 var rating = $scope.userReview.rating;
                 $scope.formSubmitted = true;
-                if(!title && !body && !rating){
+                if (!title && !body && !rating) {
                     // do shit
-                }else{
+                } else {
                     var data = $scope.userReview;
                     data.code = $scope.product.code;
                     data.userid = $rootScope.userData.uid;
                     $http.post('api/reviews/post.php', data)
                         .then(function(response) {
-                            console.log(response);
+                            $scope.showSimpleToast();
                         }).catch(function(error) {
-                            console.log(error);
+                            $scope.showErrorToast();
                         });
                 }
-            }
+            };
 
         });
 

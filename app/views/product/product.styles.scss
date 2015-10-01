@@ -323,6 +323,15 @@
         .publish-review-button{
             margin-left: 0;
         }
+        .discard-review-button{
+            width: 32px;
+            height: 32px;
+            padding: 4px;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
     }
     .reviews-list{
         .review-user-info {

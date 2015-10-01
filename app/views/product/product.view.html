@@ -166,13 +166,13 @@
                                 • ({{onestar}})</span>
                         </div>
                     </div>
-                    <!-- <md-button class="md-primary md-raised add-rating-button" md-theme="brand">Adauga un rating</md-button> -->
+<!-- <md-button class="md-primary md-raised add-rating-button" md-theme="brand">Adauga un rating</md-button> -->
                 </div>
                 <div class="gd-separator full padded"></div>
                 <div class="product-latest-review" flex="">
                     <h4>Cel mai recent review</h4>
                     <h2 class="latest-review-title single-line">{{filledreviews[filledreviews.length - 1].title}}</h2>
-                    <div class="stars-container" style="margin-top: -4px; margin-left: -3px;" flex>
+                    <div class="stars-container" flex style="margin-top: -4px; margin-left: -3px;">
                         <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 1 <= filledreviews[filledreviews.length - 1].rating}"></md-icon>
                         <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 2 <= filledreviews[filledreviews.length - 1].rating}"></md-icon>
                         <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 3 <= filledreviews[filledreviews.length - 1].rating}"></md-icon>
@@ -195,20 +195,20 @@
                     <p class="latest-review-body" ng-bind-html="filledreviews[filledreviews.length - 1].review"></p>
                 </div>
             </div>
-            <div layout="column" layout-gt-md="row">
-                <md-button type="button" class="md-primary md-raised add-review-button" md-theme="brand" flex="" flex-gt-md="15">Spune-ti parerea</md-button>
+            <div layout-gt-md="row" layout="column">
+                <md-button class="md-primary md-raised add-review-button" flex-gt-md="15" flex="" md-theme="brand" ng-click="writeReview = true" type="button">Spune-ti parerea</md-button>
                 <div flex flex-gt-md="" flex-gt-md="80" style="padding: 16px;">
                     <span class="disclaimer primary">Detii sau ai testat acest articol? Vrei sa ii informezi si pe alti cumparatori despre avantajele si dezavantajele acestuia?</span>
                     <br>
                     <span class="disclaimer primary">Scrie un review si ajuta-i pe ceilalti sa faca o alegere potrivita!</span>
                 </div>
             </div>
-            <form class="review-form" name="reviewForm" ng-submit="submitReview()" novalidate>
+            <form class="review-form" name="reviewForm" ng-show="writeReview" ng-submit="submitReview()" novalidate>
                 <span class="disclaimer primary">Acorda o nota de la 1 la 5 in functie de cat de multumit / nemultumit esti de acest articol.</span>
                 <br>
                 <span class="disclaimer primary">Atentie, nota minima este 1. Daca nu acorzi nici o nota, aceasta va ramane 0 si nu va afecta ratingul articolului.</span>
-                <div class="stars-container" style="margin-top: -4px; margin-left: -9px;" flex>
-                    <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{'fill' : count <= userReview.rating}" ng-repeat="count in [1,2,3,4,5]" ng-mouseenter="setRating(count)" ng-mouseleave="unsetRating()" ng-click="rate(count)"></md-icon>
+                <div class="stars-container" flex style="margin-top: -4px; margin-left: -9px;">
+                    <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{'fill' : count <= userReview.rating}" ng-click="rate(count)" ng-mouseenter="setRating(count)" ng-mouseleave="unsetRating()" ng-repeat="count in [1,2,3,4,5]"></md-icon>
                 </div>
                 <div class="gd-divider" style="margin-top: 16px; margin-bottom: 16px;"></div>
                 <span class="disclaimer primary">Scrie un titlu relevant pentru review-ul tau.</span>
@@ -217,7 +217,7 @@
                     <label>Titlu *</label>
                     <input name="title" ng-model="userReview.title" required>
                     <div ng-messages="reviewForm.title.$error" ng-show="formSubmitted || reviewForm.title.$dirty">
-                        <div ng-messages="required">Introduceti un titlu</div>
+                        <div ng-message="required">Introduceti un titlu</div>
                     </div>
                 </md-input-container>
                 <br>
@@ -228,39 +228,42 @@
                     <label>Detalii review *</label>
                     <textarea columns="1" name="body" ng-model="userReview.body" required></textarea>
                     <div ng-messages="reviewForm.body.$error" ng-show="formSubmitted || reviewForm.body.$dirty">
-                        <div ng-messages="required">Introduceti o descriere</div>
+                        <div ng-message="required">Introduceti o descriere</div>
                     </div>
                 </md-input-container>
                 <br>
                 <br>
                 <span class="disclaimer" style="margin-top: 16px;">* Aceste campuri sunt obligatorii</span>
                 <div class="gd-divider left-inset" style="margin-top: 16px; margin-bottom: 16px; margin-right:75%"></div>
-                <md-button type="submit" class="md-primary md-raised publish-review-button" md-theme="brand" ng-disabled="formDisabled">Publica</md-button>
+                <md-button class="md-primary md-raised publish-review-button" md-theme="brand" ng-disabled="reviewForm.$invalid" type="submit">Publica</md-button>
+                <md-icon class="discard-review-button" md-ink-ripple md-svg-src="assets/icons/ic_close_24px.svg" ng-click="discardReview()"></md-icon>
             </form>
             <md-divider></md-divider>
             <section class="reviews-list">
-                <div class="review" ng-repeat="review in product.reviews" >
-                    <div class=""layout="column" layout-gt-sm="row">
-                            <div class="review-user-info" flex="25">
-                                <div class="review-user-avatar" style="background-image: url({{review.user.user_photo}})"></div>
-                                <div class="">
-                                    <div class="review-user-name">
-                                        <span>Review adaugat de </span>
-                                        <br/>
-                                        <span class="name">{{review.user.first_name}}</span>
-                                        <span class="name">{{review.user.last_name}}</span>
-                                    </div>
-                                    <div class="review-added-date">
-                                        <span>in data de </span>
-                                        <br/>
-                                        <span class="date secondary-text-color">{{review.added}}</span>
-                                    </div>
+                <div class="review" ng-repeat="review in product.reviews">
+                    <div class="" layout-gt-sm="row" layout="column">
+                        <div class="review-user-info" flex="25">
+                            <div class="review-user-avatar" style="background-image: url({{review.user.user_photo}})"></div>
+                            <div class="">
+                                <div class="review-user-name">
+                                    <span>Review adaugat de
+                                    </span>
+                                    <br/>
+                                    <span class="name">{{review.user.first_name}}</span>
+                                    <span class="name">{{review.user.last_name}}</span>
+                                </div>
+                                <div class="review-added-date">
+                                    <span>in data de
+                                    </span>
+                                    <br/>
+                                    <span class="date secondary-text-color">{{review.added}}</span>
                                 </div>
                             </div>
-                        <!-- <span flex="5"><div class="gd-separator full padded"></div></span> -->
+                        </div>
+<!-- <span flex="5"><div class="gd-separator full padded"></div></span> -->
                         <div class="review-body" flex="75">
                             <h4 class="review-title">{{review.title}}</h4>
-                            <div class="stars-container" style="margin-top: -4px; margin-left: -3px;" flex>
+                            <div class="stars-container" flex style="margin-top: -4px; margin-left: -3px;">
                                 <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{'fill' : count <= review.rating}" ng-repeat="count in [1,2,3,4,5]"></md-icon>
                             </div>
                             <p ng-bind-html="review.review"></p>
@@ -268,7 +271,7 @@
                     </div>
                     <md-divider></md-divider>
                 </div>
-                <md-button type="button" class="md-primary md-raised add-review-button l-center" md-theme="brand">spune-ti parerea</md-button>
+                <md-button class="md-primary md-raised add-review-button l-center" md-theme="brand" type="button">spune-ti parerea</md-button>
             </section>
         </section>
     </div>
