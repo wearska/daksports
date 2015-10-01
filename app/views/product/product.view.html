@@ -195,17 +195,47 @@
                     <p class="latest-review-body" ng-bind-html="filledreviews[filledreviews.length - 1].review"></p>
                 </div>
             </div>
-            <md-button type="button" class="md-primary md-raised add-review-button l-center" md-theme="brand">spune-ti parerea</md-button>
-            <form class="review-form" name="reviewForm" ng-submit="submitReview(userReview)" novalidate>
-                <span class="disclaimer">Detii sau ai testat acest articol? Vrei sa ii informezi si pe alti cumparatori despre avantajele si dezavantajele acestuia?</span>
+            <div layout="column" layout-gt-md="row">
+                <md-button type="button" class="md-primary md-raised add-review-button" md-theme="brand" flex="" flex-gt-md="15">Spune-ti parerea</md-button>
+                <div flex flex-gt-md="" flex-gt-md="80" style="padding: 16px;">
+                    <span class="disclaimer primary">Detii sau ai testat acest articol? Vrei sa ii informezi si pe alti cumparatori despre avantajele si dezavantajele acestuia?</span>
+                    <br>
+                    <span class="disclaimer primary">Scrie un review si ajuta-i pe ceilalti sa faca o alegere potrivita!</span>
+                </div>
+            </div>
+            <form class="review-form" name="reviewForm" ng-submit="submitReview()" novalidate>
+                <span class="disclaimer primary">Acorda o nota de la 1 la 5 in functie de cat de multumit / nemultumit esti de acest articol.</span>
                 <br>
-                <span class="disclaimer">Scrie un review si ajuta-i pe ceilalti sa faca o alegere potrivita!</span>
-                <br>
-                <div class="gd-divider" style="margin: 16px 0"></div>
-                <span class="disclaimer">Acorda o nota de la 1 la 5 in functie de cat de multumit / nemultumit esti de acest articol</span>
+                <span class="disclaimer primary">Atentie, nota minima este 1. Daca nu acorzi nici o nota, aceasta va ramane 0 si nu va afecta ratingul articolului.</span>
                 <div class="stars-container" style="margin-top: -4px; margin-left: -9px;" flex>
                     <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{'fill' : count <= userReview.rating}" ng-repeat="count in [1,2,3,4,5]" ng-mouseenter="setRating(count)" ng-mouseleave="unsetRating()" ng-click="rate(count)"></md-icon>
                 </div>
+                <div class="gd-divider" style="margin-top: 16px; margin-bottom: 16px;"></div>
+                <span class="disclaimer primary">Scrie un titlu relevant pentru review-ul tau.</span>
+                <br>
+                <md-input-container>
+                    <label>Titlu *</label>
+                    <input name="title" ng-model="userReview.title" required>
+                    <div ng-messages="reviewForm.title.$error" ng-show="formSubmitted || reviewForm.title.$dirty">
+                        <div ng-messages="required">Introduceti un titlu</div>
+                    </div>
+                </md-input-container>
+                <br>
+                <br>
+                <span class="disclaimer primary" style="margin-top: 16px;">Scrie parerea ta referindu-te doar la caracteristicile si/sau modul de utilizare al articolului.</span>
+                <br>
+                <md-input-container>
+                    <label>Detalii review *</label>
+                    <textarea columns="1" name="body" ng-model="userReview.body" required></textarea>
+                    <div ng-messages="reviewForm.body.$error" ng-show="formSubmitted || reviewForm.body.$dirty">
+                        <div ng-messages="required">Introduceti o descriere</div>
+                    </div>
+                </md-input-container>
+                <br>
+                <br>
+                <span class="disclaimer" style="margin-top: 16px;">* Aceste campuri sunt obligatorii</span>
+                <div class="gd-divider left-inset" style="margin-top: 16px; margin-bottom: 16px; margin-right:75%"></div>
+                <md-button type="submit" class="md-primary md-raised publish-review-button" md-theme="brand" ng-disabled="formDisabled">Publica</md-button>
             </form>
             <md-divider></md-divider>
             <section class="reviews-list">

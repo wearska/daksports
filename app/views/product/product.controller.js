@@ -177,8 +177,9 @@
                 title: '',
                 body: '',
                 added: new Date(),
-                userid: '',
             }
+            
+            $scope.formSubmitted = false;
 
             var tempRating = 0;
 
@@ -196,6 +197,25 @@
                 $scope.userReview.rated = true;
                 $scope.userReview.rating = stars;
                 tempRating = stars;
+            }
+            $scope.submitReview = function(){
+                var title = $scope.userReview.title;
+                var body = $scope.userReview.body;
+                var rating = $scope.userReview.rating;
+                $scope.formSubmitted = true;
+                if(!title && !body && !rating){
+                    // do shit
+                }else{
+                    var data = $scope.userReview;
+                    data.code = $scope.product.code;
+                    data.userid = $rootScope.userData.uid;
+                    $http.post('api/reviews/post.php', data)
+                        .then(function(response) {
+                            console.log(response);
+                        }).catch(function(error) {
+                            console.log(error);
+                        });
+                }
             }
 
         });

@@ -294,18 +294,34 @@
         margin-top: 16px;
         margin-bottom: 16px;
     }
+    .disclaimer{
+        color: rgba(0,0,0,.54);
+        font-size: 11px;
+        font-weight: 100;
+        &.primary{
+            color: rgba(0,0,0,.87);
+        }
+    }
     .review-form{
-        background-color: rgba(0,0,0,.06);
+        border: 3px solid rgba(0,0,0,.06);
         padding: 16px;
+        border-radius : 6px;
+        position: relative;
         .disclaimer{
             color: rgba(0,0,0,.54);
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 100;
+            &.primary{
+                color: rgba(0,0,0,.87);
+            }
         }
         .rating-star {
             width: 50px;
             height: 50px;
             cursor: pointer;
+        }
+        .publish-review-button{
+            margin-left: 0;
         }
     }
     .reviews-list{
