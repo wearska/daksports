@@ -277,7 +277,7 @@
     </div>
 
 <!-- Similar products -->
-    <gd-carousel data="sameTypeProducts" lg="3" md="2" sm="1" xs="1" start="0" limit="6" title="Alte produse din {{product.type}}" subtitle="Vezi ce altceva ti-ar mai trebui cu acest articol" gd-tiles="true"></gd-carousel>
+    <gd-carousel data="sameTypeProducts" lg="3" md="2" sm="1" xs="1" start="0" limit="sameTypeProducts.length" carousel-length="sameTypeProducts.length" title="Alte produse din {{product.type}}" subtitle="Vezi ce altceva ti-ar mai trebui cu acest articol" gd-tiles="true"></gd-carousel>
 <!-- Others have bought -->
-    <gd-carousel data="sameKindProducts" lg="5" md="4" sm="3" xs="2" start="0" limit="10" title="Produse din aceeasi categorie" subtitle="Vezi si alte articole similare" gd-tiles="false"></gd-carousel>
+    <gd-carousel data="sameKindProducts" lg="5" md="4" sm="3" xs="2" start="0" limit="sameKindProducts.length" carousel-length="sameKindProducts.length" title="Produse din aceeasi categorie" subtitle="Vezi si alte articole similare" gd-tiles="false"></gd-carousel>
 </div>

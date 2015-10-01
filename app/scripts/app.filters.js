@@ -59,8 +59,6 @@
                     input = parseFloat(input);
                     while (--steps+1 > 0) {
                         var threshold = step*steps + halfstep;
-                        console.log("is " + input + " bigger than " + threshold + " ?");
-                        console.log(input >= threshold);
                         if(input >= threshold){
                             return steps+1;
                             break;

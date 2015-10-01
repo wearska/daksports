@@ -21,7 +21,6 @@
                 $scope.typeFilter = [];
             });
             $scope.$on('$viewContentLoaded', function(event) {
-                console.log("loaded");
                 $rootScope.transparentAppbar = true;
                 $rootScope.mainScrolled = false;
             });
@@ -34,7 +33,6 @@
             }, ]
 
             var rnd = $filter('randomize')($scope.heroes.length);
-            console.log(rnd);
             $scope.hero = $scope.heroes[rnd - 1];
 
             // Initial state
@@ -91,7 +89,6 @@
                 };
                 $http.post('api/accounts/postuserfav.php', data)
                     .then(function(response) {
-                        console.log(response);
                         $scope.product.favourite = true;
                         setFavourite(productid);
                     }).catch(function(error) {

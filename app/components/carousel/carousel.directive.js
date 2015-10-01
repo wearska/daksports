@@ -10,7 +10,7 @@
                     tiles: '=gdTiles',
                     title: '@',
                     subtitle: '@',
-                    limit: '@',
+                    limit: '=',
                     start: '@',
                     promoFilter: '@',
                     length: '=carouselLength',
