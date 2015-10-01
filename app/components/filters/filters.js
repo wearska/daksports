@@ -53,7 +53,7 @@
         .filter('priceFilter', function($rootScope) {
             return function(items, range) {
                 var filtered = [];
-                if(range != null){
+                if (range != null) {
                     range.min = parseFloat(range.min), range.max = parseFloat(range.max);
                 }
                 // return items;
@@ -61,19 +61,19 @@
                     return items;
                 }
                 angular.forEach(items, function(item) {
-                    
-                    if(!range.min && !range.max){
+
+                    if (!range.min && !range.max) {
                         filtered.push(item);
-                    }else if(range.min && !range.max){
-                        if(item.new_price >= range.min){
+                    } else if (range.min && !range.max) {
+                        if (item.new_price >= range.min) {
                             filtered.push(item);
                         }
-                    }else if(!range.min && range.max){
-                        if(item.new_price < range.max){
+                    } else if (!range.min && range.max) {
+                        if (item.new_price < range.max) {
                             filtered.push(item);
                         }
-                    }else if(range.min && range.max){
-                        if(item.new_price >= range.min && item.new_price < range.max){
+                    } else if (range.min && range.max) {
+                        if (item.new_price >= range.min && item.new_price < range.max) {
                             filtered.push(item);
                         }
                     }
@@ -92,6 +92,17 @@
                         filtered.push(item);
                     }
                 });
+                return filtered;
+            };
+        })
+        .filter('excludeFilter', function($rootScope) {
+            return function(items, code) {
+                var filtered = [];
+                angular.forEach(items, function(item){
+                    if (item.code != code){
+                        filtered.push(item);
+                    }
+                })
                 return filtered;
             };
         });

@@ -8,7 +8,8 @@
             //  INITIAL STATE
             //-----------------------------------------
             $scope.slides = [];
-            console.log("using product ctrl");
+            $scope.typesFilter = [];
+            $scope.kindsFilter = [];
 
             // Make appbar transparent
             $rootScope.transparentAppbar = true;
@@ -17,6 +18,7 @@
                 // Make sure that the interval is destroyed too
                 $rootScope.transparentAppbar = false;
                 $rootScope.mainScrolled = true;
+                $scope.typeFilter = [];
             });
             $scope.$on('$viewContentLoaded', function(event) {
                 console.log("loaded");
@@ -36,30 +38,33 @@
             $scope.hero = $scope.heroes[rnd - 1];
 
             // Initial state
-            if (!$rootScope.products) {
-                $scope.$on('products:filled', function() {
-                    $scope.product = $filter('filter')($rootScope.products, function(d) {
-                        return d.code === $stateParams.productCode;
-                    })[0];
 
-                    angular.forEach($scope.product, function(value, key) {
-                        if (key.indexOf('file') > -1 && value.indexOf('placeholder') == -1) {
-                            $scope.slides.push(value);
-                            $scope.sliderLength = $scope.slides.length;
-                        }
-                    })
-                });
-            } else if ($rootScope.products) {
+            function getProduct(){
                 $scope.product = $filter('filter')($rootScope.products, function(d) {
                     return d.code === $stateParams.productCode;
                 })[0];
+
+                $scope.typesFilter.push($scope.product.type);
+                $scope.kindsFilter.push($scope.product.kind);
+                var filteredTypes = $filter('typeFilter')($rootScope.products, $scope.typesFilter);
+                var filteredKinds = $filter('kindFilter')($rootScope.products, $scope.kindsFilter);
+                $scope.sameTypeProducts = $filter('excludeFilter')(filteredTypes, $scope.product.code);
+                $scope.sameKindProducts = $filter('excludeFilter')(filteredKinds, $scope.product.code);
 
                 angular.forEach($scope.product, function(value, key) {
                     if (key.indexOf('file') > -1 && value.indexOf('placeholder') == -1) {
                         $scope.slides.push(value);
                         $scope.sliderLength = $scope.slides.length;
                     }
-                })
+                });
+            };
+
+            if (!$rootScope.products) {
+                $scope.$on('products:filled', function() {
+                    getProduct();
+                });
+            } else if ($rootScope.products) {
+                getProduct();
             }
 
 
