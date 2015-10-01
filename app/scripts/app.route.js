@@ -18,6 +18,12 @@
           templateUrl: 'app/views/store/store.view.html',
           controller: 'StoreCtrl'
         })
+        .state('store-filtered', {
+          url: '/store/:selectedBrands/:selectedTypes',
+          templateUrl: 'app/views/store/store.view.html',
+          controller: 'StoreCtrl',
+          reloadOnSearch: false
+        })
         .state('auth', {
           url: '/auth',
           templateUrl: 'app/views/auth/auth.view.html',

@@ -67,6 +67,18 @@
                 }
             };
         })
+        .filter('capitalize', function(){
+            return function(input){
+                var capitalized = [];
+                if (input === undefined) {
+                    input = [];
+                }
+                angular.forEach(input, function(value){
+                    capitalized.push(value.charAt(0).toUpperCase() + value.substring(1));
+                });
+                return capitalized;
+            }
+        })
         .filter('serialize', function() {
             return function(input) {
                 if (input != null && input != undefined) {

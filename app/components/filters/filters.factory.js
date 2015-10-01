@@ -50,7 +50,7 @@
         })
         .factory('BrandFilter', function() {
             var obj = {};
-            obj.selected = ['Adidas', 'Puma'];
+            obj.selected = [];
 
             obj.toggle = function(brand) {
                 var idx = obj.selected.indexOf(brand);

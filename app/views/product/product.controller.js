@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('ProductCtrl', function($scope, $rootScope, $http, $parse, $filter, $timeout, $stateParams, $state, $mdDialog, $mdToast, productRes, ngCart) {
+        .controller('ProductCtrl', function($scope, $rootScope, $location, $http, $parse, $filter, $timeout, $stateParams, $state, $mdDialog, $mdToast, productRes, ngCart) {
 
             //-----------------------------------------
             //  INITIAL STATE
@@ -10,6 +10,9 @@
             $scope.slides = [];
             $scope.typesFilter = [];
             $scope.kindsFilter = [];
+            
+            var info = $location.protocol();
+            console.log(info);
 
             // Make appbar transparent
             $rootScope.transparentAppbar = true;

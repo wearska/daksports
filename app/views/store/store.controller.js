@@ -2,24 +2,25 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('StoreCtrl', function($rootScope, $scope, $state, $window, $timeout, Counter, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter) {
-            
+        .controller('StoreCtrl', function($rootScope, $scope, $state, $window, $filter, $timeout, Counter, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter, $stateParams) {
+
             var page = angular.element($window).find('.page-content');
-            $rootScope.state = $state.current.name;
+            // $rootScope.state = $state.current.name;
+            $rootScope.state = 'store';
             $scope.filtered = [];
 
             $scope.limit = 12;
             $scope.promoFilter = 0;
             $scope.$on('scroll:bottom', function(event, item) {
-                $timeout(function(){
+                $timeout(function() {
                     $scope.limit = $scope.limit + 8;
                 }, 1000);
             });
             $scope.$on('products:filled', function(event, item) {
-                $timeout(function(){
+                $timeout(function() {
                     $scope.filtered = $rootScope.products;
                     $rootScope.filtered = angular.copy($scope.filtered);
-                },500);
+                }, 500);
             });
 
             $rootScope.filtered = angular.copy($scope.filtered);
@@ -34,7 +35,6 @@
                     if (newValue !== oldValue) {
                         $rootScope.filtered = angular.copy($scope.filtered);
                         $scope.limit = 12;
-                        console.log($window);
                         $scope.scrollToTop();
                     }
                 }
@@ -46,6 +46,13 @@
             });
 
             // FILTERS
+            if ($state.current.name == 'store-filtered') {
+                BrandFilter.selected = $stateParams.selectedBrands.split(",");
+                BrandFilter.selected = $filter('capitalize')(BrandFilter.selected);
+                TypeFilter.selected = $stateParams.selectedTypes.split(",");
+                TypeFilter.selected = $filter('capitalize')(TypeFilter.selected);
+            }
+
             $scope.Counter = Counter;
             $scope.BrandFilter = BrandFilter;
             $scope.TypeFilter = TypeFilter;
