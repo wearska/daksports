@@ -6,7 +6,8 @@
             $scope.slides = [
                 "/uploads/slider/slide_adidas.jpg",
                 "/uploads/slider/slide_nike.jpg",
-                "/uploads/slider/slide_puma.jpg"
+                "/uploads/slider/slide_puma.jpg",
+                "/uploads/slider/slide_reebok.jpg"
             ];
             $scope.sliderLength = $scope.slides.length;
         }]);
