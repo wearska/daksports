@@ -45,7 +45,10 @@
                 $rootScope.state = undefined;
             });
 
+            //----------------------------
             // FILTERS
+            //----------------------------
+
             if ($state.current.name == 'store-filtered') {
                 BrandFilter.selected = $stateParams.selectedBrands.split(",");
                 BrandFilter.selected = $filter('capitalize')(BrandFilter.selected);
@@ -61,6 +64,36 @@
             $scope.KindFilter = KindFilter;
             $scope.PriceFilter = PriceFilter;
             $scope.PromoFilter = PromoFilter;
+
+            //----------------------------
+            // SORT LIST
+            //----------------------------
+
+            $scope.sortOrder = '';
+            $scope.sortReverse = false;
+
+            $scope.sortList = [{
+                order: 'added',
+                name: 'Data'
+            }, {
+                order: 'name',
+                name: 'Nume'
+            }, {
+                order: 'brand',
+                name: 'Brand'
+            }, {
+                order: 'type',
+                name: 'Departament'
+            }, {
+                order: 'kind',
+                name: 'Categorie'
+            }]
+            $scope.promoSort = 0;
+
+            $scope.promoToggle = function (value){
+                console.log($scope.promoSort);
+                PromoFilter.state = !$scope.promoSort;
+            }
 
         });
 

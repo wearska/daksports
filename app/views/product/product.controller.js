@@ -10,7 +10,7 @@
             $scope.slides = [];
             $scope.typesFilter = [];
             $scope.kindsFilter = [];
-            
+
             var info = $location.protocol();
             console.log(info);
 
@@ -254,6 +254,7 @@
                         });
                 }
             };
+
 
         });
 

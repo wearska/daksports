@@ -27,12 +27,7 @@
                     <md-divider></md-divider>
                     <div class="review-info">
                         <div class="stars-container">
-                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                            <div class="current-rating" style="left:{{product.rating}}%"></div>
+                            <md-icon class="tiny-star" md-svg-src="assets/icons/ic_star_tiny_14px.svg" ng-class="{'fill' : count <= product.rating}" ng-repeat="count in [1,2,3,4,5]"></md-icon>
                         </div>
                         <span class="review-count" ng-class="{disabled : !product.reviews.length}">
                             •
@@ -238,7 +233,7 @@
                 <md-button class="md-primary md-raised publish-review-button" md-theme="brand" ng-disabled="reviewForm.$invalid" type="submit">Publica</md-button>
                 <md-icon class="discard-review-button" md-ink-ripple md-svg-src="assets/icons/ic_close_24px.svg" ng-click="discardReview()"></md-icon>
             </form>
-            <md-divider></md-divider>
+            <md-divider ng-show="product.reviews.length"></md-divider>
             <section class="reviews-list">
                 <div class="review" ng-repeat="review in product.reviews">
                     <div class="" layout-gt-sm="row" layout="column">
@@ -269,15 +264,15 @@
                             <p ng-bind-html="review.review"></p>
                         </div>
                     </div>
-                    <md-divider></md-divider>
+                    <md-divider ng-hide="$index === product.reviews.length-1"></md-divider>
                 </div>
-                <md-button class="md-primary md-raised add-review-button l-center" md-theme="brand" type="button">spune-ti parerea</md-button>
+                <!-- <md-button class="md-primary md-raised add-review-button l-center" md-theme="brand" type="button">spune-ti parerea</md-button> -->
             </section>
         </section>
     </div>
 
 <!-- Similar products -->
-    <gd-carousel data="sameTypeProducts" lg="3" md="2" sm="1" xs="1" start="0" limit="sameTypeProducts.length" carousel-length="sameTypeProducts.length" title="Alte produse din {{product.type}}" subtitle="Vezi ce altceva ti-ar mai trebui cu acest articol" gd-tiles="true"></gd-carousel>
+    <gd-carousel ng-show="sameTypeProducts.length" data="sameTypeProducts" lg="3" md="2" sm="1" xs="1" start="0" limit="sameTypeProducts.length" carousel-length="sameTypeProducts.length" title="Alte produse din {{product.type}}" subtitle="Vezi ce altceva ti-ar mai trebui cu acest articol" gd-tiles="true"></gd-carousel>
 <!-- Others have bought -->
-    <gd-carousel data="sameKindProducts" lg="5" md="4" sm="3" xs="2" start="0" limit="sameKindProducts.length" carousel-length="sameKindProducts.length" title="Produse din aceeasi categorie" subtitle="Vezi si alte articole similare" gd-tiles="false"></gd-carousel>
+    <gd-carousel ng-show="sameKindProducts.length" data="sameKindProducts" lg="5" md="4" sm="3" xs="2" start="0" limit="sameKindProducts.length" carousel-length="sameKindProducts.length" title="Produse din aceeasi categorie" subtitle="Vezi si alte articole similare" gd-tiles="false"></gd-carousel>
 </div>

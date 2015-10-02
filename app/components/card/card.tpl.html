@@ -83,13 +83,16 @@
     </div>
 </div>
 <div class="product-actions">
-    <div class="stars-container">
+    <!-- <div class="stars-container">
         <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
         <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
         <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
         <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
         <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
         <div class="current-rating" style="left: {{item.rating}}%"></div>
+    </div> -->
+    <div class="stars-container">
+        <md-icon class="tiny-star" md-svg-src="assets/icons/ic_star_tiny_14px.svg" ng-class="{'fill' : count <= item.rating}" ng-repeat="count in [1,2,3,4,5]"></md-icon>
     </div>
     <div class="price-container" data="item" id="{{ item.code }}" name="{{ item.name }}" ng-class="{promo : item.promo}" price="{{ item.price }}" quantity="1">
         <div class="promo-price" ng-show="item.promo">RON
