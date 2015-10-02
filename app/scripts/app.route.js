@@ -19,7 +19,7 @@
           controller: 'StoreCtrl'
         })
         .state('store-filtered', {
-          url: '/store/:selectedBrands/:selectedTypes',
+          url: '/store/:selectedBrands/:selectedTypes/:selectedKinds',
           templateUrl: 'app/views/store/store.view.html',
           controller: 'StoreCtrl',
           reloadOnSearch: false

@@ -76,10 +76,12 @@ nav {
         left: 0;
     }
 }
-@media only screen and (min-width: 800px) {
-    #main {
-        &.narrow {
+@media only screen and (min-width: 800px) {#main {&.narrow {
             left: 240px;
+            .items-end {
+                left: 240px;
+                right: 32px;
+            }
         }
     }
 }
@@ -96,14 +98,14 @@ nav {
     left: 0;
     right: 0;
     z-index: -1;
-    background-color: #000000;
+    background-color: #000;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
     min-height: 50%;
-    &.left-positioned{
+    &.left-positioned {
         background-position: left;
-        &.narrow{
+        &.narrow {
             background-position: 200px 50%;
         }
     }
@@ -119,38 +121,31 @@ nav {
 
     // display: block;
 }
-@media #{$small-and-up} {
-    .c-max {
+@media #{$small-and-up} {.c-max {
         max-width: 540px;
     }
 }
-@media #{$medium-and-up} {
-    .c-max {
+@media #{$medium-and-up} {.c-max {
         max-width: 640px;
     }
 }
-@media only screen and (min-width: 1100px) and (max-width: 1199px) {
-    .c-max {
+@media only screen and (min-width: 1100px) and (max-width: 1199px) {.c-max {
         max-width: 768px;
     }
 }
-@media only screen and (min-width: 1200px) and (max-width: 1279px) {
-    .c-max {
+@media only screen and (min-width: 1200px) and (max-width: 1279px) {.c-max {
         max-width: 864px;
     }
 }
-@media #{$large-and-up} {
-    .c-max {
+@media #{$large-and-up} {.c-max {
         max-width: 960px;
     }
 }
-@media only screen and (min-width: 1600px) and (max-width: 1919px) {
-    .c-max {
+@media only screen and (min-width: 1600px) and (max-width: 1919px) {.c-max {
         max-width: 1280px;
     }
 }
-@media #{$xlarge-and-up} {
-    .c-max {
+@media #{$xlarge-and-up} {.c-max {
         max-width: 1366px;
     }
 }
@@ -161,7 +156,7 @@ nav {
 }
 
 // Dialogs
-md-dialog{
+md-dialog {
     max-height: 100%;
 }
 

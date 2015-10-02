@@ -9,7 +9,7 @@
             $rootScope.state = 'store';
             $scope.filtered = [];
 
-            $scope.limit = 12;
+            $scope.limit = 16;
             $scope.promoFilter = 0;
             $scope.$on('scroll:bottom', function(event, item) {
                 $timeout(function() {
@@ -34,7 +34,7 @@
                 function(newValue, oldValue) {
                     if (newValue !== oldValue) {
                         $rootScope.filtered = angular.copy($scope.filtered);
-                        $scope.limit = 12;
+                        $scope.limit = 16;
                         $scope.scrollToTop();
                     }
                 }
@@ -51,6 +51,8 @@
                 BrandFilter.selected = $filter('capitalize')(BrandFilter.selected);
                 TypeFilter.selected = $stateParams.selectedTypes.split(",");
                 TypeFilter.selected = $filter('capitalize')(TypeFilter.selected);
+                KindFilter.selected = $stateParams.selectedKinds.split(",");
+                KindFilter.selected = $filter('capitalize')(KindFilter.selected);
             }
 
             $scope.Counter = Counter;

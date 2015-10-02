@@ -1,8 +1,25 @@
+#store-page{
+    padding-bottom: 200px;
+}
+
 .grid-cell{
     padding: 8px;
 }
 
 .filter-list{
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding: 16px;
+    min-height: 96px;
+}
+
+.items-end{
+    position: fixed;
+    z-index: -10;
+    bottom: 48px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    height: 296px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
