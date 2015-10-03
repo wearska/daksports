@@ -27,21 +27,11 @@
     </div>
 
 
-    <!-- Shoes cluster -->
-
-    <div class="gd-cluster" ng-controller="ClusterCtrl as shoes">
-        <gd-heading title="Top Incaltaminte" subtitle="Cele mai bine cotate articole de incaltaminte"></gd-heading>
-        <div class="paper resting gd-cluster-wrapper" layout="row">
-            <div class="gd-cluster-hero ar_3-4" style="background-image: url('uploads/clusters/shoes.jpg')" flex="20"></div>
-            <div class="gd-cluster-carousel" flex="60">
-                <gd-carousel data="$root.products" lg="3" limit="10" md="2" sm="1" start="0" xs="1"></gd-carousel>
-            </div>
-        </div>
-    </div>
-
+    <!-- Recommended -->
+    <gd-carousel data="shoes" lg="5" md="4" sm="3" start="0" xs="2" limit="shoes.length" title="Top incaltaminte" subtitle="Cele mai bine cotate articole de incaltaminte"></gd-carousel>
 
     <!-- Recommended -->
-    <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" start="0" title="Produse recomandate" xs="2"></gd-carousel>
+    <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" xs="2" start="0" title="Produse recomandate" subtitle="Cele mai bine cotate articole de incaltaminte"></gd-carousel>
 
     <!-- Promos -->
 

@@ -275,7 +275,7 @@
             }
         }
         .latest-review-body {
-            height: 85px;
+            max-height: 85px;
             line-height: 17px;
             overflow: hidden;
         }

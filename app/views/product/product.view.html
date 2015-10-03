@@ -105,11 +105,7 @@
                 <div class="product-main-rating" flex="">
                     <h4>Rating general</h4>
                     <div class="stars-container main-stars">
-                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 1 <= product.rating}"></md-icon>
-                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 2 <= product.rating}"></md-icon>
-                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 3 <= product.rating}"></md-icon>
-                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 4 <= product.rating}"></md-icon>
-                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{fill : 5 <= product.rating}"></md-icon>
+                        <md-icon class="main-rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{'fill' : count <= product.rating}" ng-repeat="count in [1,2,3,4,5]"></md-icon>
                     </div>
                     <div class="gd-divider left-inset"></div>
                     <h4 style="padding-top: 16px;">{{product.reviews.length}}
