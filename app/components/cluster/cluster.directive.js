@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .directive('gdCluster', function($window) {
+        .directive('gdClusterLane', function($window) {
             return function(scope, element, attrs) {
                 var w = angular.element($window);
                 var parent = angular.element(document.getElementById("main"));
@@ -30,7 +30,7 @@
                 }, true);
             };
         })
-        .directive('gdClusterer', function($interval) {
+        .directive('gdCluster', function($interval) {
             return {
                 restrict: 'E',
                 scope: {
@@ -39,7 +39,7 @@
                     image: '@gdClusterImage',
                     items: '=gdClusterItems'
                 },
-                replace: false,
+                replace: true,
                 templateUrl: 'app/components/cluster/cluster.tpl.html',
                 link: function(scope, el, attr) {
                     scope.limit = 3;

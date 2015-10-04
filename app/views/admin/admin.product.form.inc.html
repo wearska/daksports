@@ -47,16 +47,16 @@
         <div flex layout>
             <md-input-container>
                 <label>Categorie</label>
-                <md-select ng-change="setShort()" ng-model="product.type">
+                <md-select ng-change="setCode()" ng-model="product.type">
                     <md-option ng-repeat="item in $root.types" value="{{item.type}}">{{item.type}}</md-option>
                 </md-select>
             </md-input-container>
             <md-input-container flex>
                 <label>+ Categorie</label>
-                <input capitalize-first ng-model="product.type" ng-focus="setInitType()" ng-blur="defineShort(product.type)">
+                <input capitalize-first ng-model="product.type" ng-blur="defineShort()">
             </md-input-container>
             <md-input-container flex>
-                <input ng-disabled="state == 'edit'" ng-model="temp.typeShort" ng-change="limitShort(temp.typeShort)" ng-focus="setInitShort()" ng-blur="setShort(temp.typeShort)">
+                <input ng-disabled="state == 'edit'" ng-model="temp.type.short" ng-change="limitShort(temp.typeShort)">
             </md-input-container>
         </div>
         <span flex="5"></span>

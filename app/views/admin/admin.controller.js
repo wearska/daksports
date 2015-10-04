@@ -4,14 +4,9 @@
     angular.module('daksportsApp')
         .controller('AdminCtrl', function($scope, $rootScope, $http, $filter, $parse, $timeout, $q, $log, productRes, FileUploader) {
 
-            // VARIABLES
-
-            // uploaders state
-            var firstDone = false,
-                secondDone = false,
-                thirdDone = false,
-                fourthDone = false,
-                fifthDone = false;
+            // --------------------------------
+            // FORM RESET
+            // --------------------------------
 
             // Reset object
             var reset = {
@@ -58,48 +53,31 @@
                 photo5: 'uploads/placeholder.png'
             }
 
+
+            $scope.resetForm = function() {
+                if (firstDone && secondDone && thirdDone && fourthDone && fifthDone) {
+                    // proper reset form
+                    $scope.product = angular.copy(reset);
+                    $scope.temp = angular.copy(tempreset);
+                    $scope.$broadcast('form:reset', {});
+                } else {
+                    console.log("some of the uploaders haven't finished uploading")
+                }
+            }
+
+            // ---------------------------------
+            //     PRODUCT & INITIAL STATE
+            // ---------------------------------
+
+
             $scope.state = null;
             $scope.ready = false;
-
 
             // Initial state
             $scope.product = angular.copy(reset);
             $scope.temp = angular.copy(tempreset);
+            $scope.temp.type = {};
             $scope.productForm = {};
-            $scope.renameId = "";
-
-            // Sizes
-            $scope.addMoreSizes = function() {
-                var sizes = $scope.product.sizes;
-                var newSize = {
-                    name: "",
-                    count: 0
-                }
-                sizes.push(newSize);
-            }
-
-            $scope.checkSizeExists = function(name) {
-                var sizes = $scope.product.sizes;
-                angular.forEach($scope.product.sizes, function(size) {
-                    var idx = size.name.indexOf(name);
-                    if (!idx > -1) {
-                        sizes.splice(idx, 1);
-                    }
-                });
-            }
-
-            $scope.removeSize = function(name, count) {
-                var sizes = $scope.product.sizes;
-                angular.forEach($scope.product.sizes, function(size) {
-                    if (size.name == name && size.count == count) {
-                        var idx = sizes.indexOf(size);
-                        if (idx > -1) {
-                            sizes.splice(idx, 1);
-                        }
-                    }
-                });
-            }
-
 
             // Product colours
             $scope.selectedColour = '';
@@ -141,7 +119,46 @@
                 };
             };
 
-            // PRODUCT TEMPLATES
+            // ---------------------------------
+            //     SIZES
+            // ---------------------------------
+
+            $scope.addMoreSizes = function() {
+                var sizes = $scope.product.sizes;
+                var newSize = {
+                    name: "",
+                    count: 0
+                }
+                sizes.push(newSize);
+            }
+
+            $scope.checkSizeExists = function(name) {
+                var sizes = $scope.product.sizes;
+                angular.forEach($scope.product.sizes, function(size) {
+                    var idx = size.name.indexOf(name);
+                    if (!idx > -1) {
+                        sizes.splice(idx, 1);
+                    }
+                });
+            }
+
+            $scope.removeSize = function(name, count) {
+                var sizes = $scope.product.sizes;
+                angular.forEach($scope.product.sizes, function(size) {
+                    if (size.name == name && size.count == count) {
+                        var idx = sizes.indexOf(size);
+                        if (idx > -1) {
+                            sizes.splice(idx, 1);
+                        }
+                    }
+                });
+            }
+
+
+
+            // --------------------------
+            //    PRODUCT TEMPLATES
+            // --------------------------
 
             $scope.simulateQuery = false;
             $scope.isDisabled = false;
@@ -181,18 +198,22 @@
                 $log.info('Item changed to ' + JSON.stringify(item));
                 if (item !== undefined) {
                     //remove "DAK" from selected template code
-                    item.code = item.code.substring(3);
+                    var code = item.code.substring(3);
                     //reset sizes
-                    item.sizes = [{
+                    var sizes = [{
                         name: "",
                         count: 0
                     }];
                     $scope.product = angular.copy(item);
-                    $scope.setShort();
-                    $scope.product.code = item.code;
+                    // $scope.setShort();
+                    $scope.product.code = code;
+                    $scope.product.sizes = sizes;
+                    $scope.temp.type = $filter('filter')($rootScope.types, function(d) {
+                        return d.type === item.type;
+                    })[0];
                 } else {
                     $scope.product = angular.copy(reset);
-                    $scope.temp.typeShort = "";
+                    $scope.temp.type = {};
                 }
             }
 
@@ -217,10 +238,8 @@
             }
 
 
-
-
             // ----------------------------------
-            // UPDATE CATS AND BRANDS
+            //     UPDATE CATS AND BRANDS
             // ----------------------------------
 
             function brandsCheck(brandToCheck) {
@@ -299,34 +318,24 @@
             }
 
 
+            // -------------------------------
+            //     TYPE SHORTS
+            // -------------------------------
 
-            // Functions
-
-            var initialType = "";
-            var initialShort = "";
-
-            $scope.setShort = function(short) {
-                console.log("setting short");
-                if (short !== initialShort && short != undefined) {
-                    console.log("short is initial short");
-                    console.log(short + " & " + initialShort);
-                    var currentType = $scope.product.type;
-                    if (typesCheck(currentType)) {
-                        var typeSt = $scope.product.type;
-                        angular.forEach($rootScope.types, function(type) {
-                            if (typeSt.indexOf(type.type) > -1) {
-                                var series = $filter('serialize')(type.short);
-                                $scope.temp.typeShort = type.short;
-                                $scope.product.code = series;
-                            }
-                        });
-                    } else {
-                        console.log("short is different to initial");
-                        console.log(short + " & " + initialShort);
-                        var series = $filter('serialize')(short);
-                        (currentType == "") ? $scope.product.code = " ": $scope.product.code = series;
-                    }
+            $scope.setCode = function() {
+                console.log("setting code");
+                console.log($scope.product.type);
+                if (typesCheck($scope.product.type)) {
+                    $scope.temp.type = $filter('filter')($rootScope.types, function(d) {
+                        return d.type === $scope.product.type;
+                    })[0];
                 }
+
+                var short = $scope.temp.type.short;
+                var series = $filter('serialize')(short);
+
+                var currentType = $scope.product.type;
+                (currentType == "") ? $scope.product.code = " ": $scope.product.code = series;
             }
 
             $scope.limitShort = function(input) {
@@ -339,22 +348,28 @@
             }
 
             $scope.setInitShort = function() {
-                initialShort = $scope.temp.typeShort;
+                initialShort = $scope.temp.type.short;
             }
 
-            $scope.defineShort = function(input) {
-                if ($scope.product.type !== initialType) {
-                    $scope.temp.typeShort = $filter('shortify')(input);
-                    var short = $scope.temp.typeShort;
-                    $scope.setShort(short)
-                }
+            $scope.defineShort = function() {
+                console.log($scope.product.type);
+                var short = $filter('shortify')($scope.product.type);
+                $scope.temp.type.short = short;
+                $scope.setCode();
             }
 
 
 
-            //-------------------------------------
-            //  UPLOADERS
-            //-------------------------------------
+            // -------------------------------------
+            //     UPLOADERS
+            // -------------------------------------
+
+            // Uploaders state
+            var firstDone = false,
+                secondDone = false,
+                thirdDone = false,
+                fourthDone = false,
+                fifthDone = false;
 
             // Define the uploaders
             var tempuploader = $scope.tempuploader = new FileUploader({
@@ -702,23 +717,6 @@
                         return error;
                     });
             }
-
-            // --------------------------------
-            // FORM RESET
-            // --------------------------------
-
-            $scope.resetForm = function() {
-                if (firstDone && secondDone && thirdDone && fourthDone && fifthDone) {
-                    // proper reset form
-                    $scope.product = angular.copy(reset);
-                    $scope.temp = angular.copy(tempreset);
-                    $scope.$broadcast('form:reset', {});
-                } else {
-                    console.log("some of the uploaders haven't finished uploading")
-                }
-            }
-
-
 
         });
 

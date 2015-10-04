@@ -29,7 +29,7 @@ $postdata = file_get_contents("php://input");
     @$file4 = $request->file4;
     @$file5 = $request->file5;
 
-$sql = "INSERT INTO products (code, name, subname, brand, type, kind, price, promo, promo_price, promo_stock, promo_end, excerpt, description, sizes, added, file1, file2, file3, file4, file5) VALUES ('$code', '$name', '$subname', '$brand', '$type', '$kind', '$price', '$promo', '$promo_price', '$promo_stock', '$promo_end', '$excerpt', '$desc', '$sizes', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
+$sql = "INSERT INTO products (code, name, subname, brand, type, kind, tags, price, promo, promo_price, promo_stock, promo_end, excerpt, description, sizes, added, file1, file2, file3, file4, file5) VALUES ('$code', '$name', '$subname', '$brand', '$type', '$kind', '$tags', '$price', '$promo', '$promo_price', '$promo_stock', '$promo_end', '$excerpt', '$desc', '$sizes', '$added', '$file1', '$file2', '$file3', '$file4', '$file5')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
