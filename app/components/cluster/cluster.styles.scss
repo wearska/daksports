@@ -1,9 +1,63 @@
-.gd-cluster{
-    .cluster-left, .cluster-right{
+.gd-cluster {
+    position: relative;
+    overflow: hidden;
+}
+.gd-cluster-background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.gd-cluster-wrapper {
+    @extend .c-max;
+    width: auto;
+    margin: auto;
+    left: 0;
+    right: 0;
+    position: relative;
+    overflow: hidden;
+}
+.cluster-background {
+    box-shadow: none;
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 374px;
+    .image-container {
+        height: 404px;
+        top: -15px;
+        left: 0;
+        position: absolute;
+        display: inline-block;
     }
-    .gd-cluster-hero{
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+}
+.cluster-background-image {
+    width: 60%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.cluster-background-gradient {
+    width: 40%;
+    height: 150%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.cluster-items {
+    padding: 16px 0;
+    .grid-cell {
+        padding: 0;
+        padding-left:16px;
+        .gd-card {
+            margin: 0;
+        }
     }
 }

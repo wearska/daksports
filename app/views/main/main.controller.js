@@ -12,6 +12,18 @@
             $scope.sliderLength = $scope.slides.length;
             
             //------------------------------
+            // Clusters
+            //------------------------------
+            
+            // initial
+            $scope.basketballItems = [];
+            
+            $scope.footballImage = 'uploads/slider/slide_puma.jpg';
+            $scope.$on('products:filled', function(){
+                $scope.basketballItems = $filter('typeFilter')($rootScope.products, "Baschet");
+            });
+            
+            //------------------------------
             // Carousel filters
             //------------------------------
             

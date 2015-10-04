@@ -9,6 +9,10 @@
     position: relative;
     text-align: left;
     cursor: default;
+    &.no-subtitle{
+        margin: 0;
+        margin-top: 8px;
+    }
     .heading-icon {
         position: absolute;
         left: 0;

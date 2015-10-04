@@ -1,0 +1,15 @@
+<gd-heading title="{{title}}" subtitle="{{subtitle}}"></gd-heading>
+<div gd-cluster class="gd-cluster">
+    <div class="gd-cluster-background" ng-style="{'background-color': 'rgb('+colors.myDominantColor[0]+', '+colors.myDominantColor[1]+', '+colors.myDominantColor[2]+')'}"></div>
+    <a href="/store/all-brands/fotbal/incaltaminte" class="cluster-background-image" style="background-image:url({{image}})">
+        <img ng-hide="true" aria-hidden="true" class="background-image" color-thief color-thief-dominant="colors.myDominantColor" ng-src="{{image}}">
+    </a>
+    <div class="cluster-background-gradient" ng-style="{'box-shadow':'-25px 0px 30px 0px rgb('+colors.myDominantColor[0]+', '+colors.myDominantColor[1]+', '+colors.myDominantColor[2]+')'}"></div>
+    <div layout="column" layout-gt-sm="row" class="gd-cluster-wrapper">
+        <div class="cluster-items" flex="60" offset="40" layout>
+            <div class="grid-cell" flex="100" flex-gt-sm="50" flex-gt-md="33" ng-repeat="item in items | limitTo : limit">
+                <gd-card card-resource="item"></gd-card>
+            </div>
+        </div>
+    </div>
+</div>

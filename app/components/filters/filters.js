@@ -6,8 +6,9 @@
         .filter('brandFilter', function($rootScope) {
             return function(items, brand) {
                 var filtered = [];
+                // console.log(brand);
                 // return items;
-                if (brand.length <= 0) {
+                if (brand.length <= 0 || brand[0] == 'All-brands') {
                     return items;
                 }
                 angular.forEach(items, function(item) {
