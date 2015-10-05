@@ -1,5 +1,6 @@
 #account-wrapper {
     margin-top: 8px;
+    height: 100vh;
     background-color: #fff;
 }
 .account-wrapper {
@@ -167,6 +168,8 @@
                 }
                 .account-access-button {
                     box-shadow: 0 0;
+                    margin-left: 0;
+                    margin-right: 0;
                 }
             }
         }
