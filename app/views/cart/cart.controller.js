@@ -13,7 +13,6 @@
         $scope.getShipping();
       });
 
-      console.log(cart.cartItems);
       $scope.cartItems = cart.cartItems;
       $scope.emptyCart = function() {
         ngCart.empty();

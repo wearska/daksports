@@ -43,7 +43,6 @@
                 templateUrl: 'app/components/cluster/cluster.tpl.html',
                 link: function(scope, el, attr) {
                     scope.limit = 3;
-                    console.log(scope);
                 }
             }
         });

@@ -153,7 +153,7 @@
             color: #aaa;
             font-size: 13px;
             font-weight: 300;
-            line-height: 16px;
+            line-height: 1.1;
             margin: 5px 0;
         }
     }
@@ -319,8 +319,10 @@
                 p {
                     font-size: 13px;
                     font-weight: 300;
-                    line-height: 1.1;
+                    line-height: 14px;
                     color: rgba(0,0,0,.87);
+                    height: 28px;
+                    overflow: hidden;
                 }
             }
         }
