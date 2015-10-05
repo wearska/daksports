@@ -40,7 +40,7 @@
 
             // Initial state
 
-            function getProduct(){
+            function getProduct() {
                 $scope.product = $filter('filter')($rootScope.products, function(d) {
                     return d.code === $stateParams.productCode;
                 })[0];
@@ -58,6 +58,11 @@
                         $scope.sliderLength = $scope.slides.length;
                     }
                 });
+
+                $scope.order = {
+                    data: $scope.product,
+                    quantity: 1
+                };
             };
 
             if (!$rootScope.products) {
@@ -70,10 +75,6 @@
 
 
             $scope.files = {};
-            $scope.order = {
-                data: $scope.product,
-                quantity: 1
-            };
 
             $scope.isFav = function() {
                 var bool = true;
@@ -100,7 +101,11 @@
             }
 
             $scope.addToCart = function() {
-                ngCart.addItem($scope.product.code, $scope.product.name, parseFloat($scope.product.price), parseInt($scope.order.quantity), $scope.product);
+                if ($scope.orderForm.$valid) {
+                    ngCart.addItem($scope.product.code, $scope.product.name, parseFloat($scope.product.price), parseInt($scope.order.quantity), $scope.product);
+                }else {
+                    console.log("order invalid");
+                }
             };
 
 
@@ -227,7 +232,7 @@
                     .hideDelay(0)
                 );
             };
-            $scope.discardReview = function(){
+            $scope.discardReview = function() {
                 $scope.userReview = angular.copy($scope.resetReview);
                 tempRating = 0;
                 $scope.formSubmitted = false;

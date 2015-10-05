@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('AdminCtrl', function($scope, $rootScope, $http, $filter, $parse, $timeout, $q, $log, productRes, FileUploader) {
+        .controller('AdminCtrl', function($scope, $rootScope, $http, $filter, $parse, $timeout, $q, $mdToast, productRes, FileUploader) {
 
             // --------------------------------
             // FORM RESET
@@ -51,7 +51,7 @@
                 photo3: 'uploads/placeholder.png',
                 photo4: 'uploads/placeholder.png',
                 photo5: 'uploads/placeholder.png'
-            }
+            };
 
 
             $scope.resetForm = function() {
@@ -63,7 +63,7 @@
                 } else {
                     console.log("some of the uploaders haven't finished uploading")
                 }
-            }
+            };
 
             // ---------------------------------
             //     PRODUCT & INITIAL STATE
@@ -123,36 +123,60 @@
             //     SIZES
             // ---------------------------------
 
-            $scope.addMoreSizes = function() {
-                var sizes = $scope.product.sizes;
+            $scope.temp.sizes = angular.copy($scope.product.sizes);
+
+            $scope.addMoreSizes = function(name) {
+                var pSizes = $scope.product.sizes;
+                var tSizes = $scope.temp.sizes;
                 var newSize = {
                     name: "",
                     count: 0
+                };
+                $scope.product.sizes = angular.copy($scope.temp.sizes);
+                tSizes.push(newSize);
+            };
+
+            $scope.checkSize = function(size){
+                if($scope.checkSizeExists(size.name)){
+                    showErrorToast();
+                    size.duplicate = true;
+                }else{
+                    size.duplicate = false;
                 }
-                sizes.push(newSize);
-            }
+            };
 
             $scope.checkSizeExists = function(name) {
-                var sizes = $scope.product.sizes;
-                angular.forEach($scope.product.sizes, function(size) {
-                    var idx = size.name.indexOf(name);
-                    if (!idx > -1) {
-                        sizes.splice(idx, 1);
+                var bool = false;
+                var pSizes = $scope.product.sizes;
+                console.log("check if " + name + " exists in product sizes");
+                angular.forEach(pSizes, function(size) {
+                    if (size.name === name) {
+                        bool = true;
                     }
                 });
-            }
+                return bool;
+            };
 
             $scope.removeSize = function(name, count) {
-                var sizes = $scope.product.sizes;
-                angular.forEach($scope.product.sizes, function(size) {
-                    if (size.name == name && size.count == count) {
-                        var idx = sizes.indexOf(size);
+                angular.forEach($scope.temp.sizes, function(size) {
+                    if (size.name === name && size.count == count) {
+                        var idx = $scope.temp.sizes.indexOf(size);
                         if (idx > -1) {
-                            sizes.splice(idx, 1);
+                            $scope.temp.sizes.splice(idx, 1);
                         }
                     }
                 });
-            }
+                $scope.product.sizes = angular.copy($scope.temp.sizes);
+            };
+
+            var showErrorToast = function() {
+                $mdToast.show(
+                    $mdToast.simple()
+                    .content('Aceasta marime exista deja!')
+                    .action('Ok')
+                    .hideDelay(0)
+                );
+            };
 
 
 
@@ -188,11 +212,11 @@
                 } else {
                     return results;
                 }
-            }
+            };
 
             function searchTextChange(text) {
                 $log.info('Text changed to ' + text);
-            }
+            };
 
             function selectedItemChange(item) {
                 $log.info('Item changed to ' + JSON.stringify(item));
@@ -215,7 +239,7 @@
                     $scope.product = angular.copy(reset);
                     $scope.temp.type = {};
                 }
-            }
+            };
 
             /**
              * Build `components` list of key/value pairs
@@ -226,7 +250,7 @@
                     template.value = template.name.toLowerCase();
                     return template;
                 });
-            }
+            };
             /**
              * Create filter function for a query string
              */
@@ -235,7 +259,7 @@
                 return function filterFn(item) {
                     return (item.value.indexOf(lowercaseQuery) === 0);
                 };
-            }
+            };
 
 
             // ----------------------------------
@@ -252,7 +276,7 @@
                     });
                 }
                 return bool;
-            }
+            };
 
             function kindsCheck(kindToCheck) {
                 var bool = false;
@@ -264,7 +288,7 @@
                     });
                 }
                 return bool;
-            }
+            };
 
             function typesCheck(typeToCheck) {
                 var bool = false;
@@ -276,7 +300,7 @@
                     });
                 }
                 return bool;
-            }
+            };
 
             function catsUpdate() {
                 // update Brands
@@ -315,7 +339,7 @@
                 } else {
                     //do nothing yet
                 };
-            }
+            };
 
 
             // -------------------------------
@@ -336,27 +360,27 @@
 
                 var currentType = $scope.product.type;
                 (currentType == "") ? $scope.product.code = " ": $scope.product.code = series;
-            }
+            };
 
             $scope.limitShort = function(input) {
                 console.log("limiting");
                 $scope.temp.typeShort = angular.uppercase(input.substring(0, 3));
-            }
+            };
 
             $scope.setInitType = function() {
                 initialType = $scope.product.type;
-            }
+            };
 
             $scope.setInitShort = function() {
                 initialShort = $scope.temp.type.short;
-            }
+            };
 
             $scope.defineShort = function() {
                 console.log($scope.product.type);
                 var short = $filter('shortify')($scope.product.type);
                 $scope.temp.type.short = short;
                 $scope.setCode();
-            }
+            };
 
 
 
@@ -707,6 +731,7 @@
                 catsUpdate();
                 $scope.postData = angular.copy($scope.product);
                 $scope.postData.code = 'DAK' + $scope.postData.code;
+                $scope.postData.sizes = angular.copy($scope.temp.sizes);
                 // make the call
                 productRes.post($scope.postData)
                     .then(function(response) {

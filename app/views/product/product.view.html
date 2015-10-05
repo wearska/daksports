@@ -3,7 +3,10 @@
     <div class="single-product-main">
         <section class="paper resting" id="product-info">
             <div class="product-details" layout-gt-md="row" layout="column">
-                <md-button aria-label="Use Android" class="md-fab md-primary add-to-cart" ng-click="addToCart()">
+                <md-button aria-label="Adauga in cos" class="md-fab md-primary add-to-cart" md-theme="brand" ng-click="addToCart()" ng-disabled="orderForm.$invalid">
+                    <md-tooltip ng-if="orderForm.$invalid">
+                        Alege o marime si cantitate
+                    </md-tooltip>
                     <md-icon md-svg-src="assets/icons/ic_add_shopping_cart_white_24px.svg"></md-icon>
                 </md-button>
                 <div class="cover" ng-click="showGallery($event);" style="background-image: url({{product.file1 | medres}})">
@@ -53,14 +56,15 @@
                                 <md-input-container class="item-size" flex flex-gt-md="20">
                                     <label>Selecteaza marime</label>
                                     <md-select aria-label="Size select" ng-model="order.size" required>
-                                        <md-option ng-repeat="size in product.sizes" ng-value="size">{{size}}</md-option>
+                                        <md-option ng-repeat="size in product.sizes" ng-value="size">{{size.name}}</md-option>
                                     </md-select>
                                 </md-input-container>
                                 <md-input-container class="item-count" flex flex-gt-md="10">
                                     <label>Cantitate</label>
-                                    <input name="itemCount" ng-model="order.quantity" step="any" type="number">
-                                    <div ng-messages="productForm.promoprice.$error" ng-show="orderForm.itemCount.$invalid && orderForm.itemCount.$dirty">
-                                        <div ng-message="number">Doar cifrele sunt permise</div>
+                                    <input min="1" max="{{order.size.count}}" name="itemCount" ng-model="order.quantity" step="any" type="number">
+                                    <div ng-messages="orderForm.itemCount.$error" ng-show="orderForm.itemCount.$invalid && orderForm.itemCount.$dirty">
+                                        <div ng-message="number" style="width:500px">Doar cifrele sunt permise</div>
+                                        <div ng-message="max" style="width:500px">Cantitatea maxima pentru aceasta marime este de {{order.size.count}} buc.</div>
                                     </div>
                                 </md-input-container>
                             </div>
@@ -69,11 +73,15 @@
 <!-- STOCK INFO -->
                     <div class="stock-info">
                         <md-divider></md-divider>
-                        <div ng-cloak ng-show="product.inv">
-                            <md-icon md-svg-src="assets/icons/ic_check_circle_green_24px.svg" style="width:16px; height:16px;"></md-icon>
-                            <span>Acest produs se afla in stoc.</span>
+                        <div ng-cloak ng-show="!order.size">
+                            <md-icon md-svg-src="assets/icons/ic_help_black_24px.svg" style="width:16px; height:16px;"></md-icon>
+                            <span>Alege o marime pentru a vedea informatii despre stocul disponibil</span>
                         </div>
-                        <div ng-cloak ng-show="!product.inv">
+                        <div ng-cloak ng-show="order.size.count">
+                            <md-icon md-svg-src="assets/icons/ic_check_circle_green_24px.svg" style="width:16px; height:16px;"></md-icon>
+                            <span>Acest produs se afla in stoc. • ({{order.size.count}})</span>
+                        </div>
+                        <div ng-cloak ng-show="order.size.count == 0">
                             <md-icon md-svg-src="assets/icons/ic_warning_red_24px.svg" style="width:16px; height:16px;"></md-icon>
                             <span>Acest produs se afla doar in stoc furnizor.</span>
                         </div>

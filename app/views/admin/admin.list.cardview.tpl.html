@@ -1,0 +1,101 @@
+<md-dialog aria-label="Previzualizare card produs">
+    <md-dialog-content>
+        <div ng-cloak class="gd-card paper resting slide-top">
+            <div class="product-media">
+                <a href="/product/{{$root.previewItem.code}}">
+                    <div class="product-img ar_1-1" ng-cloak style="background-image: url({{$root.previewItem.file1 | lowres}});" md-ink-ripple></div>
+                    <div class="hoverlay"></div>
+                </a>
+                <div class="product-media-actions">
+                    <div class="scrim top"></div>
+                    <md-button class="md-icon-button add-to-favourites" ng-click="postFav($root.previewItem.code, $root.previewItem.favourite)" ng-if="!$root.userData.admin && $root.logged" ng-show="!$root.previewItem.favourite">
+                        <md-tooltip>
+                            Adauga la favorite
+                        </md-tooltip>
+                        <md-icon md-svg-src="assets/icons/ic_favorite_border_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button add-to-favourites" ng-click="postFav($root.previewItem.code, $root.previewItem.favourite)" ng-if="!$root.userData.admin && $root.logged" ng-show="$root.previewItem.favourite">
+                        <md-tooltip>
+                            Elimina de la favorite
+                        </md-tooltip>
+                        <md-icon md-svg-src="assets/icons/ic_favorite_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                    </md-button>
+                    <a class="md-icon-button add-to-favourites" md-button ng-href="/admin/edit/{{$root.previewItem.code}}" ng-if="$root.userData.admin && $root.logged">
+                        <md-tooltip>
+                            Editeaza produs
+                        </md-tooltip>
+                        <md-icon md-svg-src="assets/icons/ic_create_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                    </a>
+                </div>
+                <div class="promo-badge" ng-show="$root.previewItem.promo">
+                    <md-tooltip>
+                        Produs promo
+                    </md-tooltip>
+                    <md-icon md-svg-src="assets/icons/promo_badge.svg" style="width: 48px; height: 48px;"></md-icon>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="info-container">
+                    <h2 class="product-title single-line">{{$root.previewItem.name}}</h2>
+                    <div class="subtitle-container">
+                        <p class="product-subtitle single-line secondary-text-color">{{$root.previewItem.subname}}</p>
+                    </div>
+                    <div class="excerpt-container">
+                        <p gd-lines-limit="2" class="product-excerpt secondary-text-color">{{$root.previewItem.excerpt}}</p>
+                    </div>
+                    <div aria-hidden="true" class="description-container is-hidden">
+                        <p>{{$root.previewItem.excerpt}}</p>
+                        <p>{{$root.previewItem.description}}</p>
+                    </div>
+                </div>
+                <div class="card-menu">
+                    <md-menu md-position-mode="target-right target">
+                        <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                            <md-icon md-menu-origin>
+                                <i class="material-icons">&#xE5D4;</i>
+                            </md-icon>
+                        </md-button>
+                        <md-menu-content width="3">
+                            <md-menu-item>
+                                <md-button>
+                                    <div layout="row">
+                                        <p flex>Adauga in cos</p>
+                                        <md-icon class="md-icon" md-menu-align-target style="margin: auto 0 auto 0;">
+                                            <i class="material-icons">&#xE854;</i>
+                                        </md-icon>
+                                    </div>
+                                </gd-addtocart>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button>
+                                <div layout="row">
+                                    <p flex>Adauga la favorite</p>
+                                    <md-icon class="md-icon" md-menu-align-target ng-if="!$root.previewItem.favourite" style="margin: auto 0 auto 0;">
+                                        <i class="material-icons">&#xE87E;</i>
+                                    </md-icon>
+                                    <md-icon class="md-icon" md-menu-align-target ng-if="$root.previewItem.favourite" style="margin: auto 0 auto 0;">
+                                        <i class="material-icons">&#xE87D;</i>
+                                    </md-icon>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+        </div>
+        <div class="product-actions">
+            <div class="stars-container">
+                <md-icon class="tiny-star" md-svg-src="assets/icons/ic_star_tiny_14px.svg" ng-class="{'fill' : count <= $root.previewItem.rating}" ng-repeat="count in [1,2,3,4,5]"></md-icon>
+            </div>
+            <div class="price-container" data="$root.previewItem" id="{{ $root.previewItem.code }}" name="{{ $root.previewItem.name }}" ng-class="{promo : $root.previewItem.promo}" price="{{ $root.previewItem.price }}" quantity="1">
+                <div class="promo-price" ng-show="$root.previewItem.promo">RON
+                    {{$root.previewItem.promo_price | float}}</div>
+                <div class="price">
+                    <span ng-show="!$root.previewItem.promo">RON</span>
+                    {{$root.previewItem.price | float}}</div>
+            </div>
+        </div>
+        </div>
+    </md-dialog-content>
+</md-dialog>

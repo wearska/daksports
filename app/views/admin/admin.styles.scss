@@ -213,6 +213,10 @@
     user-select: none;
     pointer-events: none;
 }
+.invalid-size{
+    border-color: $brand-primary;
+    color: $brand-primary;
+}
 
 // TAGS
 .md-chip-input-container {

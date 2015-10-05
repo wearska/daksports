@@ -1,10 +1,17 @@
-<div class="gd-card paper floating" ng-mouseenter="toggleOrderFab()" ng-mouseleave="toggleOrderFab()" style="max-width:200px">
+<div class="gd-card paper resting slide-top" ng-cloak style="max-width:200px;">
     <div class="product-media">
-        <a href="/product/{{product.code}}" md-ink-ripple>
-            <div class="product-img ar_1-1" style="background-image: url({{temp.photo1}});"></div>
+        <a href="">
+            <div class="product-img ar_1-1" md-ink-ripple ng-cloak style="background-image: url({{product.file1 | lowres}});"></div>
             <div class="hoverlay"></div>
         </a>
-        <div class="product-media-actions"></div>
+        <div class="product-media-actions">
+        </div>
+        <div class="promo-badge" ng-show="product.promo">
+            <md-tooltip>
+                Produs promo
+            </md-tooltip>
+            <md-icon md-svg-src="assets/icons/promo_badge.svg" style="width: 48px; height: 48px;"></md-icon>
+        </div>
     </div>
     <div class="product-info">
         <div class="info-container">
@@ -13,7 +20,7 @@
                 <p class="product-subtitle single-line secondary-text-color">{{product.subname}}</p>
             </div>
             <div class="excerpt-container">
-                <p class="product-excerpt secondary-text-color">{{product.excerpt}}</p>
+                <p class="product-excerpt secondary-text-color" gd-lines-limit="2">{{product.excerpt}}</p>
             </div>
             <div aria-hidden="true" class="description-container is-hidden">
                 <p>{{product.excerpt}}</p>
@@ -22,49 +29,50 @@
         </div>
         <div class="card-menu">
             <md-menu md-position-mode="target-right target">
-                <md-button type="button" aria-label="Open demo menu" class="md-icon-button">
+                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                     <md-icon md-menu-origin>
                         <i class="material-icons">&#xE5D4;</i>
                     </md-icon>
                 </md-button>
                 <md-menu-content width="3">
                     <md-menu-item>
-                        <md-button type="button">
+                        <md-button>
                             <div layout="row">
                                 <p flex>Adauga in cos</p>
                                 <md-icon class="md-icon" md-menu-align-target style="margin: auto 0 auto 0;">
                                     <i class="material-icons">&#xE854;</i>
                                 </md-icon>
                             </div>
-                            </gd-addtocart>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button type="button">
-                            <div layout="row">
-                                <p flex>Adauga la favorite</p>
-                                <md-icon class="md-icon" md-menu-align-target style="margin: auto 0 auto 0;">
-                                    <i class="material-icons">&#xE87D;</i>
-                                </md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-        </div>
+                        </gd-addtocart>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button>
+                        <div layout="row">
+                            <p flex>Adauga la favorite</p>
+                            <md-icon class="md-icon" md-menu-align-target ng-if="!product.favourite" style="margin: auto 0 auto 0;">
+                                <i class="material-icons">&#xE87E;</i>
+                            </md-icon>
+                            <md-icon class="md-icon" md-menu-align-target ng-if="product.favourite" style="margin: auto 0 auto 0;">
+                                <i class="material-icons">&#xE87D;</i>
+                            </md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
     </div>
-    <div class="product-actions">
-        <div class="stars-container">
-            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-            <div class="current-rating"></div>
-        </div>
-        <div class="price-container" ng-class="{promo : product.promo}" data="product" id="{{ product.code }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1">
-            <div class="price">RON {{(product.price).toFixed(2)}}</div>
-            <div ng-show="product.promo" class="promo-price">RON {{product.promo_price}}</div>
-        </div>
+</div>
+<div class="product-actions">
+    <div class="stars-container">
+        <md-icon class="tiny-star" md-svg-src="assets/icons/ic_star_tiny_14px.svg" ng-class="{'fill' : count <= product.rating}" ng-repeat="count in [1,2,3,4,5]"></md-icon>
     </div>
+    <div class="price-container" data="product" id="{{ product.code }}" name="{{ product.name }}" ng-class="{promo : product.promo}" price="{{ product.price }}" quantity="1">
+        <div class="promo-price" ng-show="product.promo">RON
+            {{product.promo_price | float}}</div>
+        <div class="price">
+            <span ng-show="!product.promo">RON</span>
+            {{product.price | float}}</div>
+    </div>
+</div>
 </div>

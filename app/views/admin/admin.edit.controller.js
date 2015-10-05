@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('EditCtrl', function($scope, $rootScope, $http, $filter, $parse, $timeout, $location, $stateParams, FileUploader, $interval, productRes) {
+        .controller('EditCtrl', function($scope, $rootScope, $http, $filter, $parse, $timeout, $location, $stateParams, FileUploader, $interval, $mdToast, productRes) {
 
             var firstChanged = false,
                 secondChanged = false,
@@ -19,26 +19,8 @@
             // Initial state
             var tempreset = {}
             var initCode = $stateParams.productCode;
-            if (!$rootScope.products) {
-                $scope.$on('products:filled', function() {
-                    var product = $filter('filter')($rootScope.products, function(d) {
-                        return d.code === $stateParams.productCode;
-                    })[0];
-                    $scope.product = angular.copy(product);
-                    $scope.product.code = $scope.product.code.substring(3);
-                    $scope.product.description = $scope.product.edit_description;
 
-                    $timeout(function() {
-                        //set temp photos
-                        tempreset.photo1 = $scope.product.file1;
-                        tempreset.photo2 = $scope.product.file2;
-                        tempreset.photo3 = $scope.product.file3;
-                        tempreset.photo4 = $scope.product.file4;
-                        tempreset.photo5 = $scope.product.file5;
-                        $scope.temp = angular.copy(tempreset);
-                    }, 1000);
-                });
-            } else if ($rootScope.products) {
+            var getProductDetails = function() {
                 var product = $filter('filter')($rootScope.products, function(d) {
                     return d.code === $stateParams.productCode;
                 })[0];
@@ -46,13 +28,34 @@
                 $scope.product.code = $scope.product.code.substring(3);
                 $scope.product.description = $scope.product.edit_description;
 
-                //set temp photos
-                tempreset.photo1 = $scope.product.file1;
-                tempreset.photo2 = $scope.product.file2;
-                tempreset.photo3 = $scope.product.file3;
-                tempreset.photo4 = $scope.product.file4;
-                tempreset.photo5 = $scope.product.file5;
-                $scope.temp = angular.copy(tempreset);
+                $timeout(function() {
+                    //set temp photos
+                    tempreset.photo1 = $scope.product.file1;
+                    tempreset.photo2 = $scope.product.file2;
+                    tempreset.photo3 = $scope.product.file3;
+                    tempreset.photo4 = $scope.product.file4;
+                    tempreset.photo5 = $scope.product.file5;
+                    $scope.temp = angular.copy(tempreset);
+                    $scope.temp.type = {};
+                    if (!$scope.product.sizes) {
+                        $scope.temp.sizes = [
+                            {
+                                name: "",
+                                count: 0
+                            }
+                        ];
+                    } else {
+                        $scope.temp.sizes = angular.copy($scope.product.sizes);
+                        $scope.product.hasSize = 1;
+                    }
+                }, 1000);
+            }
+            if (!$rootScope.products) {
+                $scope.$on('products:filled', function() {
+                    getProductDetails();
+                });
+            } else if ($rootScope.products) {
+                getProductDetails();
             }
             $scope.buttonTitle = "Editeaza Produs";
             $scope.state = "edit";
@@ -60,6 +63,67 @@
                 $scope.state = null;
                 $scope.product.code = $stateParams.productCode;
             });
+
+
+            // ---------------------------------
+            //     SIZES
+            // ---------------------------------
+
+            $scope.temp.sizes = angular.copy($scope.product.sizes);
+
+            $scope.addMoreSizes = function(name) {
+                var pSizes = $scope.product.sizes;
+                var tSizes = $scope.temp.sizes;
+                var newSize = {
+                    name: "",
+                    count: 0
+                };
+                $scope.product.sizes = angular.copy($scope.temp.sizes);
+                tSizes.push(newSize);
+            };
+
+            $scope.checkSize = function(size) {
+                if ($scope.checkSizeExists(size.name)) {
+                    showErrorToast();
+                    size.duplicate = true;
+                }else{
+                    size.duplicate = false;
+                }
+            };
+
+            $scope.checkSizeExists = function(name) {
+                var bool = false;
+                var pSizes = $scope.product.sizes;
+                console.log("check if " + name + " exists in product sizes");
+                angular.forEach(pSizes, function(size) {
+                    if (size.name === name) {
+                        bool = true;
+                    }
+                });
+                return bool;
+            };
+
+            $scope.removeSize = function(name, count) {
+                angular.forEach($scope.temp.sizes, function(size) {
+                    if (size.name === name && size.count == count) {
+                        var idx = $scope.temp.sizes.indexOf(size);
+                        if (idx > -1) {
+                            $scope.temp.sizes.splice(idx, 1);
+                        }
+                    }
+                });
+                $scope.product.sizes = angular.copy($scope.temp.sizes);
+            };
+
+            var showErrorToast = function() {
+                $mdToast.show(
+                    $mdToast.simple()
+                    .content('Aceasta marime exista deja!')
+                    .action('Ok')
+                    .hideDelay(0)
+                );
+            };
+
 
 
             // Uploaders
@@ -383,6 +447,11 @@
                     // catsUpdate();
                     $scope.product.code = $stateParams.productCode;
                     $scope.putData = angular.copy($scope.product);
+                    if ($scope.product.hasSize) {
+                        $scope.putData.sizes = angular.copy($scope.temp.sizes);
+                    } else {
+                        $scope.putData.sizes = null;
+                    }
                     //make the call
                     productRes.put($scope.putData)
                         .then(function(response) {

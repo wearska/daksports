@@ -53,10 +53,10 @@
             </md-input-container>
             <md-input-container flex>
                 <label>+ Categorie</label>
-                <input capitalize-first ng-model="product.type" ng-blur="defineShort()">
+                <input capitalize-first ng-blur="defineShort()" ng-model="product.type">
             </md-input-container>
             <md-input-container flex>
-                <input ng-disabled="state == 'edit'" ng-model="temp.type.short" ng-change="limitShort(temp.typeShort)">
+                <input aria-label="Diminutiv catergorie" ng-change="limitShort(temp.typeShort)" ng-disabled="state == 'edit'" ng-model="temp.type.short">
             </md-input-container>
         </div>
         <span flex="5"></span>
@@ -92,13 +92,7 @@
                 <div ng-message="number">Doar cifrele sunt permise</div>
             </div>
         </md-input-container>
-<!-- <md-input-container flex>
-            <label>Inventar</label>
-            <input name="inv" ng-model="product.inv" required step="any" type="number">
-            <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid && productForm.price.$dirty || productForm.submitted">
-                <div ng-message="number">Doar cifrele sunt permise</div>
-            </div>
-        </md-input-container> -->
+
         <md-input-container flex="">
             <label>Data publicarii</label>
             <input ng-model="product.added" type="date">
@@ -108,18 +102,19 @@
 <section layout layout-sm="column">
     <div class="size-settings" flex="75">
         <gd-heading title="Adauga marimi"></gd-heading>
-        <div class="size" flex flex-gt-sm="50" layout ng-repeat="size in product.sizes">
-            <md-input-container flex="">
+        <md-switch aria-label="Produs pe marimi" name="size" ng-false-value="0" ng-model="product.hasSize" ng-true-value="1"></md-switch>
+        <div class="size" flex flex-gt-sm="50" layout ng-repeat="size in temp.sizes">
+            <md-input-container flex="40" ng-class="{'md-input-invalid' : size.duplicate}">
                 <label>Marime</label>
-                <input capitalize-first ng-model="size.name" type="text" ng-change="checkSizeExists(size.name)">
+                <input capitalize ng-blur="checkSize(size)" ng-disabled="!product.hasSize" ng-model="size.name" type="text">
             </md-input-container>
             <span flex="10"></span>
-            <md-input-container flex="">
+            <md-input-container flex="40">
                 <label>Inventar</label>
-                <input ng-model="size.count" type="number">
+                <input ng-disabled="!product.hasSize" ng-model="size.count" type="number">
             </md-input-container>
-            <md-icon flex="5" md-svg-src="assets/icons/ic_add_box_24px.svg" ng-click="addMoreSizes()" style="cursor:pointer;" style="min-width: 0; width:24px;" width="24px"></md-icon>
-            <md-icon flex="5" md-svg-src="assets/icons/ic_remove_box_24px.svg" ng-click="removeSize(size.name, size.count)" ng-show="product.sizes.length > 1" style="cursor:pointer;" style="min-width: 0; width:24px;"></md-icon>
+            <md-icon flex="5" md-svg-src="assets/icons/ic_add_box_24px.svg" ng-click="addMoreSizes(size.name)" ng-show="product.hasSize && !size.duplicate" style="cursor:pointer; min-width: 0; width:24px;" width="24px"></md-icon>
+            <md-icon flex="5" md-svg-src="assets/icons/ic_remove_box_24px.svg" ng-click="removeSize(size.name, size.count)" ng-show="product.hasSize && temp.sizes.length> 1" style="cursor:pointer; min-width: 0; width:24px;"></md-icon>
         </div>
     </div>
 </section>
@@ -192,7 +187,7 @@
 </section>
 <!-- Submit -->
 <div layout layout-sm="column" style="margin: 32px -8px 0;">
-    <md-checkbox style="line-height: 32px;" ng-model="product.published" ng-true-value="1" ng-false-value="0">Publica produs automat</md-checkbox>
+    <md-checkbox ng-false-value="0" ng-model="product.published" ng-true-value="1" style="line-height: 32px;">Publica produs automat</md-checkbox>
     <md-button class="md-raised md-primary" flex ng-cloak ng-disabled="!productForm.$valid" type="submit">{{ buttonTitle }}</md-button>
 </md-input-container>
 </div>
