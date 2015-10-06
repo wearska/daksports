@@ -1,0 +1,117 @@
+<div class="page-content c-max">
+<!-- ACCOUNT DETAILS START -->
+    <div class="paper resting account-settings-card settings-card">
+        <h1 class="settings-card-title">Detalii cont</h1>
+        <div>
+            <span class="label">Email:</span>
+            {{$root.userData.email}}</div>
+        <div>
+            <span class="label">Creat in data de:</span>
+            {{$root.userData.created}}</div>
+        <div class="footer">
+            <div>Modifica datele de logare</div>
+            <md-button class="md-primary md-raised" md-theme="brand" style="margin-left: 0;">Modifica</md-button>
+        </div>
+        <div class="form">
+            <form action="index.html" class="" method="post"></form>
+        </div>
+    </div>
+<!-- ACCOUNT DETAILS END -->
+<!-- USER INFO START -->
+    <div class="paper resting account-settings-card settings-card">
+        <h1 class="settings-card-title">Detalii personale</h1>
+        <div class="picture-bubble" style="background-image:url({{$root.userData.user_photo}})"></div>
+        <div>
+            <span class="label">Nume:</span>
+            {{$root.userData.first_name}}
+            {{$root.userData.last_name}}</div>
+        <div>
+            <span class="label">Data nasterii:</span>
+            {{$root.userData.birthday}}</div>
+        <div>
+            <span class="label">Sex:</span>
+            {{$root.userData.gender}}</div>
+        <div class="gd-divider left-inset" style="margin:16px 0;margin-right: 128px;"></div>
+        <h2 class="settings-card-subtitle">Marimi</h2>
+        <div>
+            <span class="label">Incaltaminte:</span>
+            {{$root.userData.shoe_size}}</div>
+        <div>
+            <span class="label">Top-uri:</span>
+            {{$root.userData.top_size}}</div>
+        <div>
+            <span class="label">Pantaloni:</span>
+            {{$root.userData.pants_size}}</div>
+
+        <div class="footer">
+            <div>Pentru o experienta personalizata, completeaza toate detaliile</div>
+            <md-button class="md-primary md-raised" md-theme="brand" style="margin-left: 0;">Completeaza</md-button>
+        </div>
+        <div class="form">
+            <form action="index.html" class="" method="post"></form>
+        </div>
+    </div>
+<!-- USER INFO END -->
+<!-- ADDRESS INFO START -->
+    <div class="paper resting account-settings-card settings-card">
+        <h1 class="settings-card-title">Detalii livrare</h1>
+        <div class="header">
+            <div>Alege o adresa ca fiind cea principala
+                <br>
+                Poti modifica oricand in timpul procesului de checkout alegerea facuta</div>
+        </div>
+        <md-radio-group ng-model="default.address">
+            <md-radio-button value="adresa 1">
+                <span>bvd. Matei Basarab, bloc MB 16, scara A, ap. 17, Slobozia, jud. Ialomita</span>
+            </md-radio-button>
+            <md-radio-button value="adresa 2">
+                <span>D&P Advertising, Sos. Amara, nr. 19, incinta AMPA, 920049</span>
+            </md-radio-button>
+        </md-radio-group>
+        <div class="footer">
+            <md-button class="md-primary md-raised" md-theme="brand" style="margin-left: 0;">Adauga o adresa</md-button>
+        </div>
+        <div class="form">
+            <form action="index.html" class="" method="post"></form>
+        </div>
+        <div class="gd-divider left-inset" style="margin:16px 0;margin-right: 128px;"></div>
+        <h2 class="settings-card-subtitle">Detalii facturare</h2>
+        <md-radio-group ng-model="default.billing">
+            <md-radio-button value="personal">
+                <span>Persoana fizica</span>
+            </md-radio-button>
+            <md-radio-button value="business">
+                <span>Firma</span>
+            </md-radio-button>
+            <span class="add-business-link" ng-show="default.billing == 'business'">+ Adauga o firma</span>
+        </md-radio-group>
+        <div class="form">
+            <form action="index.html" class="" method="post"></form>
+        </div>
+    </div>
+<!-- ADDRESS INFO END -->
+<!-- SUBSCRIPTIONS AND NOTIFICATIONS START -->
+    <div class="paper resting account-settings-card settings-card">
+        <h1 class="settings-card-title">Abonari si notificari</h1>
+        <h2 class="settings-card-subtitle">Newsletter</h2>
+        <md-checkbox aria-label="Abonare newsletter" ng-model="data.cb1">Doresc sa ma abonez la newsletter-ul DAKSPORTS</md-checkbox>
+        <div class="gd-divider left-inset" style="margin:16px 0;margin-right: 128px;"></div>
+        <h2 class="settings-card-subtitle">Notificari si email-uri</h2>
+        <md-checkbox aria-label="Abonare newsletter" ng-model="data.cb2">Vreau sa particip la sondaje si chestionare</md-checkbox>
+        <md-checkbox aria-label="Abonare newsletter" ng-model="data.cb3">Adu-mi aminte sa-mi spun parerea despre produsele cumparate</md-checkbox>
+        <md-checkbox aria-label="Abonare newsletter" ng-model="data.cb3">Anunta-ma cand produsele selectate revin in stoc</md-checkbox>
+        <div class="footer">
+            <md-button class="md-primary md-raised" md-theme="brand" style="margin-left: 0;">Salveaza</md-button>
+        </div>
+    </div>
+<!-- SUBSCRIPTIONS AND NOTIFICATIONS END -->
+
+<!-- SETTINGS FOOTER START-->
+    <div class="settings-footer">
+        <a class="footer-link settings-tos-link">Termeni si conditii</a>
+        <span class="separator">•</span>
+        <a class="footer-link settings-privacy-link">Politica de confidentialitate</a>
+        <p>Copyright Daksports 2015</p>
+    </div>
+<!-- SETTINGS FOOTER END -->
+</div>

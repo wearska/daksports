@@ -15,7 +15,7 @@ while($row=mysqli_fetch_assoc($res)){
             };
         if($row['sizes'] !==false){
                 $row['sizes'] = unserialize($row['sizes']);
-            }
+            };
         $result[] = $row;
     }
 $obj = json_encode($result);

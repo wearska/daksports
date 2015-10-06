@@ -96,6 +96,25 @@
                 return filtered;
             };
         })
+        .filter('fitForMeFilter', function() {
+            return function(items, value) {
+                var filtered = [];
+                var gender = $rootScope.userData.gender;
+                var shoeSize = $rootScope.userData.shoe_size;
+                var topSize = $rootScope.userData.shoe_size;
+                var pantsSize = $rootScope.userData.shoe_size;
+
+                if (!value) {
+                    return items;
+                }
+                angular.forEach(items, function(item) {
+                    if (item.gender == gender || item.gender == 0) {
+                        filtered.push(item);
+                    }
+                });
+                return filtered;
+            };
+        })
         .filter('excludeFilter', function($rootScope) {
             return function(items, code) {
                 var filtered = [];

@@ -41,6 +41,16 @@
           view: 'account',
           controller: 'AuthCtrl'
         })
+        .state('account', {
+            url: '/account',
+            templateUrl: 'app/views/account/account.settings.view.html',
+            controller: 'AccountSettingsCtrl'
+        })
+        .state('account.settings', {
+            url: '/settings',
+            templateUrl: 'app/views/account/account.settings.view.html',
+            controller: 'AccountSettingsCtrl'
+        })
         .state('admin', {
           url: '/admin',
           templateUrl: 'app/views/admin/admin.view.html',
