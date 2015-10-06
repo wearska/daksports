@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2015 at 03:41 PM
+-- Generation Time: Oct 06, 2015 at 01:59 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
   `brand_name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `brands`
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `favourites` (
   `code` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
 
 --
 -- Dumping data for table `favourites`
@@ -84,7 +84,14 @@ INSERT INTO `favourites` (`id`, `userid`, `code`) VALUES
 (43, 'simplelogin:46', 'DAKRUN62773'),
 (44, 'simplelogin:46', 'DAKRUN51338'),
 (45, 'simplelogin:46', 'DAKTNS56462'),
-(46, 'simplelogin:46', 'DAKSWM97143');
+(46, 'simplelogin:46', 'DAKSWM97143'),
+(48, 'simplelogin:47', 'DAKTRN76239'),
+(49, 'simplelogin:47', 'DAKTNS56462'),
+(50, 'simplelogin:47', 'DAKSWM59976'),
+(51, 'simplelogin:47', 'DAKBSC14643'),
+(52, 'simplelogin:47', 'DAKBSC14642'),
+(53, 'simplelogin:47', 'DAKFTB28222'),
+(54, 'simplelogin:47', 'DAKFTB31166');
 
 -- --------------------------------------------------------
 
@@ -99,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `kinds` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `kind_UNIQUE` (`kind`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `kinds`
@@ -237,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   `added` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `reviews`
@@ -250,7 +257,8 @@ INSERT INTO `reviews` (`id`, `code`, `rating`, `title`, `review`, `published`, `
 (28, 'DAKTRN76239', 1, 'Naspa', 'Mauris non tempus felis. Aliquam ac leo nec purus ultricies malesuada. Mauris ut pharetra lacus. Proin et lacus massa. Nulla lobortis velit a risus egestas tempor. Donec lobortis lorem sed justo dictum luctus. Cras sodales sem ut feugiat placerat. Pellentesque dictum felis in ex vehicula, aliquet consectetur arcu tristique. Praesent sem erat, rutrum posuere pellentesque non, consequat vulputate arcu. Fusce mattis nunc eu nulla tristique, consectetur tristique purus imperdiet. Vestibulum nec tellus at risus molestie tristique. Maecenas consequat hendrerit faucibus. Praesent vehicula pharetra arcu, sed rhoncus magna vestibulum nec. Fusce blandit venenatis erat et accumsan.', 1, 'simplelogin:48', '2015-08-12'),
 (29, 'DAKTRN76239', 4, 'Exce-fucking-lent!', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum posuere elementum. Etiam finibus arcu eros, quis vehicula magna pulvinar quis. Phasellus tincidunt est convallis, feugiat ex sed, rhoncus sem. Phasellus eget neque id magna bibendum fermentum vel vel velit. Suspendisse potenti. Nunc quis eros et nibh dapibus pellentesque eget a metus. Aliquam eu gravida lacus, vitae vulputate lectus. Aenean vitae ligula ligula. Praesent nisl ligula, tempor eu dictum sit amet, finibus vel nulla.', 1, 'simplelogin:45', '2015-07-20'),
 (36, 'DAKTRN76239', 2, 'Why do we use it?', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.\n\nThe point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ''Content here, content here'', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ''lorem ipsum'' will uncover many web sites still in their infancy.\nVarious versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, 'simplelogin:45', '2015-09-30'),
-(37, 'DAKTRN76239', 4, 'Super!', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don''t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn''t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 1, 'simplelogin:46', '2015-09-30');
+(37, 'DAKTRN76239', 4, 'Super!', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don''t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn''t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 1, 'simplelogin:46', '2015-09-30'),
+(38, 'DAKPLO17708', 5, 'Super tari!', 'Am cumparat acesti pantofi acum 3 luni! Foarte buna calitate! Sunt super multumit de ei!', 1, 'simplelogin:47', '2015-10-06');
 
 -- --------------------------------------------------------
 
@@ -266,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `types` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `type_UNIQUE` (`type`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `types`
@@ -302,10 +310,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `created` datetime NOT NULL,
-  `address` varchar(200) NOT NULL,
-  `billing_address` varchar(200) NOT NULL,
-  `delivery_address` varchar(200) NOT NULL,
+  `birthday` date NOT NULL,
+  `gender` tinyint(1) NOT NULL,
   `user_photo` varchar(150) DEFAULT NULL,
+  `shoe_size` varchar(5) NOT NULL,
+  `top_size` varchar(5) DEFAULT NULL,
+  `pants_size` varchar(5) DEFAULT NULL,
+  `addresses` blob NOT NULL,
+  `subscriptions` blob NOT NULL,
   `admin` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `ID_UNIQUE` (`uid`)
@@ -315,11 +327,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`uid`, `username`, `email`, `first_name`, `last_name`, `created`, `address`, `billing_address`, `delivery_address`, `user_photo`, `admin`) VALUES
-('simplelogin:45', '', 'monodnb@gmail.com', 'Ionut', 'Achim', '2015-08-22 08:41:06', '', '', '', 'uploads/userpics/monodnb@gmail.com/profile.jpg', 1),
-('simplelogin:46', '', 'ninja.record@gmail.com', 'Elena', 'Achim', '2015-08-22 08:43:01', '', '', '', 'uploads/userpics/ninja.record@gmail.com/ninja.jpg', 0),
-('simplelogin:47', '', 'andrei.bogdanel.achim@gmail.com', 'Andrei', 'Achim', '2015-08-22 08:45:10', '', '', '', 'uploads/userpics/andrei.bogdanel.achim@gmail.com/billy.jpg', 0),
-('simplelogin:48', '', 'maria.achim62@gmail.com', 'Maria', 'Achim', '2015-08-22 08:46:35', '', '', '', 'uploads/userpics/maria.achim62@gmail.com/mamitia.jpg', 0);
+INSERT INTO `users` (`uid`, `username`, `email`, `first_name`, `last_name`, `created`, `birthday`, `gender`, `user_photo`, `shoe_size`, `top_size`, `pants_size`, `addresses`, `subscriptions`, `admin`) VALUES
+('simplelogin:45', '', 'monodnb@gmail.com', 'Ionut', 'Achim', '2015-08-22 08:41:06', '1985-03-23', 1, 'uploads/userpics/monodnb@gmail.com/profile.jpg', '42', 'M', 'M', '', '', 1),
+('simplelogin:46', '', 'ninja.record@gmail.com', 'Elena', 'Achim', '2015-08-22 08:43:01', '1987-11-07', 2, 'uploads/userpics/ninja.record@gmail.com/ninja.jpg', '39', 'S', 'M', '', '', 0),
+('simplelogin:47', '', 'andrei.bogdanel.achim@gmail.com', 'Andrei', 'Achim', '2015-08-22 08:45:10', '1989-03-03', 1, 'uploads/userpics/andrei.bogdanel.achim@gmail.com/billy.jpg', '42', 'L', 'L', '', '', 0),
+('simplelogin:48', '', 'maria.achim62@gmail.com', 'Maria', 'Achim', '2015-08-22 08:46:35', '1962-11-17', 2, 'uploads/userpics/maria.achim62@gmail.com/mamitia.jpg', '38', 'L', 'M', '', '', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
