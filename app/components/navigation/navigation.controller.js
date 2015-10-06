@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, ngCart,Counter, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter) {
+        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, ngCart,Counter, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter, FitFilter) {
 
             // LOGOUT
             this.logout = function() {
@@ -16,6 +16,7 @@
             $scope.KindFilter = KindFilter;
             $scope.PriceFilter = PriceFilter;
             $scope.PromoFilter = PromoFilter;
+            $scope.FitFilter = FitFilter;
 
             // MENU ITEMS
             this.navItems = [{

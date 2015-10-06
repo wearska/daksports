@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .factory('Counter', function($rootScope, $filter, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter){
+        .factory('Counter', function($rootScope, $filter, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter, FitFilter){
             var obj = {};
             var res = {};
             obj.count = function(query, list) {
@@ -11,31 +11,43 @@
                     res = $filter('kindFilter')(res, KindFilter.selected);
                     res = $filter('priceFilter')(res, PriceFilter.selected);
                     res = $filter('promoFilter')(res, PromoFilter.state);
+                    res = $filter('fitForMeFilter')(res, FitFilter.state);
                     return $filter('brandFilter')(res, query).length;
                 }else if(list === 'types'){
                     res = $filter('brandFilter')($rootScope.products, BrandFilter.selected);
                     res = $filter('kindFilter')(res, KindFilter.selected);
                     res = $filter('priceFilter')(res, PriceFilter.selected);
                     res = $filter('promoFilter')(res, PromoFilter.state);
+                    res = $filter('fitForMeFilter')(res, FitFilter.state);
                     return $filter('typeFilter')(res, query).length;
                 }else if(list === 'kinds'){
                     res = $filter('brandFilter')($rootScope.products, BrandFilter.selected);
                     res = $filter('typeFilter')(res, TypeFilter.selected);
                     res = $filter('priceFilter')(res, PriceFilter.selected);
                     res = $filter('promoFilter')(res, PromoFilter.state);
+                    res = $filter('fitForMeFilter')(res, FitFilter.state);
                     return $filter('kindFilter')(res, query).length;
                 }else if(list === 'prices'){
                     res = $filter('brandFilter')($rootScope.products, BrandFilter.selected);
                     res = $filter('typeFilter')(res, TypeFilter.selected);
                     res = $filter('kindFilter')(res, KindFilter.selected);
                     res = $filter('promoFilter')(res, PromoFilter.state);
+                    res = $filter('fitForMeFilter')(res, FitFilter.state);
                     return $filter('priceFilter')(res, query).length;
                 }else if(list === 'promos'){
                     res = $filter('brandFilter')($rootScope.products, BrandFilter.selected);
                     res = $filter('typeFilter')(res, TypeFilter.selected);
                     res = $filter('kindFilter')(res, KindFilter.selected);
                     res = $filter('priceFilter')(res, PriceFilter.selected);
+                    res = $filter('fitForMeFilter')(res, FitFilter.state);
                     return $filter('promoFilter')(res, query).length;
+                }else if(list === 'fit'){
+                    res = $filter('brandFilter')($rootScope.products, BrandFilter.selected);
+                    res = $filter('typeFilter')(res, TypeFilter.selected);
+                    res = $filter('kindFilter')(res, KindFilter.selected);
+                    res = $filter('priceFilter')(res, PriceFilter.selected);
+                    res = $filter('promoFilter')(res, PromoFilter.state);
+                    return $filter('fitForMeFilter')(res, query).length;
                 }
             }
             
@@ -106,6 +118,11 @@
             return obj;
         })
         .factory('PromoFilter', function() {
+            var obj = {};
+            obj.state = 0;
+            return obj;
+        })
+        .factory('FitFilter', function() {
             var obj = {};
             obj.state = 0;
             return obj;

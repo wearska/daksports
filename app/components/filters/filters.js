@@ -96,20 +96,32 @@
                 return filtered;
             };
         })
-        .filter('fitForMeFilter', function() {
+        .filter('fitForMeFilter', function($rootScope) {
             return function(items, value) {
                 var filtered = [];
-                var gender = $rootScope.userData.gender;
-                var shoeSize = $rootScope.userData.shoe_size;
-                var topSize = $rootScope.userData.shoe_size;
-                var pantsSize = $rootScope.userData.shoe_size;
-
-                if (!value) {
+                console.log("fit filter trigger");
+                console.log(value);
+                if (!value || !$rootScope.userData) {
                     return items;
                 }
+                var gender = $rootScope.userData.gender;
+                var shoeSize = $rootScope.userData.shoe_size;
+                var topSize = $rootScope.userData.top_size;
+                var pantsSize = $rootScope.userData.pants_size;
+                console.log("filtering");
                 angular.forEach(items, function(item) {
                     if (item.gender == gender || item.gender == 0) {
-                        filtered.push(item);
+                        if (item.sizes) {
+                            angular.forEach(item.sizes, function(size) {
+                                if (size.name == shoeSize || size.name == topSize || size.name == pantsSize) {
+                                    if (size.count > 0) {
+                                        filtered.push(item);
+                                    }
+                                }
+                            });
+                        } else if (!item.sizes) {
+                            filtered.push(item);
+                        }
                     }
                 });
                 return filtered;
@@ -118,8 +130,8 @@
         .filter('excludeFilter', function($rootScope) {
             return function(items, code) {
                 var filtered = [];
-                angular.forEach(items, function(item){
-                    if (item.code != code){
+                angular.forEach(items, function(item) {
+                    if (item.code != code) {
                         filtered.push(item);
                     }
                 })

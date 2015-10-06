@@ -75,3 +75,11 @@
         </div>
     </div>
 </div>
+<!-- fit filter -->
+<div class="nav-section-divider"></div>
+<div>
+    <md-checkbox class="fit-check" ng-model="FitFilter.state" ng-true-value="1" ng-false-value="0" ng-class="{selected : FitFilter.state}">
+        Doar pentru mine
+        <span style="color: rgba(0,0,0,.54)">• ({{ Counter.count(1, 'fit')}})</span>
+    </md-checkbox>
+</div>

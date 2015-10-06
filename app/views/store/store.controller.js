@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('StoreCtrl', function($rootScope, $scope, $state, $window, $filter, $timeout, Counter, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter, $stateParams) {
+        .controller('StoreCtrl', function($rootScope, $scope, $state, $window, $filter, $timeout, Counter, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter, FitFilter, $stateParams) {
 
             var page = angular.element($window).find('.page-content');
             // $rootScope.state = $state.current.name;
@@ -64,6 +64,7 @@
             $scope.KindFilter = KindFilter;
             $scope.PriceFilter = PriceFilter;
             $scope.PromoFilter = PromoFilter;
+            $scope.FitFilter = FitFilter;
 
             //----------------------------
             // SORT LIST

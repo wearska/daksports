@@ -16,6 +16,8 @@ while($row=mysqli_fetch_assoc($res)){
             };
         if($row['gender'] == 2){
                 $row['gender'] = 'feminin';
+            }else if($row['gender'] == 1){
+                $row['gender'] = 'masculin';
             };
         if($row['addresses'] !== false){
                 $row['addresses'] = unserialize($row['addresses']);
