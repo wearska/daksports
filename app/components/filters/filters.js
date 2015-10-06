@@ -99,8 +99,6 @@
         .filter('fitForMeFilter', function($rootScope) {
             return function(items, value) {
                 var filtered = [];
-                console.log("fit filter trigger");
-                console.log(value);
                 if (!value || !$rootScope.userData) {
                     return items;
                 }
@@ -108,7 +106,6 @@
                 var shoeSize = $rootScope.userData.shoe_size;
                 var topSize = $rootScope.userData.top_size;
                 var pantsSize = $rootScope.userData.pants_size;
-                console.log("filtering");
                 angular.forEach(items, function(item) {
                     if (item.gender == gender || item.gender == 0) {
                         if (item.sizes) {
