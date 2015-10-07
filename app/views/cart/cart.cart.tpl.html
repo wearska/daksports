@@ -9,7 +9,7 @@
             <span class="sort-quantity"></span>
             <span class="sort-total">Cosul tau este gol</span>
         </div>
-        <a href="/" aria-label="refresh" class="back-to-shop" md-button>
+        <a aria-label="refresh" class="back-to-shop" href="/" md-button>
             <md-tooltip>
                 Intoarce-te la cumparaturi
             </md-tooltip>
@@ -26,9 +26,9 @@
             <span class="sort-quantity">Cant.</span>
             <span class="sort-total">Total</span>
         </div>
-        <md-button aria-label="refresh" class="cart-clear" ng-click="ngCart.empty()">
+        <md-button aria-label="Goleste cos" class="cart-clear" ng-click="ngCart.empty()">
             <md-tooltip>
-                Elimina tot din cos
+                Goleste cos
             </md-tooltip>
             <md-icon md-svg-src="assets/icons/ic_delete_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
         </md-button>
@@ -39,22 +39,30 @@
             <h3 class="item-name single-line" ng-bind="item.getName()"></h3>
             <p class="item-subname single-line" ng-bind="item._data.subname"></p>
         </div>
-        <div class="order-info" flex>
+        <div class="order-info" flex layout>
             <p class="item-price">{{ item.getPrice() | currency:""}}
                 RON</p>
-            <md-input-container class="item-qty">
-                <md-select aria-label="Quantity" ng-change="item.setQuantity(item._data.orderQty, false)" ng-model="item._data.orderQty">
-                    <md-option ng-repeat="qty in item._data.qtySelect" ng-value="qty">{{qty}}</md-option>
-                </md-select>
-            </md-input-container>
-<!-- <div class="item-qty">
-                <md-button class="md-icon-button qty-adjust" ng-class="{'disabled':item.getQuantity()==1}" ng-click="item.setQuantity(-1, true)"><i class="material-icons">&#xE15D;</i></md-button>
-                <p class="qty-display">{{ item.getQuantity() | number }} buc.</p>
-                <md-button class="md-icon-button qty-adjust" ng-click="item.setQuantity(1, true)"><i class="material-icons">&#xE148;</i></md-button>
-            </div> -->
+            <div class="item-qty" flex="" layout>
+                <md-input-container class="qty-display" flex="40">
+                    <md-select aria-label="Quantity" ng-model="item._data.order.size">
+                        <md-option ng-repeat="size in item._data.sizes" ng-value="size">{{size.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="qty-adjust" flex="40">
+                    <label>Cantitate</label>
+                    <input type="number" name="orderCount" ng-model="item._quantity" min="1" max="{{item._data.order.size.count}}">
+                </md-input-container>
+                <span flex="20"></span>
+            </div>
             <p class="item-price total" ng-model="orderTotal">{{ item.getTotal() | currency:"" }}
                 RON</p>
         </div>
+        <md-button aria-label="Elimina din cos" class="cart-remove" ng-click="ngCart.removeItem()">
+            <md-tooltip>
+                Elimina din cos
+            </md-tooltip>
+            <md-icon md-svg-src="assets/icons/ic_close_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+        </md-button>
         <div class="gd-divider"></div>
     </li>
 </ul>

@@ -51,6 +51,15 @@
                 }
             };
         })
+        .filter('maxCount', function() {
+            return function(input, value) {
+                if (input != null && input != undefined && input > value) {
+                    return value;
+                }else{
+                    return input;
+                }
+            };
+        })
         .filter('quantize', function() {
             return function(input, steps) {
                 var step = 100 / steps;

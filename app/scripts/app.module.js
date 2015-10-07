@@ -15,6 +15,7 @@
             'angularFileUpload',
             'firebase',
             'ngCart',
-            'ngColorThief'
+            'ngColorThief',
+            'gdCart'
         ]);
 })();

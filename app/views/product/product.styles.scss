@@ -216,7 +216,7 @@
 #product-reviews {
     padding: 16px;
     overflow: hidden;
-    transition: height 0.28s ease-in-out;
+    transition: all 0.28s ease-in-out;
     will-change: height;
     .rating-star {
         color: #bdbdbd;

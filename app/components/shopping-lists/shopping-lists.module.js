@@ -1,18 +1,10 @@
 (function() {
-        'use strict';
+    'use strict';
 
-        angular
-            .module('ngShoppingLists', [])
-            
-            .config([function() {
+    angular
+        .module('gdCart', [])
+        .run(['$rootScope', 'gdShoppingList', function($rootScope, gdShoppingList) {
+            gdShoppingList.pushToCart();
+        }])
 
-            }])
-            
-            .provider('$ngShoppingLists', function() {
-                this.$get = function() {};
-            })
-            
-            .run(function(ngShoppingLists) {
-                ngShoppingLists.init();
-            });
 })();

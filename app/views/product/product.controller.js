@@ -102,6 +102,10 @@
 
             $scope.addToCart = function() {
                 if ($scope.orderForm.$valid) {
+                    $scope.product.order = {};
+                    $scope.product.order.size = $scope.order.size;
+                    $scope.product.order.count = $scope.order.quantity;
+                    console.log($scope.product);
                     ngCart.addItem($scope.product.code, $scope.product.name, parseFloat($scope.product.price), parseInt($scope.order.quantity), $scope.product);
                 }else {
                     console.log("order invalid");

@@ -293,8 +293,12 @@
             padding: 0 60% 0 0;
 
             .product-media-actions{
+                // pointer-events: none;
                 .scrim{
                     display: none;
+                }
+                .add-to-favourites{
+                    // display: none;
                 }
             }
             .hoverlay {
@@ -314,6 +318,8 @@
             position: absolute;
             top: 0;
             left: 40%;
+            right: 0;
+            width: auto;
             .excerpt-container {
                 display: block;
                 p {

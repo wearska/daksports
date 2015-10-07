@@ -1,24 +1,35 @@
 <div class="page-content c-max">
-    <md-button ng-click="setSizes()">TEST</md-button>
+    <md-button ng-click="pushList()">TEST</md-button>
 
-    <!-- <div class="container" style="background-image:url({{myImage}})">
-        <img color-thief color-thief-dominant="colors.myDominantColor" ng-hide="true" ng-src="{{myImage}}">
-    </div> -->
+    <div class="" layout layout-wrap>
+        <md-button class="md-primary md-raised" md-theme="brand" ng-click="gdCart.addItem(gdCart.activeList(), product, 'M', 1)" ng-repeat="product in $root.products | limitTo : 10">{{product.name}}</md-button>
+    </div>
 
-    <!-- <div class="gd-cluster">
-        <div class="gd-cluster-background" ng-style="{'background-color': 'rgb('+colors.myDominantColor[0]+', '+colors.myDominantColor[1]+', '+colors.myDominantColor[2]+')'}">
-            <div class="background-image-container" style="background-image:url({{myImage}})">
-                <img ng-hide="true" aria-hidden="true" class="background-image" color-thief color-thief-dominant="colors.myDominantColor" ng-src="{{myImage}}">
-            </div>
-            <div class="background-gradient" ng-style="{'box-shadow':'-100px 0px 120px 0px rgb('+colors.myDominantColor[0]+', '+colors.myDominantColor[1]+', '+colors.myDominantColor[2]+')'}"></div>
-            <div class="cluster-items" layout>
-                <div class="grid-cell" flex="33" ng-repeat="item in $root.products | limitTo : 3">
-                    <gd-card card-resource="item"></gd-card>
+    <div layout="row" layout-wrap>
+        <div class="grid-cell" flex="25" ng-repeat="shoppingList in gdCart.lists">
+            <div class="gd-shopping-list paper resting" data-id="Dance%2FElectronic" data-library-status="" data-playback-status="" data-size="material" data-type="tg">
+                <div class="image-wrapper ">
+                    <div class="image-inner-wrapper">
+                        <div class="composite-wrapper" data-image-count="{{shoppingList.items.length | maxCount:5}}">
+                            <div class="item-image" ng-repeat="item in shoppingList.items | limitTo: 5" style="background-image:url({{item.product.file1}})" data-index="{{$index}}" draggable="false">
+                                <div class="hoverlay" style="background-color:rgba(0,0,0,.24); opacity:{{1 - ($index*0.2)}}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <md-button class="md-fab md-mini md-primary send-to-cart" aria-label="Trimite lista in cos" md-theme="brand">
+                        <md-tooltip>Trimite in cos</md-tooltip>
+                        <md-icon md-svg-src="assets/icons/ic_send_24px.svg"></md-icon>
+                    </md-button>
+                </div>
+                <div class="details">
+                    <div class="details-inner">
+                        <a class="title fade-out tooltip " href="">{{shoppingList.id}}</a>
+                        <a class="sub-title fade-out tooltip ">{{shoppingList.items.length}}
+                            produse · {{gdCart.total(shoppingList.id) | float}} RON</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div> -->
-
-
+    </div>
 
 </div>
