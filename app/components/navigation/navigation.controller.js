@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, ngCart,Counter, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter, FitFilter) {
+        .controller('NavCtrl', function($rootScope, $scope, $location, $timeout, Auth, gdShoppingCart ,Counter, BrandFilter, TypeFilter, KindFilter, PriceFilter, PromoFilter, FitFilter) {
 
             // LOGOUT
             this.logout = function() {
@@ -10,6 +10,7 @@
             };
 
             // FILTERS
+            $scope.gdShoppingCart = gdShoppingCart;
             $scope.Counter = Counter;
             $scope.BrandFilter = BrandFilter;
             $scope.TypeFilter = TypeFilter;
@@ -78,11 +79,6 @@
                 }
             }];
 
-            // CART ITEMS
-            $scope.cartItemsCount = ngCart.getTotalItems() + "";
-            $scope.$on('ngCart:change', function(event, data) {
-                $scope.cartItemsCount = ngCart.getTotalItems() + "";
-            });
 
         })
         .controller('NavSectionCtrl', function($rootScope, $scope, BrandFilter) {

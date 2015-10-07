@@ -3,9 +3,9 @@
     <div class="nav-section">
         <a class="nav-item-container" href="/auth/login" md-ink-ripple ng-if="!$root.logged">
             <md-icon md-svg-src="assets/icons/ic_account_circle_24px.svg">
-                <span class="badge" ng-show="cartItemsCount > 0">{{cartItemsCount}}</span>
+                <span class="badge" ng-show="gdShoppingCart.count() > 0">{{gdShoppingCart.count()}}</span>
             </md-icon>Contul meu</a>
-        <a class="nav-item-container" href="/account" md-ink-ripple ng-if="$root.logged">
+        <a class="nav-item-container" href="/test" md-ink-ripple ng-if="$root.logged">
             <div aria-label="View Account" class="account-photo" class="md-icon-button l-right" style="background-image: url({{$root.userData.user_photo}})"></div>{{$root.userData.email}}</a>
 <!-- <a class="nav-item-container" href="/auth/create" ng-hide="$root.logged">
             <md-icon md-svg-src=""></md-icon>Inregistreaza-te</a> -->
@@ -37,7 +37,7 @@
     <div class="nav-section" ng-cloak>
         <a class="nav-item-container" href="{{item.ref}}" md-ink-ripple ng-repeat="item in nav.navItems">
             <md-icon md-svg-src="{{item.icon}}"></md-icon>
-            <span class="badge" ng-if="item.ref == '/cart'" ng-show="cartItemsCount > 0">{{cartItemsCount}}</span>{{item.title}}</a>
+            <span class="badge" ng-if="item.ref == '/cart'" ng-show="gdShoppingCart.count() > 0">{{gdShoppingCart.count()}}</span>{{item.title}}</a>
 
         <a class="nav-item-container button" data-type="sub" href="">
             <md-button class=" md-primary md-raised" md-theme="brand">Newsletter</md-button>

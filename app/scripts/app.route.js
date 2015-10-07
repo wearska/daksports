@@ -43,13 +43,18 @@
         })
         .state('account', {
             url: '/account',
-            templateUrl: 'app/views/account/account.settings.view.html',
+            templateUrl: 'app/views/account/account.view.html',
             controller: 'AccountSettingsCtrl'
         })
         .state('account.settings', {
             url: '/settings',
             templateUrl: 'app/views/account/account.settings.view.html',
             controller: 'AccountSettingsCtrl'
+        })
+        .state('account.lists', {
+            url: '/lists',
+            templateUrl: 'app/views/account/account.lists.view.html',
+            controller: 'AccountListsCtrl'
         })
         .state('admin', {
           url: '/admin',

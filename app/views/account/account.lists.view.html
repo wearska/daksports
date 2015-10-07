@@ -14,9 +14,13 @@
                             </div>
                         </div>
                     </div>
-                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary send-to-cart" md-theme="brand" ng-click="shoppingList.sendToCart()">
+                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary send-to-cart" ng-click="shoppingList.sendToCart()" ng-show="!shoppingList.inCart">
                         <md-tooltip>Trimite in cos</md-tooltip>
-                        <md-icon md-svg-src="assets/icons/ic_send_24px.svg"></md-icon>
+                        <md-icon md-svg-src="assets/icons/ic_sync_disabled_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary md-hue-1 send-to-cart" ng-click="shoppingList.removeFromCart()" ng-show="shoppingList.inCart">
+                        <md-tooltip>Trimite in cos</md-tooltip>
+                        <md-icon md-svg-src="assets/icons/ic_sync_24px.svg"></md-icon>
                     </md-button>
                 </div>
                 <div class="details">
@@ -45,7 +49,7 @@
             </div>
         </div>
     </div>
-
+    
     <div class="" id="cart">
         <md-list ng-cloak>
             <md-subheader class="md-no-sticky">Lista cos</md-subheader>
@@ -58,4 +62,5 @@
             <md-divider></md-divider>
         </md-list>
     </div>
+    
 </div>
