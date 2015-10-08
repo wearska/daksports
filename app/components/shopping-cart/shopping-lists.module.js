@@ -6,7 +6,8 @@
         .run(['$rootScope', 'gdShoppingLists', function($rootScope, gdShoppingLists) {
             gdShoppingLists.newList();
             var firstList = gdShoppingLists.activeList();
-            firstList.sendToCart();            
+            // firstList.sendToCart();
+            firstList.syncToCart();
         }])
 
 })();

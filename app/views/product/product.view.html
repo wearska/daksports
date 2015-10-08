@@ -53,12 +53,13 @@
                     <div class="product-actions">
                         <form name="orderForm" ng-submit="orderProduct(order)" novalidate>
                             <div class="" layout-gt-sm="row" layout="column">
-                                <md-input-container class="item-size" flex flex-gt-md="20">
+                                <md-input-container class="item-size" flex flex-gt-md="20" ng-show="product.sizes.length > 1 || product.sizes[0].name">
                                     <label>Selecteaza marime</label>
-                                    <md-select aria-label="Size select" ng-model="order.size" required>
+                                    <md-select aria-label="Size select" ng-model="order.size" required="{{product.sizes.name || product.sizes[0].name}}">
                                         <md-option ng-repeat="size in product.sizes" ng-value="size">{{size.name}}</md-option>
                                     </md-select>
                                 </md-input-container>
+                                <span flex="5" show-gt-sm ng-show="product.sizes.length > 1"></span>
                                 <md-input-container class="item-count" flex flex-gt-md="10">
                                     <label>Cantitate</label>
                                     <input min="1" max="{{order.size.count}}" name="itemCount" ng-model="order.quantity" step="any" type="number">

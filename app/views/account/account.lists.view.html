@@ -5,7 +5,7 @@
         <md-button class="md-primary md-raised" md-theme="brand" ng-click="gdShoppingLists.addItem(gdShoppingLists.activeList(), product, 'M', 1)" ng-repeat="product in $root.products | limitTo : 10">{{product.name}}</md-button>
     </div>
 
-    
+
     <div class="shopping-lists" layout-wrap layout="row">
         <div class="grid-cell list-wrapper" flex="25" ng-class="{active : shoppingList.active}" ng-click="gdShoppingLists.makeActive(shoppingList.id)" ng-repeat="shoppingList in gdShoppingLists.lists">
             <div class="gd-shopping-list paper resting" data-size="material">
@@ -17,11 +17,11 @@
                             </div>
                         </div>
                     </div>
-                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary send-to-cart" ng-click="shoppingList.sendToCart()" ng-show="!shoppingList.inCart">
+                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary sync-to-cart" ng-click="shoppingList.syncToCart()" ng-show="!shoppingList.inCart">
                         <md-tooltip>Trimite in cos</md-tooltip>
                         <md-icon md-svg-src="assets/icons/ic_sync_disabled_24px.svg"></md-icon>
                     </md-button>
-                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary md-hue-1 send-to-cart" ng-click="shoppingList.removeFromCart()" ng-show="shoppingList.inCart">
+                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary md-hue-1 synced-to-cart" ng-click="shoppingList.unSyncToCart()" ng-show="shoppingList.inCart">
                         <md-tooltip>Trimite in cos</md-tooltip>
                         <md-icon md-svg-src="assets/icons/ic_sync_24px.svg"></md-icon>
                     </md-button>
@@ -58,5 +58,9 @@
             <md-divider></md-divider>
         </md-list>
     </div>
+
+    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary send-to-cart" ng-click="gdShoppingCart.getItems()">
+        <md-tooltip>Get Cart Items</md-tooltip>
+    </md-button>
 
 </div>

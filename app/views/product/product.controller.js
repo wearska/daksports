@@ -12,7 +12,6 @@
             $scope.kindsFilter = [];
 
             var info = $location.protocol();
-            console.log(info);
 
             // Make appbar transparent
             $rootScope.transparentAppbar = true;
@@ -61,7 +60,10 @@
 
                 $scope.order = {
                     data: $scope.product,
-                    quantity: 1
+                    quantity: 1,
+                    size: {
+                        name: ""
+                    }
                 };
             };
 

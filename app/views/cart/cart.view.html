@@ -12,7 +12,96 @@
         </div>
     </gd-heading>
 
-    <gd-cart></gd-cart>
+    <ul class="paper resting cart-list" layout="column">
+        <div class="cart-list-header alert" flex layout ng-show="!cart.count() > 0">
+            <md-icon class="sort-image" md-svg-icon=""></md-icon>
+            <div class="title-block" flex>
+                <span class="sort-title"></span>
+            </div>
+            <div class="info-block" flex>
+                <span class="sort-price"></span>
+                <span class="sort-quantity"></span>
+                <span class="sort-total">Cosul tau este gol</span>
+            </div>
+            <a aria-label="refresh" class="back-to-shop" href="/" md-button>
+                <md-tooltip>
+                    Intoarce-te la cumparaturi
+                </md-tooltip>
+                <md-icon md-svg-src="assets/icons/ic_shopping_basket_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+            </a>
+        </div>
+        <div class="cart-list-header" flex layout ng-show="cart.count() > 0">
+            <md-icon class="sort-image" md-svg-icon="assets/icons/ic_photo_white_24px.svg"></md-icon>
+            <div class="title-block" flex>
+                <span class="sort-title">Produs</span>
+            </div>
+            <div class="info-block" flex>
+                <span class="sort-price">Pret</span>
+                <span class="sort-quantity">Cant.</span>
+                <span class="sort-total">Total</span>
+            </div>
+            <md-button aria-label="Goleste cos" class="cart-clear" ng-click="ngCart.empty()">
+                <md-tooltip>
+                    Goleste cos
+                </md-tooltip>
+                <md-icon md-svg-src="assets/icons/ic_delete_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+            </md-button>
+        </div>
+        <li class="cart-item" flex layout layout-align="center" ng-class="{grey : $odd}" ng-repeat="item in cart.items track by $index">
+            <div class="item-image ar_1-1" ng-click="$parent.sayThis()" style="background-image:url({{item.product.file1}})"></div>
+            <div class="item-info" flex>
+                <h3 class="item-name single-line" ng-bind="item.product.name"></h3>
+                <p class="item-subname single-line" ng-bind="item.product.subname"></p>
+            </div>
+            <div class="order-info" flex layout>
+                <p class="item-price">{{ item.product.new_price | currency:""}}
+                    RON</p>
+                <div class="item-qty" flex="" layout>
+                    <md-input-container class="qty-display" flex="40" ng-show="item.product.sizes.length > 1 || item.product.sizes[0].name">
+                        <md-select aria-label="Quantity" ng-model="item.size" ng-change="">
+                            <md-option ng-repeat="size in item.product.sizes" ng-value="size.name">{{size.name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="qty-adjust" flex="40">
+                        <label>Cantitate</label>
+                        <input type="number" name="orderCount" ng-model="item.count" min="1" max="{{cart.getItemMaxCount(item)}}">
+                    </md-input-container>
+                    <span flex="20"></span>
+                </div>
+                <p class="item-price total" ng-model="orderTotal">{{ item.count * item.product.new_price | currency:"" }}
+                    RON</p>
+            </div>
+            <md-button aria-label="Elimina din cos" class="cart-remove" ng-click="cart.removeItem(item)">
+                <md-tooltip>
+                    Elimina din cos
+                </md-tooltip>
+                <md-icon md-svg-src="assets/icons/ic_close_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+            </md-button>
+            <div class="gd-divider"></div>
+        </li>
+    </ul>
+    <div class="order-total-block">
+        <div class="order-total-display">
+            <div class="" layout layout-align="center center" style="height: 30px; margin-top: 34px;">
+                <span flex></span>
+                <span flex></span>
+                <md-input-container flex>
+                    <label>Aplica un cod de reducere</label>
+                    <input ng-model="orderDiscount">
+                </md-input-container>
+                <p class="order-discount single-line" flex>Discount: 0</p>
+            </div>
+            <p class="order-transport single-line">Cost transport:
+                {{ ngCart.getShipping() | currency:"RON " }}</p>
+            <p class="order-total single-line">
+                <span class="order-total" style="font-weight:400; color: #e12a2a">
+                    {{ cart.getTotal() | currency:"" }}</span>Total RON:
+            </p>
+        </div>
+    </div>
+
+    <div class="gd-divider"></div>
+
 
 <!-- Others also bought -->
     <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" start="0" title="Altii au mai cumparat" xs="2"></gd-carousel>

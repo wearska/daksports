@@ -30,53 +30,16 @@
                         active: true,
                         inCart: false,
                         items: [],
-                        sendToCart: function() {
+                        syncToCart: function(){
                             this.inCart = true;
-                            var items = angular.copy(this.items);
-                            var deferred = $q.defer();
-                            var promise = deferred.promise;
-                            promise.then(function() {
-                                angular.forEach(items, function(item) {
-                                    if (gdShoppingCart.products.indexOf(item.product.code) > -1) {
-                                        var existingItem = $filter('filter')(gdShoppingCart.items, function(d) {
-                                            return d.product.code === item.product.code;
-                                        })[0];
-                                        existingItem.count = existingItem.count + item.count;
-                                    } else {
-                                        gdShoppingCart.products.push(item.product.code);
-                                        gdShoppingCart.items.push(item);
-                                        $rootScope.$broadcast('gdShoppingCart: item-added', {});
-                                    }
-                                });
-                            }).then(function() {
-                                $rootScope.$broadcast('gdShoppingCart: cart-changed', {});
-                                console.log("cart changed");
-                            });
-                            deferred.resolve();
+                            gdShoppingCart.lists.push(this);
+                            $rootScope.$broadcast('gdShoppingLists: list-synced', {});
                         },
-                        removeFromCart: function() {
+                        unSyncToCart: function(){
                             this.inCart = false;
-                            var items = angular.copy(this.items);
-                            var deferred = $q.defer();
-                            var promise = deferred.promise;
-                            promise.then(function() {
-                                angular.forEach(items, function(item) {
-                                    var existingItem = $filter('filter')(gdShoppingCart.items, function(d) {
-                                        return d.product.code === item.product.code;
-                                    })[0];
-                                    existingItem.count = existingItem.count - item.count;
-                                    if (existingItem.count <= 0) {
-                                        var iIdx = gdShoppingCart.items.indexOf(existingItem);
-                                        var pIdx = gdShoppingCart.products.indexOf(existingItem.product.code);
-                                        gdShoppingCart.items.splice(iIdx, 1);
-                                        gdShoppingCart.products.splice(pIdx, 1);
-                                    }
-                                });
-                            }).then(function() {
-                                $rootScope.$broadcast('gdShoppingCart: cart-changed', {});
-                                console.log("cart changed");
-                            });
-                            deferred.resolve();
+                            var idx = gdShoppingCart.lists.indexOf(this);
+                            gdShoppingCart.lists.splice(idx, 1);
+                            $rootScope.$broadcast('gdShoppingLists: list-unsynced', {});
                         },
                         count: function() {
                             var sum = 0;
@@ -146,18 +109,12 @@
             // 5. some optional data
             // -----------------------------------
             obj.addItem = function(list, product, size, count, data) {
-                var inList = obj.getListItemByCode(product.code, list);
+                var inList = obj.getListItem(product.code, size, list);
 
                 if (angular.isObject(inList)) {
                     //Update quantity of an item if it's already in the list
                     inList.setCount(count, false);
                     $rootScope.$broadcast('gdShoppingLists: item-changed', {});
-                    if (list.inCart) {
-                        var existingProduct = $filter('filter')(gdShoppingCart.items, function(d) {
-                            return d.product.code === product.code;
-                        })[0];
-                        existingItem.count = existingItem.count + count;
-                    }
                 } else {
                     var item = {};
                     item.product = angular.copy(product);
@@ -174,31 +131,21 @@
                     }
 
                     list.items.push(item);
-                    if (list.inCart) {
-                        var existingItem = obj.getCartItemByCode(product.code);
-                        console.log(existingItem);
-                        if (angular.isObject(existingItem)) {
-                            console.log("produsul exista in cos");
-                            existingItem.count = existingItem.count + count;
-                        } else {
-                            console.log("produsul nu exista in cos");
-                            gdShoppingCart.items.push(angular.copy(item));
-                            gdShoppingCart.products.push(item.product.code);
-                        }
-                    }
+
                     $rootScope.$broadcast('gdShoppingCart: item-added', {});
                     $rootScope.$broadcast('gdShoppingCart: cart-changed', {});
                     $rootScope.$broadcast('gdShoppingLists: item-added', {});
                     $rootScope.$broadcast('gdShoppingLists: item-changed', {});
                 }
+                $rootScope.$broadcast('gdShoppingLists: list-changed', {});
             };
 
-            obj.getListItemByCode = function(code, list) {
+            obj.getListItem = function(code, size, list) {
                 var items = list.items;
                 var item = false;
 
                 angular.forEach(items, function(d) {
-                    if (d.product.code === code) {
+                    if (d.product.code === code && d.size == size) {
                         item = d;
                     }
                 });
@@ -222,6 +169,7 @@
 
             obj.removeItem = function(list, code) {
                 console.log("removing item " + code + "");
+                $rootScope.$broadcast('gdShoppingLists: list-changed', {});
             };
 
             // ---------------------------

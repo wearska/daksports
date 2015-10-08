@@ -1,5 +1,5 @@
 <ul class="paper resting cart-list" layout="column">
-    <div class="cart-list-header alert" flex layout ng-show="ngCart.getTotalItems() === 0">
+    <div class="cart-list-header alert" flex layout ng-show="!cart.count() > 0">
         <md-icon class="sort-image" md-svg-icon=""></md-icon>
         <div class="title-block" flex>
             <span class="sort-title"></span>
@@ -16,7 +16,7 @@
             <md-icon md-svg-src="assets/icons/ic_shopping_basket_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
         </a>
     </div>
-    <div class="cart-list-header" flex layout ng-show="ngCart.getTotalItems() > 0">
+    <div class="cart-list-header" flex layout ng-show="cart.count() > 0">
         <md-icon class="sort-image" md-svg-icon="assets/icons/ic_photo_white_24px.svg"></md-icon>
         <div class="title-block" flex>
             <span class="sort-title">Produs</span>
@@ -33,7 +33,7 @@
             <md-icon md-svg-src="assets/icons/ic_delete_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
         </md-button>
     </div>
-    <li class="cart-item" flex layout layout-align="center" ng-class="{grey : $odd}" ng-repeat="item in ngCart.getCart().items track by $index">
+    <li class="cart-item" flex layout layout-align="center" ng-class="{grey : $odd}" ng-repeat="item in cart.items track by $index">
         <div class="item-image ar_1-1" ng-click="$parent.sayThis()" style="background-image:url({{item._data.file1}})"></div>
         <div class="item-info" flex>
             <h3 class="item-name single-line" ng-bind="item.getName()"></h3>
