@@ -55,7 +55,7 @@
             return function(input, value) {
                 if (input != null && input != undefined && input > value) {
                     return value;
-                }else{
+                } else {
                     return input;
                 }
             };
@@ -63,26 +63,26 @@
         .filter('quantize', function() {
             return function(input, steps) {
                 var step = 100 / steps;
-                var halfstep = step/2;
+                var halfstep = step / 2;
                 if (input != null && input != undefined) {
                     input = parseFloat(input);
-                    while (--steps+1 > 0) {
-                        var threshold = step*steps + halfstep;
-                        if(input >= threshold){
-                            return steps+1;
+                    while (--steps + 1 > 0) {
+                        var threshold = step * steps + halfstep;
+                        if (input >= threshold) {
+                            return steps + 1;
                             break;
                         }
                     }
                 }
             };
         })
-        .filter('capitalize', function(){
-            return function(input){
+        .filter('capitalize', function() {
+            return function(input) {
                 var capitalized = [];
                 if (input === undefined) {
                     input = [];
                 }
-                angular.forEach(input, function(value){
+                angular.forEach(input, function(value) {
                     capitalized.push(value.charAt(0).toUpperCase() + value.substring(1));
                 });
                 return capitalized;
@@ -127,7 +127,9 @@
         })
         .filter('float', function() {
             return function(input) {
-                return input.toFixed(2);
+                if (input != null && input != undefined && input !== "") {
+                    return input.toFixed(2);
+                }
             }
         })
         .filter('shuffle', function() {

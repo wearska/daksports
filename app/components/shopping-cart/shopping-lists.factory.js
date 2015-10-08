@@ -3,8 +3,35 @@
 
     angular
         .module('gdCart')
-        .factory('gdShoppingLists', function($rootScope, $q, $filter, gdShoppingCart) {
+        .factory('gdShoppingLists', function($rootScope, $http, $q, $filter, Auth, gdShoppingCart) {
             var obj = {};
+            var api = 'api/shopping-lists/';
+
+            // ----------------------------
+            // GET USER LISTS
+            // ----------------------------
+            obj.query = function(userid) {
+                return $http.get(api + 'query.php?uid=' + userid)
+                    .then(function(response) {
+                        var lists = response.data;
+                        return lists;
+                    });
+            };
+
+            obj.post = function(list) {
+                var data = {};
+                data.userid = Auth.$getAuth().uid;
+                data.listid = parseFloat(list.id);
+                data.listname = "";
+                data.added = list.added;
+                data.list = list;
+                if (Auth.$getAuth()) {
+                    return $http.post(api + 'post.php', data).then(function(results) {
+                        return results;
+                    });
+                }
+            };
+
 
 
             // ----------------------------
@@ -30,12 +57,12 @@
                         active: true,
                         inCart: false,
                         items: [],
-                        syncToCart: function(){
+                        syncToCart: function() {
                             this.inCart = true;
                             gdShoppingCart.lists.push(this);
                             $rootScope.$broadcast('gdShoppingLists: list-synced', {});
                         },
-                        unSyncToCart: function(){
+                        unSyncToCart: function() {
                             this.inCart = false;
                             var idx = gdShoppingCart.lists.indexOf(this);
                             gdShoppingCart.lists.splice(idx, 1);

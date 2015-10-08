@@ -37,6 +37,9 @@
                     </div>
                 </div>
             </div>
+            <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary send-to-cart" ng-click="gdShoppingLists.post(shoppingList)">
+                <md-tooltip>Get Cart Items</md-tooltip>
+            </md-button>
         </div>
     </div>
     <div class="new-list-fab">
@@ -58,9 +61,5 @@
             <md-divider></md-divider>
         </md-list>
     </div>
-
-    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary send-to-cart" ng-click="gdShoppingCart.getItems()">
-        <md-tooltip>Get Cart Items</md-tooltip>
-    </md-button>
 
 </div>
