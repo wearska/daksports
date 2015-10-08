@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('ProductCtrl', function($scope, $rootScope, $location, $http, $parse, $filter, $timeout, $stateParams, $state, $mdDialog, $mdToast, productRes, ngCart) {
+        .controller('ProductCtrl', function($scope, $rootScope, $location, $http, $parse, $filter, $timeout, $stateParams, $state, $mdDialog, $mdToast, productRes, ngCart, gdShoppingLists, gdShoppingCart) {
 
             //-----------------------------------------
             //  INITIAL STATE
@@ -100,16 +100,22 @@
                     });
             }
 
-            $scope.addToCart = function() {
-                if ($scope.orderForm.$valid) {
-                    $scope.product.order = {};
-                    $scope.product.order.size = $scope.order.size;
-                    $scope.product.order.count = $scope.order.quantity;
-                    console.log($scope.product);
-                    ngCart.addItem($scope.product.code, $scope.product.name, parseFloat($scope.product.price), parseInt($scope.order.quantity), $scope.product);
-                }else {
-                    console.log("order invalid");
-                }
+            // $scope.addToCart = function() {
+            //     if ($scope.orderForm.$valid) {
+            //         $scope.product.order = {};
+            //         $scope.product.order.size = $scope.order.size;
+            //         $scope.product.order.count = $scope.order.quantity;
+            //         console.log($scope.product);
+            //         ngCart.addItem($scope.product.code, $scope.product.name, parseFloat($scope.product.price), parseInt($scope.order.quantity), $scope.product);
+            //     }else {
+            //         console.log("order invalid");
+            //     }
+            // };
+
+            // ADD TO CART
+            $scope.gdShoppingLists = gdShoppingLists;
+            $scope.addToCart = function(item) {
+                $scope.gdShoppingLists.addItem(gdShoppingLists.activeList(), $scope.product, $scope.order.size.name, $scope.order.quantity);
             };
 
 

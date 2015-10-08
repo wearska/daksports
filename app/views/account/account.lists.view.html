@@ -1,8 +1,11 @@
 <div class="page-content c-max">
+    <gd-heading title="Liste cumparaturi" subtitle="Mai jos sunt listele tale de cumparaturi"></gd-heading>
+
     <div class="" layout layout-wrap>
         <md-button class="md-primary md-raised" md-theme="brand" ng-click="gdShoppingLists.addItem(gdShoppingLists.activeList(), product, 'M', 1)" ng-repeat="product in $root.products | limitTo : 10">{{product.name}}</md-button>
     </div>
 
+    
     <div class="shopping-lists" layout-wrap layout="row">
         <div class="grid-cell list-wrapper" flex="25" ng-class="{active : shoppingList.active}" ng-click="gdShoppingLists.makeActive(shoppingList.id)" ng-repeat="shoppingList in gdShoppingLists.lists">
             <div class="gd-shopping-list paper resting" data-size="material">
@@ -35,21 +38,14 @@
                 </div>
             </div>
         </div>
-        <div class="grid-cell new-list">
-            <md-tooltip>Adauga lista noua</md-tooltip>
-            <div class="gd-shopping-list paper resting" data-size="material">
-                <div class="image-wrapper"></div>
-                <div class="details" style="opacity:0;">
-                    <div class="details-inner">
-                        <a class="title fade-out tooltip " href="">2323234234324</a>
-                        <a class="sub-title fade-out tooltip ">asdasdasd</a>
-                    </div>
-                </div>
-                <md-icon md-svg-src="assets/icons/ic_add_white_24px.svg" ng-click="gdShoppingLists.newList()"></md-icon>
-            </div>
-        </div>
     </div>
-    
+    <div class="new-list-fab">
+        <md-button aria-label="Creaza o lista noua" md-theme="brand" class="md-fab md-primary " ng-click="gdShoppingLists.newList()">
+            <md-tooltip>Adauga lista noua</md-tooltip>
+            <md-icon md-svg-src="assets/icons/ic_add_white_24px.svg"></md-icon>
+        </md-button>
+    </div>
+
     <div class="" id="cart">
         <md-list ng-cloak>
             <md-subheader class="md-no-sticky">Lista cos</md-subheader>
@@ -62,5 +58,5 @@
             <md-divider></md-divider>
         </md-list>
     </div>
-    
+
 </div>

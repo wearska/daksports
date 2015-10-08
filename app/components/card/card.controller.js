@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('CardCtrl', function($http, $rootScope, $scope, $mdDialog, $cookies, cart, ngCart, Auth, $mdBottomSheet) {
+        .controller('CardCtrl', function($http, $rootScope, $scope, $mdDialog, $cookies, cart, ngCart, Auth, $mdBottomSheet, gdShoppingLists, gdShoppingCart) {
 
             // DUMMY CONTENT
             $scope.availableSizes = [
@@ -35,9 +35,9 @@
             // ($scope.item.promo_price) ? $scope.promo_price = $scope.promo_price : $scope.promo_price = $scope.price;
 
             // ADD TO CART
-            $scope.inCart = false;
-            $scope.addToCart = function() {
-                ngCart.addItem($scope.item.code, $scope.item.name, parseFloat($scope.item.price), 1, $scope.item);
+            $scope.gdShoppingLists = gdShoppingLists;
+            $scope.addToCart = function(item) {
+                $scope.gdShoppingLists.addItem(gdShoppingLists.activeList(), item, '', 1);
             };
 
             // CARD MENU
