@@ -17,11 +17,11 @@
                             </div>
                         </div>
                     </div>
-                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary sync-to-cart" ng-click="shoppingList.syncToCart()" ng-show="!shoppingList.inCart">
+                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary sync-to-cart" ng-click="shoppingList.syncToCart($event)" ng-show="!shoppingList.inCart">
                         <md-tooltip>Trimite in cos</md-tooltip>
                         <md-icon md-svg-src="assets/icons/ic_sync_disabled_24px.svg"></md-icon>
                     </md-button>
-                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary md-hue-1 synced-to-cart" ng-click="shoppingList.unSyncToCart()" ng-show="shoppingList.inCart">
+                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary md-hue-1 synced-to-cart" ng-click="shoppingList.unSyncToCart(true, $event)" ng-show="shoppingList.inCart">
                         <md-tooltip>Trimite in cos</md-tooltip>
                         <md-icon md-svg-src="assets/icons/ic_sync_24px.svg"></md-icon>
                     </md-button>

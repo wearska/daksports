@@ -6,6 +6,7 @@
         .factory('gdShoppingLists', function($rootScope, $http, $q, $filter, Auth, gdShoppingCart) {
             var obj = {};
             var api = 'api/shopping-lists/';
+            var restoring = false;
 
             // ----------------------------
             // GET USER LISTS
@@ -32,6 +33,41 @@
                 }
             };
 
+            obj.put = function(list) {
+                console.log("updating list " + list.id + "");
+                var data = {};
+                data.userid = Auth.$getAuth().uid;
+                data.listid = parseFloat(list.id);
+                data.listname = "";
+                data.added = list.added;
+                data.list = list;
+                if (Auth.$getAuth()) {
+                    return $http.post(api + 'put.php', data).then(function(results) {
+                        return results;
+                    });
+                };
+            };
+
+            $rootScope.$on('gdCart: changed', function() {
+                angular.forEach(obj.lists, function(list) {
+                    list.update();
+                });
+            });
+            $rootScope.$on('gdCart: emptied', function() {
+                angular.forEach(obj.lists, function(list) {
+                    list.unSyncToCart(false);
+                    list.update();
+                });
+            });
+
+            $rootScope.$on('gdShoppingLists: item-changed', function() {
+                if (!restoring) {
+                    console.log("item changed");
+                    angular.forEach(obj.lists, function(list) {
+                        list.update();
+                    });
+                }
+            });
 
 
             // ----------------------------
@@ -51,22 +87,23 @@
                     list = {
                         id: $filter('serialize')(idPrefix),
                         added: new Date(),
-                        shipping: null,
-                        taxRate: null,
-                        discount: null,
                         active: true,
                         inCart: false,
                         items: [],
-                        syncToCart: function() {
+                        syncToCart: function(event) {
                             this.inCart = true;
                             gdShoppingCart.lists.push(this);
                             $rootScope.$broadcast('gdShoppingLists: list-synced', {});
+                            event.stopPropagation();
                         },
-                        unSyncToCart: function() {
+                        unSyncToCart: function(broadcast, event) {
                             this.inCart = false;
                             var idx = gdShoppingCart.lists.indexOf(this);
                             gdShoppingCart.lists.splice(idx, 1);
-                            $rootScope.$broadcast('gdShoppingLists: list-unsynced', {});
+                            if (broadcast) {
+                                $rootScope.$broadcast('gdShoppingLists: list-unsynced', {});
+                            }
+                            event.stopPropagation();
                         },
                         count: function() {
                             var sum = 0;
@@ -83,6 +120,10 @@
                                 sum = sum + (count * item.product.price);
                             });
                             return sum;
+                        },
+                        update: function() {
+                            obj.put(this);
+                            console.log("updating list");
                         }
                     };
                 // make all the other lists inactive
@@ -96,6 +137,72 @@
 
                 // broadcast the creation of the new list
                 $rootScope.$broadcast('gdShoppingLists: list-added', list);
+                obj.post(obj.lists[list.id]);
+            };
+            obj.restoreList = function(data) {
+                restoring = true;
+                var baseItems = angular.copy(data.items);
+                var list = {
+                    id: data.id,
+                    added: data.added,
+                    active: data.active,
+                    inCart: data.inCart,
+                    items: [],
+                    syncToCart: function() {
+                        this.inCart = true;
+                        gdShoppingCart.lists.push(this);
+                        $rootScope.$broadcast('gdShoppingLists: list-synced', {});
+                    },
+                    unSyncToCart: function(broadcast) {
+                        this.inCart = false;
+                        var idx = gdShoppingCart.lists.indexOf(this);
+                        gdShoppingCart.lists.splice(idx, 1);
+                        if (broadcast) {
+                            $rootScope.$broadcast('gdShoppingLists: list-unsynced', {});
+                        }
+                    },
+                    count: function() {
+                        var sum = 0;
+                        angular.forEach(this.items, function(item) {
+                            var count = parseFloat(item.count);
+                            sum = sum + (count);
+                        });
+                        return sum;
+                    },
+                    total: function() {
+                        var sum = 0;
+                        angular.forEach(this.items, function(item) {
+                            var count = parseFloat(item.count);
+                            sum = sum + (count * item.product.price);
+                        });
+                        return sum;
+                    },
+                    update: function() {
+                        obj.put(list);
+                        console.log("updating list");
+                    }
+                };
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                promise.then(function() {
+                    angular.forEach(baseItems, function(item) {
+                        obj.addItem(list, angular.copy(item.product), item.size, item.count, angular.copy(item.data));
+                        console.log('adding item');
+                    });
+                }).then(function() {
+                    restoring = false;
+                    // push the list
+                    obj.lists[list.id] = list;
+
+                    if (list.inCart) {
+                        list.syncToCart();
+                    };
+
+                    // broadcast the creation of the new list
+                    $rootScope.$broadcast('gdShoppingLists: list-added', list);
+                });
+                deferred.resolve();
+
             };
 
             // ------------------------
@@ -141,7 +248,9 @@
                 if (angular.isObject(inList)) {
                     //Update quantity of an item if it's already in the list
                     inList.setCount(count, false);
-                    $rootScope.$broadcast('gdShoppingLists: item-changed', {});
+                    $rootScope.$broadcast('gdShoppingLists: item-changed', {
+                        list
+                    });
                 } else {
                     var item = {};
                     item.product = angular.copy(product);
@@ -150,10 +259,11 @@
                     item.data = angular.copy(data);
 
                     item.setCount = function(count, newCount) {
+                        console.log("adding count");
                         if (!newCount) {
-                            item.count = item.count + parseFloat(count);
+                            this.count = this.count + parseFloat(count);
                         } else {
-                            item.count = parseFloat(count);
+                            this.count = parseFloat(count);
                         }
                     }
 
@@ -162,7 +272,9 @@
                     $rootScope.$broadcast('gdShoppingCart: item-added', {});
                     $rootScope.$broadcast('gdShoppingCart: cart-changed', {});
                     $rootScope.$broadcast('gdShoppingLists: item-added', {});
-                    $rootScope.$broadcast('gdShoppingLists: item-changed', {});
+                    $rootScope.$broadcast('gdShoppingLists: item-changed', {
+                        list
+                    });
                 }
                 $rootScope.$broadcast('gdShoppingLists: list-changed', {});
             };

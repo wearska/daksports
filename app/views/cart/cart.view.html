@@ -40,7 +40,7 @@
                 <span class="sort-quantity">Cant.</span>
                 <span class="sort-total">Total</span>
             </div>
-            <md-button aria-label="Goleste cos" class="cart-clear" ng-click="ngCart.empty()">
+            <md-button aria-label="Goleste cos" class="cart-clear" ng-click="cart.empty()">
                 <md-tooltip>
                     Goleste cos
                 </md-tooltip>
@@ -58,13 +58,13 @@
                     RON</p>
                 <div class="item-qty" flex="" layout>
                     <md-input-container class="qty-display" flex="40" ng-show="item.product.sizes.length > 1 || item.product.sizes[0].name">
-                        <md-select aria-label="Quantity" ng-model="item.size" ng-change="">
+                        <md-select aria-label="Quantity" ng-model="item.size" ng-change="updateList(item)">
                             <md-option ng-repeat="size in item.product.sizes" ng-value="size.name">{{size.name}}</md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container class="qty-adjust" flex="40">
                         <label>Cantitate</label>
-                        <input type="number" name="orderCount" ng-model="item.count" min="1" max="{{cart.getItemMaxCount(item)}}">
+                        <input type="number" name="orderCount" ng-model="item.count" min="1" max="{{cart.getItemMaxCount(item)}}" ng-change="updateList(item)">
                     </md-input-container>
                     <span flex="20"></span>
                 </div>

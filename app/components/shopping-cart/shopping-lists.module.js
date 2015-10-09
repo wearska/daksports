@@ -15,7 +15,8 @@
                             console.log(lists.length);
                             if (lists.length) {
                                 angular.forEach(lists, function(list) {
-                                    gdShoppingLists.lists[list.id] = list;
+                                    var list = list.list;
+                                    gdShoppingLists.restoreList(list);
                                 });
                             } else {
                                 gdShoppingLists.newList();

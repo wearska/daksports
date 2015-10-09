@@ -14,12 +14,12 @@
             // sidebar toggle
 
             $scope.sidebarOpen = $mdMedia('gt-sm');
-            $scope.toggleSidebar = function(){
+            $scope.toggleSidebar = function() {
                 $scope.sidebarOpen = !$scope.sidebarOpen;
             }
 
             $scope.sliderLength = 5;
-            
+
             //   get structure
             var api = 'api/categories/';
             $scope.getBrands = function() {
@@ -52,9 +52,9 @@
                 }).catch(function(error) {
                     return error;
                 });
-            
 
-            $scope.logout = function(){
+
+            $scope.logout = function() {
                 Auth.$unauth();
             };
 
