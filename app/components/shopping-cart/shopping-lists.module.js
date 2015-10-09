@@ -12,7 +12,6 @@
                 if (authData) {
                     gdShoppingLists.query(authData.uid)
                         .then(function(lists) {
-                            console.log(lists.length);
                             if (lists.length) {
                                 angular.forEach(lists, function(list) {
                                     var list = list.list;

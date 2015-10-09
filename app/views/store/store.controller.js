@@ -94,7 +94,7 @@
             $scope.promoToggle = function (value){
                 console.log($scope.promoSort);
                 PromoFilter.state = !$scope.promoSort;
-            }
+            };
 
         });
 

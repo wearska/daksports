@@ -34,7 +34,6 @@
             };
 
             obj.put = function(list) {
-                console.log("updating list " + list.id + "");
                 var data = {};
                 data.userid = Auth.$getAuth().uid;
                 data.listid = parseFloat(list.id);
@@ -62,7 +61,6 @@
 
             $rootScope.$on('gdShoppingLists: item-changed', function() {
                 if (!restoring) {
-                    console.log("item changed");
                     angular.forEach(obj.lists, function(list) {
                         list.update();
                     });
@@ -123,7 +121,6 @@
                         },
                         update: function() {
                             obj.put(this);
-                            console.log("updating list");
                         }
                     };
                 // make all the other lists inactive
@@ -179,7 +176,6 @@
                     },
                     update: function() {
                         obj.put(list);
-                        console.log("updating list");
                     }
                 };
                 var deferred = $q.defer();
@@ -187,7 +183,6 @@
                 promise.then(function() {
                     angular.forEach(baseItems, function(item) {
                         obj.addItem(list, angular.copy(item.product), item.size, item.count, angular.copy(item.data));
-                        console.log('adding item');
                     });
                 }).then(function() {
                     restoring = false;
@@ -248,9 +243,7 @@
                 if (angular.isObject(inList)) {
                     //Update quantity of an item if it's already in the list
                     inList.setCount(count, false);
-                    $rootScope.$broadcast('gdShoppingLists: item-changed', {
-                        list
-                    });
+                    $rootScope.$broadcast('gdShoppingLists: item-changed', {});
                 } else {
                     var item = {};
                     item.product = angular.copy(product);
@@ -259,7 +252,6 @@
                     item.data = angular.copy(data);
 
                     item.setCount = function(count, newCount) {
-                        console.log("adding count");
                         if (!newCount) {
                             this.count = this.count + parseFloat(count);
                         } else {
@@ -307,7 +299,6 @@
             // REMOVE AN ITEM BY PRODUCT.CODE FROM THE SPECIFIED LIST
 
             obj.removeItem = function(list, code) {
-                console.log("removing item " + code + "");
                 $rootScope.$broadcast('gdShoppingLists: list-changed', {});
             };
 

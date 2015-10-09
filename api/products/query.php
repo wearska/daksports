@@ -14,6 +14,11 @@ while($row=mysqli_fetch_assoc($res)){
         if($row['sizes'] !==false){
             $row['sizes'] = unserialize($row['sizes']);
         };
+        if($row['gender'] == 2){
+                $row['gender'] = 'feminin';
+            }else if($row['gender'] == 1){
+                $row['gender'] = 'masculin';
+            };
         if($row['description'] !== ''){
             $row['edit_description'] = $row['description'];
             $row['description'] = nl2br($row['description']);

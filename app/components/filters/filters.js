@@ -109,10 +109,12 @@
                 angular.forEach(items, function(item) {
                     if (item.gender == gender || item.gender == 0) {
                         if (item.sizes) {
+                            var i = 0;
                             angular.forEach(item.sizes, function(size) {
-                                if (size.name == shoeSize || size.name == topSize || size.name == pantsSize) {
+                                if (size.name == shoeSize || size.name == topSize || size.name == pantsSize && i < 1) {
                                     if (size.count > 0) {
                                         filtered.push(item);
+                                        i++;
                                     }
                                 }
                             });
