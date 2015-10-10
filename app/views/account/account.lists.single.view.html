@@ -1,0 +1,98 @@
+<div class="page-content c-max">
+    <gd-heading title="Lista {{list.id}}" subtitle="Aici poti modifica detaliile listei"></gd-heading>
+    <div class="gd-table">
+        <gd-table-header class="gd-table-header">
+            <div class="column-name media-column">
+                <md-checkbox aria-label="Selecteaza toate" ng-checked="table.allToggle" ng-click="table.toggleAll()"></md-checkbox>
+            </div>
+            <div class="column-name title-column" ng-click="table.setActiveSort($event, 'name')">
+                <span>Nume produs</span>
+                <md-icon class="down" md-svg-src="assets/icons/ic_sort_down_24px.svg" ng-class="{reverse : table.reverse}"></md-icon>
+            </div>
+            <div class="column-name subtitle-column" ng-click="table.setActiveSort($event, 'subname')">
+                <span>Subnume</span>
+                <md-icon class="down" md-svg-src="assets/icons/ic_sort_down_24px.svg" ng-class="{reverse : table.reverse}"></md-icon>
+            </div>
+            <div class="column-name info-column" ng-click="table.setActiveSort($event, 'new_price')">
+                <span>Pret</span>
+                <md-icon class="down" md-svg-src="assets/icons/ic_sort_down_24px.svg" ng-class="{reverse : table.reverse}"></md-icon>
+            </div>
+            <div class="column-name excerpt-column">
+                <span>Descriere</span>
+                <md-icon class="down" md-svg-src="assets/icons/ic_sort_down_24px.svg"></md-icon>
+            </div>
+        </gd-table-header>
+        <ul id="gd-shopping-list">
+            <li ng-repeat="item in list.items" class="paper">
+                <div class="gd-shopping-list-item" layout layout-align="start center">
+                    <div class="list-item-media" style="background-image:url({{item.product.file1}})">
+                        <div class="hoverlay"></div>
+                    </div>
+                    <div flex class="list-item-info">
+                        <section class="" id="product-info" style="margin-top: 0; padding:0;">
+                            <div class="product-details" layout-gt-md="row" layout="column">
+                                <div class="info" style="padding: 0;" flex>
+                                    <h1 class="product-title" style="margin-bottom:0;">{{item.product.name}}<span ng-show="item.size" style="font-size: 16px; color:rgba(0,0,0,.54); vertical-align:middle; font-weight: 500;"> • {{item.size}}</span></h1>
+                                    <p class="product-subtitle">{{item.product.subname}}</p>
+                                    <div class="product-stats" style="margin-bottom:0;">
+                                        <span class="brand">{{item.product.brand | uppercase}}</span>
+                                        •
+                                        <span class="type">{{item.product.type}}</span>
+                                        •
+                                        <span class="kind">{{item.product.kind}}</span>
+                                    </div>
+                                    <div class="review-info">
+                                        <div class="stars-container">
+                                            <md-icon class="tiny-star" md-svg-src="assets/icons/ic_star_tiny_14px.svg" ng-class="{'fill' : count <= item.product.rating}" ng-repeat="count in [1,2,3,4,5]"></md-icon>
+                                        </div>
+                                        <span class="review-count" ng-class="{disabled : !item.product.reviews.length}">
+                                            •
+                                            {{item.product.reviews.length}}
+                                            review-uri
+                                        </span>
+                                    </div>
+                                    <div  style="margin-top:0; margin-bottom:0;" class="price-container" data="product" id="{{ item.product.code }}" name="{{ item.product.name }}" ng-class="{promo : item.product.promo}" price="{{ item.product.price }}" quantity="1">
+                                        <div class="promo-price" ng-cloak ng-show="item.product.promo">RON
+                                            {{item.product.promo_price | float}}</div>
+                                        <div class="price" ng-cloak>
+                                            <span ng-show="!item.product.promo">RON</span>
+                                            {{item.product.price | float}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="gd-separator" style="height:96px;"></div>
+                    <div class="list-item-actions" layout="column">
+                        <md-input-container class="qty-adjust" flex="40">
+                            <label>Cantitate</label>
+                            <input type="number" name="orderCount" ng-model="item.count" min="1" max="{{item.maxCount()}}" ng-change="updateList(item)" required>
+                        </md-input-container>
+                        <span flex></span>
+                        <div flex="40">
+                            <div class="price" ng-show="item.count" ng-cloak><span>RON </span>{{item.count * item.product.new_price | float}}</div>
+                        </div>
+                    </div>
+                    <div class="promo-badge" ng-show="item.product.promo">
+                        <md-tooltip>
+                            Produs promo
+                        </md-tooltip>
+                        <md-icon md-svg-src="assets/icons/promo_badge.svg" style="width: 48px; height: 48px;"></md-icon>
+                    </div>
+                </div>
+            </li>
+            <md-divider style="margin-top: 24px;"></md-divider>
+            <div class="order-total-block">
+                <div class="order-total-display">
+                    <p class="order-transport single-line">Total:
+                        {{ list.total() | float | currency:""}}</p>
+                    <p class="order-transport single-line">Cost transport:
+                        {{list.shipping() | float | currency:""}}</p>
+                    <p class="order-total single-line">
+                        <span class="order-total" style="font-weight:400; color: #e12a2a">{{ list.total() + list.shipping() | float | currency:" " }}</span>Total RON:
+                    </p>
+                </div>
+            </div>
+        </ul>
+    </div>
+</div>

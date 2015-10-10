@@ -1,12 +1,16 @@
-.shopping-lists {.grid-cell.list-wrapper {&.active {
-
+.shopping-lists {
+    .grid-cell.list-wrapper {
+        &.active {
+            
             // background-color: rgb(183,28,28);
-            .gd-shopping-list {.details {
+            .gd-shopping-list {
+                .details {
                     background-color: rgb(183,28,28);
                 }
                 .title,
                 .sub-title,
-                .sub-title span {
+                .sub-title span,
+                .see-list md-icon {
                     color: #fff;
                 }
             }
@@ -15,7 +19,8 @@
     .grid-cell.new-list {
         position: relative;
         opacity: 0.87;
-        .gd-shopping-list {md-icon {
+        .gd-shopping-list {
+            md-icon {
                 background-color: $brand-primary;
                 width: 64px;
                 height: 64px;
@@ -44,10 +49,10 @@
     cursor: default;
     vertical-align: top;
     user-select: none;
-    cursor: pointer;
     width: 100%;
     max-width: 326px;
     .image-wrapper {
+        display: block;
         border-radius: 2px 2px 0 0;
         position: relative;
         cursor: pointer;
@@ -64,7 +69,7 @@
             will-change: opacity;
             transition: all 0.28s ease-in-out;
         }
-        .synced-to-cart{
+        .synced-to-cart {
             opacity: 1;
         }
     }
@@ -91,7 +96,7 @@
             margin: 0 !important;
         }
     }
-
+    
     // --------------------------
     .details {
         padding: 16px;
@@ -100,6 +105,13 @@
     .details-inner {
         position: relative;
         flex: 1;
+    }
+    .see-list {
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        right: 0;
+        top: 16px;
     }
     .title {
         display: block;
@@ -129,20 +141,26 @@
     .sub-title span {
         color: $brand-primary;
     }
-
+    
     // -------------------------
-    &:hover {.image-wrapper {.sync-to-cart {
+    &:hover {
+        .image-wrapper {
+            .sync-to-cart {
                 opacity: 1;
             }
         }
     }
 }
-.gd-shopping-list {.composite-wrapper {&[data-image-count="1"] {.item-image[data-index="0"] {
+.gd-shopping-list {
+    .composite-wrapper {
+        &[data-image-count="1"] {
+            .item-image[data-index="0"] {
                 width: 100%;
                 left: 0;
             }
         }
-        &[data-image-count="2"] {.item-image[data-index="0"] {
+        &[data-image-count="2"] {
+            .item-image[data-index="0"] {
                 width: 75%;
                 left: 25%;
             }
@@ -151,7 +169,8 @@
                 left: 0;
             }
         }
-        &[data-image-count="3"] {.item-image[data-index="0"] {
+        &[data-image-count="3"] {
+            .item-image[data-index="0"] {
                 width: 66%;
                 left: 34%;
             }
@@ -164,7 +183,8 @@
                 left: 0;
             }
         }
-        &[data-image-count="4"] {.item-image[data-index="0"] {
+        &[data-image-count="4"] {
+            .item-image[data-index="0"] {
                 width: 55%;
                 left: 45%;
             }
@@ -181,7 +201,8 @@
                 left: 0;
             }
         }
-        &[data-image-count="5"] {.item-image[data-index="0"] {
+        &[data-image-count="5"] {
+            .item-image[data-index="0"] {
                 width: 50%;
                 left: 50%;
             }

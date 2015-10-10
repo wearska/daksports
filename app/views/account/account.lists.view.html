@@ -1,15 +1,14 @@
 <div class="page-content c-max">
     <gd-heading title="Liste cumparaturi" subtitle="Mai jos sunt listele tale de cumparaturi"></gd-heading>
-
+    
     <div class="" layout layout-wrap>
-        <md-button class="md-primary md-raised" md-theme="brand" ng-click="gdShoppingLists.addItem(gdShoppingLists.activeList(), product, 'M', 1)" ng-repeat="product in $root.products | limitTo : 10">{{product.name}}</md-button>
+        <md-button class="md-primary md-raised" md-theme="brand" ng-click="gdShoppingLists.addItem(gdShoppingLists.activeList(), product, 'M', 1)" ng-repeat="product in $root.products">{{product.name}}</md-button>
     </div>
-
-
+    
     <div class="shopping-lists" layout-wrap layout="row">
-        <div class="grid-cell list-wrapper" flex="25" ng-class="{active : shoppingList.active}" ng-click="gdShoppingLists.makeActive(shoppingList.id)" ng-repeat="shoppingList in gdShoppingLists.lists">
+        <div class="grid-cell list-wrapper" flex="33" ng-class="{active : shoppingList.active}" ng-click="gdShoppingLists.makeActive(shoppingList.id)" ng-repeat="shoppingList in gdShoppingLists.lists">
             <div class="gd-shopping-list paper resting" data-size="material">
-                <div class="image-wrapper ">
+                <div class="image-wrapper">
                     <div class="image-inner-wrapper">
                         <div class="composite-wrapper" data-image-count="{{shoppingList.items.length | maxCount:5}}">
                             <div class="item-image" data-index="{{$index}}" draggable="false" ng-repeat="item in shoppingList.items | limitTo: 5" style="background-image:url({{item.product.file1}})">
@@ -17,29 +16,31 @@
                             </div>
                         </div>
                     </div>
-                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary sync-to-cart" ng-click="shoppingList.syncToCart($event)" ng-show="!shoppingList.inCart">
+                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary sync-to-cart" ng-click="shoppingList.syncToCart()" ng-show="!shoppingList.inCart">
                         <md-tooltip>Trimite in cos</md-tooltip>
                         <md-icon md-svg-src="assets/icons/ic_sync_disabled_24px.svg"></md-icon>
                     </md-button>
-                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary md-hue-1 synced-to-cart" ng-click="shoppingList.unSyncToCart(true, $event)" ng-show="shoppingList.inCart">
+                    <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary md-hue-1 synced-to-cart" ng-click="shoppingList.unSyncToCart(true)" ng-show="shoppingList.inCart">
                         <md-tooltip>Trimite in cos</md-tooltip>
                         <md-icon md-svg-src="assets/icons/ic_sync_24px.svg"></md-icon>
                     </md-button>
                 </div>
                 <div class="details">
                     <div class="details-inner">
-                        <a class="title fade-out tooltip " href="">{{shoppingList.id}}</a>
-                        <a class="sub-title fade-out tooltip ">{{shoppingList.count()}}
+                        <h3 class="title fade-out tooltip " href="">{{shoppingList.id}}</h3>
+                        <p class="sub-title fade-out tooltip ">{{shoppingList.count()}}
                             produse ·
                             <span>{{shoppingList.total() | float}}
                                 RON</span>
+                        </p>
+                    </div>
+                    <div class="see-list">
+                        <a ng-href="account/lists/{{shoppingList.id}}">
+                            <md-icon md-svg-src="assets/icons/ic_open_in_new_24px.svg"></md-icon>
                         </a>
                     </div>
                 </div>
             </div>
-            <md-button aria-label="Trimite lista in cos" class="md-fab md-mini md-primary send-to-cart" ng-click="gdShoppingLists.post(shoppingList)">
-                <md-tooltip>Get Cart Items</md-tooltip>
-            </md-button>
         </div>
     </div>
     <div class="new-list-fab">
@@ -47,19 +48,6 @@
             <md-tooltip>Adauga lista noua</md-tooltip>
             <md-icon md-svg-src="assets/icons/ic_add_white_24px.svg"></md-icon>
         </md-button>
-    </div>
-
-    <div class="" id="cart">
-        <md-list ng-cloak>
-            <md-subheader class="md-no-sticky">Lista cos</md-subheader>
-            <md-list-item ng-repeat="item in gdShoppingCart.items">
-                <p>
-                    {{ item.product.name }} x {{item.count}}
-                </p>
-                <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>
-            </md-list-item>
-            <md-divider></md-divider>
-        </md-list>
     </div>
 
 </div>

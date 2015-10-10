@@ -7,11 +7,13 @@ $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
     @$uid = $request->userid;
     @$listid = $request->listid;
-    @$listname = $request->listname;
     @$added = $request->added;
-    @$list = serialize($request->list);
+    @$listname = $request->listname;
+    @$active = $request->active;
+    @$incart = $request->incart;
+    @$items = $request->items;
 
-$sql = "UPDATE `shopping_lists` SET `list`='$list', `name`='$listname' WHERE `id`='$listid';";
+$sql = "UPDATE `shopping_lists` SET `name`='$listname', `active`='$active', `in_cart`='$incart', `items`='$items' WHERE `id`='$listid';";
 
 
 if ($conn->query($sql) === TRUE) {
@@ -19,7 +21,6 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-echo($listid);
 
 $conn->close();
 ?>

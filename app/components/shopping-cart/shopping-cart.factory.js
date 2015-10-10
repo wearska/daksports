@@ -50,7 +50,7 @@
             obj.empty = function() {
                 obj.lists=[];
                 $rootScope.$broadcast('gdCart: emptied', {});
-            }
+            };
 
             obj.getTotal = function() {
                 obj.getItems();

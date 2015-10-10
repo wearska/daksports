@@ -69,10 +69,10 @@
         </div>
 
         <section class="single-product-main" ng-if="table.isExpanded(item.code)">
-            <div id="product-info" style="margin-top: 0;">
+            <section class="" id="product-info" style="margin-top: 0">
                 <div class="product-details" layout-gt-md="row" layout="column">
-                    <div class="cover" style="background-image: url({{item.file1 | medres}})">
-                        <div class="promo-badge" ng-show="product.promo">
+                    <div class="cover" ng-click="showGallery($event);" style="position:relative; background-image: url({{item.file1 | medres}})">
+                        <div class="promo-badge" ng-show="item.promo">
                             <md-tooltip>
                                 Produs promo
                             </md-tooltip>
@@ -90,13 +90,19 @@
                             <span class="kind">{{item.kind}}</span>
                         </div>
                         <md-divider></md-divider>
-                        <div class="stars-container">
-                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                            <div class="tiny-star" style="background-image: url('assets/icons/ic_star_tiny_14px.svg')"></div>
-                            <div class="current-rating" style="width:{{product.rating}}%"></div>
+                        <div class="review-info">
+                            <div class="stars-container">
+                                <md-icon class="tiny-star" md-svg-src="assets/icons/ic_star_tiny_14px.svg" ng-class="{'fill' : count <= item.rating}" ng-repeat="count in [1,2,3,4,5]"></md-icon>
+                            </div>
+                            <span class="review-count" ng-class="{disabled : !item.reviews.length}">
+                                •
+                                {{item.reviews.length}}
+                                review-uri
+                                <span ng-if="!item.reviews.length">
+                                    •
+                                </span>
+                                <span class="review-anchor" ng-if="!item.reviews.length">fii primul care adauga un review</span>
+                            </span>
                         </div>
                         <div class="price-container" data="product" id="{{ item.code }}" name="{{ item.name }}" ng-class="{promo : item.promo}" price="{{ item.price }}" quantity="1">
                             <div class="promo-price" ng-cloak ng-show="item.promo">RON
@@ -105,22 +111,24 @@
                                 <span ng-show="!item.promo">RON</span>
                                 {{item.price}}</div>
                         </div>
-<!-- STOCK INFO -->
                         <div class="stock-info">
                             <md-divider></md-divider>
-                            <div ng-cloak ng-show="item.inv">
-                                <md-icon md-svg-src="assets/icons/ic_check_circle_green_24px.svg" style="width:16px; height:16px;"></md-icon>
-                                <span>Acest produs se afla in stoc.</span>
+                            <div ng-cloak ng-show="!order.size">
+                                <md-icon md-svg-src="assets/icons/ic_help_black_24px.svg" style="width:16px; height:16px;"></md-icon>
+                                <span>Alege o marime pentru a vedea informatii despre stocul disponibil</span>
                             </div>
-                            <div ng-cloak ng-show="!item.inv">
+                            <div ng-cloak ng-show="order.size.count">
+                                <md-icon md-svg-src="assets/icons/ic_check_circle_green_24px.svg" style="width:16px; height:16px;"></md-icon>
+                                <span>Acest produs se afla in stoc. • ({{order.size.count}})</span>
+                            </div>
+                            <div ng-cloak ng-show="order.size.count == 0">
                                 <md-icon md-svg-src="assets/icons/ic_warning_red_24px.svg" style="width:16px; height:16px;"></md-icon>
                                 <span>Acest produs se afla doar in stoc furnizor.</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="product-description"></div>
-            </div>
+            </section>
             <div class="row-actions">
                 <div class="supplemental-actions l-right">
                     <a aria-label="Vezi produs" class="md-icon-button" md-button ng-href="/product/{{item.code}}">

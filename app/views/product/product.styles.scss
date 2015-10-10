@@ -38,6 +38,19 @@
             overflow: hidden;
             margin-bottom: 8px;
         }
+        .tiny-star {
+            width: 20px;
+            height: 20px;
+            float: left;
+            color: #bdbdbd;
+            fill: #bdbdbd;
+            background-size: cover;
+            background-position: center;
+            &.fill {
+                color: #707070;
+                fill: #707070;
+            }
+        }
         .review-info {
             position: relative;
             height: 25px;

@@ -15,43 +15,111 @@
                 return $http.get(api + 'query.php?uid=' + userid)
                     .then(function(response) {
                         var lists = response.data;
+                        obj.lists = [];
+                        angular.forEach(lists, function(list) {
+                            list.items = angular.fromJson(list.items);
+                        });
                         return lists;
                     });
             };
 
             obj.post = function(list) {
-                var data = {};
-                data.userid = Auth.$getAuth().uid;
-                data.listid = parseFloat(list.id);
-                data.listname = "";
-                data.added = list.added;
-                data.list = list;
                 if (Auth.$getAuth()) {
-                    return $http.post(api + 'post.php', data).then(function(results) {
+                    var uid = Auth.$getAuth().uid;
+                    var data = {};
+                    data.userid = uid
+                    data.listid = parseFloat(list.id);
+                    data.added = list.added;
+                    data.listname = list.name;
+                    data.active = list.active;
+                    data.incart = list.inCart;
+                    data.items = [];
+                    angular.forEach(list.items, function(listItem) {
+                        var item = {};
+                        item.product = listItem.product.code;
+                        item.size = listItem.size;
+                        item.count = listItem.count;
+                        item.data = angular.toJson(listItem.data);
+                        data.items.push(item);
+                    });
+                    data.items = angular.toJson(data.items);
+                    $http.post(api + 'post.php', data).then(function(results) {
                         return results;
                     });
                 }
             };
 
             obj.put = function(list) {
-                var data = {};
-                data.userid = Auth.$getAuth().uid;
-                data.listid = parseFloat(list.id);
-                data.listname = "";
-                data.added = list.added;
-                data.list = list;
                 if (Auth.$getAuth()) {
-                    return $http.post(api + 'put.php', data).then(function(results) {
+                    var uid = Auth.$getAuth().uid;
+                    var data = {};
+                    data.userid = Auth.$getAuth().uid;
+                    data.listid = parseFloat(list.id);
+                    data.added = list.added;
+                    data.listname = list.name;
+                    data.active = list.active;
+                    data.incart = list.inCart;
+                    data.items = [];
+                    angular.forEach(list.items, function(listItem) {
+                        var item = {};
+                        item.product = listItem.product.code;
+                        item.size = listItem.size;
+                        item.count = listItem.count;
+                        item.data = angular.toJson(listItem.data);
+                        data.items.push(item);
+                    });
+                    data.items = angular.toJson(data.items);
+                    $http.post(api + 'put.php', data).then(function(results) {
                         return results;
+                    });
+                }
+            };
+            obj.remove = function(list) {
+                var data = {};
+                data.listid = parseFloat(list.id);
+                if (Auth.$getAuth()) {
+                    return $http.post(api + 'remove.php', data).then(function(results) {
+                        var idx = obj.lists.indexOf(list);
+                        obj.lists.splice(idx, 1);
+                        obj.makeActive(obj.lists[0].id);
                     });
                 };
             };
 
             $rootScope.$on('gdCart: changed', function() {
                 angular.forEach(obj.lists, function(list) {
-                    list.update();
+                    if (list.items.length > 0) {
+                        list.update();
+                    } else {
+                        list.remove();
+                    }
                 });
             });
+
+            $rootScope.$on('products:filled', function() {
+                if (Auth.$getAuth()) {
+                    var uid = Auth.$getAuth().uid;
+                    obj.query(uid)
+                        .then(function(lists) {
+                            if (lists.length) {
+                                angular.forEach(lists, function(list) {
+                                    obj.restoreList(list);
+                                });
+                            } else {
+                                obj.newList();
+                                var firstList = obj.activeList();
+                                firstList.syncToCart();
+                            }
+                        }).catch(function(error) {
+                            return error;
+                        });
+                } else {
+                    obj.newList();
+                    var firstList = obj.activeList();
+                    firstList.syncToCart();
+                };
+            });
+
             $rootScope.$on('gdCart: emptied', function() {
                 angular.forEach(obj.lists, function(list) {
                     list.unSyncToCart(false);
@@ -72,7 +140,7 @@
             // LISTS ARRAY
             // ----------------------------
 
-            obj.lists = {};
+            obj.lists = [];
 
             // ADD NEW LIST
             obj.newList = function() {
@@ -84,24 +152,25 @@
                     idPrefix = '' + year + month + day + '',
                     list = {
                         id: $filter('serialize')(idPrefix),
+                        name: '',
                         added: new Date(),
                         active: true,
                         inCart: false,
                         items: [],
-                        syncToCart: function(event) {
+                        syncToCart: function() {
                             this.inCart = true;
                             gdShoppingCart.lists.push(this);
                             $rootScope.$broadcast('gdShoppingLists: list-synced', {});
-                            event.stopPropagation();
+                            this.update();
                         },
-                        unSyncToCart: function(broadcast, event) {
+                        unSyncToCart: function(broadcast) {
                             this.inCart = false;
                             var idx = gdShoppingCart.lists.indexOf(this);
                             gdShoppingCart.lists.splice(idx, 1);
                             if (broadcast) {
                                 $rootScope.$broadcast('gdShoppingLists: list-unsynced', {});
                             }
-                            event.stopPropagation();
+                            this.update();
                         },
                         count: function() {
                             var sum = 0;
@@ -114,13 +183,25 @@
                         total: function() {
                             var sum = 0;
                             angular.forEach(this.items, function(item) {
-                                var count = parseFloat(item.count);
-                                sum = sum + (count * item.product.price);
+                                if (item.count) {
+                                    var count = parseFloat(item.count);
+                                    sum = sum + (count * item.product.price);
+                                }
                             });
+                            return sum;
+                        },
+                        shipping: function() {
+                            var sum = 12;
+                            if (this.total() > 150) {
+                                sum = 0;
+                            }
                             return sum;
                         },
                         update: function() {
                             obj.put(this);
+                        },
+                        remove: function() {
+                            obj.remove(this);
                         }
                     };
                 // make all the other lists inactive
@@ -130,20 +211,20 @@
                 });
 
                 // push the list
-                obj.lists[list.id] = angular.copy(list);
+                obj.lists.push(list);
 
                 // broadcast the creation of the new list
                 $rootScope.$broadcast('gdShoppingLists: list-added', list);
-                obj.post(obj.lists[list.id]);
+                obj.post(list);
             };
             obj.restoreList = function(data) {
                 restoring = true;
-                var baseItems = angular.copy(data.items);
                 var list = {
                     id: data.id,
+                    name: data.name,
                     added: data.added,
                     active: data.active,
-                    inCart: data.inCart,
+                    inCart: data.in_cart,
                     items: [],
                     syncToCart: function() {
                         this.inCart = true;
@@ -169,25 +250,40 @@
                     total: function() {
                         var sum = 0;
                         angular.forEach(this.items, function(item) {
-                            var count = parseFloat(item.count);
-                            sum = sum + (count * item.product.price);
+                            if (item.count) {
+                                var count = parseFloat(item.count);
+                                sum = sum + (count * item.product.price);
+                            }
                         });
+                        return sum;
+                    },
+                    shipping: function() {
+                        var sum = 12;
+                        if (this.total() > 150) {
+                            sum = 0;
+                        }
                         return sum;
                     },
                     update: function() {
                         obj.put(list);
+                    },
+                    remove: function() {
+                        obj.remove(this);
                     }
                 };
                 var deferred = $q.defer();
                 var promise = deferred.promise;
                 promise.then(function() {
-                    angular.forEach(baseItems, function(item) {
-                        obj.addItem(list, angular.copy(item.product), item.size, item.count, angular.copy(item.data));
+                    angular.forEach(data.items, function(item) {
+                        var product = $filter('filter')($rootScope.products, function(d) {
+                            return d.code === item.product;
+                        })[0];
+                        obj.addItem(list, angular.copy(product), item.size, item.count, angular.copy(item.data));
                     });
                 }).then(function() {
                     restoring = false;
                     // push the list
-                    obj.lists[list.id] = list;
+                    obj.lists.push(list);
 
                     if (list.inCart) {
                         list.syncToCart();
@@ -220,8 +316,10 @@
                 angular.forEach(obj.lists, function(list) {
                     if (list.id == id) {
                         list.active = true;
+                        list.update();
                     } else {
                         list.active = false;
+                        list.update();
                     }
                 });
             };
@@ -257,16 +355,23 @@
                         } else {
                             this.count = parseFloat(count);
                         }
-                    }
+                    };
+                    item.maxCount = function() {
+                            var max;
+                            angular.forEach(this.product.sizes, function(productSize) {
+                                if (productSize.name === size) {
+                                    max = productSize.count;
+                                }
+                            });
+                            return max;
+                        },
 
-                    list.items.push(item);
+                        list.items.push(item);
 
                     $rootScope.$broadcast('gdShoppingCart: item-added', {});
                     $rootScope.$broadcast('gdShoppingCart: cart-changed', {});
                     $rootScope.$broadcast('gdShoppingLists: item-added', {});
-                    $rootScope.$broadcast('gdShoppingLists: item-changed', {
-                        list
-                    });
+                    $rootScope.$broadcast('gdShoppingLists: item-changed', {});
                 }
                 $rootScope.$broadcast('gdShoppingLists: list-changed', {});
             };

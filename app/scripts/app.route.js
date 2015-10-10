@@ -56,6 +56,11 @@
             templateUrl: 'app/views/account/account.lists.view.html',
             controller: 'AccountListsCtrl'
         })
+        .state('account.list', {
+            url: '/lists/:listCode',
+            templateUrl: 'app/views/account/account.lists.single.view.html',
+            controller: 'ShoppingListCtrl'
+        })
         .state('admin', {
           url: '/admin',
           templateUrl: 'app/views/admin/admin.view.html',
