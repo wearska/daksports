@@ -61,6 +61,10 @@
             templateUrl: 'app/views/account/account.lists.single.view.html',
             controller: 'ShoppingListCtrl'
         })
+        .state('account.favourites', {
+            url: '/favourites',
+            templateUrl: 'app/views/account/account.favourites.view.html'
+        })
         .state('admin', {
           url: '/admin',
           templateUrl: 'app/views/admin/admin.view.html',

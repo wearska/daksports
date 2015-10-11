@@ -1,0 +1,8 @@
+<div class="page-content c-max">
+    <gd-heading title="Produsele tale favorite"></gd-heading>
+    <div class="" id="fav-grid" layout="column" layout-gt-sm="row" layout-wrap>
+        <div class="grid-cell" flex="1" flex-gt-sm="50" ng-repeat="product in $root.products | favFilter : 1">
+            <gd-card card-resource="product" gd-tile></gd-card>
+        </div>
+    </div>
+</div>

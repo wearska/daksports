@@ -96,6 +96,20 @@
                 return filtered;
             };
         })
+        .filter('favFilter', function() {
+            return function(items, value) {
+                var filtered = [];
+                if (!value) {
+                    return items;
+                }
+                angular.forEach(items, function(item) {
+                    if (item.favourite == value) {
+                        filtered.push(item);
+                    }
+                });
+                return filtered;
+            };
+        })
         .filter('fitForMeFilter', function($rootScope) {
             return function(items, value) {
                 var filtered = [];
