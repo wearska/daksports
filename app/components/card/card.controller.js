@@ -36,7 +36,7 @@
             // CARD MENU
             $scope.openMenu = function($mdOpenMenu, ev) {
                 originatorEv = ev;
-                $mdnMenu(ev);
+                $mdOpenMenu(ev);
             };
 
             // BOTTOM LIST

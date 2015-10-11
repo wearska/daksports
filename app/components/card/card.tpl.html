@@ -1,23 +1,11 @@
-<div ng-cloak class="gd-card paper resting slide-top">
+<div class="gd-card paper resting slide-top" ng-cloak>
     <div class="product-media">
         <a href="/product/{{item.code}}">
-            <div class="product-img ar_1-1" ng-cloak style="background-image: url({{item.file1 | lowres}});" md-ink-ripple></div>
+            <div class="product-img ar_1-1" md-ink-ripple ng-cloak style="background-image: url({{item.file1 | lowres}});"></div>
             <div class="hoverlay"></div>
         </a>
         <div class="product-media-actions">
             <div class="scrim top"></div>
-            <!-- <md-button aria-label="Adauga la favorite" class="md-icon-button add-to-favourites" ng-click="postFav(item.code, item.favourite)" ng-if="!$root.userData.admin && $root.logged" ng-show="!item.favourite">
-                <md-tooltip>
-                    Adauga la favorite
-                </md-tooltip>
-                <md-icon md-svg-src="assets/icons/ic_favorite_border_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
-            </md-button>
-            <md-button aria-label="Elimina de la favorite" class="md-icon-button add-to-favourites" ng-click="postFav(item.code, item.favourite)" ng-if="!$root.userData.admin && $root.logged" ng-show="item.favourite">
-                <md-tooltip>
-                    Elimina de la favorite
-                </md-tooltip>
-                <md-icon md-svg-src="assets/icons/ic_favorite_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
-            </md-button> -->
             <a aria-label="Editeaza produs" class="md-icon-button add-to-favourites" md-button ng-href="/admin/edit/{{item.code}}" ng-if="$root.userData.admin && $root.logged">
                 <md-tooltip>
                     Editeaza produs
@@ -39,7 +27,7 @@
                 <p class="product-subtitle single-line secondary-text-color">{{item.subname}}</p>
             </div>
             <div class="excerpt-container">
-                <p gd-lines-limit="2" class="product-excerpt secondary-text-color">{{item.excerpt}}</p>
+                <p class="product-excerpt secondary-text-color" gd-lines-limit="2">{{item.excerpt}}</p>
             </div>
             <div aria-hidden="true" class="description-container is-hidden">
                 <p>{{item.excerpt}}</p>
@@ -58,10 +46,10 @@
                         <!-- <md-button aria-label="Adauga in cos" ng-click="addToCart(item)"> -->
                         <md-button aria-label="Adauga in cos" ng-click="setOrder()">
                             <div layout="row">
-                            <md-icon class="md-icon" style="margin: auto 0;">
-                                <i class="material-icons">&#xE854;</i>
-                            </md-icon>
-                                <p style="margin-left:8px;" flex>Adauga in cos</p>
+                                <md-icon class="md-icon" style="margin: auto 0;">
+                                    <i class="material-icons">&#xE854;</i>
+                                </md-icon>
+                                <p flex style="margin-left:8px;">Adauga in cos</p>
                             </div>
                         </gd-addtocart>
                     </md-button>
@@ -75,7 +63,7 @@
                             <md-icon class="md-icon" ng-if="item.favourite" style="margin: auto 0">
                                 <i class="material-icons">&#xE87D;</i>
                             </md-icon>
-                            <p style="margin-left:8px;" flex>Adauga la favorite</p>
+                            <p flex style="margin-left:8px;">Adauga la favorite</p>
                         </div>
                     </md-button>
                 </md-menu-item>
@@ -96,45 +84,54 @@
     </div>
 </div>
 <div class="product-set-order" ng-class="{on : showSetOrder}"></div>
-<form name="orderForm" class="product-order-form" ng-class="{on : showSetOrder}" ng-submit="orderProduct(item, order)" novalidate>
+<form class="product-order-form" name="orderForm" ng-class="{on : showSetOrder}" ng-submit="orderProduct(item, order)" novalidate>
     <md-icon class="discard-order-button" md-ink-ripple md-svg-src="assets/icons/ic_close_24px.svg" ng-click="discardOrder()"></md-icon>
-    <gd-heading subtitle="Configureaza-ti comanda"></gd-heading>
-    <md-input-container class="item-size" flex="25" ng-show="item.sizes.length > 1 || item.sizes[0].name">
-        <label>Selecteaza marime</label>
-        <md-select aria-label="Size select" ng-model="order.size" ng-required="{{item.sizes.length > 1  || item.sizes[0].name}}">
-            <md-option ng-repeat="size in item.sizes" ng-value="size">{{size.name}}</md-option>
-        </md-select>
-    </md-input-container>
-    <span flex="5" show-gt-sm ng-show="item.sizes.length > 1"></span>
-    <md-input-container class="item-count" flex="20">
-        <label>Cantitate</label>
-        <input min="1" max="{{order.size.count}}" name="itemCount" ng-model="order.quantity" step="any" type="number" value="1" required>
-        <div ng-messages="orderForm.itemCount.$error" ng-show="orderForm.itemCount.$invalid && orderForm.itemCount.$dirty">
-            <div ng-message="number" style="width:500px">Doar cifrele sunt permise</div>
-            <div ng-message="min" style="width:100%">Cantitatea minima este 1</div>
-            <div ng-message="max" style="width:100%">Maxim {{order.size.count}} pt. marimea asta</div>
-            <div ng-message="required" style="width:100%">Introdu o cantitate</div>
+    <!-- <span>Configureaza-ti comanda</span> -->
+    <div class="input-wrapper">
+        <div class="item-count-wrapper">
+            <md-input-container class="item-count">
+                <label>Cantitate</label>
+                <input max="{{order.size.count}}" min="1" name="itemCount" ng-model="order.quantity" required step="any" type="number" value="1">
+                <div ng-messages="orderForm.itemCount.$error" ng-show="orderForm.itemCount.$invalid && orderForm.itemCount.$dirty">
+                    <div ng-message="number" style="width:500px">Doar cifrele sunt permise</div>
+                    <div ng-message="min" style="width:100%">Cantitatea minima este 1</div>
+                    <div ng-message="max" style="width:100%">Maxim
+                        {{order.size.count}}
+                        pt. marimea asta</div>
+                    <div ng-message="required" style="width:100%">Introdu o cantitate</div>
+                </div>
+            </md-input-container>
         </div>
-    </md-input-container>
-    <button ng-disabled="orderForm.$invalid" class="dak-button" type="submit" style="width:  100%; margin: 0; bottom:0;" md-theme="brand" md-ink-ripple>
-        <div class="icon-bg"></div>
-        <md-icon style="position: relative; margin-right: 16px; color: #fff" md-svg-src="assets/icons/ic_playlist_add_24px.svg"></md-icon>
-        Adauga in lista
-        <div class="button-border"></div>
-    </button>
-    <div class="stock-info">
-        <md-divider></md-divider>
-        <div ng-cloak ng-show="!order.size">
-            <md-icon md-svg-src="assets/icons/ic_help_black_24px.svg" style="width:16px; height:16px;"></md-icon>
-            <span>Alege o marime</span>
+        <div class="item-size-wrapper">
+            <md-input-container class="item-size" ng-show="item.sizes.length > 1 || item.sizes[0].name">
+                <label>Marime</label>
+                <md-select aria-label="Size select" ng-model="order.size" ng-required="{{item.sizes.length > 1  || item.sizes[0].name}}">
+                    <md-option ng-repeat="size in item.sizes" ng-value="size">{{size.name}}</md-option>
+                </md-select>
+            </md-input-container>
         </div>
-        <div ng-cloak ng-show="order.size.count">
-            <md-icon md-svg-src="assets/icons/ic_check_circle_green_24px.svg" style="width:16px; height:16px;"></md-icon>
-            <span>In stoc. • ({{order.size.count}})</span>
-        </div>
-        <div ng-cloak ng-show="order.size.count == 0">
-            <md-icon md-svg-src="assets/icons/ic_warning_red_24px.svg" style="width:16px; height:16px;"></md-icon>
-            <span>Stoc furnizor.</span>
+        <!-- <span ng-show="item.sizes.length > 1" show-gt-sm></span> -->
+        <span ng-show="item.sizes.length > 1" show-gt-sm></span>
+        <button class="dak-button" md-ink-ripple md-theme="brand" ng-disabled="orderForm.$invalid" type="submit">
+            <div class="icon-bg"></div>
+            <md-icon md-svg-src="assets/icons/ic_playlist_add_24px.svg" style="position: relative; margin-right: 16px; color: #fff"></md-icon>
+            Adauga in lista
+            <div class="button-border"></div>
+        </button>
+        <div class="stock-info">
+            <md-divider></md-divider>
+            <div ng-cloak ng-show="!order.size">
+                <md-icon md-svg-src="assets/icons/ic_help_black_24px.svg" style="width:16px; height:16px;"></md-icon>
+                <span>Alege o marime</span>
+            </div>
+            <div ng-cloak ng-show="order.size.count">
+                <md-icon md-svg-src="assets/icons/ic_check_circle_green_24px.svg" style="width:16px; height:16px;"></md-icon>
+                <span>In stoc. • ({{order.size.count}})</span>
+            </div>
+            <div ng-cloak ng-show="order.size.count == 0">
+                <md-icon md-svg-src="assets/icons/ic_warning_red_24px.svg" style="width:16px; height:16px;"></md-icon>
+                <span>Stoc furnizor.</span>
+            </div>
         </div>
     </div>
 </form>

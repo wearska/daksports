@@ -245,20 +245,16 @@
         width: 100%;
         box-sizing: initial;
         padding-top: 100%;
-        /* height: initial; */
         border-radius: 50%;
         top: 50%;
-        /* bottom: 0; */
         margin: auto;
         left: 0;
         right: 0;
         background-color: #fff;
         transform: translateY(-50%) scale(0);
-        /* transform: translateY(-50%) scale(1.8); */
-        /* transform: translateY(-50%) scale(0); */
         transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         &.on {
-            transform: translateY(-50%) scale(1.8);
+            transform: translateY(-50%) scale(2);
         }
     }
     .product-order-form {
@@ -277,23 +273,47 @@
             opacity: 1;
             transition: opacity 0.48s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .discard-order-button{
-            float: right;
+        .input-wrapper {
+            max-height: 200px;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 16px;
+            right: 16px;
+        }
+        .item-size-wrapper {
+            
+        }
+        .item-count-wrapper {
+            
+        }
+        .discard-order-button {
+            position: absolute;
+            top: 16px;
+            right: 16px;
             cursor: pointer;
             color: rgba(0,0,0,.54);
-            &:hover{
+            margin: 0;
+            z-index: 1;
+            &:hover {
                 color: rgba(0,0,0,.87);
             }
         }
         .heading-subtitle {
             left: 0;
-            width:100%;
+            width: 100%;
             text-align: center;
         }
-        .stock-info{
+        .dak-button {
+            width: 100%;
+            bottom: 34px;
+            left: 0;
             position: absolute;
-            left: 16px;
-            bottom:8px;
+        }
+        .stock-info {
+            position: absolute;
+            bottom: 0;
             color: #737373;
             cursor: help;
             user-select: none;
@@ -400,6 +420,32 @@
             visibility: hidden;
             user-select: none;
             pointer-events: none;
+        }
+        .product-order-form {
+            .input-wrapper {
+                max-height: 128px;
+                top: 0;
+                left: 16px;
+                right: 16px;
+                bottom: 0;
+                margin: auto;
+                position: absolute;
+            }
+            .item-size-wrapper,
+            .item-count-wrapper {
+                display: inline-block;
+                width: 50%;
+                vertical-align: bottom;
+            }
+            .item-count-wrapper {
+                width: 30%;
+            }
+            .item-size-wrapper {
+                margin-left: 8px;
+            }
+            .dak-button {
+                bottom: 20px;
+            }
         }
     }
 }

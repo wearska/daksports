@@ -2,38 +2,32 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('TestCtrl', function($http, $rootScope, $filter, $scope, $state, $timeout, gdShoppingLists, gdShoppingCart) {
-            var api = 'api/products/';
-            
-            $scope.test = [];
-            
-            $scope.filter = function(){
-                var gender = $rootScope.userData.gender;
-                var shoeSize = $rootScope.userData.shoe_size;
-                var topSize = $rootScope.userData.top_size;
-                var pantsSize = $rootScope.userData.pants_size;
-                var i = 0;
-                angular.forEach($rootScope.products, function(item) {
-                    if (item.gender == gender || item.gender == 0) {
-                        // console.log(item.gender);
-                        // console.log(item.sizes);
-                        if (item.sizes) {
-                            var i = 0;
-                            angular.forEach(item.sizes, function(size) {
-                                if (size.name == shoeSize || size.name == topSize || size.name == pantsSize && i < 1) {
-                                    if (size.count > 0) {
-                                        $scope.test.push(item);
-                                        i++;
-                                    }
-                                }
-                            });
-                        } else if (!item.sizes) {
-                            // $scope.test.push(item);
-                        }
-                    }
-                });
+        .controller('TestCtrl', function($http, $rootScope, $filter, $scope, $state, $timeout, gdShoppingLists, gdShoppingCart, $mdDialog) {
+            var originatorEv;
+            this.openMenu = function($mdOpenMenu, ev) {
+                originatorEv = ev;
+                $mdOpenMenu(ev);
             };
-            
+            this.notificationsEnabled = true;
+            this.toggleNotifications = function() {
+                this.notificationsEnabled = !this.notificationsEnabled;
+            };
+            this.redial = function() {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                    .targetEvent(originatorEv)
+                    .clickOutsideToClose(true)
+                    .parent('body')
+                    .title('Suddenly, a redial')
+                    .content('You just called a friend; who told you the most amazing story. Have a cookie!')
+                    .ok('That was easy')
+                );
+                originatorEv = null;
+            };
+            this.checkVoicemail = function() {
+                // This never happens.
+            };
+
         });
 
 })();
