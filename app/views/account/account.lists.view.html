@@ -8,7 +8,7 @@
                     <div class="image-inner-wrapper">
                         <div class="composite-wrapper" data-image-count="{{shoppingList.items.length | maxCount:5}}">
                             <div class="item-image" data-index="{{$index}}" draggable="false" ng-repeat="item in shoppingList.items | limitTo: 5" style="background-image:url({{item.product.file1}})">
-                                <div class="hoverlay" style="background-color:rgba(0,0,0,.24); opacity:{{1 - ($index*0.2)}}"></div>
+                                <div class="hoverlay" style="background-color:rgba(0,0,0,.24); opacity:{{1 - ($index*0.1)}}"></div>
                             </div>
                         </div>
                     </div>

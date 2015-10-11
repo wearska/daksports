@@ -10,6 +10,8 @@ $conn->close();
 $result = array();
 
 while($row=mysqli_fetch_assoc($res)){
+        $row['active'] = (int)$row['active'];
+        $row['in_cart'] = (int)$row['in_cart'];
         $result[] = $row;
     }
 $obj = json_encode($result);

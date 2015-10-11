@@ -156,17 +156,17 @@
                         id: $filter('serialize')(idPrefix),
                         name: '',
                         added: new Date(),
-                        active: true,
+                        active: 1,
                         inCart: false,
                         items: [],
                         syncToCart: function() {
-                            this.inCart = true;
+                            this.inCart = 1;
                             gdShoppingCart.lists.push(this);
                             $rootScope.$broadcast('gdShoppingLists: list-synced', {});
                             this.update();
                         },
                         unSyncToCart: function(broadcast) {
-                            this.inCart = false;
+                            this.inCart = 0;
                             var idx = gdShoppingCart.lists.indexOf(this);
                             gdShoppingCart.lists.splice(idx, 1);
                             if (broadcast) {
@@ -247,12 +247,12 @@
                     inCart: data.in_cart,
                     items: [],
                     syncToCart: function() {
-                        this.inCart = true;
+                        this.inCart = 1;
                         gdShoppingCart.lists.push(this);
                         $rootScope.$broadcast('gdShoppingLists: list-synced', {});
                     },
                     unSyncToCart: function(broadcast) {
-                        this.inCart = false;
+                        this.inCart = 0;
                         var idx = gdShoppingCart.lists.indexOf(this);
                         gdShoppingCart.lists.splice(idx, 1);
                         if (broadcast) {
@@ -353,10 +353,10 @@
             obj.makeActive = function(id) {
                 angular.forEach(obj.lists, function(list) {
                     if (list.id == id) {
-                        list.active = true;
+                        list.active = 1;
                         list.update();
                     } else {
-                        list.active = false;
+                        list.active = 0;
                         list.update();
                     }
                 });
