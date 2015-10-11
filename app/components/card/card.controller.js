@@ -4,40 +4,33 @@
     angular.module('daksportsApp')
         .controller('CardCtrl', function($http, $rootScope, $scope, $mdDialog, $cookies, cart, ngCart, Auth, $mdBottomSheet, gdShoppingLists, gdShoppingCart) {
 
-            // DUMMY CONTENT
-            $scope.availableSizes = [
-                'XS',
-                'S',
-                'M',
-                'L',
-                'XL',
-                'XXl'
-            ];
-            $scope.selectedCount = 1;
-
-            // SHOW ORDER FAB
-            $scope.showOrderFab = false;
-            $scope.toggleOrderFab = function() {
-                $scope.showOrderFab = !$scope.showOrderFab;
-            }
-            $scope.expandedOrderFab = false;
-            $scope.expandOrderFab = function() {
-                $scope.expandedOrderFab = !$scope.expandedOrderFab;
-            }
-
-            // ORDER
-            $scope.orderUp = false;
-            $scope.toggleOrder = function() {
-                $scope.orderUp = !$scope.orderUp;
-            };
-
-            // UPDATE PRICE
-            // ($scope.item.promo_price) ? $scope.promo_price = $scope.promo_price : $scope.promo_price = $scope.price;
-
             // ADD TO CART
+            $scope.order = {
+                size: '',
+                count: '',
+                quantity: 1
+            }
+            $scope.showSetOrder = false;
+            $scope.setOrder = function(){
+                $scope.showSetOrder = !$scope.showSetOrder;
+            };
+            $scope.orderProduct = function(item, order){
+                gdShoppingLists.addItem(gdShoppingLists.activeList(), item, order.size.name, order.quantity);
+                $scope.discardOrder();
+            };
+            $scope.discardOrder = function(){
+                $scope.order = {
+                    size: '',
+                    count: '',
+                    quantity: 1
+                };
+                $scope.orderForm.$setPristine();
+                $scope.orderForm.$setUntouched();
+                $scope.showSetOrder = false;
+            };
             $scope.gdShoppingLists = gdShoppingLists;
             $scope.addToCart = function(item) {
-                $scope.gdShoppingLists.addItem(gdShoppingLists.activeList(), item, '', 1);
+                gdShoppingLists.addItem(gdShoppingLists.activeList(), item, '', 1);
             };
 
             // CARD MENU
@@ -47,10 +40,10 @@
             };
 
             // BOTTOM LIST
-            $scope.showListBottomSheet = function(ev) {
+            $scope.showListBottomSheet = function(ev, target) {
                 console.log(ev);
                 $mdBottomSheet.show({
-                    parent: ev.currentTarget.offsetParent,
+                    parent: ev.currentTarget.offsetParent.offsetParent,
                     templateUrl: 'app/components/card/card.bs.tpl.html',
                     controller: 'ListBottomSheetCtrl',
                     targetEvent: ev

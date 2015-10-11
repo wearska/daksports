@@ -4,3 +4,36 @@ $brand-secondary: color("grey", "base") !default;
 $brand-secondary-accent: color("grey", "lighten-1") !default;
 $brand-third: color("grey", "base") !default;
 $brand-third-accent: color("grey", "lighten-1") !default;
+.dak-button {
+    background-color: rgb(183,28,28);
+    outline: none;
+    border: none;
+    color: #fff;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    .icon-bg {
+        position: absolute;
+        top: -25%;
+        left: -8%;
+        width: 64px;
+        height: 150%;
+        background-color: black;
+        transform: rotate(-15deg);
+    }
+    .button-border{
+        height:4px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255,255,255,.24);
+    }
+    &[disabled]{
+        opacity: .54;
+        background-color: rgba(0,0,0,.54);
+        .icon-bg{
+            background-color: rgba(0,0,0,.87);
+        }
+    }
+}

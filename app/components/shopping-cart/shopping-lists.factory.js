@@ -81,7 +81,9 @@
                     return $http.post(api + 'remove.php', data).then(function(results) {
                         var idx = obj.lists.indexOf(list);
                         obj.lists.splice(idx, 1);
-                        obj.makeActive(obj.lists[0].id);
+                        if (obj.lists[0]) {
+                            obj.makeActive(obj.lists[0].id);
+                        }
                     });
                 };
             };
@@ -185,7 +187,7 @@
                             angular.forEach(this.items, function(item) {
                                 if (item.count) {
                                     var count = parseFloat(item.count);
-                                    sum = sum + (count * item.product.price);
+                                    sum = sum + (count * item.product.new_price);
                                 }
                             });
                             return sum;
@@ -202,6 +204,24 @@
                         },
                         remove: function() {
                             obj.remove(this);
+                        },
+                        removeItem: function(deadItem) {
+                            var deferred = $q.defer();
+                            var promise = deferred.promise;
+                            var list = this;
+
+                            promise.then(function() {
+                                angular.forEach(list.items, function(item) {
+                                    var iIdx = list.items.indexOf(deadItem);
+                                    if (iIdx > -1) {
+                                        list.items.splice(iIdx, 1);
+                                    }
+                                });
+                            }).then(function() {
+                                obj.put(list);
+                                $rootScope.$broadcast('gdShoppingLists: list-changed', {});
+                            });
+                            deferred.resolve();
                         }
                     };
                 // make all the other lists inactive
@@ -252,7 +272,7 @@
                         angular.forEach(this.items, function(item) {
                             if (item.count) {
                                 var count = parseFloat(item.count);
-                                sum = sum + (count * item.product.price);
+                                sum = sum + (count * item.product.new_price);
                             }
                         });
                         return sum;
@@ -269,6 +289,24 @@
                     },
                     remove: function() {
                         obj.remove(this);
+                    },
+                    removeItem: function(deadItem) {
+                        var deferred = $q.defer();
+                        var promise = deferred.promise;
+                        var list = this;
+
+                        promise.then(function() {
+                            angular.forEach(list.items, function(item) {
+                                var iIdx = list.items.indexOf(deadItem);
+                                if (iIdx > -1) {
+                                    list.items.splice(iIdx, 1);
+                                }
+                            });
+                        }).then(function() {
+                            obj.put(list);
+                            $rootScope.$broadcast('gdShoppingLists: list-changed', {});
+                        });
+                        deferred.resolve();
                     }
                 };
                 var deferred = $q.defer();
@@ -403,8 +441,23 @@
 
             // REMOVE AN ITEM BY PRODUCT.CODE FROM THE SPECIFIED LIST
 
-            obj.removeItem = function(list, code) {
-                $rootScope.$broadcast('gdShoppingLists: list-changed', {});
+            obj.removeItem = function(deadItem) {
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+
+                promise.then(function() {
+                    angular.forEach(obj.lists, function(list) {
+                        angular.forEach(list.items, function(item) {
+                            var iIdx = list.items.indexOf(deadItem);
+                            if (iIdx > -1) {
+                                list.items.splice(iIdx, 1);
+                            }
+                        });
+                    });
+                }).then(function() {
+                    $rootScope.$broadcast('gdCart: changed', {});
+                });
+                deferred.resolve();
             };
 
             // ---------------------------

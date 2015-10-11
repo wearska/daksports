@@ -39,5 +39,15 @@
             width: 128px;
             padding-left: 24px;
         }
+        .cancel-list-item{
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            color: rgba(0,0,0,.54);
+            cursor: pointer;
+            &:hover{
+                color: rgba(0,0,0,.87);
+            }
+        }
     }
 }

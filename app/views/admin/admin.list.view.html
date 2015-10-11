@@ -32,7 +32,7 @@
             <div class="row-subtitle">{{item.subname}}</div>
             <div class="row-info" ng-class="{'promo-price' : item.promo}">
                 <span style="font-weight: lighter; font-size: 13px;">RON
-                </span>{{item.new_price | float}}</div>
+                </span>{{item.new_price | number : 2}}</div>
             <div class="row-excerpt">{{item.excerpt}}</div>
             <div class="row-actions">
                 <div class="supplemental-actions l-right">

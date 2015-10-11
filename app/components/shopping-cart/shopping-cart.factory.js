@@ -62,6 +62,13 @@
                 });
                 return sum;
             };
+            obj.shipping = function() {
+                var sum = 12;
+                if (this.getTotal() > 150) {
+                    sum = 0;
+                }
+                return sum;
+            };
 
 
 

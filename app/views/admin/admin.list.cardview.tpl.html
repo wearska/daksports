@@ -90,10 +90,10 @@
             </div>
             <div class="price-container" data="$root.previewItem" id="{{ $root.previewItem.code }}" name="{{ $root.previewItem.name }}" ng-class="{promo : $root.previewItem.promo}" price="{{ $root.previewItem.price }}" quantity="1">
                 <div class="promo-price" ng-show="$root.previewItem.promo">RON
-                    {{$root.previewItem.promo_price | float}}</div>
+                    {{$root.previewItem.promo_price | number : 2}}</div>
                 <div class="price">
                     <span ng-show="!$root.previewItem.promo">RON</span>
-                    {{$root.previewItem.price | float}}</div>
+                    {{$root.previewItem.price | number : 2}}</div>
             </div>
         </div>
         </div>

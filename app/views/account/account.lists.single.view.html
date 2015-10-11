@@ -53,10 +53,10 @@
                                     </div>
                                     <div  style="margin-top:0; margin-bottom:0;" class="price-container" data="product" id="{{ item.product.code }}" name="{{ item.product.name }}" ng-class="{promo : item.product.promo}" price="{{ item.product.price }}" quantity="1">
                                         <div class="promo-price" ng-cloak ng-show="item.product.promo">RON
-                                            {{item.product.promo_price | float}}</div>
+                                            {{item.product.promo_price | number : 2}}</div>
                                         <div class="price" ng-cloak>
                                             <span ng-show="!item.product.promo">RON</span>
-                                            {{item.product.price | float}}</div>
+                                            {{item.product.price | number : 2}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                         </md-input-container>
                         <span flex></span>
                         <div flex="40">
-                            <div class="price" ng-show="item.count" ng-cloak><span>RON </span>{{item.count * item.product.new_price | float}}</div>
+                            <div class="price" ng-show="item.count" ng-cloak><span>RON </span>{{item.count * item.product.new_price | number : 2}}</div>
                         </div>
                     </div>
                     <div class="promo-badge" ng-show="item.product.promo">
@@ -79,17 +79,18 @@
                         </md-tooltip>
                         <md-icon md-svg-src="assets/icons/promo_badge.svg" style="width: 48px; height: 48px;"></md-icon>
                     </div>
+                    <md-icon class="cancel-list-item" aria-label="Elimina din cos" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="list.removeItem(item)" style="width: 24px; height: 24px;"></md-icon>
                 </div>
             </li>
             <md-divider style="margin-top: 24px;"></md-divider>
             <div class="order-total-block">
                 <div class="order-total-display">
                     <p class="order-transport single-line">Total:
-                        {{ list.total() | float | currency:""}}</p>
+                        {{ list.total() | number : 2}}</p>
                     <p class="order-transport single-line">Cost transport:
-                        {{list.shipping() | float | currency:""}}</p>
+                        {{list.shipping() | number : 2}}</p>
                     <p class="order-total single-line">
-                        <span class="order-total" style="font-weight:400; color: #e12a2a">{{ list.total() + list.shipping() | float | currency:" " }}</span>Total RON:
+                        <span class="order-total" style="font-weight:400; color: #e12a2a">{{ list.total() + list.shipping() | number : 2}}</span>Total RON:
                     </p>
                 </div>
             </div>

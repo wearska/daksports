@@ -1,10 +1,6 @@
 <div class="page-content c-max">
     <gd-heading title="Liste cumparaturi" subtitle="Mai jos sunt listele tale de cumparaturi"></gd-heading>
     
-    <div class="" layout layout-wrap>
-        <md-button class="md-primary md-raised" md-theme="brand" ng-click="gdShoppingLists.addItem(gdShoppingLists.activeList(), product, 'M', 1)" ng-repeat="product in $root.products">{{product.name}}</md-button>
-    </div>
-    
     <div class="shopping-lists" layout-wrap layout="row">
         <div class="grid-cell list-wrapper" flex="33" ng-class="{active : shoppingList.active}" ng-click="gdShoppingLists.makeActive(shoppingList.id)" ng-repeat="shoppingList in gdShoppingLists.lists">
             <div class="gd-shopping-list paper resting" data-size="material">
@@ -30,7 +26,7 @@
                         <h3 class="title fade-out tooltip " href="">{{shoppingList.id}}</h3>
                         <p class="sub-title fade-out tooltip ">{{shoppingList.count()}}
                             produse ·
-                            <span>{{shoppingList.total() | float}}
+                            <span>{{shoppingList.total() | number : 2}}
                                 RON</span>
                         </p>
                     </div>

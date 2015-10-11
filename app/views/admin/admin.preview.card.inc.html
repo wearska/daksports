@@ -69,10 +69,10 @@
     </div>
     <div class="price-container" data="product" id="{{ product.code }}" name="{{ product.name }}" ng-class="{promo : product.promo}" price="{{ product.price }}" quantity="1">
         <div class="promo-price" ng-show="product.promo">RON
-            {{product.promo_price | float}}</div>
+            {{product.promo_price | number : 2}}</div>
         <div class="price">
             <span ng-show="!product.promo">RON</span>
-            {{product.price | float}}</div>
+            {{product.price | number : 2}}</div>
     </div>
 </div>
 </div>
