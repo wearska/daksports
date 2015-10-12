@@ -10,10 +10,45 @@
             {{$root.userData.created}}</div>
         <div class="footer">
             <div>Modifica datele de logare</div>
-            <md-button class="md-primary md-raised" md-theme="brand" style="margin-left: 0;">Modifica</md-button>
+            <md-button class="md-primary md-raised" md-theme="brand" ng-click="showForm=true" style="margin-left: 0;">Modifica</md-button>
         </div>
-        <div class="form">
-            <form action="index.html" class="" method="post"></form>
+        <div class="form" ng-show="showForm" style="min-height: 300px;">
+            <br>
+            <md-divider></md-divider>
+            <form class="review-form" name="reviewForm" ng-submit="submitReview()" novalidate>
+                <br>
+                <span class="disclaimer primary">Atentie, nota minima este 1. Daca nu acorzi nici o nota, aceasta va ramane 0 si nu va afecta ratingul articolului.</span>
+                <div class="stars-container" flex style="margin-top: -4px; margin-left: -9px;">
+                    <md-icon class="rating-star" md-svg-src="assets/icons/ic_star_big_14px.svg" ng-class="{'fill' : count <= userReview.rating}" ng-click="rate(count)" ng-mouseenter="setRating(count)" ng-mouseleave="unsetRating()" ng-repeat="count in [1,2,3,4,5]"></md-icon>
+                </div>
+                <div class="gd-divider" style="margin-top: 16px; margin-bottom: 16px;"></div>
+                <span class="disclaimer primary">Scrie un titlu relevant pentru review-ul tau.</span>
+                <br>
+                <md-input-container>
+                    <label>Titlu *</label>
+                    <input name="title" ng-model="userReview.title" required>
+                    <div ng-messages="reviewForm.title.$error" ng-show="formSubmitted || reviewForm.title.$dirty">
+                        <div ng-message="required">Introduceti un titlu</div>
+                    </div>
+                </md-input-container>
+                <br>
+                <br>
+                <span class="disclaimer primary" style="margin-top: 16px;">Scrie parerea ta referindu-te doar la caracteristicile si/sau modul de utilizare al articolului.</span>
+                <br>
+                <md-input-container>
+                    <label>Detalii review *</label>
+                    <textarea columns="1" name="body" ng-model="userReview.body" required></textarea>
+                    <div ng-messages="reviewForm.body.$error" ng-show="formSubmitted || reviewForm.body.$dirty">
+                        <div ng-message="required">Introduceti o descriere</div>
+                    </div>
+                </md-input-container>
+                <br>
+                <br>
+                <span class="disclaimer" style="margin-top: 16px;">* Aceste campuri sunt obligatorii</span>
+                <div class="gd-divider left-inset" style="margin-top: 16px; margin-bottom: 16px; margin-right:75%"></div>
+                <md-button class="md-primary md-raised publish-review-button" md-theme="brand" ng-disabled="reviewForm.$invalid" type="submit">Publica</md-button>
+                <md-icon class="discard-review-button" md-ink-ripple md-svg-src="assets/icons/ic_close_24px.svg" ng-click="discardReview()"></md-icon>
+            </form>
         </div>
     </div>
 <!-- ACCOUNT DETAILS END -->
@@ -27,7 +62,7 @@
             {{$root.userData.last_name}}</div>
         <div>
             <span class="label">Data nasterii:</span>
-            {{$root.userData.birthday}}</div>
+            {{$root.userData.birthday | date:"dd/MM/yyyy"}}</div>
         <div>
             <span class="label">Sex:</span>
             {{$root.userData.gender}}</div>
@@ -43,12 +78,71 @@
             <span class="label">Pantaloni:</span>
             {{$root.userData.pants_size}}</div>
 
+        <md-divider></md-divider>
+        <div class="form" ng-show="showUserForm">
+            <br>
+            <form class="review-form" name="userForm" ng-submit="submitUserForm()" novalidate>
+                <div layout-gt-sm="row" layout="column">
+                    <md-input-container flex>
+                        <label>Nume</label>
+                        <input name="title" ng-model="$root.userData.last_name">
+                        <div ng-messages="reviewForm.title.$error" ng-show="formSubmitted || reviewForm.title.$dirty">
+                            <div ng-message="required">Introduceti un titlu</div>
+                        </div>
+                    </md-input-container>
+                    <span flex="5" hide-sm></span>
+                    <md-input-container flex>
+                        <label>Prenume</label>
+                        <input name="title" ng-model="$root.userData.first_name">
+                        <div ng-messages="reviewForm.title.$error" ng-show="formSubmitted || reviewForm.title.$dirty">
+                            <div ng-message="required">Introduceti un titlu</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row" layout="column">
+                    <md-input-container flex>
+                        <label>Data nasterii</label>
+                        <input ng-model="$root.userData.birthday" type="date">
+                    </md-input-container>
+                    <span flex="5" hide-sm></span>
+                    <md-input-container flex>
+                        <label>Sex:</label>
+                        <md-select aria-label="Alege sexul" ng-model="$root.userData.gender">
+                            <md-option ng-repeat="gender in ['masculin', 'feminin']" ng-value="gender">{{gender}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row" layout="column">
+                    <md-input-container flex>
+                        <label>Marime incaltaminte</label>
+                        <input name="title" ng-model="$root.userData.shoe_size" type="number" min="36" max="50">
+                        <div ng-messages="reviewForm.title.$error" ng-show="formSubmitted || userForm.title.$dirty">
+                            <div ng-message="required">Introduceti un titlu</div>
+                        </div>
+                    </md-input-container>
+                    <span flex="5" hide-sm></span>
+                    <md-input-container flex>
+                        <label>Marime top-uri</label>
+                        <md-select aria-label="Marime Top-uri" ng-model="$root.userData.top_size">
+                            <md-option ng-repeat="size in ['XS', 'S', 'M', 'L', 'XL', 'XXL']" ng-value="size">{{size}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <span flex="5" hide-sm></span>
+                    <md-input-container flex>
+                        <label>Marime top-uri</label>
+                        <md-select aria-label="Marime Pantaloni" ng-model="$root.userData.pants_size">
+                            <md-option ng-repeat="size in ['XS', 'S', 'M', 'L', 'XL', 'XXL']" ng-value="size">{{size}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <md-button class="md-primary md-raised save-form-button" ng-disabled="userForm.$invalid" type="submit">Salveaza</md-button>
+                <md-button class="md-primary md-raised discard-form-button" md-theme="brand" type="button" ng-click="discardUserForm()">Anuleaza</md-button>
+                <!-- <md-icon class="discard-form-button" md-ink-ripple md-svg-src="assets/icons/ic_close_24px.svg" ng-click="discardUserForm()"></md-icon> -->
+            </form>
+        </div>
         <div class="footer">
             <div>Pentru o experienta personalizata, completeaza toate detaliile</div>
-            <md-button class="md-primary md-raised" md-theme="brand" style="margin-left: 0;">Completeaza</md-button>
-        </div>
-        <div class="form">
-            <form action="index.html" class="" method="post"></form>
+            <md-button class="md-primary md-raised" md-theme="brand" ng-click="showUserForm=true" ng-hide="showUserForm" style="margin-left: 0;">Completeaza</md-button>
         </div>
     </div>
 <!-- USER INFO END -->
@@ -60,19 +154,66 @@
                 <br>
                 Poti modifica oricand in timpul procesului de checkout alegerea facuta</div>
         </div>
-        <md-radio-group ng-model="default.address">
-            <md-radio-button value="adresa 1">
-                <span>bvd. Matei Basarab, bloc MB 16, scara A, ap. 17, Slobozia, jud. Ialomita</span>
+        <md-radio-group ng-model="address.default">
+            <md-radio-button ng-repeat="address in $root.userData.addresses" value="{{$index}}">
+                <span>{{address.address}};</span>
+                <br>
+                <span> {{address.city}},</span><span> jud. {{address.county}},</span><span> {{address.postcode}}</span>
             </md-radio-button>
-            <md-radio-button value="adresa 2">
-                <span>D&P Advertising, Sos. Amara, nr. 19, incinta AMPA, 920049</span>
-            </md-radio-button>
+            <md-icon  ng-repeat="address in $root.userData.addresses" class="discard-review-button" md-ink-ripple md-svg-src="assets/icons/ic_close_24px.svg" ng-click="removeAddress($index)"></md-icon>
         </md-radio-group>
-        <div class="footer">
-            <md-button class="md-primary md-raised" md-theme="brand" style="margin-left: 0;">Adauga o adresa</md-button>
+        <md-divider></md-divider>
+        <!-- ADDRESS FORM -->
+        <div class="form" ng-show="showAddressForm">
+            <br>
+            <form class="review-form" name="addressForm" ng-submit="submitAddressForm()" novalidate>
+                <div layout-gt-sm="row" layout="column">
+                    <md-input-container flex>
+                        <label>Oras*</label>
+                        <input name="title" ng-model="newaddress.city">
+                        <div ng-messages="reviewForm.title.$error" ng-show="formSubmitted || addressForm.title.$dirty">
+                            <div ng-message="required">Introduceti un titlu</div>
+                        </div>
+                    </md-input-container>
+                    <span flex="5" hide-sm></span>
+                    <md-input-container flex>
+                        <label>Judet*</label>
+                        <input name="title" ng-model="newaddress.county">
+                        <div ng-messages="reviewForm.title.$error" ng-show="formSubmitted || reviewForm.title.$dirty">
+                            <div ng-message="required">Introduceti un titlu</div>
+                        </div>
+                    </md-input-container>
+                    <span flex="5" hide-sm></span>
+                    <md-input-container flex>
+                        <label>Cod postal</label>
+                        <input name="title" ng-model="newaddress.postcode">
+                        <div ng-messages="reviewForm.title.$error" ng-show="formSubmitted || reviewForm.title.$dirty">
+                            <div ng-message="required">Introduceti un titlu</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row" layout="column">
+                    <md-input-container flex>
+                        <label>Adresa*</label>
+                        <input name="title" ng-model="newaddress.address">
+                        <div ng-messages="reviewForm.title.$error" ng-show="formSubmitted || addressForm.title.$dirty">
+                            <div ng-message="required">Introduceti un titlu</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <span class="disclaimer" style="margin-top: 16px;">* Aceste campuri sunt obligatorii</span>
+                <br>
+                <span class="disclaimer" style="margin-top: 16px;">** Introdu adresa cat mai completa, pentru ca produsele tale sa ajunga la tine fara probleme</span>
+                <br>
+                <br>
+                <md-button class="md-primary md-raised save-form-button" ng-disabled="addressForm.$invalid" type="submit">Salveaza</md-button>
+                <md-button class="md-primary md-raised discard-form-button" md-theme="brand" type="button" ng-click="discardAddressForm()">Anuleaza</md-button>
+                <!-- <md-icon class="discard-form-button" md-ink-ripple md-svg-src="assets/icons/ic_close_24px.svg" ng-click="discardAddressForm()"></md-icon> -->
+            </form>
         </div>
-        <div class="form">
-            <form action="index.html" class="" method="post"></form>
+        <!-- ADDRESS FORM END-->
+        <div class="footer">
+            <md-button class="md-primary md-raised" md-theme="brand" style="margin-left: 0;" ng-show="!showAddressForm" ng-click="showAddressForm = true">Adauga o adresa</md-button>
         </div>
         <div class="gd-divider left-inset" style="margin:16px 0;margin-right: 128px;"></div>
         <h2 class="settings-card-subtitle">Detalii facturare</h2>

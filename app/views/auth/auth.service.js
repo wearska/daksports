@@ -14,13 +14,17 @@
                 };
 
                 // CHECK AUTH
-                
+
                 authObj.$onAuth(function(authData) {
                     if (authData) {
                         // get user stored data
                         $http.get('api/accounts/get.php?uid=' + authData.uid)
                             .then(function(response) {
                                 $rootScope.userData = response.data[0];
+                                ($rootScope.userData.birthday === '0000-00-00') ? $rootScope.userData.birthday = "": $rootScope.userData.birthday = new Date($rootScope.userData.birthday);
+                                ($rootScope.userData.shoe_size) ? $rootScope.userData.shoe_size = parseFloat($rootScope.userData.shoe_size): $rootScope.userData.shoe_size = "";
+                                $rootScope.userData.addresses = angular.fromJson($rootScope.userData.addresses);
+                                $rootScope.userData.subscriptions = angular.fromJson($rootScope.userData.subscriptions);
                                 $http.get('api/accounts/getuserfav.php?uid=' + authData.uid)
                                     .then(function(response) {
                                         $rootScope.userData.favs = response.data;

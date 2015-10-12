@@ -6,8 +6,6 @@ require_once('../config.php');
 $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
     @$uid = $request->uid;
-    @$email = $request->email;
-    @$created = $request->created;
     @$first_name = $request->first_name;
     @$last_name = $request->last_name;
     @$birthday = $request->birthday;
@@ -19,11 +17,10 @@ $postdata = file_get_contents("php://input");
     @$addresses = serialize($request->addresses);
     @$subscriptions = serialize($request->subscriptions);
 
-$sql = "INSERT INTO users (uid, email, first_name, last_name, created, user_photo)
-VALUES ('$uid', '$email', '$first_name', '$last_name', '$created', '$user_photo')";
+$sql = "UPDATE `users` SET `first_name`='$first_name', `last_name`='$last_name', `birthday`='$birthday', `gender`='$gender', `user_photo`='$user_photo', `shoe_size`='$shoe_size', `top_size`='$top_size', `pants_size`='$pants_size', `addresses`='$addresses', `subscriptions`='$subscriptions' WHERE `uid`='$uid';";
 
 if ($conn->query($sql) === TRUE) {
-    echo "New user created successfully";
+    echo "User details saved sucessfuly";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
