@@ -94,8 +94,8 @@
                 <input max="{{order.size.count}}" min="1" name="itemCount" ng-model="order.quantity" required step="any" type="number" value="1">
                 <div ng-messages="orderForm.itemCount.$error" ng-show="orderForm.itemCount.$invalid && orderForm.itemCount.$dirty">
                     <div ng-message="number" style="width:500px">Doar cifrele sunt permise</div>
-                    <div ng-message="min" style="width:100%">Cantitatea minima este 1</div>
-                    <div ng-message="max" style="width:100%">Maxim
+                    <div ng-message="min" style="width:500px">Cantitatea minima este 1</div>
+                    <div ng-message="max" style="width:500px">Maxim
                         {{order.size.count}}
                         pt. marimea asta</div>
                     <div ng-message="required" style="width:100%">Introdu o cantitate</div>

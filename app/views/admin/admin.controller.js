@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('AdminCtrl', function($scope, $rootScope, $http, $filter, $parse, $timeout, $q, $mdToast, productRes, FileUploader) {
+        .controller('AdminCtrl', function($scope, $rootScope, $log, $http, $filter, $parse, $timeout, $q, $mdToast, productRes, FileUploader) {
 
             // --------------------------------
             // FORM RESET
