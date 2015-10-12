@@ -14,10 +14,12 @@ $postdata = file_get_contents("php://input");
     @$shoe_size = $request->shoe_size;
     @$top_size = $request->top_size;
     @$pants_size = $request->pants_size;
-    @$addresses = serialize($request->addresses);
-    @$subscriptions = serialize($request->subscriptions);
+    @$addresses = $request->addresses;
+    @$businesses = $request->businesses;
+    @$subscriptions = $request->subscriptions;
+    @$defaults = $request->defaults;
 
-$sql = "UPDATE `users` SET `first_name`='$first_name', `last_name`='$last_name', `birthday`='$birthday', `gender`='$gender', `user_photo`='$user_photo', `shoe_size`='$shoe_size', `top_size`='$top_size', `pants_size`='$pants_size', `addresses`='$addresses', `subscriptions`='$subscriptions' WHERE `uid`='$uid';";
+$sql = "UPDATE `users` SET `first_name`='$first_name', `last_name`='$last_name', `birthday`='$birthday', `gender`='$gender', `user_photo`='$user_photo', `shoe_size`='$shoe_size', `top_size`='$top_size', `pants_size`='$pants_size', `addresses`='$addresses', `businesses`='$businesses', `subscriptions`='$subscriptions', `defaults`='$defaults' WHERE `uid`='$uid';";
 
 if ($conn->query($sql) === TRUE) {
     echo "User details saved sucessfuly";

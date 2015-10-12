@@ -21,12 +21,6 @@ while($row=mysqli_fetch_assoc($res)){
             }else if($row['gender'] == 0){
                 $row['gender'] = '';
             };
-        if($row['addresses'] !== false){
-                $row['addresses'] = unserialize($row['addresses']);
-            };
-        if($row['subscriptions'] !==false){
-                $row['subscriptions'] = unserialize($row['subscriptions']);
-            };
         $result[] = $row;
     }
 

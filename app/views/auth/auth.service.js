@@ -14,6 +14,22 @@
                 };
 
                 // CHECK AUTH
+                var setTypes = function(){
+                    var user = $rootScope.userData;
+                    // sets the birthday to a dat or an empty string
+                    (user.birthday === '0000-00-00') ? user.birthday = "": user.birthday = new Date(user.birthday);
+                    // shoe size must be an integer
+                    (user.shoe_size) ? user.shoe_size = parseFloat(user.shoe_size): user.shoe_size = "";
+                    // convert to needed arrays
+                    (user.addresses) ? user.addresses = angular.fromJson(user.addresses) : user.addresses = [];
+                    (user.businesses) ? user.businesses = angular.fromJson(user.businesses) : user.businesses = [];
+                    (user.subscriptions) ? user.subscriptions = angular.fromJson(user.subscriptions) : user.subscriptions = {};
+                    (user.defaults) ? user.defaults = angular.fromJson(user.defaults) : user.defaults = {};
+                    // user.addresses = angular.fromJson(user.addresses);
+                    // user.businesses = angular.fromJson(user.businesses);
+                    // user.subscriptions = angular.fromJson(user.subscriptions);
+                    // user.defaults = angular.fromJson(user.defaults);
+                };
 
                 authObj.$onAuth(function(authData) {
                     if (authData) {
@@ -21,10 +37,7 @@
                         $http.get('api/accounts/get.php?uid=' + authData.uid)
                             .then(function(response) {
                                 $rootScope.userData = response.data[0];
-                                ($rootScope.userData.birthday === '0000-00-00') ? $rootScope.userData.birthday = "": $rootScope.userData.birthday = new Date($rootScope.userData.birthday);
-                                ($rootScope.userData.shoe_size) ? $rootScope.userData.shoe_size = parseFloat($rootScope.userData.shoe_size): $rootScope.userData.shoe_size = "";
-                                $rootScope.userData.addresses = angular.fromJson($rootScope.userData.addresses);
-                                $rootScope.userData.subscriptions = angular.fromJson($rootScope.userData.subscriptions);
+                                setTypes();
                                 $http.get('api/accounts/getuserfav.php?uid=' + authData.uid)
                                     .then(function(response) {
                                         $rootScope.userData.favs = response.data;

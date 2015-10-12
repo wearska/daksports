@@ -16,8 +16,10 @@ $postdata = file_get_contents("php://input");
     @$shoe_size = $request->shoe_size;
     @$top_size = $request->top_size;
     @$pants_size = $request->pants_size;
-    @$addresses = serialize($request->addresses);
-    @$subscriptions = serialize($request->subscriptions);
+    @$addresses = $request->addresses;
+    @$businesses = $request->businesses;
+    @$subscriptions = $request->subscriptions;
+    @$defaults = $request->defaults;
 
 $sql = "INSERT INTO users (uid, email, first_name, last_name, created, user_photo)
 VALUES ('$uid', '$email', '$first_name', '$last_name', '$created', '$user_photo')";
