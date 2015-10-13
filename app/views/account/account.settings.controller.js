@@ -14,6 +14,7 @@
                 if($scope.newaddress){
                     data.addresses.push($scope.newaddress);
                     $rootScope.userData.addresses.push($scope.newaddress);
+                    $rootScope.userData.defaults.address = ($rootScope.userData.addresses.length -1);
                     $scope.discardAddressForm();
                 };
                 if($scope.newbusiness){

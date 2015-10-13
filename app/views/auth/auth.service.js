@@ -34,6 +34,7 @@
                             .then(function(response) {
                                 $rootScope.userData = response.data[0];
                                 setTypes();
+                                $rootScope.$broadcast('userData: loaded', {});
                                 $http.get('api/accounts/getuserfav.php?uid=' + authData.uid)
                                     .then(function(response) {
                                         $rootScope.userData.favs = response.data;

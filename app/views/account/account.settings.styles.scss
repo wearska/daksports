@@ -4,13 +4,16 @@
     background-color: white;
     padding: 24px;
     box-sizing: border-box;
-    font-size: 13px;
     font-weight: 400;
+    // font-size: 13px;
     line-height: 20px;
     border-radius: 2px;
     margin: 16px auto;
     overflow: hidden;
     position: relative;
+    input {
+        font-size: 14px;
+    }
     h1.settings-card-title {
         font-size: 20px;
         font-weight: 500;

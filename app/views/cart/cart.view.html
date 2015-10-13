@@ -79,22 +79,25 @@
                         </md-tooltip>
                         <md-icon md-svg-src="assets/icons/promo_badge.svg" style="width: 48px; height: 48px;"></md-icon>
                     </div>
-                    <md-icon class="cancel-cart-item" aria-label="Elimina din cos" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="cart.removeItem(item)" style="width: 24px; height: 24px;"></md-icon>
+                    <md-icon aria-label="Elimina din cos" class="cancel-cart-item" md-svg-src="assets/icons/ic_close_24px.svg" ng-click="cart.removeItem(item)" style="width: 24px; height: 24px;"></md-icon>
                 </div>
             </li>
             <md-divider style="margin-top: 24px;"></md-divider>
             <br>
             <div ng-if="cart.getTotal() < 150">
-                <md-icon md-svg-src="assets/icons/ic_info_outline_24px.svg" style="width: 20px; height: 20px; vertical-align: middle; color: rgb(183,28,28);"></md-icon><span style="vertical-align: middle">Comanda produse de peste 150.00 lei pentru a beneficia de <span style="font-weight : 600">transport GRATUIT!</span></span>
+                <md-icon md-svg-src="assets/icons/ic_info_outline_24px.svg" style="width: 20px; height: 20px; vertical-align: middle; color: rgb(183,28,28);"></md-icon>
+                <span style="vertical-align: middle">Comanda produse de peste 150.00 lei pentru a beneficia de
+                    <span style="font-weight : 600">transport GRATUIT!</span>
+                </span>
             </div>
             <div class="order-total-block">
                 <div class="order-total-display">
                     <div class="" layout layout-align="center center" style="height: 30px; margin-top: 34px;">
                         <span flex></span>
-                        <span flex></span>
-                        <md-input-container flex>
+                        <md-input-container flex class="md-icon-float">
                             <label>Aplica un cod de reducere</label>
-                            <input ng-model="orderDiscount">
+                            <md-icon md-svg-src="assets/icons/ic_redeem_24px.svg"></md-icon>
+                            <input ng-model="orderDiscount" type="text">
                         </md-input-container>
                         <p class="order-discount single-line" flex>Discount: 0</p>
                     </div>
@@ -108,5 +111,192 @@
                 </div>
             </div>
         </ul>
+        <br>
+    </div>
+    <br>
+    <gd-heading ng-if="cart.items.length" subtitle="Mare pate din aceste optiuni le poti predefini in pagina de setari a contului tau" title="Detalii livrare comanda"></gd-heading>
+    
+    <!-- DETALII LIVRARE -->
+    
+    <div ng-if="cart.items.length" id="account-settings" ng-controller="AccountSettingsCtrl">
+        <!-- ADDRESS INFO START -->
+        <div class="paper account-settings-card settings-card delivery-card">
+            <!-- NAME START -->
+            <h2 class="settings-card-subtitle">Nume si prenume:</h2>
+            <div layout style="padding-left: 16px;">
+                <md-input-container flex="50" style="max-width: 300px">
+                    <label>Numele pe care va fi emisa factura</label>
+                    <input aria-label="Nume facturare" name="billing_name" ng-model="order.billing.name" required>
+                    <div ng-messages="addressForm.city.$error" ng-show="orderSubmitted || billing_name.$dirty">
+                        <div ng-message="required">Camp obligatoriu</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <!-- NAME END -->
+            <!-- BILLING TYPE START -->
+            <h2 class="settings-card-subtitle">Detalii facturare:</h2>
+            <md-radio-group layout ng-change="submitForm()" ng-model="order.billing.type">
+                <md-radio-button value="personal">
+                    <span>Persoana fizica</span>
+                </md-radio-button>
+                <span flex="5"></span>
+                <md-radio-button value="business">
+                    <span>Firma</span>
+                </md-radio-button>
+            </md-radio-group>
+            <md-divider></md-divider>
+            <!-- BILLING TYPE END -->
+            <!-- BILLING ADDRESS START -->
+            <br>
+            <br>
+            <h2 class="settings-card-subtitle">Adresa livrare:</h2>
+
+            <div class="animate-switch-container" ng-switch on="order.billing.type">
+                <div ng-switch-when="personal">
+                    <div class="header" ng-show="!$root.userData.addresses.length">
+                        <div>Nu ai inca o adresa salvata, adauga o adresa mai jos</div>
+                    </div>
+                    <md-radio-group ng-model="$root.userData.defaults.address">
+                        <div class="address-block" layout layout-align="start center" ng-repeat="address in $root.userData.addresses">
+                            <md-radio-button class="address-radio" value="{{$index}}" style="margin-top: 5px; margin-bottom: 5px;">
+                                <span>{{address.address}};</span>
+                                <span>
+                                    {{address.city}},</span>
+                                <span>
+                                    jud.
+                                    {{address.county}},</span>
+                                <span>
+                                    {{address.postcode}}</span>
+                            </md-radio-button>
+                        </div>
+                        <div class="header" style="margin-top: 8px;">
+                            <span class="add-new-address">+ Adauga o adresa</span>
+                        </div>
+                    </md-radio-group>
+                </div>
+                <div ng-switch-when="business">
+                    <md-radio-group ng-model="$root.userData.defaults.business">
+                        <div class="business-block" layout layout-align="start center" ng-repeat="business in $root.userData.businesses">
+                            <md-radio-button class="address-radio" style="margin-top: 5px; margin-bottom: 5px;" value="{{$index}}">
+                                <span>{{business.name}}</span>
+                            </md-radio-button>
+                        </div>
+                        <div class="header" style="margin-top: 8px;">
+                            <span class="add-new-business">+ Adauga o firma</span>
+                        </div>
+                    </md-radio-group>
+                </div>
+            </div>
+            <br>
+            <md-divider></md-divider>
+            <!-- BILLING ADDRESS END -->
+            <!-- PAYMENT TYPE START -->
+            <br>
+            <h2 class="settings-card-subtitle">Platesc cu:</h2>
+            <div layout>
+                <md-radio-group aria-label="Alege modalitatea de plata" ng-model="order.payment.type">
+                    <md-radio-button ng-repeat="option in paymentOptions" style="margin-top: 5px; margin-bottom: 5px;" value="{{$index}}">
+                        <span>{{option}}</span>
+                    </md-radio-button>
+                </md-radio-group>
+            </div>
+            <div class="footer">
+                <div>Momentan, aceasta e singura modalitate de plata disponibila. Mai multe in curand</div>
+            </div>
+            <br>
+            <md-divider></md-divider>
+            <!-- PAYMENT TYPE END -->
+            <!-- CONTACT START -->
+            <br>
+            <h2 class="settings-card-subtitle">Pot fi contactat la:</h2>
+            <md-input-container style="padding-left: 16px; max-width: 200px">
+                <label>Numar de telefon</label>
+                <input ng-model="order.contact" type="number">
+            </md-input-container>
+            <br>
+            <!-- CONTACT END -->
+        </div>
+    </div>
+    <br>
+    <gd-heading ng-if="cart.items.length" title="Sumar comanda" subtitle="Verificati cu atentie detaliile comenzii inainte de a o trimite"></gd-heading>
+    <div class="gd-table" ng-if="cart.items.length">
+        <!-- PRODUSE COMANDATE -->
+        <div class="subhead">Produse comandate:</div>
+        <div ng-repeat="item in cart.items">
+            <div layout="" style="padding-left: 16px; margin: 8px 0;">
+                <span flex="85">{{item.count}}
+                    x
+                    {{item.product.name}}
+                    •
+                    {{item.product.subname}}</span>
+                <span flex="5"></span>
+                <span flex="10" style="text-align: right;">{{item.count * item.product.new_price | number : 2}}
+                    RON</span>
+            </div>
+        </div>
+        <br>
+        <div layout="" style="padding-left: 16px; margin: 8px 0;">
+            <span style="font-weight: bold" flex="85">Discount:</span>
+            <span flex="5"></span>
+            <span flex="10" style="text-align: right;">{{order.discount | number : 2}} RON</span>
+        </div>
+        <div layout="" style="padding-left: 16px; margin: 8px 0;">
+            <span style="font-weight: bold" flex="85">Subtotal:</span>
+            <span flex="5"></span>
+            <span flex="10" style="text-align: right;">{{ cart.getTotal() | number : 2}} RON</span>
+        </div>
+        <div layout="" style="padding-left: 16px; margin: 8px 0;">
+            <span style="font-weight: bold" flex="85">Cost transport:</span>
+            <span flex="5"></span>
+            <span flex="10" style="text-align: right;">{{cart.shipping() | number : 2}} RON</span>
+        </div>
+        <div layout="" style="padding-left: 16px; margin: 8px 0;">
+            <span style="font-weight: bold" flex="85">Total:</span>
+            <span flex="5"></span>
+            <span flex="10" style="text-align: right;">{{ cart.getTotal() + cart.shipping() | number : 2}} RON</span>
+        </div>
+        <md-divider></md-divider>
+        <br>
+        <!-- DETALII FACTURARE  -->
+        <div class="subhead">Detalii facturare si livrare:</div>
+        <div style="padding-left: 16px; margin: 8px 0;">
+            <span style="font-weight: bold">Factura in numele:</span>
+            {{order.billing.name}}</div>
+        <div style="padding-left: 16px; margin: 8px 0;">
+            <span style="font-weight: bold">Contact:</span>
+            0{{order.contact}}</div>
+        <div style="padding-left: 16px; margin: 8px 0;">
+            <span style="font-weight: bold">Livrare la:</span>
+            <span>{{order.billing.address.address}};</span>
+            <span>
+                {{order.billing.address.city}},</span>
+            <span>
+                jud.
+                {{order.billing.address.county}},</span>
+            <span>
+                {{order.billing.address.postcode}}</span>
+        </div>
+        <div style="padding-left: 16px; margin: 8px 0;">
+            <span style="font-weight: bold">Modalitate de plata:</span>
+            {{paymentOptions[order.payment.type]}}</div>
+        <md-divider></md-divider>
+        <br>
+        <!-- NOTIFICARE -->
+        <div class="subhead">Trimite comanda:</div>
+        <div style="padding-left: 16px; margin: 8px 0;">
+            <span style="font-weight: bold">Atentie:</span>
+            Va rugam sa verificati cu atentie produsele din cos, cantitatile,suma de plata si datele de livrare. Acestea nu mai pot di modificate dupa trimiterea comenzii
+        </div>
+        <div style="padding-left: 16px; margin: 8px 0;" layout layout-align="start center">
+            <md-checkbox aria-label="Acceptare termeni si conditii" ng-model="userAgreement"></md-checkbox>
+            <span flex>Prin trimiterea comenzii accept <span><a href="">termenii și condițiile</a></span> DAKSports.</span>
+        </div>
+        <br>
+        <button style="padding-left: 16px; margin-left: 16px;" class="dak-button" md-ink-ripple md-theme="brand" ng-disabled="!userAgreement" type="button">
+            <div class="icon-bg"></div>
+            <md-icon md-svg-src="assets/icons/ic_playlist_add_24px.svg" style="position: relative; margin-right: 16px; color: #fff"></md-icon>
+            Trimite comanda
+            <div class="button-border"></div>
+        </button>
     </div>
 </div>
