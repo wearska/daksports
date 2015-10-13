@@ -12,7 +12,7 @@
                     <div class="circle-photo" ng-class="{'scaled' : secondStep}"
                         style="background-image: url({{$root.userData.user_photo}})"></div>
                 </div>
-                <form autocomplete="off" name="loginForm" ng-submit="login(user)" novalidate>
+                <form name="loginForm" ng-submit="login(user)" novalidate>
                     <div class="login-parts-wrapper" ng-class="{'second-step' : secondStep}">
                         <div class="login-part one" ng-hide="secondStep">
                             <md-input-container>

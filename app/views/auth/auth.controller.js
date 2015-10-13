@@ -5,30 +5,6 @@
         .controller('AuthCtrl', ['$http', '$rootScope', '$scope', '$location', 'Auth', 'FileUploader', '$mdToast',
             function($http, $rootScope, $scope, $location, Auth, FileUploader, $mdToast) {
 
-                // functions
-                $scope.toastPosition = {
-                    bottom: false,
-                    top: true,
-                    left: false,
-                    right: true
-                };
-                $scope.getToastPosition = function() {
-                    return Object.keys($scope.toastPosition)
-                        .filter(function(pos) {
-                            return $scope.toastPosition[pos];
-                        })
-                        .join(' ');
-                };
-                $scope.showSimpleToast = function() {
-                    $mdToast.show(
-                        $mdToast.simple()
-                        .content('Simple Toast!')
-                        .position($scope.getToastPosition())
-                        .hideDelay(3000)
-                    );
-                };
-
-
                 // initialize the scope objects
                 $scope.firstStep = true;
                 $scope.secondStep = false;
@@ -98,9 +74,11 @@
                     $http.get('api/accounts/getuserphoto.php?email=' + credentials.email)
                         .then(function(response) {
                             console.log(response.data);
-                            $rootScope.userData.user_photo = response.data[0].user_photo;
-                            $rootScope.userData.first_name = response.data[0].first_name;
-                            $rootScope.userData.last_name = response.data[0].last_name;
+                            if (response.data.length) {
+                                $rootScope.userData.user_photo = response.data[0].user_photo;
+                                $rootScope.userData.first_name = response.data[0].first_name;
+                                $rootScope.userData.last_name = response.data[0].last_name;
+                            }
                         }).catch(function(error) {
                             $rootScope.userData = {};
                             return error;
@@ -110,6 +88,32 @@
                     $scope.secondStep = false;
                     $scope.firstStep = true;
                 };
+
+                $scope.showPwdErrorToast = function() {
+                    $mdToast.show(
+                        $mdToast.simple()
+                        .content('Parola incorecta, increarca din nou!')
+                        .action('Ok')
+                        .hideDelay(0)
+                    );
+                };
+                $scope.showUsrErrorToast = function() {
+                    $mdToast.show(
+                        $mdToast.simple()
+                        .content('Acest user nu exista!')
+                        .action('Ok')
+                        .hideDelay(0)
+                    );
+                };
+                $scope.showErrorToast = function() {
+                    $mdToast.show(
+                        $mdToast.simple()
+                        .content('Am intampinat o problema, incearca putin mai tarziu!')
+                        .action('Ok')
+                        .hideDelay(0)
+                    );
+                };
+
                 $scope.login = function(credentials) {
                     $scope.loginForm.submitted = true;
                     if ($scope.loginForm.$valid) {
@@ -120,7 +124,14 @@
                             console.log("Logged in as:", authData.uid);
                             $location.path('/');
                         }).catch(function(error) {
-                            console.error("Authentication failed:", error);
+                            var errorStr = error.toString();
+                            if (errorStr.indexOf('password') > -1) {
+                                $scope.showPwdErrorToast();
+                            } else if (errorStr.indexOf('user') > -1) {
+                                $scope.showUsrErrorToast();
+                            } else {
+                                $scope.showErrorToast();
+                            };
                         });
                     }
                 };

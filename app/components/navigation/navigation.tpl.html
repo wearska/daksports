@@ -21,7 +21,7 @@
         <a class="nav-item-container sub" md-ink-ripple ng-click="nav.logout()" ng-show="$root.logged">
             <md-icon md-svg-src=""></md-icon>Logout</a>
     </div>
-    <div class="nav-section-divider"></div>
+    <div ng-if="$root.logged" class="nav-section-divider"></div>
 </section>
 <!-- <section>
     <div class="nav-section">

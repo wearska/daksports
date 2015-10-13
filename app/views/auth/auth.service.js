@@ -20,15 +20,11 @@
                     (user.birthday === '0000-00-00') ? user.birthday = "": user.birthday = new Date(user.birthday);
                     // shoe size must be an integer
                     (user.shoe_size) ? user.shoe_size = parseFloat(user.shoe_size): user.shoe_size = "";
-                    // convert to needed arrays
+                    // convert to needed arrays and objects 
                     (user.addresses) ? user.addresses = angular.fromJson(user.addresses) : user.addresses = [];
                     (user.businesses) ? user.businesses = angular.fromJson(user.businesses) : user.businesses = [];
                     (user.subscriptions) ? user.subscriptions = angular.fromJson(user.subscriptions) : user.subscriptions = {};
                     (user.defaults) ? user.defaults = angular.fromJson(user.defaults) : user.defaults = {};
-                    // user.addresses = angular.fromJson(user.addresses);
-                    // user.businesses = angular.fromJson(user.businesses);
-                    // user.subscriptions = angular.fromJson(user.subscriptions);
-                    // user.defaults = angular.fromJson(user.defaults);
                 };
 
                 authObj.$onAuth(function(authData) {

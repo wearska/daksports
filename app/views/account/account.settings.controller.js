@@ -7,17 +7,19 @@
             // --------------------------------
             //  FORM SUBMIT
             // --------------------------------
-            
+
             $scope.submitForm = function() {
                 // update user details
                 var data = angular.copy($rootScope.userData);
                 if($scope.newaddress){
                     data.addresses.push($scope.newaddress);
                     $rootScope.userData.addresses.push($scope.newaddress);
+                    $scope.discardAddressForm();
                 };
                 if($scope.newbusiness){
                     data.businesses.push($scope.newbusiness);
                     $rootScope.userData.businesses.push($scope.newbusiness);
+                    $scope.discardBusinessForm();
                 };
                 data.addresses = angular.toJson(data.addresses);
                 data.businesses = angular.toJson(data.businesses);
@@ -36,7 +38,7 @@
                         return error;
                     });
             };
-            
+
 
             // --------------------------------
             // USER SETTINGS
@@ -60,11 +62,11 @@
                 $scope.addressForm.$setPristine();
                 $scope.addressForm.$setUntouched();
             };
-            
+
             // ------------------------------
             // BILLING
             // ------------------------------
-            
+
             $scope.showBusinessForm = false;
             $scope.removeBusiness = function(idx){
                 $rootScope.userData.businesses.splice(idx, 1);
@@ -76,11 +78,11 @@
                 $scope.businessForm.$setPristine();
                 $scope.businessForm.$setUntouched();
             };
-            
+
             // -------------------------------
             // NOTIFICATIONS
             // -------------------------------
-            
+
         });
 
 })();
