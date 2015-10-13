@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('CardCtrl', function($http, $rootScope, $scope, $mdDialog, $cookies, cart, ngCart, Auth, $mdBottomSheet, gdShoppingLists, gdShoppingCart) {
+        .controller('CardCtrl', function($http, $rootScope, $scope, $mdDialog, $cookies, Auth, $mdBottomSheet, gdShoppingLists, gdShoppingCart) {
 
             // ADD TO CART
             $scope.order = {

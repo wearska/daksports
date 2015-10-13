@@ -1,26 +1,20 @@
 <div class="page-content c-max">
-    <gd-heading subtitle="Verifica si confirma sau modifica detaliile cosului tau" title="Cosul tau de cumparaturi"></gd-heading>
-    <div class="gd-table">
+    <gd-heading ng-if="cart.items.length" subtitle="Verifica si confirma sau modifica detaliile cosului tau" title="Cosul tau de cumparaturi"></gd-heading>
+    <gd-heading ng-if="!cart.items.length" subtitle="Intoarce-te la cumparaturi" title="Cosul tau este gol">
+        <a href="/store">
+            <md-button class="md-primary md-icon-button carousel-heading-button">
+                <md-tooltip>
+                    Inapoi in magazin
+                </md-tooltip>
+                <md-icon md-svg-src="assets/icons/ic_store_24px.svg"></md-icon>
+            </md-button>
+        </a>
+    </gd-heading>
+    <div class="gd-table" ng-if="cart.items.length">
         <gd-table-header class="gd-table-header">
-            <div class="column-name media-column">
-                <md-checkbox aria-label="Selecteaza toate" ng-checked="table.allToggle" ng-click="table.toggleAll()"></md-checkbox>
-            </div>
-            <div class="column-name title-column" ng-click="table.setActiveSort($event, 'name')">
-                <span>Nume produs</span>
-                <md-icon class="down" md-svg-src="assets/icons/ic_sort_down_24px.svg" ng-class="{reverse : table.reverse}"></md-icon>
-            </div>
-            <div class="column-name subtitle-column" ng-click="table.setActiveSort($event, 'subname')">
-                <span>Subnume</span>
-                <md-icon class="down" md-svg-src="assets/icons/ic_sort_down_24px.svg" ng-class="{reverse : table.reverse}"></md-icon>
-            </div>
-            <div class="column-name info-column" ng-click="table.setActiveSort($event, 'new_price')">
-                <span>Pret</span>
-                <md-icon class="down" md-svg-src="assets/icons/ic_sort_down_24px.svg" ng-class="{reverse : table.reverse}"></md-icon>
-            </div>
-            <div class="column-name excerpt-column">
-                <span>Descriere</span>
-                <md-icon class="down" md-svg-src="assets/icons/ic_sort_down_24px.svg"></md-icon>
-            </div>
+            <md-icon aria-label="Goleste cos de cumparaturi" class="empty-cart-button l-right" md-svg-src="assets/icons/ic_delete_24px.svg" ng-click="cart.empty()">
+                <md-tooltip>Goleste cos</md-tooltip>
+            </md-icon>
         </gd-table-header>
         <ul id="gd-shopping-list">
             <li class="paper" ng-repeat="item in cart.items">
@@ -89,6 +83,10 @@
                 </div>
             </li>
             <md-divider style="margin-top: 24px;"></md-divider>
+            <br>
+            <div ng-if="cart.getTotal() < 150">
+                <md-icon md-svg-src="assets/icons/ic_info_outline_24px.svg" style="width: 20px; height: 20px; vertical-align: middle; color: rgb(183,28,28);"></md-icon><span style="vertical-align: middle">Comanda produse de peste 150.00 lei pentru a beneficia de <span style="font-weight : 600">transport GRATUIT!</span></span>
+            </div>
             <div class="order-total-block">
                 <div class="order-total-display">
                     <div class="" layout layout-align="center center" style="height: 30px; margin-top: 34px;">
@@ -100,7 +98,7 @@
                         </md-input-container>
                         <p class="order-discount single-line" flex>Discount: 0</p>
                     </div>
-                    <p class="order-transport single-line">Total:
+                    <p class="order-transport single-line">Subtotal:
                         {{ cart.getTotal() | number : 2}}</p>
                     <p class="order-transport single-line">Cost transport:
                         {{cart.shipping() | number : 2}}</p>

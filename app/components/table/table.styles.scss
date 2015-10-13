@@ -205,10 +205,12 @@
 }
 .gd-table-header {
     position: relative;
+    display: block;
     padding: 16px;
     color: rgba(0,0,0,.54);
     font-size: 12px;
     font-weight: 300;
+    min-height: 48px;
     .column-name {
         display: inline-block;
         user-select: none;

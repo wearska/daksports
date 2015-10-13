@@ -12,9 +12,6 @@
         replace: true,
         templateUrl: 'app/components/card/card.tpl.html',
         link: function(scope, el, attr) {
-          // scope.addToCart = function(item) {
-          //     cart.post(item)
-          // };
         }
       }
     })

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('AppBarCtrl', function($rootScope, $scope, $filter, $location, $timeout, ngCart) {
+        .controller('AppBarCtrl', function($rootScope, $scope, $filter, $location, $timeout) {
 
             // TOGGLE SEARCH BAR
             $scope.showSearchBar = false;
