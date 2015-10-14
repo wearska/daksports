@@ -115,9 +115,9 @@
     </div>
     <br>
     <gd-heading ng-if="cart.items.length" subtitle="Mare pate din aceste optiuni le poti predefini in pagina de setari a contului tau" title="Detalii livrare comanda"></gd-heading>
-    
+
     <!-- DETALII LIVRARE -->
-    
+
     <div ng-if="cart.items.length" id="account-settings" ng-controller="AccountSettingsCtrl">
         <!-- ADDRESS INFO START -->
         <div class="paper account-settings-card settings-card delivery-card">
@@ -157,7 +157,7 @@
                         <div>Nu ai inca o adresa salvata, adauga o adresa mai jos</div>
                     </div>
                     <md-radio-group ng-model="$root.userData.defaults.address">
-                        <div class="address-block" layout layout-align="start center" ng-repeat="address in $root.userData.addresses">
+                        <div layout layout-align="start center" ng-repeat="address in $root.userData.addresses">
                             <md-radio-button class="address-radio" value="{{$index}}" style="margin-top: 5px; margin-bottom: 5px;">
                                 <span>{{address.address}};</span>
                                 <span>
@@ -176,9 +176,13 @@
                 </div>
                 <div ng-switch-when="business">
                     <md-radio-group ng-model="$root.userData.defaults.business">
-                        <div class="business-block" layout layout-align="start center" ng-repeat="business in $root.userData.businesses">
+                        <div layout layout-align="start center" ng-repeat="business in $root.userData.businesses">
                             <md-radio-button class="address-radio" style="margin-top: 5px; margin-bottom: 5px;" value="{{$index}}">
-                                <span>{{business.name}}</span>
+                                <span>{{business.name}} • </span>
+                                <span>{{business.address}} • </span>
+                                <span>{{business.city}}</span>
+                                <span>, jud. {{business.county}}</span>
+                                <span ng-if="business.postcode">, {{business.postcode}}</span>
                             </md-radio-button>
                         </div>
                         <div class="header" style="margin-top: 8px;">
@@ -265,7 +269,7 @@
         <div style="padding-left: 16px; margin: 8px 0;">
             <span style="font-weight: bold">Contact:</span>
             0{{order.contact}}</div>
-        <div style="padding-left: 16px; margin: 8px 0;">
+        <div ng-if="order.billing.type === 'personal'" style="padding-left: 16px; margin: 8px 0;">
             <span style="font-weight: bold">Livrare la:</span>
             <span>{{order.billing.address.address}};</span>
             <span>
@@ -276,6 +280,14 @@
             <span>
                 {{order.billing.address.postcode}}</span>
         </div>
+        <div ng-if="order.billing.type === 'business'" style="padding-left: 16px; margin: 8px 0;">
+            <span style="font-weight: bold">Livrare la:</span>
+            <span>{{business.name}} • </span>
+            <span>{{business.address}} • </span>
+            <span>{{business.city}}</span>
+            <span>, jud. {{business.county}}</span>
+            <span ng-if="business.postcode">, {{business.postcode}}</span>
+        </div>
         <div style="padding-left: 16px; margin: 8px 0;">
             <span style="font-weight: bold">Modalitate de plata:</span>
             {{paymentOptions[order.payment.type]}}</div>
@@ -285,7 +297,7 @@
         <div class="subhead">Trimite comanda:</div>
         <div style="padding-left: 16px; margin: 8px 0;">
             <span style="font-weight: bold">Atentie:</span>
-            Va rugam sa verificati cu atentie produsele din cos, cantitatile,suma de plata si datele de livrare. Acestea nu mai pot di modificate dupa trimiterea comenzii
+            Va rugam sa verificati cu atentie produsele din cos, cantitatile,suma de plata si datele de livrare. Acestea nu mai pot fi modificate dupa trimiterea comenzii
         </div>
         <div style="padding-left: 16px; margin: 8px 0;" layout layout-align="start center">
             <md-checkbox aria-label="Acceptare termeni si conditii" ng-model="userAgreement"></md-checkbox>
@@ -294,7 +306,7 @@
         <br>
         <button style="padding-left: 16px; margin-left: 16px;" class="dak-button" md-ink-ripple md-theme="brand" ng-disabled="!userAgreement" type="button">
             <div class="icon-bg"></div>
-            <md-icon md-svg-src="assets/icons/ic_playlist_add_24px.svg" style="position: relative; margin-right: 16px; color: #fff"></md-icon>
+            <md-icon md-svg-src="assets/icons/ic_send_24px.svg" style="position: relative; margin-right: 16px; color: #fff"></md-icon>
             Trimite comanda
             <div class="button-border"></div>
         </button>

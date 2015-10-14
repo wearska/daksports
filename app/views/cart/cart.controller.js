@@ -8,7 +8,7 @@
             $scope.updateList = function(item){
                 $rootScope.$broadcast('gdCart: changed', {});
             };
-            
+
             // -------------------------------
             // ORDER INFO
             // -------------------------------
@@ -21,20 +21,25 @@
                 billing:{}
             };
             var order = $scope.order;
-            
+
             var updateOrder = function(){
                 var user = $rootScope.userData;
                 order.billing.name =  user.last_name + " " + user.first_name;
                 order.billing.type =  user.defaults.billing;
-                order.billing.address = user.addresses[user.defaults.address];
-                
+                if(order.billing.type === 'personal'){
+                    order.billing.address = user.addresses[user.defaults.address];
+                } else if (order.billing.type === 'business'){
+                    order.billing.address = user.businesses[user.defaults.address];
+                }
+
+
                 order.payment = {
                     type: 0
                 };
-                
+
                 order.contact = angular.copy(user.contact);
             };
-            
+
             $scope.$on('userData: loaded', updateOrder);
             if($rootScope.userData){
                 updateOrder();
