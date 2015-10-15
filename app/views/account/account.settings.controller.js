@@ -20,6 +20,7 @@
                 if($scope.newbusiness){
                     data.businesses.push($scope.newbusiness);
                     $rootScope.userData.businesses.push($scope.newbusiness);
+                    $rootScope.userData.defaults.address = ($rootScope.userData.businesses.length -1);
                     $scope.discardBusinessForm();
                 };
                 data.addresses = angular.toJson(data.addresses);

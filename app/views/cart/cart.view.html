@@ -10,6 +10,14 @@
             </md-button>
         </a>
     </gd-heading>
+    <md-divider></md-divider>
+    <br>
+    <div ng-if="!cart.items.length" style="padding-left: 16px;">
+        <md-icon md-svg-src="assets/icons/ic_info_outline_24px.svg" style="width: 20px; height: 20px; vertical-align: middle; color: rgb(183,28,28);"></md-icon>
+        <span style="vertical-align: middle">Daca ai o lista cu produse nu uita sa o trimiti in cos</span>
+    </div>
+    <br>
+    <a md-button class="md-primary md-raised" style="margin-left: 16px; vertical-align: middle;" href="/account/lists">Arata-mi listele</a>
     <div class="gd-table" ng-if="cart.items.length">
         <gd-table-header class="gd-table-header">
             <md-icon aria-label="Goleste cos de cumparaturi" class="empty-cart-button l-right" md-svg-src="assets/icons/ic_delete_24px.svg" ng-click="cart.empty()">
@@ -94,7 +102,7 @@
                 <div class="order-total-display">
                     <div class="" layout layout-align="center center" style="height: 30px; margin-top: 34px;">
                         <span flex></span>
-                        <md-input-container flex class="md-icon-float">
+                        <md-input-container class="md-icon-float" flex>
                             <label>Aplica un cod de reducere</label>
                             <md-icon md-svg-src="assets/icons/ic_redeem_24px.svg"></md-icon>
                             <input ng-model="orderDiscount" type="text">
@@ -116,12 +124,12 @@
     <br>
     <gd-heading ng-if="cart.items.length" subtitle="Mare pate din aceste optiuni le poti predefini in pagina de setari a contului tau" title="Detalii livrare comanda"></gd-heading>
 
-    <!-- DETALII LIVRARE -->
+<!-- DETALII LIVRARE -->
 
-    <div ng-if="cart.items.length" id="account-settings" ng-controller="AccountSettingsCtrl">
-        <!-- ADDRESS INFO START -->
+    <div id="account-settings" ng-controller="AccountSettingsCtrl" ng-if="cart.items.length">
+<!-- ADDRESS INFO START -->
         <div class="paper account-settings-card settings-card delivery-card">
-            <!-- NAME START -->
+<!-- NAME START -->
             <h2 class="settings-card-subtitle">Nume si prenume:</h2>
             <div layout style="padding-left: 16px;">
                 <md-input-container flex="50" style="max-width: 300px">
@@ -132,10 +140,10 @@
                     </div>
                 </md-input-container>
             </div>
-            <!-- NAME END -->
-            <!-- BILLING TYPE START -->
+<!-- NAME END -->
+<!-- BILLING TYPE START -->
             <h2 class="settings-card-subtitle">Detalii facturare:</h2>
-            <md-radio-group layout ng-change="submitForm()" ng-model="order.billing.type">
+            <md-radio-group layout ng-change="updateOrder(); discardBusinessForm(); discardAddressForm();" ng-model="order.billing.type">
                 <md-radio-button value="personal">
                     <span>Persoana fizica</span>
                 </md-radio-button>
@@ -145,56 +153,192 @@
                 </md-radio-button>
             </md-radio-group>
             <md-divider></md-divider>
-            <!-- BILLING TYPE END -->
-            <!-- BILLING ADDRESS START -->
+<!-- BILLING TYPE END -->
+<!-- BILLING ADDRESS START -->
             <br>
             <br>
             <h2 class="settings-card-subtitle">Adresa livrare:</h2>
 
-            <div class="animate-switch-container" ng-switch on="order.billing.type">
-                <div ng-switch-when="personal">
-                    <div class="header" ng-show="!$root.userData.addresses.length">
-                        <div>Nu ai inca o adresa salvata, adauga o adresa mai jos</div>
+            <div ng-show="order.billing.type === 'personal'">
+                <div class="header" ng-show="!$root.userData.addresses.length">
+                    <div>Nu ai inca o adresa salvata, adauga o adresa mai jos</div>
+                </div>
+                <md-radio-group ng-model="$root.userData.defaults.address">
+                    <div layout layout-align="start center" ng-repeat="address in $root.userData.addresses">
+                        <md-radio-button class="address-radio" style="margin-top: 5px; margin-bottom: 5px;" value="{{$index}}">
+                            <span>{{address.address}};</span>
+                            <span>
+                                {{address.city}},</span>
+                            <span>
+                                jud.
+                                {{address.county}},</span>
+                            <span>
+                                {{address.postcode}}</span>
+                        </md-radio-button>
                     </div>
-                    <md-radio-group ng-model="$root.userData.defaults.address">
-                        <div layout layout-align="start center" ng-repeat="address in $root.userData.addresses">
-                            <md-radio-button class="address-radio" value="{{$index}}" style="margin-top: 5px; margin-bottom: 5px;">
-                                <span>{{address.address}};</span>
-                                <span>
-                                    {{address.city}},</span>
-                                <span>
-                                    jud.
-                                    {{address.county}},</span>
-                                <span>
-                                    {{address.postcode}}</span>
-                            </md-radio-button>
-                        </div>
-                        <div class="header" style="margin-top: 8px;">
-                            <span class="add-new-address">+ Adauga o adresa</span>
-                        </div>
-                    </md-radio-group>
-                </div>
-                <div ng-switch-when="business">
-                    <md-radio-group ng-model="$root.userData.defaults.business">
-                        <div layout layout-align="start center" ng-repeat="business in $root.userData.businesses">
-                            <md-radio-button class="address-radio" style="margin-top: 5px; margin-bottom: 5px;" value="{{$index}}">
-                                <span>{{business.name}} • </span>
-                                <span>{{business.address}} • </span>
-                                <span>{{business.city}}</span>
-                                <span>, jud. {{business.county}}</span>
-                                <span ng-if="business.postcode">, {{business.postcode}}</span>
-                            </md-radio-button>
-                        </div>
-                        <div class="header" style="margin-top: 8px;">
-                            <span class="add-new-business">+ Adauga o firma</span>
-                        </div>
-                    </md-radio-group>
-                </div>
+                    <div class="header" style="margin-top: 8px;">
+                        <span class="add-new-address" ng-click="showAddressForm = true">+ Adauga o adresa</span>
+                    </div>
+                </md-radio-group>
+            </div>
+            <div ng-show="order.billing.type === 'business'">
+                <md-radio-group ng-model="$root.userData.defaults.business">
+                    <div layout layout-align="start center" ng-repeat="business in $root.userData.businesses">
+                        <md-radio-button class="address-radio" style="margin-top: 5px; margin-bottom: 5px;" value="{{$index}}">
+                            <span>{{business.name}}
+                                •
+                            </span>
+                            <span>{{business.address}}
+                                •
+                            </span>
+                            <span>{{business.city}}</span>
+                            <span>, jud.
+                                {{business.county}}</span>
+                            <span ng-if="business.postcode">,
+                                {{business.postcode}}</span>
+                        </md-radio-button>
+                    </div>
+                    <div class="header" style="margin-top: 8px;">
+                        <span class="add-new-business" ng-click="showBusinessForm = true; newbusiness.cif_series = 'RO'">+ Adauga o firma</span>
+                    </div>
+                </md-radio-group>
             </div>
             <br>
             <md-divider></md-divider>
-            <!-- BILLING ADDRESS END -->
-            <!-- PAYMENT TYPE START -->
+<!-- BILLING ADDRESS END -->
+<!-- NEW ADDRESS / BUSINESS START -->
+<!-- PERSONAL ADDRESS -->
+            <div class="form" ng-show="showAddressForm">
+                <br>
+                <form class="address-form" name="addressForm" ng-submit="submitForm(); updateOrder()" novalidate>
+                    <div layout-gt-sm="row" layout="column">
+                        <md-input-container flex>
+                            <label>Oras*</label>
+                            <input name="city" ng-model="newaddress.city" required>
+                            <div ng-messages="addressForm.city.$error" ng-show="addressFormSubmitted || addressForm.city.$dirty">
+                                <div ng-message="required">Camp obligatoriu</div>
+                            </div>
+                        </md-input-container>
+                        <span flex="5" hide-sm></span>
+                        <md-input-container flex>
+                            <label>Judet*</label>
+                            <input name="county" ng-model="newaddress.county" required>
+                            <div ng-messages="addressForm.county.$error" ng-show="addressFormSubmitted || addressForm.county.$dirty">
+                                <div ng-message="required">Camp obligatoriu</div>
+                            </div>
+                        </md-input-container>
+                        <span flex="5" hide-sm></span>
+                        <md-input-container flex>
+                            <label>Cod postal</label>
+                            <input name="title" ng-model="newaddress.postcode">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row" layout="column">
+                        <md-input-container flex>
+                            <label>Adresa*</label>
+                            <input name="address" ng-model="newaddress.address">
+                            <div ng-messages="reviewForm.address.$error" ng-show="addressFormSubmitted || addressForm.address.$dirty">
+                                <div ng-message="required">Camp obligatoriu</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <span class="disclaimer" style="margin-top: 16px;">* Aceste campuri sunt obligatorii</span>
+                    <br>
+                    <span class="disclaimer" style="margin-top: 16px;">** Introdu adresa cat mai completa, pentru ca produsele tale sa ajunga la tine fara probleme</span>
+                    <br>
+                    <br>
+                    <md-button class="md-primary md-raised save-form-button" ng-disabled="addressForm.$invalid" type="submit">Salveaza</md-button>
+                    <md-button class="md-primary md-raised discard-form-button" md-theme="brand" ng-click="discardAddressForm()" type="button">Anuleaza</md-button>
+                </form>
+            </div>
+<!-- BUSINESS -->
+            <div class="form" ng-show="showBusinessForm">
+                <form class="business-form" name="businessForm" ng-submit="submitForm(); updateOrder();" novalidate>
+                    <md-input-container>
+                        <label>Nume firmă*</label>
+                        <input name="businessname" ng-model="newbusiness.name" required>
+                        <div ng-messages="businessForm.businessname.$error" ng-show="businessFormSubmitted || businessForm.businessname.$dirty">
+                            <div ng-message="required">Camp obligatoriu</div>
+                        </div>
+                    </md-input-container>
+                    <div layout="row">
+                        <md-input-container flex="10">
+                            <md-select aria-label="Serie cif" name="cifseries" ng-model="newbusiness.cif_series" required value="RO">
+                                <md-option ng-repeat="item in ['RO', '-']" ng-value="item">{{item}}</md-option>
+                            </md-select>
+                            <div ng-messages="businessForm.cifseries.$error" ng-show="businessFormSubmitted || businessForm.cifseries.$dirty">
+                                <div ng-message="required">Camp obligatoriu</div>
+                            </div>
+                        </md-input-container>
+                        <span flex="5"></span>
+                        <md-input-container flex>
+                            <label>CIF*</label>
+                            <input aria-label="CIF" name="cif" ng-model="newbusiness.cif" required>
+                            <div ng-messages="businessForm.cif.$error" ng-show="businessFormSubmitted || businessForm.cif.$dirty">
+                                <div ng-message="required">Camp obligatoriu</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <md-input-container>
+                        <label>Reg. Com.*</label>
+                        <input name="regcom" ng-model="newbusiness.regcom">
+                        <div ng-messages="businessForm.regcom.$error" ng-show="businessFormSubmitted || businessForm.regcom.$dirty">
+                            <div ng-message="required">Camp obligatoriu</div>
+                        </div>
+                    </md-input-container>
+                    <div layout-gt-sm="row" layout="column">
+                        <md-input-container flex="40">
+                            <label>Banca</label>
+                            <input name="bankname" ng-model="newbusiness.bank">
+                        </md-input-container>
+                        <span flex="5"></span>
+                        <md-input-container flex="55">
+                            <label>Cont</label>
+                            <input name="iban" ng-model="newbusiness.iban">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row" layout="column">
+                        <md-input-container flex>
+                            <label>Oras*</label>
+                            <input name="city" ng-model="newbusiness.city" required>
+                            <div ng-messages="businessForm.city.$error" ng-show="businessFormSubmitted || businessForm.city.$dirty">
+                                <div ng-message="required">Camp obligatoriu</div>
+                            </div>
+                        </md-input-container>
+                        <span flex="5" hide-sm></span>
+                        <md-input-container flex>
+                            <label>Judet*</label>
+                            <input name="county" ng-model="newbusiness.county" required>
+                            <div ng-messages="businessForm.county.$error" ng-show="businessFormSubmitted || businessForm.county.$dirty">
+                                <div ng-message="required">Camp obligatoriu</div>
+                            </div>
+                        </md-input-container>
+                        <span flex="5" hide-sm></span>
+                        <md-input-container flex>
+                            <label>Cod postal</label>
+                            <input name="title" ng-model="newbusiness.postcode">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row" layout="column">
+                        <md-input-container flex>
+                            <label>Adresa*</label>
+                            <input name="address" ng-model="newbusiness.address" required>
+                            <div ng-messages="businessForm.address.$error" ng-show="businessFormSubmitted || businessForm.address.$dirty">
+                                <div ng-message="required">Camp obligatoriu</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <span class="disclaimer" style="margin-top: 16px;">* Aceste campuri sunt obligatorii</span>
+                    <br>
+                    <span class="disclaimer" style="margin-top: 16px;">** Introdu adresa cat mai completa, pentru ca produsele tale sa ajunga la tine fara probleme</span>
+                    <br>
+                    <br>
+                    <md-button class="md-primary md-raised save-form-button" ng-disabled="businessForm.$invalid" type="submit">Salveaza</md-button>
+                    <md-button class="md-primary md-raised discard-form-button" md-theme="brand" ng-click="discardBusinessForm()" type="button">Anuleaza</md-button>
+                </form>
+            </div>
+<!-- NEW ADDRESS / BUSINESS END -->
+<!-- PAYMENT TYPE START -->
             <br>
             <h2 class="settings-card-subtitle">Platesc cu:</h2>
             <div layout>
@@ -209,22 +353,25 @@
             </div>
             <br>
             <md-divider></md-divider>
-            <!-- PAYMENT TYPE END -->
-            <!-- CONTACT START -->
+<!-- PAYMENT TYPE END -->
+<!-- CONTACT START -->
             <br>
             <h2 class="settings-card-subtitle">Pot fi contactat la:</h2>
             <md-input-container style="padding-left: 16px; max-width: 200px">
                 <label>Numar de telefon</label>
-                <input ng-model="order.contact" type="number">
+                <input ng-model="order.contact" type="text">
             </md-input-container>
             <br>
-            <!-- CONTACT END -->
+<!-- CONTACT END -->
         </div>
     </div>
+
+<!-- SUMAR COMANDA -->
+
     <br>
-    <gd-heading ng-if="cart.items.length" title="Sumar comanda" subtitle="Verificati cu atentie detaliile comenzii inainte de a o trimite"></gd-heading>
+    <gd-heading ng-if="cart.items.length" subtitle="Verificati cu atentie detaliile comenzii inainte de a o trimite" title="Sumar comanda"></gd-heading>
     <div class="gd-table" ng-if="cart.items.length">
-        <!-- PRODUSE COMANDATE -->
+<!-- PRODUSE COMANDATE -->
         <div class="subhead">Produse comandate:</div>
         <div ng-repeat="item in cart.items">
             <div layout="" style="padding-left: 16px; margin: 8px 0;">
@@ -240,71 +387,84 @@
         </div>
         <br>
         <div layout="" style="padding-left: 16px; margin: 8px 0;">
-            <span style="font-weight: bold" flex="85">Discount:</span>
+            <span flex="85" style="font-weight: bold">Discount:</span>
             <span flex="5"></span>
-            <span flex="10" style="text-align: right;">{{order.discount | number : 2}} RON</span>
+            <span flex="10" style="text-align: right;">{{order.discount | number : 2}}
+                RON</span>
         </div>
         <div layout="" style="padding-left: 16px; margin: 8px 0;">
-            <span style="font-weight: bold" flex="85">Subtotal:</span>
+            <span flex="85" style="font-weight: bold">Subtotal:</span>
             <span flex="5"></span>
-            <span flex="10" style="text-align: right;">{{ cart.getTotal() | number : 2}} RON</span>
+            <span flex="10" style="text-align: right;">{{ cart.getTotal() | number : 2}}
+                RON</span>
         </div>
         <div layout="" style="padding-left: 16px; margin: 8px 0;">
-            <span style="font-weight: bold" flex="85">Cost transport:</span>
+            <span flex="85" style="font-weight: bold">Cost transport:</span>
             <span flex="5"></span>
-            <span flex="10" style="text-align: right;">{{cart.shipping() | number : 2}} RON</span>
+            <span flex="10" style="text-align: right;">{{cart.shipping() | number : 2}}
+                RON</span>
         </div>
         <div layout="" style="padding-left: 16px; margin: 8px 0;">
-            <span style="font-weight: bold" flex="85">Total:</span>
+            <span flex="85" style="font-weight: bold">Total:</span>
             <span flex="5"></span>
-            <span flex="10" style="text-align: right;">{{ cart.getTotal() + cart.shipping() | number : 2}} RON</span>
+            <span flex="10" style="text-align: right;">{{ cart.getTotal() + cart.shipping() | number : 2}}
+                RON</span>
         </div>
         <md-divider></md-divider>
         <br>
-        <!-- DETALII FACTURARE  -->
+<!-- DETALII FACTURARE  -->
         <div class="subhead">Detalii facturare si livrare:</div>
         <div style="padding-left: 16px; margin: 8px 0;">
             <span style="font-weight: bold">Factura in numele:</span>
             {{order.billing.name}}</div>
         <div style="padding-left: 16px; margin: 8px 0;">
-            <span style="font-weight: bold">Contact:</span>
-            0{{order.contact}}</div>
+            <span style="font-weight: bold">Contact:</span>{{order.contact}}</div>
         <div ng-if="order.billing.type === 'personal'" style="padding-left: 16px; margin: 8px 0;">
             <span style="font-weight: bold">Livrare la:</span>
-            <span>{{order.billing.address.address}};</span>
-            <span>
+            <span ng-if="order.billing.address.address">{{order.billing.address.address}};</span>
+            <span ng-if="order.billing.address.city">
                 {{order.billing.address.city}},</span>
-            <span>
+            <span ng-if="order.billing.address.county">
                 jud.
                 {{order.billing.address.county}},</span>
-            <span>
+            <span ng-if="order.billing.address.postcode">
                 {{order.billing.address.postcode}}</span>
         </div>
         <div ng-if="order.billing.type === 'business'" style="padding-left: 16px; margin: 8px 0;">
             <span style="font-weight: bold">Livrare la:</span>
-            <span>{{business.name}} • </span>
-            <span>{{business.address}} • </span>
-            <span>{{business.city}}</span>
-            <span>, jud. {{business.county}}</span>
-            <span ng-if="business.postcode">, {{business.postcode}}</span>
+            <span ng-if="order.billing.address.name">{{order.billing.address.name}}
+                •
+            </span>
+            <span ng-if="order.billing.address.address">{{order.billing.address.address}}
+                •
+            </span>
+            <span ng-if="order.billing.address.city">{{order.billing.address.city}}</span>
+            <span ng-if="order.billing.address.county">, jud.
+                {{order.billing.address.county}}</span>
+            <span ng-if="order.billing.address.postcode">,
+                {{order.billing.address.postcode}}</span>
         </div>
         <div style="padding-left: 16px; margin: 8px 0;">
             <span style="font-weight: bold">Modalitate de plata:</span>
             {{paymentOptions[order.payment.type]}}</div>
         <md-divider></md-divider>
         <br>
-        <!-- NOTIFICARE -->
+<!-- NOTIFICARE -->
         <div class="subhead">Trimite comanda:</div>
         <div style="padding-left: 16px; margin: 8px 0;">
             <span style="font-weight: bold">Atentie:</span>
             Va rugam sa verificati cu atentie produsele din cos, cantitatile,suma de plata si datele de livrare. Acestea nu mai pot fi modificate dupa trimiterea comenzii
         </div>
-        <div style="padding-left: 16px; margin: 8px 0;" layout layout-align="start center">
+        <div layout layout-align="start center" style="padding-left: 16px; margin: 8px 0;">
             <md-checkbox aria-label="Acceptare termeni si conditii" ng-model="userAgreement"></md-checkbox>
-            <span flex>Prin trimiterea comenzii accept <span><a href="">termenii și condițiile</a></span> DAKSports.</span>
+            <span flex>Prin trimiterea comenzii accept
+                <span>
+                    <a href="">termenii și condițiile</a>
+                </span>
+                DAKSports.</span>
         </div>
         <br>
-        <button style="padding-left: 16px; margin-left: 16px;" class="dak-button" md-ink-ripple md-theme="brand" ng-disabled="!userAgreement" type="button">
+        <button class="dak-button" md-ink-ripple md-theme="brand" ng-disabled="!userAgreement" style="padding-left: 16px; margin-left: 16px;" type="button" ng-click="placeOrder($event);">
             <div class="icon-bg"></div>
             <md-icon md-svg-src="assets/icons/ic_send_24px.svg" style="position: relative; margin-right: 16px; color: #fff"></md-icon>
             Trimite comanda

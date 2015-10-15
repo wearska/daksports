@@ -33,15 +33,13 @@
         line-height: 32px;
     }
 }
-
 .empty-cart-button {
     color: rgba(0,0,0,.54);
     cursor: pointer;
-    &:hover{
+    &:hover {
         color: rgba(0,0,0,.87);
     }
 }
-
 .order-total-block {
     height: 100px;
     .order-total,
@@ -59,40 +57,45 @@
         font-size: 18px;
         text-align: right;
     }
-    .order-total-display{
+    .order-total-display {
+
     }
 }
-
-.cancel-cart-item{
+.cancel-cart-item {
     position: absolute;
     top: 16px;
     right: 16px;
     color: rgba(0,0,0,.54);
     cursor: pointer;
-    &:hover{
+    &:hover {
         color: rgba(0,0,0,.87);
     }
 }
-
-.delivery-card{
+.delivery-card {
     max-width: none;
     padding: 16px;
 }
-
 .add-new-address,
-.add-new-business{
+.add-new-business {
     margin-left: 16px;
     color: rgb(183,28,28);
     cursor: pointer;
-    &:hover{
+    &:hover {
         text-decoration: underline;
-    }    
+    }
 }
-.add-business-address{
+.add-business-address {
     color: rgb(183,28,28);
     margin-left: 24px;
     cursor: pointer;
-    &:hover{
+    &:hover {
         text-decoration: underline;
-    }    
+    }
+}
+.confirm-dialog-logo {
+    margin-top: 16px;
+    height: 32px;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
 }

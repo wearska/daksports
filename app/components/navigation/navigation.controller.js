@@ -7,6 +7,7 @@
             // LOGOUT
             this.logout = function() {
                 Auth.$unauth();
+                $location.path('');
             };
 
             // FILTERS
