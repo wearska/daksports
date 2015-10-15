@@ -1,8 +1,8 @@
 <div class="page-content c-max">
     <div class="page-hero">
-    <!-- Nav -->
+<!-- Nav -->
 
-    <!-- Slider -->
+<!-- Slider -->
         <div class="hero-slider">
             <gd-slider class="gd-slider ar_16-9">
                 <div class="gd-slides" ng-controller="GdSliderCtrl" ng-mouseleave="playSlider()" ng-mouseover="pauseSlider()">
@@ -21,24 +21,26 @@
 
     </div>
 
-    <!-- Ads -->
+<!-- Ads -->
     <div class="gd-banner-container" layout-gt-sm="row" layout-margin layout="column" ng-controller="BannersCtrl">
         <gd-banner banner-src="banner" class="cell" flex ng-repeat="banner in banners | shuffle | limitTo:3:start"></gd-banner>
     </div>
 
-    <!-- Football cluster -->
-    <gd-cluster title="Top Fotbal" subtitle="Cel mai bine vandute articole din fotbal" gd-cluster-items="footballItems" gd-cluster-image="uploads/clusters/fotbal.jpg"></gd-cluster>
-    
-    <!-- Promos -->
-    <gd-carousel data="$root.products" lg="3" md="2" sm="1" start="0" limit="10" title="Promotiile saptamanii" subtitle="Nu pierde cele mai bune oferte!" xs="1" promo-filter="1" gd-tiles="true" carousel-length="0"></gd-carousel>
+<!-- Football cluster -->
+    <gd-cluster gd-cluster-image="uploads/clusters/fotbal.jpg" gd-cluster-items="footballItems" subtitle="Cel mai bine vandute articole din fotbal" title="Top Fotbal"></gd-cluster>
 
-    <!-- Tennis cluster -->
-    <gd-cluster title="Top Tenis" subtitle="Cel mai bine vandute articole din fotbal" gd-cluster-items="tennisItems" gd-cluster-image="uploads/clusters/tenis.jpg"></gd-cluster>
-    
-    <!-- Recommended -->
-    <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" xs="2" start="0" title="Produse recomandate" subtitle="Cel mai bine cotate articole de incaltaminte"></gd-carousel>
-    
-    <!-- Basketball cluster -->
-    <gd-cluster title="Top Baschet" subtitle="Cel mai bine vandute articole din baschet" gd-cluster-items="basketballItems" gd-cluster-image="uploads/clusters/baschet.jpg"></gd-cluster>
+<!-- Promos -->
+    <gd-carousel carousel-length="0" data="$root.products" gd-tiles="true" lg="3" limit="10" md="2" promo-filter="1" sm="1" start="0" subtitle="Nu pierde cele mai bune oferte!" title="Promotiile saptamanii" xs="1"></gd-carousel>
 
+<!-- Tennis cluster -->
+    <gd-cluster gd-cluster-image="uploads/clusters/tenis.jpg" gd-cluster-items="tennisItems" subtitle="Cel mai bine vandute articole din fotbal" title="Top Tenis"></gd-cluster>
+
+<!-- Recommended -->
+    <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" start="0" subtitle="Cel mai bine cotate articole de incaltaminte" title="Produse recomandate" xs="2"></gd-carousel>
+
+<!-- Basketball cluster -->
+    <gd-cluster gd-cluster-image="uploads/clusters/baschet.jpg" gd-cluster-items="basketballItems" subtitle="Cel mai bine vandute articole din baschet" title="Top Baschet"></gd-cluster>
+
+<!-- FOOTER -->
+    <footer class="paper resting" id="bottom-bar" ng-controller="FooterCtrl" ng-include="'app/components/footer/footer.inc.tpl.html'" role="footer"></footer>
 </div>

@@ -47,12 +47,6 @@
              </div>
              <main id="main" class="l-offset-nav" ng-class="{narrow : sidebarOpen}" layout="column">
                  <div id="page" gd-scroll ng-class="{min : boolChangeClass}" ui-view autoscroll="true" flex></div>
-                 <footer ng-controller="FooterCtrl" role="footer" id="bottom-bar" class="slide-bot" ng-class="{open : expandedFooter}" ng-show="$root.scrolledBottom">
-                    <span style="position:absolute; color: #fff; width:100%; text-align:center; font-size: 14px; line-height:48px; font-weight: 300; top:0; bottom:0;">© Copyright Daksports 2015</span>
-                    <md-button aria-label="Toggle Footer" class="md-icon-button l-right" ng-click="expandFooter();">
-                        <md-icon md-svg-src="assets/icons/ic_launch_white_24px.svg" class="expand-footer-icon" ng-class="{rotated : expandedFooter}"></md-icon>
-                    </md-button>
-                 </footer>
              </main>
          </div>
       </div>
@@ -110,9 +104,9 @@
     <script src="app/components/scroll/scroll.directive.js"></script>
     <script src="app/components/reviews/reviews.service.js"></script>
     <script src="app/components/picture-lane/picture-lane.directive.js"></script>
-    <script src="app/components/loader/loader.directive.js"></script>
     <script src="app/components/orders/order.factory.js"></script>
     <script src="app/components/navigation/navigation.controller.js"></script>
+    <script src="app/components/loader/loader.directive.js"></script>
     <script src="app/components/lines-limit/lines-limit.directive.js"></script>
     <script src="app/components/heading/heading.directive.js"></script>
     <script src="app/components/footer/footer.controller.js"></script>

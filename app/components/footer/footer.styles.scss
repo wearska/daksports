@@ -1,20 +1,43 @@
 #bottom-bar {
-    background-color: black;
-    width: 100%;
-    height: 48px;
-    position: relative;
-    will-change: height;
-    // transition: height .28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    &.open{
-        height: 300px;
-        box-shadow: 0 -2px 4px -1px rgba(0, 0, 0, 0.14), 0 -4px 5px 0 rgba(0, 0, 0, 0.098), 0 -1px 10px 0 rgba(0, 0, 0, 0.084);
+    padding: 16px;
+    margin-top: 56px;
+    .links-wrapper {
+        position: relative;
+        [class*="links-col-"] {
+            position: relative;
+            h3 {
+                margin-bottom: 24px;
+                font-weight: 400;
+            }
+            a {
+                display: block;
+                text-decoration: none;
+                color: rgba(0,0,0,.54);
+                margin-bottom: 5px;
+                &:hover {
+                    color: rgba(0,0,0,.87);
+                    text-decoration: underline;
+                }
+            }
+        }
+        .links-col-2,
+        .links-col-3,
+        .links-col-4 {
+            padding-left: 16px;
+        }
+        .gd-separator {
+            right: 0;
+            top: 0;
+            bottom: 0;
+            position: absolute;
+            height: 100%;
+        }
     }
-}
-
-.expand-footer-icon{
-    will-change: transform;
-    transition: transform .28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    &.rotated{
-        transform: rotate(-180deg);
+    .copyright-bar {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 48px;
+        margin-top: 16px;
     }
 }

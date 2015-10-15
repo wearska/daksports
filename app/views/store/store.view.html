@@ -1,14 +1,15 @@
 <div class="page-content c-max">
     <div id="store-page">
         <div class="paper resting filter-list">
-            <span ng-if="!Counter.filtersOn()" style="color: rgba(0,0,0,.54);" class="fade-in-if">Nici un filtru activ, <br/ >foloseste filtrele pentru a gasi mai usor ce vrei.</span>
-            <span ng-if="Counter.filtersOn()" style="color: rgba(0,0,0,.54);" class="fade-in-if">Filtre active:</span>
-            <div layout="column" layout-gt-sm="row" ng-show="Counter.filtersOn()" class="fade-in-if">
-                <md-chips delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" ng-model="BrandFilter.selected" placeholder="Adauga un brand" readonly="true" secondary-placeholder="+ Brand" flex capitalizeFirst></md-chips>
+            <span class="fade-in-if" ng-if="!Counter.filtersOn()" style="color: rgba(0,0,0,.54);">Nici un filtru activ,</span><br>
+            <span>foloseste filtrele pentru a gasi mai usor ce vrei.</span>
+            <span class="fade-in-if" ng-if="Counter.filtersOn()" style="color: rgba(0,0,0,.54);">Filtre active:</span>
+            <div class="fade-in-if" layout-gt-sm="row" layout="column" ng-show="Counter.filtersOn()">
+                <md-chips capitalizeFirst delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" flex ng-model="BrandFilter.selected" placeholder="Adauga un brand" readonly="true" secondary-placeholder="+ Brand"></md-chips>
                 <span flex="5"></span>
-                <md-chips delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" ng-model="TypeFilter.selected" placeholder="Adauga o categorie" readonly="true" secondary-placeholder="+ Categorie" flex></md-chips>
+                <md-chips delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" flex ng-model="TypeFilter.selected" placeholder="Adauga o categorie" readonly="true" secondary-placeholder="+ Categorie"></md-chips>
                 <span flex="5"></span>
-                <md-chips delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" ng-model="KindFilter.selected" placeholder="Adauga o subcategorie" readonly="true" secondary-placeholder="+ Sub-categorie" flex></md-chips>
+                <md-chips delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" flex ng-model="KindFilter.selected" placeholder="Adauga o subcategorie" readonly="true" secondary-placeholder="+ Sub-categorie"></md-chips>
             </div>
             <div class="paper list-sorting" layout>
                 <md-input-container flex="25">
@@ -18,11 +19,11 @@
                     </md-select>
                 </md-input-container>
                 <div class="sort-direction">
-                    <md-icon md-svg-src="assets/icons/ic_order_swap_24px.svg" class="fade-in-if" ng-show="!sortOrder" md-ink-ripple></md-icon>
-                    <md-icon md-svg-src="assets/icons/ic_order_reverse_24px.svg" class="fade-in-if" ng-show="sortOrder && sortReverse" md-ink-ripple ng-click="sortReverse = !sortReverse"></md-icon>
-                    <md-icon md-svg-src="assets/icons/ic_order_forward_24px.svg" class="fade-in-if" ng-show="sortOrder && !sortReverse" md-ink-ripple ng-click="sortReverse = !sortReverse"></md-icon>
+                    <md-icon class="fade-in-if" md-ink-ripple md-svg-src="assets/icons/ic_order_swap_24px.svg" ng-show="!sortOrder"></md-icon>
+                    <md-icon class="fade-in-if" md-ink-ripple md-svg-src="assets/icons/ic_order_reverse_24px.svg" ng-click="sortReverse = !sortReverse" ng-show="sortOrder && sortReverse"></md-icon>
+                    <md-icon class="fade-in-if" md-ink-ripple md-svg-src="assets/icons/ic_order_forward_24px.svg" ng-click="sortReverse = !sortReverse" ng-show="sortOrder && !sortReverse"></md-icon>
                 </div>
-                <md-checkbox ng-model="PromoFilter.state" ng-true-value="1" ng-false-value="0" ng-class="{selected : PromoFilter.state}">
+                <md-checkbox ng-class="{selected : PromoFilter.state}" ng-false-value="0" ng-model="PromoFilter.state" ng-true-value="1">
                     Doar produse aflate la promotie
                 </md-checkbox>
             </div>
@@ -31,11 +32,14 @@
             <div ng-hide ng-repeat="item in $root.products | fitForMeFilter : FitFilter.state | brandFilter : BrandFilter.selected | typeFilter : TypeFilter.selected | kindFilter : KindFilter.selected | priceFilter : PriceFilter.selected | promoFilter : PromoFilter.state | filter : q as filtered"></div>
         </div>
         <div class="product-grid" layout layout-wrap style="margin-left: -8px; margin-right: -8px;">
-            <div class="grid-cell slide-bot" flex="50" flex-gt-md="{{$index % 2 === 0 && $index > 0 ? '34' : '33'}}" flex-gt-lg="25" ng-repeat="item in $root.filtered | fitForMeFilter : FitFilter.state | brandFilter : BrandFilter.selected | typeFilter : TypeFilter.selected | kindFilter : KindFilter.selected | priceFilter : PriceFilter.selected | promoFilter : PromoFilter.state | orderBy : sortOrder : sortReverse | limitTo : limit">
+            <div class="grid-cell slide-bot" flex-gt-lg="25" flex-gt-md="{{$index % 2 === 0 && $index > 0 ? '34' : '33'}}" flex="50" ng-repeat="item in $root.filtered | fitForMeFilter : FitFilter.state | brandFilter : BrandFilter.selected | typeFilter : TypeFilter.selected | kindFilter : KindFilter.selected | priceFilter : PriceFilter.selected | promoFilter : PromoFilter.state | orderBy : sortOrder : sortReverse | limitTo : limit">
                 <gd-card card-resource="item"></gd-card>
             </div>
         </div>
         <md-divider></md-divider>
-        <div ng-show="$root.scrolledBottom" class="items-end" style="background-image: url('assets/img/items_end.svg');"></div>
+        <div class="items-end" ng-show="$root.scrolledBottom" style="background-image: url('assets/img/items_end.svg');"></div>
     </div>
+
+<!-- FOOTER -->
+    <footer id="bottom-bar" class="paper resting" ng-controller="FooterCtrl" ng-include="'app/components/footer/footer.inc.tpl.html'" role="footer"></footer>
 </div>
