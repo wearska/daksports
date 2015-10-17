@@ -17,7 +17,7 @@
         <span style="vertical-align: middle">Daca ai o lista cu produse nu uita sa o trimiti in cos</span>
     </div>
     <br>
-    <a md-button class="md-primary md-raised" style="margin-left: 16px; vertical-align: middle;" href="/account/lists">Arata-mi listele</a>
+    <a ng-if="!cart.items.length" md-button class="md-primary md-raised" style="margin-left: 16px; vertical-align: middle;" href="/account/lists">Arata-mi listele</a>
     <div class="gd-table" ng-if="cart.items.length">
         <gd-table-header class="gd-table-header">
             <md-icon aria-label="Goleste cos de cumparaturi" class="empty-cart-button l-right" md-svg-src="assets/icons/ic_delete_24px.svg" ng-click="cart.empty()">

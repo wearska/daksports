@@ -9,7 +9,7 @@
                 var page = angular.element(element).find('.page-content');
                 element.bind("scroll", function() {
                     scope.scrollAmnt = angular.element(this)[0].scrollTop;
-                    var sHeight = page.outerHeight() + page[0].offsetTop + 96;
+                    var sHeight = page.outerHeight() + page[0].offsetTop;
                     if (($window.outerHeight + scope.scrollAmnt) >= sHeight && !$rootScope.scrolledBottom) {
                         $rootScope.scrolledBottom = true;
                         $rootScope.$broadcast('scroll:bottom', {});

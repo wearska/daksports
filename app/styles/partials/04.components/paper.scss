@@ -37,7 +37,7 @@
 
 @media #{$medium-and-up}{
     .paper{
-        &.resting{
+        &.resting:not(.pinned){
             &:hover{
                 box-shadow: 0 5px 8px 0 rgba(0,0,0,0.06), 0 7px 9px 0 rgba(0,0,0,0.12);
             }
