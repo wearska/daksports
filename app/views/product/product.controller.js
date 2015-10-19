@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('ProductCtrl', function($scope, $rootScope, $location, $http, $parse, $filter, $timeout, $stateParams, $state, $mdDialog, $mdToast, productRes, ngCart, gdShoppingLists, gdShoppingCart) {
+        .controller('ProductCtrl', function($scope, $rootScope, $location, $http, $parse, $filter, $timeout, $stateParams, $state, $mdDialog, $mdToast, productRes, ngCart, gdShoppingLists, gdShoppingCart, gdRecent, Auth) {
 
             //-----------------------------------------
             //  INITIAL STATE
@@ -10,8 +10,6 @@
             $scope.slides = [];
             $scope.typesFilter = [];
             $scope.kindsFilter = [];
-
-            var info = $location.protocol();
 
             // Make appbar transparent
             $rootScope.transparentAppbar = true;
@@ -102,22 +100,43 @@
                     });
             }
 
-            // $scope.addToCart = function() {
-            //     if ($scope.orderForm.$valid) {
-            //         $scope.product.order = {};
-            //         $scope.product.order.size = $scope.order.size;
-            //         $scope.product.order.count = $scope.order.quantity;
-            //         console.log($scope.product);
-            //         ngCart.addItem($scope.product.code, $scope.product.name, parseFloat($scope.product.price), parseInt($scope.order.quantity), $scope.product);
-            //     }else {
-            //         console.log("order invalid");
-            //     }
-            // };
-
             // ADD TO CART
             $scope.gdShoppingLists = gdShoppingLists;
             $scope.addToCart = function(item) {
                 $scope.gdShoppingLists.addItem(gdShoppingLists.activeList(), $scope.product, $scope.order.size.name, $scope.order.quantity);
+            };
+
+            // ----------------------------------------
+            // USER RECENT VIEWS
+            // ----------------------------------------
+
+            var updateRecents = function() {
+                var user = $rootScope.userData;
+                var code = $stateParams.code;
+                angular.forEach(user.recent, function(recent) {
+                    if (recent.code === code) {
+                        var idx = user.recent.indexOf(recent);
+                        user.recent.splice(idx, 1);
+                    } else if (user.recent.length >= 10) {
+                        user.recent.splice(1, 1);
+                    };
+                });
+                user.recent.push(angular.copy($scope.product));
+                var data = {
+                    uid : user.uid,
+                    recent: angular.toJson(user.recent)
+                };
+                gdRecent.put(data);
+            };
+
+            if (Auth.$getAuth()) {
+                if ($rootScope.userData) {
+                    updateRecents();
+                } else {
+                    $scope.$on('userData: loaded', function() {
+                        updateRecents();
+                    });
+                };
             };
 
 

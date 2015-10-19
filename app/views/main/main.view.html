@@ -40,6 +40,13 @@
 
 <!-- Basketball cluster -->
     <gd-cluster gd-cluster-image="uploads/clusters/baschet.jpg" gd-cluster-items="basketballItems" subtitle="Cel mai bine vandute articole din baschet" title="Top Baschet"></gd-cluster>
+    
+    <!-- RECENTS -->
+    <div class="recent" controller="RecentCtrl">
+        <div class="recent-tiles-row" layout>
+            <div class="recent-tile ar_1-1" ng-repeat="product in $root.userData.recent" style="background-image:url({{product.file1}});" flex="20"></div>
+        </div>
+    </div>
 
 <!-- FOOTER -->
     <footer class="paper resting pinned" id="bottom-bar" ng-controller="FooterCtrl" ng-include="'app/components/footer/footer.inc.tpl.html'" role="footer"></footer>

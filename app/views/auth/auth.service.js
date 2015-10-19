@@ -25,6 +25,8 @@
                     (user.businesses) ? user.businesses = angular.fromJson(user.businesses) : user.businesses = [];
                     (user.subscriptions) ? user.subscriptions = angular.fromJson(user.subscriptions) : user.subscriptions = {};
                     (user.defaults) ? user.defaults = angular.fromJson(user.defaults) : user.defaults = {};
+                    console.log(angular.fromJson(user.recent));
+                    (user.recent) ? user.recent = angular.fromJson(user.recent) : user.recent = [];
                 };
 
                 authObj.$onAuth(function(authData) {
