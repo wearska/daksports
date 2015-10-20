@@ -40,13 +40,26 @@
 
 <!-- Basketball cluster -->
     <gd-cluster gd-cluster-image="uploads/clusters/baschet.jpg" gd-cluster-items="basketballItems" subtitle="Cel mai bine vandute articole din baschet" title="Top Baschet"></gd-cluster>
-    
+
     <!-- RECENTS -->
+    <gd-heading title="Recent vizitate" subtitle="Istoricul tau de navigare"></gd-heading>
+
     <div class="recent" controller="RecentCtrl">
         <div class="recent-tiles-row" layout>
-            <div class="recent-tile ar_1-1" ng-repeat="product in $root.userData.recent" style="background-image:url({{product.file1}});" flex="20"></div>
+            <div class="recent-cell" ng-repeat="product in $root.userData.recent_items | reverse " flex="10" ng-class="{'active' : $index == 0}">
+                <div class="recent-tile ar_1-1" style="background-image:url({{product.file1}});"></div>
+            </div>
         </div>
     </div>
+
+    <gd-tabs layout="row" class="recent">
+        <gd-tab ng-repeat="product in $root.userData.recent_items | reverse" flex="10">
+            <gd-tab-label class="recent-cell">
+                <div class="recent-tile ar_1-1" style="background-image:url({{product.file1}});"></div>
+            </gd-tab-label>
+        </gd-tab>
+        <gd-tab-content class="recent-content"></gd-tab-content>
+    </gd-tabs>
 
 <!-- FOOTER -->
     <footer class="paper resting pinned" id="bottom-bar" ng-controller="FooterCtrl" ng-include="'app/components/footer/footer.inc.tpl.html'" role="footer"></footer>

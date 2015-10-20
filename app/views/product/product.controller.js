@@ -112,21 +112,23 @@
 
             var updateRecents = function() {
                 var user = $rootScope.userData;
-                var code = $stateParams.code;
-                angular.forEach(user.recent, function(recent) {
-                    if (recent.code === code) {
-                        var idx = user.recent.indexOf(recent);
+                var code = $stateParams.productCode;
+                angular.forEach(user.recent, function(recentCode) {
+                    if (recentCode === code) {
+                        var idx = user.recent.indexOf(recentCode);
                         user.recent.splice(idx, 1);
-                    } else if (user.recent.length >= 10) {
+                    } else if (user.recent.length > 10) {
                         user.recent.splice(1, 1);
                     };
                 });
-                user.recent.push(angular.copy($scope.product));
+                user.recent.push(code);
+                gdRecent.query(user.recent);
                 var data = {
-                    uid : user.uid,
-                    recent: angular.toJson(user.recent)
+                    uid: user.uid,
+                    recent: user.recent
                 };
                 gdRecent.put(data);
+
             };
 
             if (Auth.$getAuth()) {

@@ -50,6 +50,14 @@
                     return Math.floor((Math.random() * input) + 1);
                 }
             };
+        }).filter('reverse', function() {
+            return function(items) {
+                if (items) {
+                    return items.slice().reverse();
+                }else{
+                    return items;
+                }
+            };
         })
         .filter('maxCount', function() {
             return function(input, value) {

@@ -1,0 +1,35 @@
+.recent {.recent-tiles-row {
+        margin: 0 -8px;
+    }
+    .recent-cell {
+        position: relative;
+        padding: 8px;
+        .recent-tile {
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter:grayscale(1);
+        }
+        &.active {&:after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -50px;
+                width: 0;
+                height: 0;
+                border-bottom: solid 50px #fff;
+                border-left: solid 50px transparent;
+                border-right: solid 50px transparent;
+            }
+            .recent-tile {
+                filter:grayscale(0);
+                @extend .raised;
+            }
+        }
+    }
+    .recent-content{
+        width: 100%;
+        height: 128px;
+    }
+}

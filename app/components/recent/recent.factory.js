@@ -3,7 +3,7 @@
 
     angular
         .module('daksportsApp')
-        .factory('gdRecent', function($rootScope, $http, Auth) {
+        .factory('gdRecent', function($rootScope, $http, $filter) {
             var obj = {};
             var api = 'api/recent/';
 
@@ -20,6 +20,16 @@
                 });
             };
 
+            obj.query = function(data) {
+                var recent = data;
+                $rootScope.userData.recent_items = [];
+                angular.forEach(recent, function(code) {
+                    var product = $filter('filter')($rootScope.products, function(d) {
+                        return d.code === code;
+                    })[0];
+                    $rootScope.userData.recent_items.push(product);
+                });
+            };
 
             return obj;
         });

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .factory('Auth', ['$rootScope', '$http', '$filter', '$firebaseAuth', 'FIREBASE_URL', '$location', 'productRes', 'reviews', function($rootScope, $http, $filter, $firebaseAuth, FIREBASE_URL, $location, productRes, reviews) {
+        .factory('Auth', ['$rootScope', '$http', '$filter', '$firebaseAuth', 'FIREBASE_URL', '$location', 'productRes', 'reviews', 'gdRecent', function($rootScope, $http, $filter, $firebaseAuth, FIREBASE_URL, $location, productRes, reviews, gdRecent) {
                 var ref = new Firebase(FIREBASE_URL);
                 var authObj = $firebaseAuth(ref);
 
@@ -20,12 +20,11 @@
                     (user.birthday === '0000-00-00') ? user.birthday = "": user.birthday = new Date(user.birthday);
                     // shoe size must be an integer
                     (user.shoe_size) ? user.shoe_size = parseFloat(user.shoe_size): user.shoe_size = "";
-                    // convert to needed arrays and objects 
+                    // convert to needed arrays and objects
                     (user.addresses) ? user.addresses = angular.fromJson(user.addresses) : user.addresses = [];
                     (user.businesses) ? user.businesses = angular.fromJson(user.businesses) : user.businesses = [];
                     (user.subscriptions) ? user.subscriptions = angular.fromJson(user.subscriptions) : user.subscriptions = {};
                     (user.defaults) ? user.defaults = angular.fromJson(user.defaults) : user.defaults = {};
-                    console.log(angular.fromJson(user.recent));
                     (user.recent) ? user.recent = angular.fromJson(user.recent) : user.recent = [];
                 };
 
@@ -43,6 +42,7 @@
                                         productRes.query()
                                             .then(function(items) {
                                                 $rootScope.products = items;
+                                                gdRecent.query($rootScope.userData.recent);
                                                 angular.forEach($rootScope.userData.favs, function(value, key) {
                                                     setFavourite(value);
                                                 });
