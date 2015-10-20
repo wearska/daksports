@@ -1,0 +1,20 @@
+.gd-tabs{
+    .gd-tabs-wrapper{
+        position: relative;
+    }
+    .gd-tab-indicator{
+        height: 2px;
+        background-color: $brand-primary;
+        position: absolute;
+        width: auto;
+        left: 0;
+        right: 100%;
+        bottom: 0;
+        &.to-left{
+            transition: left .125s cubic-bezier(.35,0,.25,1),right .25s cubic-bezier(.35,0,.25,1);
+        }
+        &.to-right{
+            transition: left .25s cubic-bezier(.35,0,.25,1),right .125s cubic-bezier(.35,0,.25,1);
+        }
+    }
+}

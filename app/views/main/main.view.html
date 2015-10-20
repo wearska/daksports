@@ -44,21 +44,22 @@
     <!-- RECENTS -->
     <gd-heading title="Recent vizitate" subtitle="Istoricul tau de navigare"></gd-heading>
 
-    <div class="recent" controller="RecentCtrl">
-        <div class="recent-tiles-row" layout>
-            <div class="recent-cell" ng-repeat="product in $root.userData.recent_items | reverse " flex="10" ng-class="{'active' : $index == 0}">
-                <div class="recent-tile ar_1-1" style="background-image:url({{product.file1}});"></div>
-            </div>
+    <gd-tabs layout="column" class="recent" ng-controller="RecentCtrl">
+        <div class="paper gd-tabs-wrapper" layout="row">
+            <gd-tab ng-repeat="product in $root.userData.recent_items | reverse" flex="10" ng-class="{active : $index == 0}">
+                <gd-tab-label class="recent-cell">
+                    <div class="recent-tile ar_1-1" style="background-image:url({{product.file1}});"></div>
+                </gd-tab-label>
+            </gd-tab>
+            <div class="gd-tab-indicator to-right"></div>
         </div>
-    </div>
-
-    <gd-tabs layout="row" class="recent">
-        <gd-tab ng-repeat="product in $root.userData.recent_items | reverse" flex="10">
-            <gd-tab-label class="recent-cell">
-                <div class="recent-tile ar_1-1" style="background-image:url({{product.file1}});"></div>
-            </gd-tab-label>
-        </gd-tab>
-        <gd-tab-content class="recent-content"></gd-tab-content>
+        <p>{{active}}</p>
+        <div class="gd-heading no-icon">
+            <p class="heading-subtitle single-line">Alti clienti au mai vizitat si: {{active}}</p>
+        </div>
+        <gd-tab-content class="recent-content">
+            <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" xs="2" start="0"></gd-carousel>
+        </gd-tab-content>
     </gd-tabs>
 
 <!-- FOOTER -->
