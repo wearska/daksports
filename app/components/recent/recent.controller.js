@@ -3,10 +3,14 @@
 
     angular.module('daksportsApp')
         .controller('RecentCtrl', function($rootScope, $scope) {
-            
-            $scope.activate = function(){
-                
+
+            var scope = this;
+
+            scope.activate = function(){
+
             };
+
+            scope.recentFilter = 'Adidas';
 
         });
 

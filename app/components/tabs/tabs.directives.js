@@ -7,7 +7,6 @@
                 restrict: 'E',
                 replace: true,
                 transclude: true,
-                scope: true,
                 templateUrl: 'app/components/tabs/tabs.tpl.html',
                 link: function(scope, el, attr) {
                     el.addClass('gd-tabs');
@@ -31,7 +30,7 @@
                         allTabs.removeClass('active to-right to-left');
                         $this.addClass('active');
                         var direction = ($this[0].offsetLeft - $active[0].offsetLeft);
-                        
+
                         if(direction > 0){
                             indicator.removeClass('to-left');
                             indicator.addClass('to-right');

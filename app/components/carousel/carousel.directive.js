@@ -7,6 +7,8 @@
                 restrict: 'E',
                 scope: {
                     items: '=data',
+                    filter : '=',
+                    filterQuery : '=',
                     tiles: '=gdTiles',
                     title: '@',
                     subtitle: '@',

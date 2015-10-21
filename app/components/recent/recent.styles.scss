@@ -13,6 +13,7 @@
     .recent-cell {
         position: relative;
         padding: 8px;
+        border: 1px solid rgba(0,0,0,.10);
         .recent-tile {
             background-position: center;
             background-size: cover;
@@ -26,6 +27,7 @@
     }
     .active {
         .recent-cell {
+            border: 10px solid rgba(0,0,0,.10);
             .recent-tile {
                 filter:grayscale(0);
             }
