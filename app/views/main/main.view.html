@@ -44,23 +44,24 @@
     <!-- RECENTS -->
     <gd-heading title="Recent vizitate" subtitle="Istoricul tau de navigare"></gd-heading>
 
-    <gd-tabs layout="column" class="recent" ng-controller="RecentCtrl as recent">
-        <div class="paper gd-tabs-wrapper" layout="row">
-            <gd-tab ng-repeat="product in $root.userData.recent_items | reverse" flex="10" ng-class="{active : $index == 0}">
-                <gd-tab-label class="recent-cell">
-                    <div class="recent-tile ar_1-1" style="background-image:url({{product.file1}});"></div>
-                </gd-tab-label>
-            </gd-tab>
-            <div class="gd-tab-indicator to-right"></div>
-        </div>
-        <p>{{active}}</p>
-        <div class="gd-heading no-icon">
-            <p class="heading-subtitle single-line">Alti clienti au mai vizitat si:</p>
-        </div>
-        <gd-tab-content class="recent-content">
-            <gd-carousel data="$root.products" filter="typeFilter" filter-query="$parent.recent.recentFilter" lg="5" limit="10" md="4" sm="3" xs="2" start="0"></gd-carousel>
-        </gd-tab-content>
-    </gd-tabs>
+    <div ng-controller="RecentCtrl as recent">
+        <gd-tabs layout="column" class="recent">
+            <div class="paper gd-tabs-wrapper" layout="row">
+                <gd-tab ng-repeat="product in $root.userData.recent_items | reverse" flex="10" ng-class="{active : $index == 0}" ng-click="recent.recentFilter = product.kind">
+                    <gd-tab-label class="recent-cell">
+                        <div class="recent-tile ar_1-1" style="background-image:url({{product.file1}});"></div>
+                    </gd-tab-label>
+                </gd-tab>
+                <div class="gd-tab-indicator to-right"></div>
+            </div>
+            <div class="gd-heading no-icon">
+                <p class="heading-subtitle single-line">Alti clienti au mai vizitat si:</p>
+            </div>
+            <gd-tab-content class="recent-content">
+                <gd-carousel data="$root.products" animated="true" filter="kindFilter" filter-query="recent.recentFilter" lg="5" limit="10" md="4" sm="3" xs="2" start="0"></gd-carousel>
+            </gd-tab-content>
+        </gd-tabs>
+    </div>
 
 <!-- FOOTER -->
     <footer class="paper resting pinned" id="bottom-bar" ng-controller="FooterCtrl" ng-include="'app/components/footer/footer.inc.tpl.html'" role="footer"></footer>

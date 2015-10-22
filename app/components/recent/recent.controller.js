@@ -10,7 +10,7 @@
 
             };
 
-            scope.recentFilter = 'Adidas';
+            scope.recentFilter = 'Handbal';
 
         });
 

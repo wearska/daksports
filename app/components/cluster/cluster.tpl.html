@@ -2,7 +2,7 @@
     <gd-heading title="{{title}}" subtitle="{{subtitle}}"></gd-heading>
     <div gd-cluster-lane class="gd-cluster-lane">
         <div class="gd-cluster-background" ng-style="{'background-color': 'rgb('+colors.myDominantColor[0]+', '+colors.myDominantColor[1]+', '+colors.myDominantColor[2]+')'}"></div>
-        <a href="/store/all-brands/fotbal/incaltaminte" class="cluster-background-image" style="background-image:url({{image}})">
+        <a href="/store/all-brands/fotbal/incaltaminte" class="cluster-background-image" style="background-image:url({{image | medres}})">
             <img ng-hide="true" aria-hidden="true" class="background-image" color-thief color-thief-dominant="colors.myDominantColor" ng-src="{{image}}">
         </a>
         <div class="cluster-background-gradient" ng-style="{'box-shadow':'-25px 0px 30px 0px rgb('+colors.myDominantColor[0]+', '+colors.myDominantColor[1]+', '+colors.myDominantColor[2]+')'}"></div>
