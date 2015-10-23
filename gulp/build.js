@@ -7,6 +7,7 @@ var conf = require('./conf');
 var $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
+var imageminOptipng = require('imagemin-optipng');
 
 gulp.task('partials', function() {
     return gulp.src([
@@ -107,10 +108,32 @@ gulp.task('api', function() {
         .pipe(gulp.dest(path.join(conf.paths.dist, '/api/')));
 });
 
-gulp.task('uploads', function() {
+gulp.task('jpgs', function() {
     return gulp.src([
-            path.join('uploads/**/*')
+            path.join(conf.paths.dist, '/uploads/**/*.jpg'),
+            path.join(conf.paths.dist, '/uploads/**/*.png')
         ])
+        .pipe($.imagemin({
+                progressive: true,
+                svgoPlugins: [{removeViewBox: false}],
+                use: [imageminOptipng({optimizationLevel: 3})]
+            }))
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/uploads/processed')));
+});
+
+gulp.task('uploads', function() {
+    // return gulp.src([
+    //         path.join('uploads/**/*')
+    //     ])
+    return gulp.src([
+            path.join('uploads/**/*.jpg'),
+            path.join('uploads/**/*.png')
+        ])
+        .pipe($.imagemin({
+                progressive: true,
+                svgoPlugins: [{removeViewBox: false}],
+                use: [imageminOptipng({optimizationLevel: 3})]
+            }))
         .pipe(gulp.dest(path.join(conf.paths.dist, '/uploads/')));
 });
 

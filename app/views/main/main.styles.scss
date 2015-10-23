@@ -3,3 +3,16 @@
         padding: 8px;
     }
 }
+
+
+.page-content.c-max.main-page{
+    padding-top: 300px;
+}
+
+#page-hero.main-hero{
+    background-position: center;
+    background-size: cover;
+    &.narrow{
+        left:240px;
+    }
+}

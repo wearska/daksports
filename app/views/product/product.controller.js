@@ -24,16 +24,7 @@
                 $rootScope.transparentAppbar = true;
                 $rootScope.mainScrolled = false;
             });
-            $scope.heroes = [{
-                file: 'assets/img/heroes/baschet.jpg',
-                position: 'right'
-            }, {
-                file: 'assets/img/heroes/tenis.jpg',
-                position: 'left'
-            }, ]
-
-            var rnd = $filter('randomize')($scope.heroes.length);
-            $scope.hero = $scope.heroes[rnd - 1];
+            
 
             // Initial state
 

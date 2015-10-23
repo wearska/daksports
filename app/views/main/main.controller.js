@@ -11,6 +11,24 @@
             ];
             $scope.sliderLength = $scope.slides.length;
 
+            // -----------------------------
+            // Main Hero
+            // ----------------------------
+
+            $rootScope.transparentAppbar = true;
+            $rootScope.mainScrolled = false;
+            $scope.$on('$destroy', function() {
+                // Make sure that the interval is destroyed too
+                $rootScope.transparentAppbar = false;
+                $rootScope.mainScrolled = true;
+            });
+            $scope.$on('$viewContentLoaded', function(event) {
+                $rootScope.transparentAppbar = true;
+                $rootScope.mainScrolled = false;
+            });
+
+            $scope.main_hero = 'assets/img/heroes/main_hero.jpg';
+
             //------------------------------
             // Clusters
             //------------------------------
@@ -27,7 +45,7 @@
             } else {
                 getBasketballItems();
             }
-            
+
             //Football
             $scope.footballItems = [];
             var getFootballItems = function() {
@@ -40,7 +58,7 @@
             } else {
                 getFootballItems();
             }
-            
+
             //Tennis
             $scope.tennisItems = [];
             var getTennisItems = function() {

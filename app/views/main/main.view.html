@@ -1,6 +1,8 @@
-<div class="page-content c-max">
+<div class="page-content c-max main-page">
+    <div id="page-hero" class="main-hero" ng-class="{'narrow' : sidebarOpen}" style="top: -{{scrollAmnt/2}}px ; background-image: url({{main_hero}})"></div>
     <div class="page-hero">
 <!-- Nav -->
+
 
 <!-- Slider -->
         <div class="hero-slider">
@@ -47,7 +49,7 @@
     <div ng-controller="RecentCtrl as recent">
         <gd-tabs layout="column" class="recent">
             <div class="paper gd-tabs-wrapper" layout="row">
-                <gd-tab ng-repeat="product in $root.userData.recent_items | reverse" flex="10" ng-class="{active : $index == 0}" ng-click="recent.recentFilter = product.kind">
+                <gd-tab ng-repeat="product in $root.userData.recent_items | limitTo: 10 | reverse" flex="10" ng-class="{active : $index == 0}" ng-click="recent.recentFilter = product.kind">
                     <gd-tab-label class="recent-cell">
                         <div class="recent-tile ar_1-1" style="background-image:url({{product.file1}});"></div>
                     </gd-tab-label>
