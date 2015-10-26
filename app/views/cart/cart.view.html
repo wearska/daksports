@@ -163,7 +163,7 @@
                 <div class="header" ng-show="!$root.userData.addresses.length">
                     <div>Nu ai inca o adresa salvata, adauga o adresa mai jos</div>
                 </div>
-                <md-radio-group ng-model="$root.userData.defaults.address">
+                <md-radio-group ng-model="$root.userData.defaults.address" ng-change="updateOrder();">
                     <div layout layout-align="start center" ng-repeat="address in $root.userData.addresses">
                         <md-radio-button class="address-radio" style="margin-top: 5px; margin-bottom: 5px;" value="{{$index}}">
                             <span>{{address.address}};</span>
@@ -182,7 +182,7 @@
                 </md-radio-group>
             </div>
             <div ng-show="order.billing.type === 'business'">
-                <md-radio-group ng-model="$root.userData.defaults.business">
+                <md-radio-group ng-model="$root.userData.defaults.business" ng-change="updateOrder();">
                     <div layout layout-align="start center" ng-repeat="business in $root.userData.businesses">
                         <md-radio-button class="address-radio" style="margin-top: 5px; margin-bottom: 5px;" value="{{$index}}">
                             <span>{{business.name}}

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('daksportsApp')
-        .controller('CartCtrl', function($rootScope, $scope, $filter, gdShoppingCart, gdOrder, $mdDialog) {
+        .controller('CartCtrl', function($rootScope, $scope, $filter, $timeout, gdShoppingCart, gdShoppingLists, gdOrder, $mdDialog) {
 
             $scope.cart = gdShoppingCart;
             $scope.updateList = function(item) {
@@ -82,7 +82,11 @@
                 order.added = new Date();
                 gdOrder.post($scope.order)
                 .then(function(results) {
-                        console.log(results);
+                        gdShoppingLists.newList();
+                        $timeout(function(){
+                            gdShoppingLists.activeList().syncToCart();
+                            // console.log(gdShoppingLists.activeList());
+                        }, 1000);
                     });
 
 
