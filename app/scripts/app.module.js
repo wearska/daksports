@@ -16,6 +16,7 @@
             'firebase',
             'ngCart',
             'ngColorThief',
-            'gdCart'
+            'gdCart',
+            'angular-loading-bar'
         ]);
 })();

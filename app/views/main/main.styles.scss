@@ -6,12 +6,13 @@
 
 
 .page-content.c-max.main-page{
-    padding-top: 300px;
+    padding-top: 200px;
 }
 
 #page-hero.main-hero{
     background-position: center;
     background-size: cover;
+    min-height: 500px;
     &.narrow{
         left:240px;
     }

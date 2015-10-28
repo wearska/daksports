@@ -16,6 +16,7 @@
         .state('store', {
           url: '/store',
           templateUrl: 'app/views/store/store.view.html',
+          params: {brand: null, type: null, kind: null, promo : 0},
           controller: 'StoreCtrl'
         })
         .state('store-filtered', {

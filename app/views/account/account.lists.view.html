@@ -2,7 +2,7 @@
     <gd-heading title="Liste cumparaturi" subtitle="Mai jos sunt listele tale de cumparaturi"></gd-heading>
     
     <div class="shopping-lists" layout-wrap layout="row">
-        <div class="grid-cell list-wrapper" flex="33" ng-class="{active : shoppingList.active}" ng-click="gdShoppingLists.makeActive(shoppingList.id)" ng-repeat="shoppingList in gdShoppingLists.lists">
+        <div class="grid-cell list-wrapper" flex="33" ng-class="{active : shoppingList.active}" ng-click="gdShoppingLists.makeActive(shoppingList.id)" ng-repeat="shoppingList in gdShoppingLists.lists | orderBy : '-added'">
             <div class="gd-shopping-list paper resting" data-size="material">
                 <div class="image-wrapper">
                     <div class="image-inner-wrapper">

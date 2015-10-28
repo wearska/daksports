@@ -44,10 +44,10 @@
                     </div>
                     <div class="price-container" data="product" id="{{ product.code }}" name="{{ product.name }}" ng-class="{promo : product.promo}" price="{{ product.price }}" quantity="1">
                         <div class="promo-price" ng-cloak ng-show="product.promo">RON
-                            {{product.promo_price}}</div>
+                            {{product.promo_price | number : 2}}</div>
                         <div class="price" ng-cloak>
                             <span ng-show="!product.promo">RON</span>
-                            {{product.price}}</div>
+                            {{product.price | number : 2}}</div>
                     </div>
 
                     <div class="product-actions">

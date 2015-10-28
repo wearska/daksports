@@ -6,6 +6,7 @@ require_once('../config.php');
 $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
     @$brand = $request->brand;
+    $brand = $conn->real_escape_string($brand);
 
 $sql = "INSERT INTO brands (brand_name) VALUES ('$brand')";
 

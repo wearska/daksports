@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="material-one-center" flex="50" hide show-gt-md>
-            <input ng-focus="goToSearch()" ng-model="query" ng-change="search(query)" aria-label="Cauta produs" class="material-search label-input-label" no-focus="" placeholder="Cauta produs" role="search">
+            <input ng-focus="goToSearch()" ng-blur="backFromSearch()" ng-model="query" ng-change="search(query)" aria-label="Cauta produs" class="material-search label-input-label" no-focus="" placeholder="Cauta produs" role="search">
             <i class="material-icons search-icon">&#xE8B6;</i>
         </div>
         <span flex hide-gt-md></span>

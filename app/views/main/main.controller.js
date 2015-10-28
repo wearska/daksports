@@ -3,10 +3,60 @@
 
     angular.module('daksportsApp')
         .controller('MainCtrl', function($scope, $rootScope, $http, $filter, $location) {
+            
+            $scope.typesGridLinks = {
+                fitness: {
+                    file : 'uploads/typegrid/fitness.jpg',
+                    header: 'Fitness',
+                    footer: 'Footer',
+                    filter: ['Fitness']
+                },
+                sportswear: {
+                    file : 'uploads/typegrid/sportswear.jpg',
+                    header: 'Sports wear',
+                    footer: 'Footer',
+                    filter: ['Tenis']
+                },
+                football: {
+                    file : 'uploads/typegrid/soccer.jpg',
+                    header: 'Fotbal',
+                    footer: 'Footer',
+                    filter: ['Fotbal']
+                },
+                running: {
+                    file : 'uploads/typegrid/running.jpg',
+                    header: 'Alergare',
+                    footer: 'Footer',
+                    filter: ['Alergare']
+                },
+                hiking: {
+                    file : 'uploads/typegrid/hiking.jpg',
+                    header: 'Hiking',
+                    footer: 'Footer',
+                    filter: ['Hiking']
+                },
+                skiing: {
+                    file : 'uploads/typegrid/skiing.jpg',
+                    header: 'Ski',
+                    footer: 'Footer',
+                    filter: ['Skiing']
+                },
+                training: {
+                    file : 'uploads/typegrid/training2.jpg',
+                    header: 'Antrenament',
+                    footer: 'Footer',
+                    filter: ['Training']
+                }
+            };
+            
+            $scope.goTo = function(link){
+                $location.path(link);
+            };
+            
             $scope.slides = [
                 "/uploads/slider/slide_adidas.jpg",
                 "/uploads/slider/slide_nike.jpg",
-                "/uploads/slider/slide_puma.jpg",
+                "/uploads/slider/slide_puma2.jpg",
                 "/uploads/slider/slide_reebok.jpg"
             ];
             $scope.sliderLength = $scope.slides.length;

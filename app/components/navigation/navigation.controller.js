@@ -86,14 +86,28 @@
 
         })
         .controller('NavListCtrl', function($rootScope, $scope, BrandFilter) {
-
-            this.size = 0;
-            this.expanded = false;
-            this.expand = function() {
-                this.expanded = !this.expanded;
-                (this.expanded) ? this.size = 30 : this.size = 0;
+            var scope = this;
+            
+            scope.size = 0;
+            scope.size_acc = 44;
+            scope.expanded = false;
+            scope.expanded_acc = true;
+            scope.expand = function() {
+                scope.expanded = !scope.expanded;
+                scope.expanded_acc = !scope.expanded_acc;
+                (scope.expanded) ? scope.size = 30 : scope.size = 0;
+                (scope.expanded_acc) ? scope.size_acc = 44 : scope.size_acc = 0;
             };
-
+            scope.expand_acc = function(){
+                scope.size_acc = 44;
+                scope.expanded_acc = true;
+            };
+            scope.shrink_acc = function(){
+                scope.size_acc = 0;
+                scope.expanded_acc = false;
+            };
+            $scope.$on('store:open', scope.shrink_acc);
+            $scope.$on('store:closed', scope.expand_acc);
         });
 
 })();

@@ -7,6 +7,7 @@
             var page = angular.element($window).find('.page-content');
             // $rootScope.state = $state.current.name;
             $rootScope.state = 'store';
+            $rootScope.$broadcast('store:open', {});
             $scope.filtered = [];
 
             $scope.limit = 16;
@@ -43,20 +44,29 @@
             $scope.$on('$destroy', function() {
                 // Make sure that the interval is destroyed too
                 $rootScope.state = undefined;
+                $rootScope.$broadcast('store:closed', {});
             });
 
             //----------------------------
             // FILTERS
             //----------------------------
 
-            if ($state.current.name == 'store-filtered') {
-                BrandFilter.selected = $stateParams.selectedBrands.split(",");
-                BrandFilter.selected = $filter('capitalize')(BrandFilter.selected);
-                TypeFilter.selected = $stateParams.selectedTypes.split(",");
-                TypeFilter.selected = $filter('capitalize')(TypeFilter.selected);
-                KindFilter.selected = $stateParams.selectedKinds.split(",");
-                KindFilter.selected = $filter('capitalize')(KindFilter.selected);
-            }
+                // BrandFilter.selected = $stateParams.selectedBrands.split(",");
+                // BrandFilter.selected = $filter('capitalize')(BrandFilter.selected);
+                // TypeFilter.selected = $stateParams.selectedTypes.split(",");
+                // TypeFilter.selected = $filter('capitalize')(TypeFilter.selected);
+                // KindFilter.selected = $stateParams.selectedKinds.split(",");
+                // KindFilter.selected = $filter('capitalize')(KindFilter.selected);\
+                if($stateParams.brand){
+                    BrandFilter.selected = $stateParams.brand;
+                }
+                if($stateParams.type){
+                    TypeFilter.selected = $stateParams.type;
+                }
+                if($stateParams.kind){
+                    KindFilter.selected = $stateParams.kind;
+                }
+                PromoFilter.state = $stateParams.promo;
 
             $scope.Counter = Counter;
             $scope.BrandFilter = BrandFilter;
@@ -70,13 +80,16 @@
             // SORT LIST
             //----------------------------
 
-            $scope.sortOrder = '';
-            $scope.sortReverse = false;
+            $scope.sortOrder = 'added';
+            $scope.sortReverse = true;
 
             $scope.sortList = [{
                 order: 'added',
                 name: 'Data'
             }, {
+                order: 'new_price',
+                name: 'Pret'
+            },{
                 order: 'name',
                 name: 'Nume'
             }, {

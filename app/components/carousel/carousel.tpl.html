@@ -1,6 +1,6 @@
 <div class="gd-carousel">
     <gd-heading ng-hide="!title" title="{{title}}" subtitle="{{subtitle}}">
-        <a href="">
+        <a ng-if="link" ui-sref="{{link}}">
             <md-button class="md-primary md-icon-button carousel-heading-button">
                 <md-tooltip>
                     Vezi toate
@@ -13,7 +13,7 @@
     </gd-heading>
     <div class="gd-carousel-wrapper">
         <div class="gd-carousel-lane" layout="row">
-            <gd-carousel-item flex-gt-lg="{{100/lg | number:0}}" flex-gt-md="{{100/md | number:0}}" flex-gt-sm="{{100/sm | number:0}}" flex="{{100/xs | number:0}}" ng-repeat="item in items | promoFilter:promoFilter | filter : filterQuery | orderBy:item.code:true | limitTo:limit:start">
+            <gd-carousel-item flex-gt-lg="{{100/lg | number:0}}" flex-gt-md="{{100/md | number:0}}" flex-gt-sm="{{100/sm | number:0}}" flex="{{100/xs | number:0}}" ng-repeat="item in items | shuffle:shuffled | promoFilter:promoFilter | filter : filterQuery | orderBy:item.code:true | limitTo:limit:start">
                 <gd-card ng-class="{'gd-tile' : tiles}" card-resource="item"></gd-card>
             </gd-carousel-item>
         </div>

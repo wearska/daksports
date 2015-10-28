@@ -2,7 +2,7 @@
     <div id="store-page">
         <div class="paper resting filter-list">
             <span class="fade-in-if" ng-if="!Counter.filtersOn()" style="color: rgba(0,0,0,.54);">Nici un filtru activ,</span><br>
-            <span>foloseste filtrele pentru a gasi mai usor ce vrei.</span>
+            <span class="fade-in-if" ng-if="!Counter.filtersOn()">foloseste filtrele pentru a gasi mai usor ce vrei.</span>
             <span class="fade-in-if" ng-if="Counter.filtersOn()" style="color: rgba(0,0,0,.54);">Filtre active:</span>
             <div class="fade-in-if" layout-gt-sm="row" layout="column" ng-show="Counter.filtersOn()">
                 <md-chips capitalizeFirst delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" flex ng-model="BrandFilter.selected" placeholder="Adauga un brand" readonly="true" secondary-placeholder="+ Brand"></md-chips>

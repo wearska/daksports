@@ -96,6 +96,17 @@
                 return capitalized;
             }
         })
+        .filter('gdSanitize', function() {
+            return function(input) {
+                var sanitized = '';
+                if (input === undefined) {
+                    input = '';
+                }
+                sanitized = input.replace(/\s+/g, '_');
+                sanitized = sanitized.replace(/[^()/]/gim,'');
+                return capitalized;
+            }
+        })
         .filter('serialize', function() {
             return function(input) {
                 if (input != null && input != undefined) {
@@ -143,8 +154,8 @@
         .filter('shuffle', function() {
             var shuffledArr = [],
                 shuffledLength = 0;
-            return function(arr) {
-                if (arr) {
+            return function(arr, shuffled) {
+                if (arr && shuffled) {
                     var o = arr.slice(0, arr.length);
                     if (shuffledLength == arr.length) return shuffledArr;
                     for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);

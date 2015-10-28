@@ -1,10 +1,9 @@
 <div class="page-content c-max main-page">
-    <div id="page-hero" class="main-hero" ng-class="{'narrow' : sidebarOpen}" style="top: -{{scrollAmnt/2}}px ; background-image: url({{main_hero}})"></div>
+    <div class="main-hero" id="page-hero" ng-class="{'narrow' : sidebarOpen}" style="top: -{{scrollAmnt/2}}px ; background-image: url({{main_hero}})"></div>
     <div class="page-hero">
-<!-- Nav -->
+        <!-- Nav -->
 
-
-<!-- Slider -->
+        <!-- Slider -->
         <div class="hero-slider">
             <gd-slider class="gd-slider ar_16-9">
                 <div class="gd-slides" ng-controller="GdSliderCtrl" ng-mouseleave="playSlider()" ng-mouseover="pauseSlider()">
@@ -23,33 +22,76 @@
 
     </div>
 
-<!-- Ads -->
-    <div class="gd-banner-container" layout-gt-sm="row" layout-margin layout="column" ng-controller="BannersCtrl">
-        <gd-banner banner-src="banner" class="cell" flex ng-repeat="banner in banners | shuffle | limitTo:3:start"></gd-banner>
+    <!-- Types Grid -->
+
+    <div id="types-grid" style="margin-top: 8px;">
+        <md-grid-list md-cols-gt-md="3" md-cols-md="2" md-cols-sm="1" md-gutter-gt-sm="8px" md-gutter="0" md-row-height="2:1">
+            <md-grid-tile style="background: url({{typesGridLinks.fitness.file | lowres}}) center/cover no-repeat;" md-colspan-sm="1" md-colspan="1" md-rowspan="1">
+                <md-grid-tile-header>
+                    <h3 class="md-title" style="font-weight: 100;">{{typesGridLinks.fitness.header}}</h3>
+                </md-grid-tile-header>  
+                <a ui-sref="store({type: typesGridLinks.fitness.filter})" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent"></a>              
+            </md-grid-tile>
+            <md-grid-tile style="background: url({{typesGridLinks.football.file | medres}}) center/cover no-repeat;" md-colspan="1" md-rowspan="1" md-colspan-gt-md="2" md-rowspan-gt-md="2" ng-click="goTo(typesGridLinks.football.link)">
+                <md-grid-tile-header>
+                    <h3 class="md-title" style="font-weight: 100;">{{typesGridLinks.football.header}}</h3>
+                </md-grid-tile-header>
+                <a ui-sref="store({type: typesGridLinks.football.filter})" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent"></a>
+            </md-grid-tile>
+            <md-grid-tile style="background: url({{typesGridLinks.training.file | lowres}}) center/cover no-repeat;" md-colspan-sm="1" md-colspan="1" md-rowspan="1">
+                <md-grid-tile-header>
+                    <h3 class="md-title" style="font-weight: 100;">{{typesGridLinks.training.header}}</h3>
+                </md-grid-tile-header>
+                <a ui-sref="store({type: typesGridLinks.training.filter})" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent"></a>
+            </md-grid-tile>
+            <md-grid-tile style="background: url({{typesGridLinks.skiing.file | lowres}}) center/cover no-repeat;" md-colspan-sm="1" md-colspan="1" md-rowspan="1">
+                <md-grid-tile-header>
+                    <h3 class="md-title" style="font-weight: 100;">{{typesGridLinks.skiing.header}}</h3>
+                </md-grid-tile-header>
+                <a ui-sref="store({type: typesGridLinks.skiing.filter})" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent"></a>
+            </md-grid-tile>
+            <md-grid-tile style="background: url({{typesGridLinks.hiking.file | lowres}}) center/cover no-repeat;" md-colspan-sm="1" md-colspan="1" md-rowspan="1">
+                <md-grid-tile-header>
+                    <h3 class="md-title" style="font-weight: 100;">{{typesGridLinks.hiking.header}}</h3>
+                </md-grid-tile-header>
+                <a ui-sref="store({type: typesGridLinks.hiking.filter})" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent"></a>
+            </md-grid-tile>
+            <md-grid-tile style="background: url({{typesGridLinks.running.file | lowres}}) center/cover no-repeat;" md-colspan-sm="1" md-colspan="1" md-rowspan="1">
+                <md-grid-tile-header>
+                    <h3 class="md-title" style="font-weight: 100;">{{typesGridLinks.running.header}}</h3>
+                </md-grid-tile-header>
+                <a ui-sref="store({type: typesGridLinks.running.filter})" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent"></a>
+            </md-grid-tile>
+        </md-grid-list>
     </div>
 
-<!-- Football cluster -->
+    <!-- Ads -->
+    <!-- <div class="gd-banner-container" layout-gt-sm="row" layout-margin layout="column" ng-controller="BannersCtrl">
+        <gd-banner banner-src="banner" class="cell" flex ng-repeat="banner in banners | shuffle | limitTo:3:start"></gd-banner>
+    </div> -->
+
+    <!-- Football cluster -->
     <gd-cluster gd-cluster-image="uploads/clusters/fotbal.jpg" gd-cluster-items="footballItems" subtitle="Cel mai bine vandute articole din fotbal" title="Top Fotbal"></gd-cluster>
 
-<!-- Promos -->
-    <gd-carousel carousel-length="0" data="$root.products" gd-tiles="true" lg="3" limit="10" md="2" promo-filter="1" sm="1" start="0" subtitle="Nu pierde cele mai bune oferte!" title="Promotiile saptamanii" xs="1"></gd-carousel>
+    <!-- Promos -->
+    <gd-carousel carousel-length="0" data="$root.products" gd-tiles="true" lg="3" limit="10" md="2" promo-filter="1" sm="1" start="0" subtitle="Nu pierde cele mai bune oferte!" title="Promotiile saptamanii" link="store({promo : 1})" xs="1"></gd-carousel>
 
-<!-- Tennis cluster -->
+    <!-- Tennis cluster -->
     <gd-cluster gd-cluster-image="uploads/clusters/tenis.jpg" gd-cluster-items="tennisItems" subtitle="Cel mai bine vandute articole din fotbal" title="Top Tenis"></gd-cluster>
 
-<!-- Recommended -->
+    <!-- Recommended -->
     <gd-carousel data="$root.products" lg="5" limit="10" md="4" sm="3" start="0" subtitle="Cel mai bine cotate articole de incaltaminte" title="Produse recomandate" xs="2"></gd-carousel>
 
-<!-- Basketball cluster -->
+    <!-- Basketball cluster -->
     <gd-cluster gd-cluster-image="uploads/clusters/baschet.jpg" gd-cluster-items="basketballItems" subtitle="Cel mai bine vandute articole din baschet" title="Top Baschet"></gd-cluster>
 
     <!-- RECENTS -->
-    <gd-heading title="Recent vizitate" subtitle="Istoricul tau de navigare"></gd-heading>
+    <gd-heading subtitle="Istoricul tau de navigare" title="Recent vizitate"></gd-heading>
 
     <div ng-controller="RecentCtrl as recent">
-        <gd-tabs layout="column" class="recent">
+        <gd-tabs class="recent" layout="column">
             <div class="paper gd-tabs-wrapper" layout="row">
-                <gd-tab ng-repeat="product in $root.userData.recent_items | limitTo: 10 | reverse" flex="10" ng-class="{active : $index == 0}" ng-click="recent.recentFilter = product.kind">
+                <gd-tab flex="10" ng-class="{active : $index == 0}" ng-click="recent.recentFilter = product.kind" ng-repeat="product in $root.userData.recent_items | limitTo: 10 | reverse">
                     <gd-tab-label class="recent-cell">
                         <div class="recent-tile ar_1-1" style="background-image:url({{product.file1}});"></div>
                     </gd-tab-label>
@@ -60,11 +102,11 @@
                 <p class="heading-subtitle single-line">Alti clienti au mai vizitat si:</p>
             </div>
             <gd-tab-content class="recent-content">
-                <gd-carousel data="$root.products" animated="true" filter="kindFilter" filter-query="recent.recentFilter" lg="5" limit="10" md="4" sm="3" xs="2" start="0"></gd-carousel>
+                <gd-carousel shuffled="true" animated="true" data="$root.products" filter-query="recent.recentFilter" filter="kindFilter" lg="5" limit="10" md="4" sm="3" start="0" xs="2"></gd-carousel>
             </gd-tab-content>
         </gd-tabs>
     </div>
 
-<!-- FOOTER -->
+    <!-- FOOTER -->
     <footer class="paper resting pinned" id="bottom-bar" ng-controller="FooterCtrl" ng-include="'app/components/footer/footer.inc.tpl.html'" role="footer"></footer>
 </div>

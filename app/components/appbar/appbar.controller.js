@@ -15,14 +15,20 @@
 
             $scope.products = angular.copy($rootScope.products);
 
+            var prevView = '';
             $scope.goToSearch = function(){
+                prevView = $location.path();
                 $location.path('search');
-            }
+            };
+            
+            $scope.backFromSearch = function (){
+                $location.path(prevView);
+            };
 
             $scope.search = function(query){
                 console.log(query);
                 $rootScope.searchResults = $filter('searchProduct')($rootScope.products, query);
-            }
+            };
 
             $scope.clearSearch = function() {
                 $scope.search = "";
