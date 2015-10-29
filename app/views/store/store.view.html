@@ -2,7 +2,7 @@
     <div id="store-page">
         <div class="paper resting filter-list">
             <span class="fade-in-if" ng-if="!Counter.filtersOn()" style="color: rgba(0,0,0,.54);">Nici un filtru activ,</span><br>
-            <span class="fade-in-if" ng-if="!Counter.filtersOn()">foloseste filtrele pentru a gasi mai usor ce vrei.</span>
+            <span class="fade-in-if" ng-if="!Counter.filtersOn()" style="color: rgba(0,0,0,.54);">foloseste filtrele pentru a gasi mai usor ce vrei.</span>
             <span class="fade-in-if" ng-if="Counter.filtersOn()" style="color: rgba(0,0,0,.54);">Filtre active:</span>
             <div class="fade-in-if" layout-gt-sm="row" layout="column" ng-show="Counter.filtersOn()">
                 <md-chips capitalizeFirst delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" flex ng-model="BrandFilter.selected" placeholder="Adauga un brand" readonly="true" secondary-placeholder="+ Brand"></md-chips>
@@ -11,33 +11,37 @@
                 <span flex="5"></span>
                 <md-chips delete-button-label="Sterge filtru" delete-hint="Apasa delete ca sa stergi un filtru" flex ng-model="KindFilter.selected" placeholder="Adauga o subcategorie" readonly="true" secondary-placeholder="+ Sub-categorie"></md-chips>
             </div>
-            <div class="paper list-sorting" layout>
-                <md-input-container flex="25">
-                    <label>Sorteaza dupa</label>
-                    <md-select ng-model="sortOrder">
-                        <md-option ng-repeat="sort in sortList" value="{{sort.order}}">{{sort.name}}</md-option>
-                    </md-select>
-                </md-input-container>
-                <div class="sort-direction">
-                    <md-icon class="fade-in-if" md-ink-ripple md-svg-src="assets/icons/ic_order_swap_24px.svg" ng-show="!sortOrder"></md-icon>
-                    <md-icon class="fade-in-if" md-ink-ripple md-svg-src="assets/icons/ic_order_reverse_24px.svg" ng-click="sortReverse = !sortReverse" ng-show="sortOrder && sortReverse"></md-icon>
-                    <md-icon class="fade-in-if" md-ink-ripple md-svg-src="assets/icons/ic_order_forward_24px.svg" ng-click="sortReverse = !sortReverse" ng-show="sortOrder && !sortReverse"></md-icon>
+            <div class="paper list-sorting" layout="column" layout-gt-sm="row">
+                <div flex flex-gt-sm="33" layout>
+                    <md-input-container flex="75">
+                        <label>Sorteaza dupa</label>
+                        <md-select ng-model="sortOrder">
+                            <md-option ng-repeat="sort in sortList" value="{{sort.order}}">{{sort.name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <div class="sort-direction" flex="25">
+                        <md-icon class="fade-in-if" md-ink-ripple md-svg-src="assets/icons/ic_order_swap_24px.svg" ng-show="!sortOrder"></md-icon>
+                        <md-icon class="fade-in-if" md-ink-ripple md-svg-src="assets/icons/ic_order_reverse_24px.svg" ng-click="sortReverse = !sortReverse" ng-show="sortOrder && sortReverse"></md-icon>
+                        <md-icon class="fade-in-if" md-ink-ripple md-svg-src="assets/icons/ic_order_forward_24px.svg" ng-click="sortReverse = !sortReverse" ng-show="sortOrder && !sortReverse"></md-icon>
+                    </div>
                 </div>
-                <md-checkbox ng-class="{selected : PromoFilter.state}" ng-false-value="0" ng-model="PromoFilter.state" ng-true-value="1">
-                    Doar produse aflate la promotie
-                </md-checkbox>
+                <div flex flex-gt-sm="33">
+                    <md-checkbox ng-class="{selected : PromoFilter.state}" ng-false-value="0" ng-model="PromoFilter.state" ng-true-value="1">
+                        Promo
+                    </md-checkbox>
+                </div>
             </div>
         </div>
         <div ng-hide>
             <div ng-hide ng-repeat="item in $root.products | fitForMeFilter : FitFilter.state | brandFilter : BrandFilter.selected | typeFilter : TypeFilter.selected | kindFilter : KindFilter.selected | priceFilter : PriceFilter.selected | promoFilter : PromoFilter.state | filter : q as filtered"></div>
         </div>
-        <div class="product-grid" layout layout-wrap style="margin-left: -8px; margin-right: -8px;">
+        <div class="product-grid" layout layout-wrap style="margin-left: -8px; margin-right: -8px;"  infinite-scroll="myPagingFunction()" infinite-scroll-distance="3">
             <div class="grid-cell slide-bot" flex-gt-lg="25" flex-gt-md="{{$index % 2 === 0 && $index > 0 ? '34' : '33'}}" flex="50" ng-repeat="item in $root.filtered | fitForMeFilter : FitFilter.state | brandFilter : BrandFilter.selected | typeFilter : TypeFilter.selected | kindFilter : KindFilter.selected | priceFilter : PriceFilter.selected | promoFilter : PromoFilter.state | orderBy : sortOrder : sortReverse | limitTo : limit">
                 <gd-card card-resource="item"></gd-card>
             </div>
         </div>
         <md-divider></md-divider>
-        <div class="items-end" ng-show="$root.scrolledBottom" style="background-image: url('assets/img/items_end.svg');"></div>
+        <!-- <div class="items-end" ng-show="$root.scrolledBottom" style="background-image: url('assets/img/items_end.svg');"></div> -->
     </div>
 
 <!-- FOOTER -->

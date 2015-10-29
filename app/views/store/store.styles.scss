@@ -26,7 +26,7 @@
     border-top: 1px solid rgba(0, 0, 0, 0.12);
     margin: 0;
     margin-top: 16px;
-    max-height: 48px;
+    // max-height: 48px;
     .sort-direction {
         width: 48px;
         overflow: hidden;
@@ -43,7 +43,8 @@
     md-checkbox,
     md-radio-button {
         opacity: 0.65;
-        left: 48px;
+        // left: 48px;
+        margin-left: 0;
         top: 12px;
         md-icon {
             width: 14px;
@@ -53,7 +54,7 @@
             font-size: 13px;
             color: rgba(0,0,0,.87);
             font-weight: 400;
-            vertical-align: sub;
+            // vertical-align: sub;
         }
         &[disabled] {
             pointer-events: none;

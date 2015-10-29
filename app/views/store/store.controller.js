@@ -15,7 +15,7 @@
             $scope.$on('scroll:bottom', function(event, item) {
                 $timeout(function() {
                     $scope.limit = $scope.limit + 8;
-                }, 1000);
+                }, 100);
             });
             $scope.$on('products:filled', function(event, item) {
                 $timeout(function() {
